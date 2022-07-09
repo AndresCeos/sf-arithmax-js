@@ -41,11 +41,6 @@ body {
 }
 
 @media (max-width: 1360px) {
-  body {
-      width: 1360px;
-      overflow-x: scroll;
-      overflow-y: hidden;
-  }
 }
 
 svg {
@@ -2685,4 +2680,30 @@ top: 134px;
   top: 120px;
   left: 117px;
   transform: rotate(75deg);
+}
+
+@media (max-width: 1360px) {
+  #main-menu img{
+    max-width: 25px;
+  }
+  #main-menu .px-3{
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  #App-content > .grid {
+      transform: scale(0.9);
+      transform-origin: top;
+  }
+}
+
+@media (max-width: 1260px) {
+  body {
+    width: 1260px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  #App-content > .grid {
+      transform: scale(0.88);
+      transform-origin: top;
+  }
 }
