@@ -1,0 +1,113 @@
+import { useSelector } from 'react-redux';
+
+import { UserPartnerSelect, SinastryDestinyTable, UnselectedConsultant } from '../components'
+
+import moment from 'moment';
+import { Person } from '../resources'
+
+import { TiPlus } from "react-icons/ti";
+import { useConsultant } from '../hooks';
+
+const SinastyDestinityTablePage = () => {
+  const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
+  const isEmpty = Object.keys(userActive).length === 0;
+  const { consultant } = useConsultant()
+
+  if( isEmpty ){
+    return<UnselectedConsultant />
+  }
+
+  const partner = new Person({
+    name: userPartnerActive.names,
+    lastName: userPartnerActive.lastName,
+    scdLastName: userPartnerActive.scdLastName,
+    birthDate: userPartnerActive.date,
+    yearMeet :userPartnerActive.yearMeet
+  })
+
+  if( partner === undefined ){
+    return<UnselectedConsultant />
+  }
+
+  // console.log( moment(userPartnerActive.yearMeet).year() )
+  // console.log( consultant.birthDate.year() )
+  const ageMeet = moment(userPartnerActive.yearMeet).year() - consultant.birthDate.year()
+  const t = consultant.getDestinityTable()
+  const table = t.slice(ageMeet)
+  // console.log(table)
+  const table1 = table.slice(0, 11);
+  const table2 = table.slice(11, 22);
+  const table3 = table.slice(22, 33);
+  const table4 = table.slice(33, 44);
+
+  // console.log( moment(userPartnerActive.yearMeet).year() )
+  // console.log( partner.birthDate.year() )
+  const ageMeetP = moment(userPartnerActive.yearMeet).year() - partner.birthDate.year()
+  const tP = partner.getDestinityTable()
+  const partnerTable = tP.slice(ageMeetP)
+  // console.log(partnerTable)
+  // const partnerTable = partner.getDestinityTable()
+  const partnerTable1 = partnerTable.slice(0, 11);
+  const partnerTable2 = partnerTable.slice(11, 22);
+  const partnerTable3 = partnerTable.slice(22, 33);
+  const partnerTable4 = partnerTable.slice(33, 44);
+
+  return(
+    <div className='grid grid-cols-12 mx-14 gap-6 mt-8 pt-10'>
+
+        <UserPartnerSelect/>
+
+        {(isSelectPartner)?
+
+          <div className='col-span-12 mb-5'>
+            <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+              <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-gold p-2'>
+                <TiPlus className='text-2xl'/>
+              </div>
+              Tabla del Destino de la Pareja
+            </div>
+            <div className='pinnacle-wrap px-8 py-3'>
+
+              <SinastryDestinyTable
+                table={table1}
+                start={0 + ageMeet}
+                consultant={consultant}
+                partner={partner}
+                tableP={partnerTable1}
+                startP={0 + ageMeetP}
+                />
+              <SinastryDestinyTable
+                table={table2}
+                start={11 + ageMeet}
+                consultant={consultant}
+                partner={partner}
+                tableP={partnerTable2}
+                startP={11 + ageMeetP}
+                />
+              <SinastryDestinyTable
+                table={table3}
+                start={22 + ageMeet}
+                consultant={consultant}
+                partner={partner}
+                tableP={partnerTable3}
+                startP={22 + ageMeetP}
+                />
+              <SinastryDestinyTable
+                table={table4}
+                start={33 + ageMeet}
+                consultant={consultant}
+                partner={partner}
+                tableP={partnerTable4}
+                startP={33 + ageMeetP}
+                />
+            </div>
+          </div>
+        :
+        <div className="col-span-12 text-center"><strong>Agrega/Selecciona una pareja para ver esta información</strong></div>
+        }
+
+    </div>
+  )
+}
+
+export default SinastyDestinityTablePage;

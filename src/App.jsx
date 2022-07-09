@@ -1,7 +1,14 @@
-export default function App() {
+import { Provider } from 'react-redux';
+import store from './store/store';
+import { AppRouter } from './components/';
+
+
+const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
   )
 }
+
+export default App;

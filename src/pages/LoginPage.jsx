@@ -1,0 +1,110 @@
+import { useMemo, useState } from "react"
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { startLogin } from '../store/slices/auth/thunks';
+
+import Logo from '../assets/logo_login.png'
+import bk from '../assets/bk.jpg'
+import bk_numbers from '../assets/login-numbers.jpg'
+import shape from '../assets/login-shape.png'
+import welcome from '../assets/welcome.png'
+
+const Login = () => {
+  const [email, setEmail] = useState()
+  const [pass, setPass] = useState()
+
+  const { status, errorMessage } = useSelector( state => state.auth)
+  const isAuthenticating = useMemo( ()=> status === 'checking', [status] )
+
+  const dispatch = useDispatch();
+
+  const handleOnSubmit = (e) => {
+    const userData = {
+      username: email,
+      password: pass
+    }
+    dispatch( startLogin( userData ) )
+    e.preventDefault();
+  }
+  return(
+    <>
+      <nav className="bg-white border-gray-200">
+        <div className="flex flex-wrap justify-between items-center mx-auto">
+          <Link to="/" className="flex">
+            <img
+              src={Logo}
+              id="App-logo"
+              alt="app-logo"
+            />
+          </Link>
+          <div
+            className="hidden w-full md:block md:w-auto mr-3"
+            id="main-menu"
+          >
+          </div>
+        </div>
+      </nav>
+      <div className="bg-cover" style={{ backgroundImage: `url("${bk}")`  }}>
+        <div className="Page-Home grid grid-cols-14 h-full">
+          <div className="col-span-9 grid grid-cols-9 bg-no-repeat bg-cover" style={{ backgroundImage: `url("${bk_numbers}")`  }}>
+            <div className="col-start-2 col-span-3 bg-contain bg-repeat-y" style={{ backgroundImage: `url("${shape}")`  }}>
+            </div>
+            <div className="col-span-4 flex flex-col justify-center items-start">
+              <h2 className="text-4xl font-bold text-main-900 mb-7">“Si quieres entender el Universo, piensa en energía, frecuencia y vibración”.</h2>
+              <h2 className="text-4xl text-main-900">Nikola Tesla</h2>
+            </div>
+          </div>
+          <div className="col-span-5 h-full flex flex-col items-center justify-center bg-white bg-opacity-50">
+            <div className="w-full flex flex-col items-center justify-center">
+              <img src={welcome} className="w-32" alt="welcome" />
+              <h2>Iniciar Sesión</h2>
+              <form onSubmit={ handleOnSubmit } className="w-full m-5 flex flex-col items-center">
+                <input
+                  type="email"
+                  placeholder="Correo electrónico"
+                  onChange={e => setEmail(e.target.value)}
+                  className="w-4/6 h-8 border border-gray-400 rounded-md text-13 text-center mb-5 outline-none"
+                  required
+                />
+                <input
+                  type="password"
+                  placeholder="Contraseña"
+                  onChange={e => setPass(e.target.value)}
+                  className="w-4/6 h-8 border border-gray-400 rounded-md text-13 text-center mb-5 outline-none"
+                  required
+                />
+                {
+                  isAuthenticating ?
+                  <button
+                    type="button"
+                    className="bg-yellow h-9 w-5/12 rounded-full text-base text-white font-bold cursor-progress"
+                    disabled
+                  >
+                    <svg className="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Procesando
+                  </button>
+                  :
+                  <>
+                    <input
+                      type="submit"
+                      className="bg-yellow h-9 w-5/12 rounded-full text-base text-white font-bold outline-none cursor-pointer"
+                      value="Entrar"
+                    />
+                    <span className="text-red-500 mt-5 w-10/12 text-center italic">{ errorMessage }</span>
+                  </>
+                }
+              </form>
+              {/* <a>Olvide mi Contraseña</a> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default Login;

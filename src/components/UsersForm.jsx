@@ -1,0 +1,160 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Formik } from 'formik'
+
+import { addUser, setIsEditing,editUser } from '../store/slices/users/users';
+
+import add_user_main from '../assets/icons/add_user_main.svg'
+
+export const UsersForm = (props) => {
+  const dispatch = useDispatch();
+  const { isEditing } = useSelector(state => state.users);
+  const {dataUserEdit,dataUserIndex} = props;
+
+  return(
+    <Formik
+      enableReinitialize
+      initialValues={(!isEditing)?{ names: '', date: '',lastName:'',scdLastName:'',partner:[] }:
+      { names: dataUserEdit.names, date: dataUserEdit.date,lastName:dataUserEdit.lastName,scdLastName:dataUserEdit.scdLastName,partner:[dataUserEdit.partner]}}
+      validate={ values => {
+        const errors = {};
+        if (!values.names) {
+          errors.names = 'Requerido';
+        }
+        if (!values.date) {
+          errors.date = 'Requerido';
+        }
+        if (!values.lastName) {
+          errors.lastName = 'Requerido';
+        }
+        if (!values.scdLastName) {
+          errors.scdLastName = 'Requerido';
+        }
+        return errors;
+      } }
+      onSubmit={(user,  { setSubmitting, resetForm }) => {
+        if(isEditing){
+          user.id = dataUserEdit.id;
+          dispatch(editUser(user, dataUserIndex))
+        }else{
+          dispatch(addUser( user ))
+        }
+        setSubmitting(false);
+        resetForm({})
+      }}
+    >
+    {({
+      values,
+      errors,
+      touched,
+      handleChange,
+      handleBlur,
+      handleSubmit,
+      isSubmitting,
+      /* and other goodies */
+    }) => (
+      <form id='App-add-user-form' className="form-container block" onSubmit={handleSubmit}>
+        <div className="flex w-full gap-4">
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Nombre(s)
+              <span className='text-red-800'>*</span>
+            </label>
+            <input
+              type="text"
+              name="names"
+              className="rounded"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.names}
+            />
+            {errors.names && touched.names ? <span className="form-error">{errors.names}</span>  : null }
+          </div>
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Apellido Paterno
+              <span className='text-red-800'>*</span>
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              className="rounded"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.lastName}
+            />
+            {errors.lastName && touched.lastName ? <span className="form-error">{errors.lastName}</span>  : null }
+          </div>
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Apellido Materno
+              <span className='text-red-800'>*</span>
+            </label>
+            <input
+              type="text"
+              name="scdLastName"
+              className="rounded"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.scdLastName}
+            />
+            {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span>  : null }
+          </div>
+        </div>
+        <div className="flex w-full gap-4 mt-3">
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Fecha de Nacimiento
+              <span className='text-red-800'>*</span>
+            </label>
+            <input
+              type="date"
+              name="date"
+              className="rounded"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.date}
+            />
+            {errors.date && touched.date ? <span className="form-error">{errors.date}</span>  : null }
+          </div>
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>Nacionalidad</label>
+            <input
+              type="text"
+              name="nat"
+              className="rounded"
+            />
+          </div>
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>Sexo</label>
+            <input
+              type="text"
+              name="sex"
+              className="rounded"
+            />
+          </div>
+        </div>
+        <div className="flex w-full gap-4 mt-3 items-center">
+          <div className='form-group w-2/3'>
+            <label className='font-bold mb-1'>Motivo de la Consulta</label>
+            <textarea className='rounded'></textarea>
+          </div>
+          <div className='w-1/3'>
+            { (!isEditing) ?
+              <div className='text-center flex justify-center items-center flex-col'>
+                <img src={add_user_main} className="mb-3" alt='add_user_main'/>
+                <button type="submit" className="btn-save w-full" disabled={isSubmitting}>Guardar</button>
+              </div>
+              :
+              <div className='w-full flex flex-wrap'>
+                <button className='w-full btn-conf mb-3'  type="submit"  disabled={isSubmitting}>Confirmar</button>
+                <button className='w-full btn-cancel' type='button' onClick={()=>{dispatch(setIsEditing(false))}} >Cancelar</button>
+              </div>
+            }
+          </div>
+        </div>
+      </form>
+    )}
+    </Formik>
+  )
+}
