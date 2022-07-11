@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { CircleNumber } from '../components/';
 import { capitalize } from '../resources';
 
+import { MdEdit } from 'react-icons/md';
+
 import moment from 'moment/min/moment-with-locales'
 moment.locale("es-mx")
 
@@ -43,7 +45,7 @@ return(
     {(single)?
       <div className='grid'>
         <div className='col-start-1 col-end-6  flex items-center justify-around bg-main p-6'>
-          <div className='text-white text-sm font-bold'>Mes de interes:</div>
+          <div className='text-white text-sm font-bold'><MdEdit className='text-xl text-white'/> Mes de interés:</div>
           <div>
             <select onChange={selectMonth} className='text-2xl rounded-md text-main font-bold' defaultValue={`${singleMonth-1}`} >
               {allMonths.map((m,i)=>
