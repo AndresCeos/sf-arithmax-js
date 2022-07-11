@@ -25,7 +25,7 @@ const VibrationTimePage = () =>{
       <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pb-9 pt-10'>
         <div className="col-span-8">
         <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
+            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
               <TiPlus className='text-2xl'/>
             </div>
             Energías Activas
@@ -81,7 +81,7 @@ const VibrationTimePage = () =>{
         </div>
         <div className='col-span-4 row-span-2 mb-8'>
         <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl '>
-          <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
+          <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
             <TiPlus className='text-2xl'/>
           </div>
           Cuatrimestres por meses
@@ -93,7 +93,7 @@ const VibrationTimePage = () =>{
         </div>
         <div className="col-span-8">
         <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
+            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
               <TiPlus className='text-2xl'/>
             </div>
             Ciclo de 9 años
@@ -130,7 +130,7 @@ const VibrationTimePage = () =>{
         </div>
         <div className='col-span-full'>
         <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-          <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
+          <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
             <TiPlus className='text-2xl'/>
           </div>
           Cuatrimestres por Año
@@ -141,7 +141,7 @@ const VibrationTimePage = () =>{
         </div>
         <div className="col-span-full">
         <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-        <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
+        <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
           <TiPlus className='text-2xl'/>
         </div>
         Análisis del Tiempo

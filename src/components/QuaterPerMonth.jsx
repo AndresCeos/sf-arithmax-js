@@ -189,21 +189,21 @@ return(
   <div className='h-full'>
     <div className='items-center text-black flex justify-center text-xl font-bold bg-black bg-opacity-15 border-t border-solid border-gray-300 h-14 text-xl '>{dateSelected.year()}</div>
     <div>
-      <div className={` ${ism1?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center  font-bold border-t border-sky-500 flex justify-center  h-14 text-xl`}>{m1}</div>
-      <div className= {`${ism1?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-sky-500 font-bold h-12 text-xl`}>{cm1}</div>
+      <div className={` ${ism1?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center  font-bold border-t border-gray-300 flex justify-center  h-14 text-xl`}>{m1}</div>
+      <div className= {`${ism1?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-gray-300 font-bold h-12 text-xl`}>{cm1}</div>
     </div>
     <div>
-      <div className={`${ism2?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center font-bold border-t border-sky-500 flex justify-center h-14 text-xl`}>{m2}</div>
-      <div className={`${ism2?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-sky-500 font-bold h-12 text-xl`}>{cm2}</div>
+      <div className={`${ism2?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center font-bold border-t border-gray-300 flex justify-center h-14 text-xl`}>{m2}</div>
+      <div className={`${ism2?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-gray-300 font-bold h-12 text-xl`}>{cm2}</div>
     </div>
     <div>
-      <div className={`${ism3?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center font-bold border-t border-sky-500 flex justify-center  h-14 text-xl`}>{m3}</div>
-      <div className={`${ism3?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-sky-500 font-bold h-12 text-xl`}>{cm3}</div>
+      <div className={`${ism3?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center font-bold border-t border-gray-300 flex justify-center  h-14 text-xl`}>{m3}</div>
+      <div className={`${ism3?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-gray-300 font-bold h-12 text-xl`}>{cm3}</div>
     </div>
     {(cm4!=='')?
       <div>
-        <div className={`${ism4?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center font-bold border-t border-sky-500 flex justify-center h-14 text-xl`}>{m4}</div>
-        <div className={`${ism4?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-sky-500 font-bold h-12 text-xl`}>{cm4}</div>
+        <div className={`${ism4?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center font-bold border-t border-gray-300 flex justify-center h-14 text-xl`}>{m4}</div>
+        <div className={`${ism4?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-gray-300 font-bold h-12 text-xl`}>{cm4}</div>
       </div>
       :''
     }
