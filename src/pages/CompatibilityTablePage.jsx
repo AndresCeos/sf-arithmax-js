@@ -41,7 +41,7 @@ const CompatibilityTablePage = ()=>{
       {(isSelectPartner)?
         <div className="col-span-12">
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className="w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2">
+            <div className="w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-red-day p-2">
               <TiPlus className='text-2xl'/>
             </div>
             Tabla de Compatibilidad
