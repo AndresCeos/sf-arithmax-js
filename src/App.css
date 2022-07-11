@@ -12,8 +12,18 @@ body * {
   user-select: none;
   /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+  overflow: hidden;
 }
 
+
+#screen{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 99999999;
+  background: #693061;
+  display: none;
+}
 img {
   pointer-events: none
 }
@@ -335,8 +345,11 @@ svg {
   overflow-x: auto;
   background-size: cover;
   /* padding-top: 32px; */
+  overflow-y: scroll;
 }
-
+.sidebar-top{
+  overflow-y: scroll;
+}
 .welcomeLogo {
   position: absolute;
   right: -40px;
@@ -2698,12 +2711,29 @@ top: 134px;
 
 @media (max-width: 1260px) {
   body {
-    width: 1260px;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    /* width: 1260px; */
   }
   #App-content > .grid {
-      transform: scale(0.88);
-      transform-origin: top;
+    transform: scale(0.88);
+    transform-origin: top;
+  }
+  #main-menu img{
+    max-width: 35px;
+  }
+  #main-menu .px-3{
+    font-size: 0;
+    line-height: 0;
+  }
+  #main-menu .px-3 br{
+    display: none;
+  }
+}
+@media (max-width: 1240px) {
+  #screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 2rem;
   }
 }
