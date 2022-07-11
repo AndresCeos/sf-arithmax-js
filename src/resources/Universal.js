@@ -63,13 +63,12 @@ export class Universal{
   /* Current Universal Week Karmico*/
   calcCurrentUniversalWeekISK( dayToCalculate = null, monthToCalculate=null, yearToCalculate=null){
 
-    let personalYear = this.calcPersonalYear(yearToCalculate);
-    let sumUniversalWeekOne = this.reduceNumberISK(personalYear + monthToCalculate);
+    let sumUniversalWeekOne = this.reduceNumberISK(yearToCalculate + monthToCalculate);
     if(dayToCalculate >= 1 && dayToCalculate <= 7){
       return this.karmicos.includes(sumUniversalWeekOne)? '*': '';
     }
 
-    let sumUniversalWeekTwo = this.reduceNumberISK(personalYear + sumUniversalWeekOne);
+    let sumUniversalWeekTwo = this.reduceNumberISK(yearToCalculate + sumUniversalWeekOne);
     if(dayToCalculate>= 8 && dayToCalculate <= 14){
       return this.karmicos.includes(sumUniversalWeekTwo)? '*': '';
     }

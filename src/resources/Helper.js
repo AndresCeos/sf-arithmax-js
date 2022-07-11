@@ -11,8 +11,9 @@ export const formatDate = dateStr => {
   return `${date.date()} de ${date.format("MMMM")} ${date.year()}`
 }
 
-export const currentDate = () => {
-  return `${now.date()} ${now.format("MMMM")} ${now.year()}`
+export const currentDate = (date = null) => {
+  date = date || now
+  return `${date.date()} ${date.format("MMMM")} ${date.year()}`
 }
 
 export const pageName = location => {

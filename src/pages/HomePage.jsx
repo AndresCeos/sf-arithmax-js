@@ -11,11 +11,16 @@ import personal_disabled from '../assets/icons/e_personal_disabled.svg'
 
 const HomePage = () => {
   const { names, lastName, scdLastName, date } = useSelector( state => state.auth )
+  const {dateSelected} = useSelector(state  => state.users)
 
   const displayname = `${names} ${lastName}`
   const profile = new Person({name: names, lastName, scdLastName, birthDate: date})
 
   const u = new Universal()
+
+  const currentDay =  dateSelected.date()
+  const currentMonth = dateSelected.month() +1
+  const currentYear = dateSelected.year()
 
   return(
     <>
@@ -40,31 +45,31 @@ const HomePage = () => {
               <div className='font-black'>UNIVERSAL</div>
             </li>
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6'>
-              { currentDate() }
+              { currentDate(dateSelected) }
             </li>
             <li
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'
               data-name='DÍA'
             >
-              {u.calcUniversalDay()}
+              {u.calcUniversalDay(currentDay, currentMonth, currentYear)}{u.calcUniversalDayISK(currentDay, currentMonth, currentYear)}
             </li>
             <li
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'
               data-name='SEM'
             >
-              {u.calcUniversalWeek()}
+              {u.calcCurrentUniversalWeek(currentDay, currentMonth, currentYear)}{u.calcCurrentUniversalWeekISK(currentDay, currentMonth, currentYear)}
             </li>
             <li
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'
               data-name='MES'
             >
-              {u.calcUniversalMonth()}
+              {u.calcUniversalMonth(currentMonth,currentYear)}{u.calcUniversalMonthISK(currentMonth, currentYear)}
             </li>
             <li
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'
               data-name='AÑO'
             >
-              {u.calcUniversalYear()}
+              {u.calcUniversalYear(currentYear)}{u.calcUniversalYearISK(currentYear)}
             </li>
           </ul>
           <ul className='flex flex-col items-center'>
@@ -79,16 +84,16 @@ const HomePage = () => {
               { profile.displayname ?? displayname }
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
-              { profile.birthDate.isValid() ? profile.calcPersonalDay() : '-' }
+              { profile.birthDate.isValid() ? profile.calcPersonalDay(currentDay, currentMonth, currentYear) : '-' }
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
-              { profile.birthDate.isValid() ? profile.calcPersonalWeek() : '-' }
+              { profile.birthDate.isValid() ? profile.calcPersonalWeek(currentDay, currentMonth, currentYear) : '-' }
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
-              { profile.birthDate.isValid() ? profile.calcPersonalMonth() : '-' }
+              { profile.birthDate.isValid() ? profile.calcPersonalMonth(currentMonth, currentYear) : '-' }
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
-              { profile.birthDate.isValid() ? profile.calcPersonalYear() : '-' }
+              { profile.birthDate.isValid() ? profile.calcPersonalYear(currentYear) : '-' }
             </li>
           </ul>
           <ul className='flex flex-col items-center'>
