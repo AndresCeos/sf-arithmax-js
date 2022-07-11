@@ -5,6 +5,8 @@ import { useConsultant } from '../hooks';
 
 import currentM from '../assets/currentMonth.png'
 
+import bkMan from '../assets/bk-man.png'
+
 const TimeCirclePage = () =>{
   const { userActive, dateSelected } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
@@ -18,7 +20,7 @@ const TimeCirclePage = () =>{
 
   return(
     <>
-      <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pb-9 pt-8'>
+      <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pb-9 pt-8' style={{backgroundImage:`url("${bkMan}")`,backgroundPositionX:'right', backgroundRepeat:'no-repeat'}}>
         <div className='col-span-6 flex justify-center items-center pt-5 mt-5'>
           { consultant.birthDate.isValid() ? <CircleTime consultant={consultant} /> : null }
         </div>
