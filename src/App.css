@@ -12,7 +12,6 @@ body * {
   user-select: none;
   /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-  overflow: hidden;
 }
 
 
@@ -43,11 +42,34 @@ img {
   box-sizing: border-box;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #9f5d9b #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #9f5d9b;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+
 body {
   margin: 0;
   font-family: "OpenSans";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 @media (max-width: 1360px) {
@@ -345,10 +367,10 @@ svg {
   overflow-x: auto;
   background-size: cover;
   /* padding-top: 32px; */
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .sidebar-top{
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .welcomeLogo {
   position: absolute;
