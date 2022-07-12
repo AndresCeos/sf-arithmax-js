@@ -16,6 +16,7 @@ body * {
 
 
 #screen{
+  top: 0;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -2717,6 +2718,18 @@ top: 134px;
   transform: rotate(75deg);
 }
 
+@media (max-width: 1440px) {
+  .nameBreakdown,
+  .destinity-table,
+  .active-name{
+    transform: scale(0.9);
+    transform-origin: top;
+  }
+  .destinity-table .nameBreakdown {
+    transform: scale(1);
+    transform-origin: top;
+  }
+}
 @media (max-width: 1360px) {
   #main-menu img{
     max-width: 25px;
@@ -2728,6 +2741,13 @@ top: 134px;
   #App-content > .grid {
       transform: scale(0.9);
       transform-origin: top;
+  }
+  #App-content > .mx-14{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .nameBreakdown div {
+    /* width: 30px; */
   }
 }
 
@@ -2748,6 +2768,9 @@ top: 134px;
   }
   #main-menu .px-3 br{
     display: none;
+  }
+  .pinnacle-wrap{
+    padding: 10px;
   }
 }
 @media (max-width: 1240px) {

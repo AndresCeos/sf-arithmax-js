@@ -17,7 +17,7 @@ export const ActiveName = ({ table, start, consultant, nameCycles }) => {
     return bg
   }
   return(
-    <div className='flex mb-8'>
+    <div className='active-name flex mb-8'>
       <div className=''>
         <div className='h-30 text-13 font-bold flex items-center bg-main-30 border-t border-gray-500 border-r border-l px-1'>Año </div>
         <div className='h-30 text-13 font-bold flex items-center bg-main-15 border border-gray-500 px-1'>Edad </div>

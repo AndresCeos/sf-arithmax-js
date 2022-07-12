@@ -24,7 +24,7 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
   }
 
   return(
-    <div className='flex mb-8'>
+    <div className='destinity-table flex mb-8'>
       <div className='w-32'>
         <div className='h-6 w-32 text-13 font-black bg-main-30 border-t border-gray-400 border-l border-r flex items-center justify-start px-1'>
           Año
