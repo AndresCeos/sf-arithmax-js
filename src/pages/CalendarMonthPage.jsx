@@ -3,12 +3,13 @@ import { useSelector } from 'react-redux';
 import { SingleMonth, UnselectedConsultant, CircleNumber } from '../components/';
 
 import { TiPlus } from "react-icons/ti";
-import { useConsultant } from '../hooks';
+import { useConsultant, dateSelect } from '../hooks';
 
 
 const CalendarMonthPage = () =>{
-  const { userActive,dateSelected } = useSelector(state => state.users);
+  const { userActive } = useSelector(state => state.users);
   const { consultant } = useConsultant()
+  const {newDate} = dateSelect()
 
   const isEmpty = Object.keys(userActive).length === 0;
 
@@ -24,27 +25,27 @@ const CalendarMonthPage = () =>{
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-600 p-2'>
                 <TiPlus className='text-2xl'/>
             </div>
-            Calendario Anual: {dateSelected.year()}
+            Calendario Anual: {newDate.year()}
           </div>
           <div className='pinnacle-wrap gird grid-cols-2 px-4 py-8 w-full'>
             <div className="col-start-1 row-start-1 col-end-3 flex items-center justify-start">
               <div className="text-xl text-black font-bold px-2">
-                {dateSelected.year()}:
+                {newDate.year()}:
               </div>
               <div className="text-sm text-gray-500 px-2 font-bold">
                 Año Personal
               </div>
               <div className=" px-2">
                 <CircleNumber size="sm" appearance="purple-30" border="main">
-                  {consultant.calcPersonalYear(dateSelected.year())}
-                  {consultant.calcPersonalYearISK(dateSelected.year())}
+                  {consultant.calcPersonalYear(newDate.year())}
+                  {consultant.calcPersonalYearISK(newDate.year())}
                 </CircleNumber>
               </div>
               <div className="text-black font-bold text-xl px-2"> / </div>
               <div className=" px-2">
                 <CircleNumber  size="sm" appearance="purple-30" border="main">
-                  {consultant.calcUniversalYear(dateSelected.year())}
-                  {consultant.calcUniversalYearISK(dateSelected.year())}
+                  {consultant.calcUniversalYear(newDate.year())}
+                  {consultant.calcUniversalYearISK(newDate.year())}
                 </CircleNumber>
               </div>
               <div className="text-sm text-gray-500 px-2 font-bold">
@@ -52,7 +53,7 @@ const CalendarMonthPage = () =>{
               </div>
             </div>
             <div className="row-start-2 col-start-1 col-end-3">
-              <SingleMonth consultant={consultant} month={dateSelected.month()+1} single={true}/>
+              <SingleMonth consultant={consultant} month={newDate.month()+1} single={true}/>
             </div>
           </div>
         </div>

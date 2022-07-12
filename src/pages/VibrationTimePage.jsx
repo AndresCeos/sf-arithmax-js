@@ -1,24 +1,25 @@
 import { useSelector } from 'react-redux';
 import { AnnualReturn, QuaterPerMonth, QuaterPerYear,
   UnselectedConsultant, CircleNumber } from '../components/';
-import { useConsultant } from '../hooks';
+import { useConsultant, dateSelect } from '../hooks';
 
 import { TiPlus } from "react-icons/ti";
 
 const VibrationTimePage = () =>{
-  const { userActive, dateSelected } = useSelector(state => state.users);
+  const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
+  const {newDate} = dateSelect()
 
   if( isEmpty ){
     return <UnselectedConsultant />
   }
 
-  const annualReturnCurrent = consultant.annualReturn(dateSelected.year())
-  const annualReturnLastYear = consultant.annualReturn(dateSelected.year()-1)
-  const annualReturnNextYear = consultant.annualReturn(dateSelected.year()+1)
+  const annualReturnCurrent = consultant.annualReturn(newDate.year())
+  const annualReturnLastYear = consultant.annualReturn(newDate.year()-1)
+  const annualReturnNextYear = consultant.annualReturn(newDate.year()+1)
 
-  const nineYearCycle = consultant.getNineYearCycle(dateSelected.year())
+  const nineYearCycle = consultant.getNineYearCycle(newDate.year())
 
   return(
     <>
@@ -34,28 +35,28 @@ const VibrationTimePage = () =>{
             <b className='col-start-1 row-start-1 text-sm'>Etapa Actual</b>
             <div className='col-start-1 row-start-2 row-span-2 m-auto'>
               <CircleNumber  size="sm" appearance="green-50" border="green">
-                {consultant.getLifeStage(dateSelected.year())}{consultant.getLifeStageISK(dateSelected.year())}
+                {consultant.getLifeStage(newDate.year())}{consultant.getLifeStageISK(newDate.year())}
               </CircleNumber>
             </div>
             <b className='col-start-2 row-start-2 text-sm pl-1'>Año Personal</b>
             <div className='col-start-2 row-start-3 row-span-2 cicle-year bg-secondary text-xl font-bold flex items-center justify-center rounded-md w-10 h-10 m-auto'>
-              {consultant.calcPersonalYear(dateSelected.year())}{consultant.calcPersonalYearISK(dateSelected.year())}
+              {consultant.calcPersonalYear(newDate.year())}{consultant.calcPersonalYearISK(newDate.year())}
             </div>
             <b className='col-start-3 row-start-3 text-sm pl-1'>Cuatrimestre</b>
             <div className='col-start-3 row-start-4 row-span-2 cicle-year bg-green-70 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10 m-auto'>
-              {consultant.calcCurrentQuater(dateSelected, dateSelected.year())}{consultant.calcCurrentQuaterISK(dateSelected, dateSelected.year())}
+              {consultant.calcCurrentQuater(newDate, newDate.year())}{consultant.calcCurrentQuaterISK(newDate, newDate.year())}
             </div>
             <b className='col-start-4 row-start-4 text-sm pl-1'>Mes Personal</b>
             <div className='col-start-4 row-start-5 row-span-2 cicle-year bg-gold-50 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10 m-auto'>
-              {consultant.calcPersonalMonth(dateSelected.month()+1,dateSelected.year())}{consultant.calcPersonalMonthISK(dateSelected.month()+1,dateSelected.year())}
+              {consultant.calcPersonalMonth(newDate.month()+1,newDate.year())}{consultant.calcPersonalMonthISK(newDate.month()+1,newDate.year())}
             </div>
             <b className='col-start-5 row-start-5 text-sm pl-1'>Sem Personal</b>
             <div className='col-start-5 row-start-6 row-span-2 cicle-year bg-ble-week-temp text-xl font-bold flex items-center justify-center rounded-md w-10 h-10 m-auto'>
-              {consultant.calcPersonalWeek(dateSelected.date(), dateSelected.month()+1, dateSelected.year())}{consultant.calcPersonalWeekISK(dateSelected.date(), dateSelected.month()+1, dateSelected.year())}
+              {consultant.calcPersonalWeek(newDate.date(), newDate.month()+1, newDate.year())}{consultant.calcPersonalWeekISK(newDate.date(), newDate.month()+1, newDate.year())}
             </div>
             <b className='col-start-6 row-start-6 text-sm pl-1'>Día Personal</b>
             <div className='col-start-6 row-start-7 row-span-2 cicle-year bg-red-day text-xl font-bold flex items-center justify-center rounded-md w-10 h-10 m-auto'>
-              {consultant.calcPersonalDay(dateSelected.date(), dateSelected.month()+1, dateSelected.year())}{consultant.calcPersonalDayISK(dateSelected.date(), dateSelected.month()+1, dateSelected.year())}
+              {consultant.calcPersonalDay(newDate.date(), newDate.month()+1, newDate.year())}{consultant.calcPersonalDayISK(newDate.date(), newDate.month()+1, newDate.year())}
             </div>
             <div className='col-start-1 row-start-1 row-end-10 flex justify-end mt-2'>
               <div className='border-r-2 border-t-2 border-b-2 w-3 h-full  border-gray-300'></div>
@@ -100,21 +101,21 @@ const VibrationTimePage = () =>{
           </div>
           <div className='pinnacle-wrap grid grid-cols-9 px-4 py-8 w-full'>
             <div className="col-start-4 col-end-6 flex justify-center items-center mb-6 row-start-1">
-              Etapa {consultant.getLifeStageNumber(dateSelected.year())}:
+              Etapa {consultant.getLifeStageNumber(newDate.year())}:
               <CircleNumber  size="sm" appearance="green-50" border="green">
-                {consultant.getLifeStage(dateSelected.year())}{consultant.getLifeStageISK(dateSelected.year())}
+                {consultant.getLifeStage(newDate.year())}{consultant.getLifeStageISK(newDate.year())}
               </CircleNumber>
             </div>
             {nineYearCycle.map((year,i)=>
               <div key={i} className={`col-start-${i+1} row-start-2 border-t-2 border-green-700 pt-5`}>
-                <CircleNumber  size="sm" appearance={(year===dateSelected.year())?'purple-30':'white'} border="main">
+                <CircleNumber  size="sm" appearance={(year===newDate.year())?'purple-30':'white'} border="main">
                   {consultant.calcPersonalYear(year)}{consultant.calcPersonalYearISK(year)}
                 </CircleNumber>
-                <b className={`${(year===dateSelected.year())?'text-black':'text-gray-300'}`}>{year}</b><br/>
-                {(consultant.getLifeStageNumber(dateSelected.year()) === 1)?
+                <b className={`${(year===newDate.year())?'text-black':'text-gray-300'}`}>{year}</b><br/>
+                {(consultant.getLifeStageNumber(newDate.year()) === 1)?
                   <>
-                    <b className={`${(year===dateSelected.year())?'text-black':'text-gray-300'}`}>{year+9}</b><br/>
-                    <b className={`${(year===dateSelected.year())?'text-black':'text-gray-300'}`}>{year+18}</b><br/>
+                    <b className={`${(year===newDate.year())?'text-black':'text-gray-300'}`}>{year+9}</b><br/>
+                    <b className={`${(year===newDate.year())?'text-black':'text-gray-300'}`}>{year+18}</b><br/>
                   </>
                 :''}
               </div>
