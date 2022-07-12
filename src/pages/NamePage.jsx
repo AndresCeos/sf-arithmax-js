@@ -314,15 +314,19 @@ const NamePage = () => {
                 <div className='flex items-center mb-6 pl-6'>
                   <div className='col-span-2 text-13 font-bold text-gray-500 w-32'>Nombre Activo</div>
                   <div className='border border-blue w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2 bottom-letter' data-letter="V">
-                    { ungroupNameT[0].v }
+                    { ungroupNameT[0].vA }
                   </div>
                   <div className='col-span-2 text-13 font-bold text-gray-500'>+</div>
                   <div className='border border-blue w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2 bottom-letter' data-letter="C">
-                    { ungroupNameT[0].c }
+                    { ungroupNameT[0].cA }
                   </div>
                   <div className='col-span-2 text-13 font-bold text-gray-500'>=</div>
                   <div className=' w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2 bg-black bg-opacity-15'>
-                    { consultant.reduceNumberISK(ungroupNameT[0].c + ungroupNameT[0].v) }
+                    { (ungroupNameT[0].cA + ungroupNameT[0].vA) }
+                  </div>
+                  <div className='col-span-2 text-13 font-bold text-gray-500'>=</div>
+                  <div className=' w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2 bg-black bg-opacity-15'>
+                    { consultant.sumNumbers(ungroupNameT[0].cA + ungroupNameT[0].vA) }
                   </div>
                   <div className='col-span-2 text-13 font-bold text-gray-500'>=</div>
                   <div className='h-10 w-10 text-2xl font-black text-black flex justify-center items-center bg-blue-30 border border-blue inner-shadow px-4 rounded-full mx-2'>
