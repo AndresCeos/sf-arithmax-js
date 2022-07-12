@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux'
+import { dateSelect } from '../hooks'
 
 export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCycles }) => {
-  const { dateSelected } = useSelector(state => state.users);
+  const {newDate} = dateSelect()
 
-  const consultantAge = consultant.getYearsOld( dateSelected.year() )
+  const consultantAge = consultant.getYearsOld( newDate.year() )
   const isCycle = i => {
     return i === consultantAge ? false : nameCycles.includes(i)
   }

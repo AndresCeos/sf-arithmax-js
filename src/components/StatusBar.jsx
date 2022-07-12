@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
+import { dateSelect } from '../hooks';
 
 import { ConsultantPicker } from './';
 
 export const StatusBar = ({consultant}) => {
-  const {dateSelected } = useSelector(state => state.users);
+  const {newDate} = dateSelect()
   // console.log( consultant )
   if( consultant === null || consultant.name === '' ){
     return(
@@ -30,7 +31,7 @@ export const StatusBar = ({consultant}) => {
       </div>
       <div>
         Fecha de Consulta:
-        <strong className='ml-2'>{ dateSelected.date()+' '+dateSelected.format('MMMM')+' '+dateSelected.year() }</strong>
+        <strong className='ml-2'>{ newDate.date()+' '+newDate.format('MMMM')+' '+newDate.year() }</strong>
       </div>
     </div>
   )
