@@ -7,14 +7,15 @@ import { StatusBar,
   TimeCurve,
   CircleNumber,
   UnselectedConsultant} from '../components';
-import { useConsultant } from '../hooks';
+import { useConsultant, dateSelect } from '../hooks';
 import { Person, Synastry }from '../resources'
 
 import { TiPlus } from "react-icons/ti";
 
 const SinastyVibrationTimePage = () => {
-  const { userActive, userPartnerActive, isSelectPartner, dateSelected } = useSelector(state => state.users);
+  const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const { consultant } = useConsultant()
+  const {newDate} = dateSelect()
   const partner = new Person({
     name: userPartnerActive.names,
     lastName: userPartnerActive.lastName,
@@ -22,9 +23,9 @@ const SinastyVibrationTimePage = () => {
     birthDate: userPartnerActive.date,
     yearMeet :userPartnerActive.yearMeet
   })
-  const currentYear = dateSelected.year()
-  const currentMonth = dateSelected.month()+1
-  const currentDay = dateSelected.date()
+  const currentYear = newDate.year()
+  const currentMonth = newDate.month()+1
+  const currentDay = newDate.date()
   const synastry = new Synastry(consultant, partner)
   const nineYearCycleStage = synastry.getNineYearCycleStage(currentYear)
 
@@ -65,7 +66,7 @@ const SinastyVibrationTimePage = () => {
             </div>
             <b className='col-start-3 row-start-3 text-sm pl-1'>Cuatrimestre</b>
             <div className='col-start-3 row-start-4 row-span-2 cicle-year bg-green-70 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10 m-auto'>
-              {synastry.calcCurrentQuater(dateSelected, currentYear)}{synastry.calcCurrentQuaterISK(dateSelected, currentYear)}
+              {synastry.calcCurrentQuater(newDate, currentYear)}{synastry.calcCurrentQuaterISK(newDate, currentYear)}
             </div>
             <b className='col-start-4 row-start-4 text-sm pl-1'>Mes Personal</b>
             <div className='col-start-4 row-start-5 row-span-2 cicle-year  bg-gold-50 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10 m-auto'>

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { useConsultant } from '../hooks';
+import { useConsultant, dateSelect } from '../hooks';
 import { AnnualReturn, TimeCurve, Pinnacle,
   CircleNumber, UnselectedConsultant } from '../components/';
 
@@ -8,17 +8,18 @@ import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
 import { TiPlus } from "react-icons/ti";
 
 const PinnaclePage = () => {
-  const { userActive, dateSelected} = useSelector(state => state.users);
+  const { userActive} = useSelector(state => state.users);
   const { consultant } = useConsultant()
+  const {newDate} = dateSelect()
   const isEmpty = Object.keys(userActive).length === 0;
 
   if( isEmpty ){
     return <UnselectedConsultant />
   }
 
-  const annualReturnCurrent = consultant.annualReturn(dateSelected.year())
-  const annualReturnLastYear = consultant.annualReturn(dateSelected.year()-1)
-  const annualReturnNextYear = consultant.annualReturn(dateSelected.year()+1)
+  const annualReturnCurrent = consultant.annualReturn(newDate.year())
+  const annualReturnLastYear = consultant.annualReturn(newDate.year()-1)
+  const annualReturnNextYear = consultant.annualReturn(newDate.year()+1)
 
   const activeStage = consultant.getLifeStageNumber()
   const secondStage = consultant.hasDoubleStage()

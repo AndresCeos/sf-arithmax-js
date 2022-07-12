@@ -1,15 +1,16 @@
 import {  useSelector } from 'react-redux';
 
 import { AnnualReturn, UnselectedConsultant, UserPartnerSelect } from '../components/';
-import { useConsultant } from '../hooks';
+import { useConsultant, dateSelect } from '../hooks';
 import { Person, Synastry} from '../resources/'
 
 import { TiPlus } from 'react-icons/ti';
 
 const SinastyAnnualReturnsPage = () => {
-  const { userActive,userPartnerActive, isSelectPartner, dateSelected } = useSelector(state => state.users);
+  const { userActive,userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
+  const {newDate} = dateSelect()
 
   if( isEmpty ){
     return<UnselectedConsultant />
@@ -29,47 +30,47 @@ const SinastyAnnualReturnsPage = () => {
 
   const synastry = new Synastry(consultant, partner)
 
-  const now =  dateSelected.year()
+  const now =  newDate.year()
   const annualReturn = synastry.annualReturn(now)
   const personalYear = synastry.calcPersonalYear(now)
   const yearsOld = synastry.getYearsOld(now)
 
-  const y1 =  dateSelected.year()-4
+  const y1 =  newDate.year()-4
   const annualReturnY1 = synastry.annualReturn(y1)
   const personalYearY1 = synastry.calcPersonalYear(y1)
   const yearsOldY1 = synastry.getYearsOld(y1)
 
-  const y2 =  dateSelected.year()-3
+  const y2 =  newDate.year()-3
   const annualReturnY2 = synastry.annualReturn(y2)
   const personalYearY2 = synastry.calcPersonalYear(y2)
   const yearsOldY2 = synastry.getYearsOld(y2)
 
-  const y3 =  dateSelected.year()-2
+  const y3 =  newDate.year()-2
   const annualReturnY3 = synastry.annualReturn(y3)
   const personalYearY3 = synastry.calcPersonalYear(y3)
   const yearsOldY3 = synastry.getYearsOld(y3)
 
-  const y4 =  dateSelected.year()-1
+  const y4 =  newDate.year()-1
   const annualReturnY4 = synastry.annualReturn(y4)
   const personalYearY4 = synastry.calcPersonalYear(y4)
   const yearsOldY4 = synastry.getYearsOld(y4)
 
-  const y6 =  dateSelected.year()+1
+  const y6 =  newDate.year()+1
   const annualReturnY6 = synastry.annualReturn(y6)
   const personalYearY6 = synastry.calcPersonalYear(y6)
   const yearsOldY6 = synastry.getYearsOld(y6)
 
-  const y7 = dateSelected.year()+2
+  const y7 = newDate.year()+2
   const annualReturnY7 = synastry.annualReturn(y7)
   const personalYearY7 = synastry.calcPersonalYear(y7)
   const yearsOldY7 = synastry.getYearsOld(y7)
 
-  const y8 =  dateSelected.year()+3
+  const y8 =  newDate.year()+3
   const annualReturnY8 = synastry.annualReturn(y8)
   const personalYearY8 = synastry.calcPersonalYear(y8)
   const yearsOldY8 = synastry.getYearsOld(y8)
 
-  const y9 =  dateSelected.year()+4
+  const y9 =  newDate.year()+4
   const annualReturnY9 = synastry.annualReturn(y9)
   const personalYearY9 = synastry.calcPersonalYear(y9)
   const yearsOldY9 = synastry.getYearsOld(y9)

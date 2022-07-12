@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux';
 
 import { StatusBar, AnnualReturn, UnselectedConsultant } from '../components/';
-import { useConsultant } from '../hooks';
+import { dateSelect, useConsultant } from '../hooks';
 
 import { TiPlus } from "react-icons/ti";
 
 const AnnualReturnsPage = () => {
-  const { userActive, dateSelected } = useSelector(state => state.users);
+  const { userActive } = useSelector(state => state.users);
+  const {newDate} = dateSelect()
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
 
@@ -14,47 +15,47 @@ const AnnualReturnsPage = () => {
     return <UnselectedConsultant />
   }
 
-  const now =  dateSelected.year()
+  const now =  newDate.year()
   const annualReturn = consultant.annualReturn(now)
   const personalYear = consultant.calcPersonalYear(now)
   const yearsOld = consultant.getYearsOld(now)
 
-  const y1 =  dateSelected.year()-4
+  const y1 =  newDate.year()-4
   const annualReturnY1 = consultant.annualReturn(y1)
   const personalYearY1 = consultant.calcPersonalYear(y1)
   const yearsOldY1 = consultant.getYearsOld(y1)
 
-  const y2 =  dateSelected.year()-3
+  const y2 =  newDate.year()-3
   const annualReturnY2 = consultant.annualReturn(y2)
   const personalYearY2 = consultant.calcPersonalYear(y2)
   const yearsOldY2 = consultant.getYearsOld(y2)
 
-  const y3 =  dateSelected.year()-2
+  const y3 =  newDate.year()-2
   const annualReturnY3 = consultant.annualReturn(y3)
   const personalYearY3 = consultant.calcPersonalYear(y3)
   const yearsOldY3 = consultant.getYearsOld(y3)
 
-  const y4 =  dateSelected.year()-1
+  const y4 =  newDate.year()-1
   const annualReturnY4 = consultant.annualReturn(y4)
   const personalYearY4 = consultant.calcPersonalYear(y4)
   const yearsOldY4 = consultant.getYearsOld(y4)
 
-  const y6 =  dateSelected.year()+1
+  const y6 =  newDate.year()+1
   const annualReturnY6 = consultant.annualReturn(y6)
   const personalYearY6 = consultant.calcPersonalYear(y6)
   const yearsOldY6 = consultant.getYearsOld(y6)
 
-  const y7 = dateSelected.year()+2
+  const y7 = newDate.year()+2
   const annualReturnY7 = consultant.annualReturn(y7)
   const personalYearY7 = consultant.calcPersonalYear(y7)
   const yearsOldY7 = consultant.getYearsOld(y7)
 
-  const y8 =  dateSelected.year()+3
+  const y8 =  newDate.year()+3
   const annualReturnY8 = consultant.annualReturn(y8)
   const personalYearY8 = consultant.calcPersonalYear(y8)
   const yearsOldY8 = consultant.getYearsOld(y8)
 
-  const y9 =  dateSelected.year()+4
+  const y9 =  newDate.year()+4
   const annualReturnY9 = consultant.annualReturn(y9)
   const personalYearY9 = consultant.calcPersonalYear(y9)
   const yearsOldY9 = consultant.getYearsOld(y9)

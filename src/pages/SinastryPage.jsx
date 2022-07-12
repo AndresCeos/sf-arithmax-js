@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Pinnacle, AnnualReturn, UnselectedConsultant,
   UserPartnerSelect, CircleNumber } from '../components/';
 import { fetchAllUsers } from '../store/slices/users/users';
-import { useConsultant } from '../hooks';
+import { useConsultant, dateSelect } from '../hooks';
 import { Synastry, Person } from '../resources/'
 
 import { TiPlus } from 'react-icons/ti';
 
 const SinastryPage = () => {
-  const { userActive, userPartnerActive, isSelectPartner, dateSelected } = useSelector(state => state.users);
+  const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
 
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const SinastryPage = () => {
   },[dispatch])
 
   const { consultant } = useConsultant()
+  const {newDate} = dateSelect()
 
   if( isEmpty ){
     return<UnselectedConsultant />
@@ -39,9 +40,9 @@ const SinastryPage = () => {
 
   const synastry = new Synastry(consultant, partner)
 
-  const annualReturnConsultant = consultant.annualReturn(dateSelected.year())
-  const annualReturnPartner = partner.annualReturn(dateSelected.year())
-  const annualReturnSynastry = synastry.annualReturn(dateSelected.year())
+  const annualReturnConsultant = consultant.annualReturn(newDate.year())
+  const annualReturnPartner = partner.annualReturn(newDate.year())
+  const annualReturnSynastry = synastry.annualReturn(newDate.year())
 
   return(
     <div className='grid grid-cols-12 mx-14 gap-6 mt-8 pt-10'>

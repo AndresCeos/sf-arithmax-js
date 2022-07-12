@@ -3,7 +3,7 @@ import { UnselectedConsultant, PathMonth } from '../components/';
 import moment from 'moment/min/moment-with-locales'
 moment.locale("es-mx")
 
-import { useConsultant } from '../hooks';
+import { useConsultant, dateSelect } from '../hooks';
 import {  nowWeekNumber, capitalize } from '../resources/';
 import { TiPlus } from "react-icons/ti";
 
@@ -11,7 +11,8 @@ import green_arrow from '../assets/icons/green-arrow.svg'
 import arrow_bk from '../assets/arrow_bk.svg'
 
 const PathPage = () => {
-  const { userActive, dateSelected } = useSelector(state => state.users);
+  const { userActive } = useSelector(state => state.users);
+  const {newDate} = dateSelect()
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
 
@@ -23,44 +24,44 @@ const PathPage = () => {
 
   const cicle = [
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()-4 ),
-      year: dateSelected.year()-4
+      vibration: consultant.calcPersonalYear( newDate.year()-4 ),
+      year: newDate.year()-4
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()-3 ),
-      year: dateSelected.year()-3
+      vibration: consultant.calcPersonalYear( newDate.year()-3 ),
+      year: newDate.year()-3
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()-2 ),
-      year: dateSelected.year()-2
+      vibration: consultant.calcPersonalYear( newDate.year()-2 ),
+      year: newDate.year()-2
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()-1 ),
-      year: dateSelected.year()-1
+      vibration: consultant.calcPersonalYear( newDate.year()-1 ),
+      year: newDate.year()-1
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year() ),
-      year: dateSelected.year()
+      vibration: consultant.calcPersonalYear( newDate.year() ),
+      year: newDate.year()
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()+1 ),
-      year: dateSelected.year()+1
+      vibration: consultant.calcPersonalYear( newDate.year()+1 ),
+      year: newDate.year()+1
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()+2 ),
-      year: dateSelected.year()+2
+      vibration: consultant.calcPersonalYear( newDate.year()+2 ),
+      year: newDate.year()+2
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()+3 ),
-      year: dateSelected.year()+3
+      vibration: consultant.calcPersonalYear( newDate.year()+3 ),
+      year: newDate.year()+3
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()+4 ),
-      year: dateSelected.year()+4
+      vibration: consultant.calcPersonalYear( newDate.year()+4 ),
+      year: newDate.year()+4
     },
     {
-      vibration: consultant.calcPersonalYear( dateSelected.year()+5 ),
-      year: dateSelected.year()+5
+      vibration: consultant.calcPersonalYear( newDate.year()+5 ),
+      year: newDate.year()+5
     },
   ]
 
@@ -70,18 +71,18 @@ const PathPage = () => {
   const index = listOfMonths.findIndex(i => i === 'Enero')
 
   const quater1 = consultant.getQuaterOne()
-  const quater2 = consultant.getQuaterTwo(dateSelected.year())
-  const quater3 = consultant.getQuaterThree(dateSelected.year())
+  const quater2 = consultant.getQuaterTwo(newDate.year())
+  const quater3 = consultant.getQuaterThree(newDate.year())
 
-  const lastYear = dateSelected.year()-1
+  const lastYear = newDate.year()-1
 
   const quater1LastYear = consultant.getQuaterOne()
   const quater2LastYear = consultant.getQuaterTwo(lastYear)
   const quater3LastYear = consultant.getQuaterThree(lastYear)
 
   const quater1Karmico = consultant.getQuaterOneISK()
-  const quater2Karmico = consultant.getQuaterTwoISK(dateSelected.year())
-  const quater3Karmico = consultant.getQuaterThreeISK(dateSelected.year())
+  const quater2Karmico = consultant.getQuaterTwoISK(newDate.year())
+  const quater3Karmico = consultant.getQuaterThreeISK(newDate.year())
   const quater2KarmicoLast = consultant.getQuaterTwoISK(lastYear)
   const quater3KarmicoLast = consultant.getQuaterThreeISK(lastYear)
 
@@ -96,7 +97,7 @@ const PathPage = () => {
   // String.prototype.capitalize = function() {
   //   return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
   // }
-  const actualMonth = dateSelected.format('MMMM');
+  const actualMonth = newDate.format('MMMM');
 
   const currentMonth = listOfMonths.findIndex(i => i === capitalize( actualMonth ) )
   const listOfMonths3 = listOfMonths.map( e =>  e.substring(0, 3) )
@@ -260,11 +261,11 @@ const PathPage = () => {
   }
 
 
-  const activeStage = consultant.getLifeStageNumber(dateSelected.year())
+  const activeStage = consultant.getLifeStageNumber(newDate.year())
   // console.log('start => '+start)
   // console.log('end => '+end)
 
-  const currentWeek = nowWeekNumber(dateSelected)
+  const currentWeek = nowWeekNumber(newDate)
 
   return(
     <>
@@ -462,7 +463,7 @@ const PathPage = () => {
                       className={`
                         row-start-2 text-xl font-bold flex items-center justify-center rounded-md h-10 relative mt-6
                         ${(cicle.vibration === 22 || cicle.vibration === 44) ? 'col-span-2' : '' }
-                        ${dateSelected.year() === cicle.year ? 'bg-secondary path-personal-vibration-active' : 'bg-purple-30'}
+                        ${newDate.year() === cicle.year ? 'bg-secondary path-personal-vibration-active' : 'bg-purple-30'}
                       `}
                     >
                       {cicle.vibration}{consultant.calcPersonalYearISK(cicle.year)}
@@ -563,7 +564,7 @@ const PathPage = () => {
                       ${currentWeek === 1 ? 'week-active' : ''}
                     `}
                   >
-                    {consultant.calcSelectPersonalWeek(dateSelected.month()+1,1,dateSelected.year())}{consultant.calcSelectPersonalWeekISK(dateSelected.month()+1,1,dateSelected.year())}
+                    {consultant.calcSelectPersonalWeek(newDate.month()+1,1,newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month()+1,1,newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 1 ? 'path-week-active' : ''}`}
                     >1-7 { currentMonthName }</div>
@@ -574,7 +575,7 @@ const PathPage = () => {
                       ${currentWeek === 2 ? 'week-active' : ''}
                     `}
                   >
-                    {consultant.calcSelectPersonalWeek(dateSelected.month()+1,2,dateSelected.year())}{consultant.calcSelectPersonalWeekISK(dateSelected.month()+1,2,dateSelected.year())}
+                    {consultant.calcSelectPersonalWeek(newDate.month()+1,2,newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month()+1,2,newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 2 ? 'path-week-active' : ''}`}
                     >8-14 { currentMonthName }</div>
@@ -585,7 +586,7 @@ const PathPage = () => {
                       ${currentWeek === 3 ? 'week-active' : ''}
                     `}
                   >
-                    {consultant.calcSelectPersonalWeek(dateSelected.month()+1,3,dateSelected.year())}{consultant.calcSelectPersonalWeekISK(dateSelected.month()+1,3,dateSelected.year())}
+                    {consultant.calcSelectPersonalWeek(newDate.month()+1,3,newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month()+1,3,newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 3 ? 'path-week-active' : ''}`}
                     >15-21 { currentMonthName }</div>
@@ -596,7 +597,7 @@ const PathPage = () => {
                       ${currentWeek === 4 ? 'week-active' : ''}
                     `}
                   >
-                    {consultant.calcSelectPersonalWeek(dateSelected.month()+1,4,dateSelected.year())}{consultant.calcSelectPersonalWeekISK(dateSelected.month()+1,4,dateSelected.year())}
+                    {consultant.calcSelectPersonalWeek(newDate.month()+1,4,newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month()+1,4,newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 4 ? 'path-week-active' : ''}`}
                     >22-{moment(now2).endOf('month').format('DD') } { currentMonthName }</div>

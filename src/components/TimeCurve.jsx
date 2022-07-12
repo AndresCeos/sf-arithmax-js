@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
+import { dateSelect } from '../hooks';
 
 export const TimeCurve = ({ consultant }) => {
-    const {dateSelected } = useSelector(state => state.users);
-    const activeStage = consultant.getLifeStageNumber(dateSelected.year())
-    const activeSecondStage = consultant.getDoubleLifeStageNumber(dateSelected.year())
+    const {newDate} = dateSelect()
+    const activeStage = consultant.getLifeStageNumber(newDate.year())
+    const activeSecondStage = consultant.getDoubleLifeStageNumber(newDate.year())
     const dobleStage = consultant.hasDoubleStage()
 
     return(
