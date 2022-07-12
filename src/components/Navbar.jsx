@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch,useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { dateSelect } from "../hooks";
 import { setDate } from '../store/slices/users/users';
 
 import Logo from '../assets/logo.png'
@@ -17,8 +17,9 @@ import mail from '../assets/icons/mail.svg'
 import bell from '../assets/icons/bell.svg'
 import Swal from "sweetalert2";
 
+
 export const Navbar = () => {
-  const { dateSelected } = useSelector(state => state.users);
+const {newDate} = dateSelect()
   const { names } = useSelector(state => state.auth);
 
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const Navbar = () => {
       title:'Ingrese Nueva Fecha',
       icon: 'info',
       html:
-        `<input  type="date" id="newDate" class="border-1 border-black p-1" value="${dateSelected.format('YYYY-MM-DD')}"   />`,
+        `<input  type="date" id="newDate" class="border-1 border-black p-1" value="${newDate.format('YYYY-MM-DD')}"   />`,
       showCloseButton: true,
       showCancelButton: true,
       focusConfirm: false,
