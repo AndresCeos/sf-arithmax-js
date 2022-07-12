@@ -1476,78 +1476,55 @@ export class Person{
   }
 
   getDestinityTable(){
-    const pmLetters = `${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}
-      ${this.name.toString().toLowerCase()}`.toLowerCase().split('')
+    const pmLetters = `${this.name.toString().toLowerCase()}`.toLowerCase().split('')
 
-    const pMLetters = `${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}
-      ${this.lastName.toString().toLowerCase()}`.toLowerCase().split('')
+    const pMLetters = `${this.lastName.toString().toLowerCase()}`.toLowerCase().split('')
 
-    const pfLetters = `${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}
-      ${this.scdLastName.toString().toLowerCase()}`.toLowerCase().split('')
+    const pfLetters = `${this.scdLastName.toString().toLowerCase()}`.toLowerCase().split('')
 
     let destinity = []
-    pmLetters.forEach( el => {
-      const lValue = this.letterValue(el)
-      for (let i = 1; i <= lValue; i++) {
-        destinity.push({
-          pmN: this.reduceNumber(i),
-          pmD: lValue,
-          pmC: el.toUpperCase()
-        })
-      }
-    })
-
-    let ipMLetters = 0
-    pMLetters.forEach( el => {
-      const lValue = this.letterValue(el)
-      for (let i = 1; i <= lValue; i++) {
-        if( destinity[ipMLetters] ){
-          destinity[ipMLetters].pMN = this.reduceNumber(i)
-          destinity[ipMLetters].pMD = lValue
-          destinity[ipMLetters].pMC = el.toUpperCase()
-          ipMLetters++
+    do{
+      pmLetters.forEach( el => {
+        const lValue = this.letterValue(el)
+        for (let i = 1; i <= lValue; i++) {
+          destinity.push({
+            pmN: this.reduceNumber(i),
+            pmD: lValue,
+            pmC: el.toUpperCase()
+          })
         }
-      }
-    })
+      })
+    } while( destinity.length < 120 )
+ 
+    let ipMLetters = 0
+    do{
+      pMLetters.forEach( el => {
+        const lValue = this.letterValue(el)
+        for (let i = 1; i <= lValue; i++) {
+          if( destinity[ipMLetters] ){
+            destinity[ipMLetters].pMN = this.reduceNumber(i)
+            destinity[ipMLetters].pMD = lValue
+            destinity[ipMLetters].pMC = el.toUpperCase()
+            ipMLetters++
+          }
+        }
+      })
+    } while( ipMLetters < 120 )
 
     let ipfLetters = 0
-    pfLetters.forEach( el => {
-      const lValue = this.letterValue(el)
-      for (let i = 1; i <= lValue; i++) {
-        if( destinity[ipfLetters] ){
-          destinity[ipfLetters].pfN = this.reduceNumber(i)
-          destinity[ipfLetters].pfD = lValue
-          destinity[ipfLetters].pfC = el.toUpperCase()
-          ipfLetters++
+      do{
+      pfLetters.forEach( el => {
+        const lValue = this.letterValue(el)
+        for (let i = 1; i <= lValue; i++) {
+          if( destinity[ipfLetters] ){
+            destinity[ipfLetters].pfN = this.reduceNumber(i)
+            destinity[ipfLetters].pfD = lValue
+            destinity[ipfLetters].pfC = el.toUpperCase()
+            ipfLetters++
+          }
         }
-      }
-    })
+      })
+  } while( ipfLetters < 120 )
 
     return destinity.slice(0, 122)
 
