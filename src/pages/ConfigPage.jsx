@@ -21,7 +21,7 @@ const ConfigPage = () => {
                 alt='add_user'
               />
             </div>
-            Datos generales {names}
+            Datos generales
           </div>
           <Formik
             enableReinitialize
