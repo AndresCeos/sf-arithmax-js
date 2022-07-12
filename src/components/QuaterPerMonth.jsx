@@ -1,34 +1,35 @@
 import { useSelector } from 'react-redux';
 import { capitalize } from '../resources';
+import { dateSelect } from '../hooks';
 
 import moment from 'moment/min/moment-with-locales'
 moment.locale("es-mx")
 
 export const QuaterPerMonth = ({consultant}) =>{
 
-  const { dateSelected } = useSelector(state => state.users);
+  const {newDate} = dateSelect()
 
   const listOfMonths = consultant.getCustomMonths()
   const quater1 = consultant.getQuaterOne()
-  const quater2 = consultant.getQuaterTwo(dateSelected.year())
-  const quater3 = consultant.getQuaterThree(dateSelected.year())
-  const lastYear = dateSelected.year()-1
+  const quater2 = consultant.getQuaterTwo(newDate.year())
+  const quater3 = consultant.getQuaterThree(newDate.year())
+  const lastYear = newDate.year()-1
   const quater1LastYear = consultant.getQuaterOne()
   const quater2LastYear = consultant.getQuaterTwo(lastYear)
   const quater3LastYear = consultant.getQuaterThree(lastYear)
   const quater1Karmico = consultant.getQuaterOneISK()
-  const quater2Karmico = consultant.getQuaterTwoISK(dateSelected.year())
-  const quater3Karmico = consultant.getQuaterThreeISK(dateSelected.year())
+  const quater2Karmico = consultant.getQuaterTwoISK(newDate.year())
+  const quater3Karmico = consultant.getQuaterThreeISK(newDate.year())
   const quater2KarmicoLast = consultant.getQuaterTwoISK(lastYear)
   const quater3KarmicoLast = consultant.getQuaterThreeISK(lastYear)
-  const personalYearISK = consultant.calcPersonalYearISK(dateSelected.year())
+  const personalYearISK = consultant.calcPersonalYearISK(newDate.year())
 
   let m1, m2, m3, m4, cm1, cm2, cm3, cm4 = ''
   let ism1, ism2, ism3, ism4 = false
   const now2 = moment()
 
-  const personalYear = consultant.calcPersonalYear(dateSelected.year())
-  const actualMonth = dateSelected.format('MMMM');
+  const personalYear = consultant.calcPersonalYear(newDate.year())
+  const actualMonth = newDate.format('MMMM');
   const index = listOfMonths.findIndex(i => i === 'Enero')
   const currentMonth = listOfMonths.findIndex(i => i === capitalize(actualMonth))
   switch(index){
@@ -52,10 +53,10 @@ export const QuaterPerMonth = ({consultant}) =>{
       cm2 = personalYear+personalYearISK +'/'+quater2LastYear+quater2KarmicoLast
       cm3 = personalYear+personalYearISK +'/'+quater3LastYear+quater3KarmicoLast
       cm4 = personalYear+personalYearISK +'/'+quater1+quater1Karmico
-      if(currentMonth>=1&&currentMonth<=4&&now2.year() === dateSelected.year()){ism1=true}
-      if(currentMonth>=5&&currentMonth<=8&&now2.year() === dateSelected.year()){ism2=true}
-      if(currentMonth>=9&&currentMonth<=11&&now2.year() === dateSelected.year()){ism3=true}
-      if(currentMonth===0&&now2.year() === dateSelected.year()){ism4=true}
+      if(currentMonth>=1&&currentMonth<=4&&now2.year() === newDate.year()){ism1=true}
+      if(currentMonth>=5&&currentMonth<=8&&now2.year() === newDate.year()){ism2=true}
+      if(currentMonth>=9&&currentMonth<=11&&now2.year() === newDate.year()){ism3=true}
+      if(currentMonth===0&&now2.year() === newDate.year()){ism4=true}
     break;
     case 2:
     case 3:
@@ -187,7 +188,7 @@ export const QuaterPerMonth = ({consultant}) =>{
 
 return(
   <div className='h-full'>
-    <div className='items-center text-black flex justify-center text-xl font-bold bg-black bg-opacity-15 border-t border-solid border-gray-300 h-14 text-xl '>{dateSelected.year()}</div>
+    <div className='items-center text-black flex justify-center text-xl font-bold bg-black bg-opacity-15 border-t border-solid border-gray-300 h-14 text-xl '>{newDate.year()}</div>
     <div>
       <div className={` ${ism1?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center  font-bold border-t border-gray-300 flex justify-center  h-14 text-xl`}>{m1}</div>
       <div className= {`${ism1?'text-black bg-black bg-opacity-15 ':'text-gray-500'} items-center flex justify-center border-t border-gray-300 font-bold h-12 text-xl`}>{cm1}</div>

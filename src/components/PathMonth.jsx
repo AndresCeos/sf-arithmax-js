@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { capitalize } from '../resources';
 
 export const PathMonth = ({consultant})=>{
-  const { dateSelected } = useSelector(state => state.users);
+  const {newDate} = dateSelect()
   const listOfMonths = consultant.getCustomMonths()
   const allMonths = consultant.getAllMonths()
   const index = listOfMonths.findIndex(i => i === 'Enero')
@@ -11,7 +11,7 @@ export const PathMonth = ({consultant})=>{
   let quaterThree =[]
   let quaterFour =[]
 
-  const actualMonth = dateSelected.format('MMMM');
+  const actualMonth = newDate.format('MMMM');
   switch(index){
         case 0:
             quaterOne = [listOfMonths[0],listOfMonths[1],listOfMonths[2],listOfMonths[3], listOfMonths[4]]
@@ -99,7 +99,7 @@ export const PathMonth = ({consultant})=>{
                 ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'month-active': ''}
               `}
             >
-              {consultant.calcPersonalMonth( index+1, dateSelected.year() )}{consultant.calcPersonalMonthISK( index+1, dateSelected.year() )}
+              {consultant.calcPersonalMonth( index+1, newDate.year() )}{consultant.calcPersonalMonthISK( index+1, newDate.year() )}
               <div
                 className={`path-month-des ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'path-month-active': ''}`}
               >{mes.toUpperCase()}</div>
@@ -122,7 +122,7 @@ export const PathMonth = ({consultant})=>{
                 ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'month-active': ''}
               `}
             >
-              {consultant.calcPersonalMonth( index+1, dateSelected.year() )}{consultant.calcPersonalMonthISK( index+1, dateSelected.year() )}
+              {consultant.calcPersonalMonth( index+1, newDate.year() )}{consultant.calcPersonalMonthISK( index+1, newDate.year() )}
               <div
                 className={`path-month-des ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'path-month-active': ''}`}
               >{mes.toUpperCase()}</div>
@@ -144,7 +144,7 @@ export const PathMonth = ({consultant})=>{
                 ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'month-active': ''}
               `}
             >
-              {consultant.calcPersonalMonth( index+1, dateSelected.year() )}{consultant.calcPersonalMonthISK( index+1, dateSelected.year() )}
+              {consultant.calcPersonalMonth( index+1, newDate.year() )}{consultant.calcPersonalMonthISK( index+1, newDate.year() )}
               <div
                 className={`path-month-des ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'path-month-active': ''}`}
               >{mes.toUpperCase()}</div>
@@ -166,7 +166,7 @@ export const PathMonth = ({consultant})=>{
                 ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'month-active': ''}
               `}
             >
-              {consultant.calcPersonalMonth( index+1, dateSelected.year() )}{consultant.calcPersonalMonthISK( index+1, dateSelected.year() )}
+              {consultant.calcPersonalMonth( index+1, newDate.year() )}{consultant.calcPersonalMonthISK( index+1, newDate.year() )}
               <div
                 className={`path-month-des ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'path-month-active': ''}`}
               >{mes.toUpperCase()}</div>

@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
+import { dateSelect } from '../hooks';
 
 export const QuaterPerYear = ({consultant}) =>{
-  const { dateSelected } = useSelector(state => state.users);
+  const {newDate} = dateSelect()
 
-  const nineYearCycle = consultant.getNineYearCycle(dateSelected.year())
+  const nineYearCycle = consultant.getNineYearCycle(newDate.year())
 
   const listOfMonths = consultant.getCustomMonths()
   const indexOfMonth = listOfMonths.findIndex(i => i === 'Enero')
@@ -92,32 +93,32 @@ return(
     {nineYearCycle.map( (year, i) =>{
       return(
       <>
-      <div className={` ${(dateSelected.year()===year)?'text-yellow-500 ':''} col-start-${i+3} row-start-1 flex justify-center items-center  bg-main text-white font-bold border border-gray-500`} >{year}</div>
-      <div className={` ${(dateSelected.year()===year)?'font-bold ':''}col-start-${i+3} row-start-2 flex justify-center items-center p-1 bg-purple-30 border border-gray-500`} >{consultant.calcPersonalYear(year)}{consultant.calcPersonalYearISK(year)}</div>
+      <div className={` ${(newDate.year()===year)?'text-yellow-500 ':''} col-start-${i+3} row-start-1 flex justify-center items-center  bg-main text-white font-bold border border-gray-500`} >{year}</div>
+      <div className={` ${(newDate.year()===year)?'font-bold ':''}col-start-${i+3} row-start-2 flex justify-center items-center p-1 bg-purple-30 border border-gray-500`} >{consultant.calcPersonalYear(year)}{consultant.calcPersonalYearISK(year)}</div>
       <div className={`
-      ${(year!==dateSelected.year())?'text-gray-500':''}
-        ${((year===dateSelected.year()||year ===dateSelected.year()-1)&&(indexOfMonth>=1&&indexOfMonth<=4))?'font-bold ':''}
-        ${(year ===dateSelected.year())&&indexOfMonth>=5&&indexOfMonth<=8?'font-bold ':''}
-        ${(indexOfMonth===0&&year===dateSelected.year())?'font-bold ':''}
-        ${(indexOfMonth>=9&&indexOfMonth<=11&&year===dateSelected.year())?'font-bold ':''}
+      ${(year!==newDate.year())?'text-gray-500':''}
+        ${((year===newDate.year()||year ===newDate.year()-1)&&(indexOfMonth>=1&&indexOfMonth<=4))?'font-bold ':''}
+        ${(year ===newDate.year())&&indexOfMonth>=5&&indexOfMonth<=8?'font-bold ':''}
+        ${(indexOfMonth===0&&year===newDate.year())?'font-bold ':''}
+        ${(indexOfMonth>=9&&indexOfMonth<=11&&year===newDate.year())?'font-bold ':''}
         col-start-${i+3}  row-start-3 row-span-5 text-5xl flex justify-center items-center border border-gray-500 text-gray-500 `} >{consultant.getQuaterOne()}{consultant.getQuaterOneISK()}</div>
       <div className={`
-        ${((year===dateSelected.year()-1)&&indexOfMonth>=1&&indexOfMonth<=4)?'font-bold ':''}
-        ${(indexOfMonth===0&&year===dateSelected.year())?'font-bold ':''}
-        ${(year ===dateSelected.year()-1||year ===dateSelected.year())&&indexOfMonth>5&&indexOfMonth<=8?'font-bold ':''}
-        ${(indexOfMonth===9&&year===dateSelected.year()-1)?'font-bold ':''}
-        ${(indexOfMonth===5&&year===dateSelected.year()-1)?'font-bold ':''}
-        ${(indexOfMonth>=9&&indexOfMonth<=11&&year===dateSelected.year())?'font-bold ':''}
-        ${(year!==dateSelected.year())?'text-gray-500':''}
+        ${((year===newDate.year()-1)&&indexOfMonth>=1&&indexOfMonth<=4)?'font-bold ':''}
+        ${(indexOfMonth===0&&year===newDate.year())?'font-bold ':''}
+        ${(year ===newDate.year()-1||year ===newDate.year())&&indexOfMonth>5&&indexOfMonth<=8?'font-bold ':''}
+        ${(indexOfMonth===9&&year===newDate.year()-1)?'font-bold ':''}
+        ${(indexOfMonth===5&&year===newDate.year()-1)?'font-bold ':''}
+        ${(indexOfMonth>=9&&indexOfMonth<=11&&year===newDate.year())?'font-bold ':''}
+        ${(year!==newDate.year())?'text-gray-500':''}
         col-start-${i+3} row-start-8 row-span-4  text-5xl flex justify-center items-center border border-gray-500 text-gray-500`} >{consultant.getQuaterTwo(year)}{consultant.getQuaterTwoISK(year)}</div>
       <div className={`
-      ${(indexOfMonth===0&&year===dateSelected.year())?' font-bold':''}
-      ${(indexOfMonth===0&&year===dateSelected.year()-1)?' font-bold ':''}
-      ${(indexOfMonth>9&&indexOfMonth<=11&&(year===dateSelected.year()||year===dateSelected.year()-1))?' font-bold ':''}
-      ${(indexOfMonth===9&&year===dateSelected.year()-1)?' font-bold ':''}
-      ${(year ===dateSelected.year()-1)&&indexOfMonth>=5&&indexOfMonth<=8?' font-bold ':''}
-      ${((year===dateSelected.year()-1)&&indexOfMonth>=1&&indexOfMonth<=4)?' font-bold ':''}
-      ${(year!==dateSelected.year())?'text-gray-500':''}
+      ${(indexOfMonth===0&&year===newDate.year())?' font-bold':''}
+      ${(indexOfMonth===0&&year===newDate.year()-1)?' font-bold ':''}
+      ${(indexOfMonth>9&&indexOfMonth<=11&&(year===newDate.year()||year===newDate.year()-1))?' font-bold ':''}
+      ${(indexOfMonth===9&&year===newDate.year()-1)?' font-bold ':''}
+      ${(year ===newDate.year()-1)&&indexOfMonth>=5&&indexOfMonth<=8?' font-bold ':''}
+      ${((year===newDate.year()-1)&&indexOfMonth>=1&&indexOfMonth<=4)?' font-bold ':''}
+      ${(year!==newDate.year())?'text-gray-500':''}
       col-start-${i+3} row-start-12 row-span-4  text-5xl flex justify-center items-center border border-gray-500 text-gray-500 `} >{consultant.getQuaterThree(year)}{consultant.getQuaterThreeISK(year)}</div>
       </>
     )})}
