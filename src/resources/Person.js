@@ -1415,7 +1415,10 @@ export class Person{
     ungroupName.push({
       v: this.reduceNumber(ungroupNameV),
       L: this.reduceNumber(ungroupNameV + ungroupNameC),
-      c: this.reduceNumber(ungroupNameC)
+      c: this.reduceNumber(ungroupNameC),
+      vA: ungroupNameV,
+      LA: ungroupNameV + ungroupNameC,
+      cA: ungroupNameC,
     })
     return ungroupName
   }
