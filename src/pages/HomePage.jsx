@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { CircleTime } from '../components';
 import { Person, Universal, currentDate } from '../resources';
+import { dateSelect } from '../hooks';
 
 import { TiPlus } from "react-icons/ti";
 import welcome from '../assets/welcome.png'
@@ -11,16 +12,17 @@ import personal_disabled from '../assets/icons/e_personal_disabled.svg'
 
 const HomePage = () => {
   const { names, lastName, scdLastName, date } = useSelector( state => state.auth )
-  const {dateSelected} = useSelector(state  => state.users)
+  const {newDate} = dateSelect()
+
 
   const displayname = `${names} ${lastName}`
   const profile = new Person({name: names, lastName, scdLastName, birthDate: date})
 
   const u = new Universal()
 
-  const currentDay =  dateSelected.date()
-  const currentMonth = dateSelected.month() +1
-  const currentYear = dateSelected.year()
+  const currentDay =  newDate.date()
+  const currentMonth = newDate.month() +1
+  const currentYear = newDate.year()
 
   return(
     <>
@@ -45,7 +47,7 @@ const HomePage = () => {
               <div className='font-black'>UNIVERSAL</div>
             </li>
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6'>
-              { currentDate(dateSelected) }
+              { currentDate(newDate) }
             </li>
             <li
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'

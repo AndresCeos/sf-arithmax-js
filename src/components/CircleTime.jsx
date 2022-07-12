@@ -5,13 +5,15 @@ import backRed from '../assets/back-red.png'
 import backGray from '../assets/blackGray.png'
 import arrow from '../assets/arrow.png'
 import { useSelector } from 'react-redux'
+import { dateSelect } from '../hooks'
+
 
 
 export const CircleTime = ( {consultant} ) => {
-  const { dateSelected } = useSelector(state => state.users);
-  const currentYear = dateSelected.year()
+const {newDate} = dateSelect()
+  const currentYear = newDate.year()
   const u = new Universal()
-  const currentMonth = dateSelected.month() +1
+  const currentMonth = newDate.month() +1
   return(
     <div className='relative time-circle'>
       <img src={time_circle} className="relative" alt='Time Circle' />

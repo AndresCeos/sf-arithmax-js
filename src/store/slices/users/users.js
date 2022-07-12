@@ -4,6 +4,8 @@ import localForage from 'localforage'
 import moment from 'moment/min/moment-with-locales'
 moment.locale("es-mx")
 
+const serializableDate = JSON.stringify(moment())
+
 const initialState = {
     userInfo: {
         'names': '',
@@ -25,7 +27,7 @@ const initialState = {
     isSelectPartner:false,
     partnerIndex:0,
     partnerSelected:{},
-    dateSelected: moment()
+    dateSelected: serializableDate
 }
 
 export const userSlice = createSlice({
@@ -102,7 +104,8 @@ export const fetchAllUsers = () => async dispatch => {
         dispatch( setUserList([]) );
 };
 export const setDate = (date) => async dispatch => {
-    dispatch(setDateSelected(moment(date)))
+    const serializableDate = JSON.stringify(moment(date))
+    dispatch(setDateSelected(serializableDate))
 };
 
 export const addUser = user => async dispatch => {
