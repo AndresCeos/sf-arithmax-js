@@ -67,7 +67,7 @@ const NamePage = () => {
       v: appearances[4].a + appearances[5].a,
       c: 'bg-red border-red',
       cT: 'text-red',
-      d: '(Valores 4 y 5)'
+      d: '(Valores 4/22 y 5)'
     },
     'Plano Mental': {
       v: appearances[1].a + appearances[8].a,
@@ -79,7 +79,7 @@ const NamePage = () => {
       v: appearances[2].a + appearances[3].a + appearances[6].a,
       c: 'bg-blue-30 border-blue',
       cT: 'text-blue',
-      d: '(Valores 2, 3 y 6)'
+      d: '(Valores 2/11, 3 y 6)'
     },
     'Plano Espiritual': {
       v: appearances[7].a + appearances[9].a,
@@ -360,7 +360,7 @@ const NamePage = () => {
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
               <TiPlus className='text-2xl'/>
             </div>
-            Eqilibrio de Planos Existenciales
+            Equilibrio de Planos Existenciales
           </div>
           <div className='pinnacle-wrap px-8 py-8'>
           <div>
