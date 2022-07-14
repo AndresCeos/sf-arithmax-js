@@ -25,12 +25,12 @@ export const ActiveName = ({ table, start, consultant, nameCycles }) => {
         <div className='h-60 text-13 font-bold flex items-center bg-black bg-opacity-15 border-b border-l border-gray-500 border-r px-1'>Ciclo del<br/>Nombre </div>
       </div>
       { table.map( (el, i) =>
-        <div key={i} className=''>
+        <div key={i} className='w-8'>
           <div className={`h-30 text-11 ${ bkConfig(i + start, 'bg-main-30' ) } flex items-center justify-center border-t border-gray-500 border-r w-8`}>{consultant.getYearOfBirth() + i + start} </div>
           <div className={`h-30 text-13 ${ bkConfig(i + start, 'bg-main-15' ) } flex items-center justify-center border-r border-t border-b border-gray-500`}>{i + start} </div>
           <div className={`h-60 text-13 ${ bkConfig(i + start, 'bg-gray-300' ) } text-black border-r border-b border-gray-500 flex flex-col items-center justify-center`}>
             <strong className='h-30 flex items-center justify-center border-b border-gray-500 w-full text-center'>{el.pmC}</strong>
-            <label  className={`h-30 flex items-center justify-center ${ ! isCycle ? 'bg-white' : '' } w-full text-center`}>{el.pmN}/{el.pmD}</label>
+            <label  className={`h-30 text-xs flex items-center justify-center ${ ! isCycle ? 'bg-white' : '' } w-full text-center overflow-hidden`}>{el.pmN}/{el.pmD}</label>
           </div>
         </div>
       )}

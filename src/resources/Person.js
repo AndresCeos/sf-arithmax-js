@@ -1351,7 +1351,7 @@ export class Person{
       case 'u': return 3;
       case 'd': return 4;
       case 'm': return 4;
-      case 'v': return 4;
+      case 'v': return 22;
       case 'e': return 5;
       case 'n': return 5;
       case 'ñ': return 5;
