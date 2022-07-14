@@ -9,7 +9,7 @@ export const NameBreakdown = ({ name, values, total, description }) => {
   }
 
   return (
-    <div className='nameBreakdown flex mb-4'>
+    <div className='nameBreakdown flex mb-4 justify-center'>
       <div className='mr-3'>
         <div className="text-13 w-30 h-30 font-bold">V </div>
         <div className="text-13 h-30 font-bold">{description} </div>
