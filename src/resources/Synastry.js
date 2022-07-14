@@ -948,6 +948,7 @@ calcDurationStage(stage){
       this.getC(),
       this.getD(),
       this.getE(),
+      this.getF(),
       this.getG(),
       this.getH(),
       this.getI(),
@@ -963,6 +964,7 @@ calcDurationStage(stage){
       this.getS(),
       this.getW(),
     ]
+    console.log({ appearances })
     const occurrences = appearances.reduce(function (acc, curr) {
       if( curr !== '' & curr !== 0 ){
         return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
