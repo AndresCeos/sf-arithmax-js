@@ -38,8 +38,32 @@ const CreateNamePage = () => {
   const createNameObj = new Person( createNameData )
 
   const ungroupName = createNameObj.getUngroupName( createNameData.name )
-  const ungroupNameV = createNameObj.getUngroupNameValues( createNameData.name )
   const ungroupNameT = createNameObj.getUngroupNameTotal( createNameData.name )
+
+  console.log( ungroupName )
+  console.log({ ungroupNameT })
+
+  let ungroup = []
+  let split = 28
+  let tables = 0;
+  let count = 0;
+  do {
+    count = (tables + 1) * split
+    const ungroupNameI = ungroupName.slice(tables * split, count );
+    while (ungroupNameI.length < 28) {
+      ungroupNameI.push({})
+    }
+    ungroup = [
+      ...ungroup,
+      {
+        ungroupNameI,
+      }
+    ]
+    console.log(tables * split, count )
+    tables++
+  } while( count < ungroupName.length )
+
+  console.log( {ungroup} )
 
   const pastYear = moment().subtract(1, 'year')
   const annualReturnPastYear = createNameObj.annualReturn(pastYear.year())
@@ -206,7 +230,51 @@ const CreateNamePage = () => {
                   <MdEdit className='ml-2 text-2xl'/>
                 </div>
                 <div className='pinnacle-wrap px-8 py-8'>
-                  <NameBreakdown name={ungroupName} values={ungroupNameV} total={ungroupNameT} description="NP" />
+                  <div className='flex justify-center'>
+                    <div className=''>
+                      {
+                        ungroup.map( group =>
+                          <NameBreakdown name={group.ungroupNameI} />
+                        )
+                      }
+                    </div>
+                    <div className='nameBreakdown mb-4 flex'>
+                      <div className='ml-5'>
+                        <div className={`
+                          text-13 w-30 h-30 bg-gold bg-opacity-10 rounded-md inner-shadow
+                          ${ ungroup.length > 1 ? "mb-4" : ''}
+                        `}>
+                          {ungroupNameT[0].v !== 0 ? ungroupNameT[0].v : ''}
+                        </div>
+                        <div className={`
+                          text-13 w-30 h-30 font-bold bg-main text-white rounded-md inner-shadow
+                          ${ ungroup.length > 1 ? "mb-4" : ''}
+                        `}>
+                          {ungroupNameT[0].L}
+                        </div>
+                        <div className={`
+                          text-13 w-30 h-30 bg-gold bg-opacity-10 rounded-md inner-shadow
+                          ${ ungroup.length > 1 ? "mb-4" : ''}
+                        `}>
+                          {ungroupNameT[0].c !== 0 ? ungroupNameT[0].c : ''}
+                        </div>
+                      </div>
+                      <div className='ml-3'>
+                        <div className={`
+                          text-13 w-30 h-30 font-bold
+                          ${ ungroup.length > 1 ? "mb-4" : ''}
+                        `}>V </div>
+                        <div className={`
+                          text-13 h-30 font-bold
+                          ${ ungroup.length > 1 ? "mb-4" : ''}
+                        `}>N </div>
+                        <div className={`
+                          text-13 w-30 h-30 font-bold
+                          ${ ungroup.length > 1 ? "mb-4" : ''}
+                        `}>C </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
