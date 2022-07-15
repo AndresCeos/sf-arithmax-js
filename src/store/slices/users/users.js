@@ -27,7 +27,12 @@ const initialState = {
     isSelectPartner:false,
     partnerIndex:0,
     partnerSelected:{},
-    dateSelected: serializableDate
+    dateSelected: serializableDate,
+    toast: {
+        message: '',
+        type: '',
+        show: false
+    }
 }
 
 export const userSlice = createSlice({
@@ -75,6 +80,9 @@ export const userSlice = createSlice({
         },
         setDateSelected:(state,action) => {
             state.dateSelected = action.payload
+        },
+        setToast: (state, action) =>{
+            state.toast = action.payload
         }
     }
 })
@@ -93,6 +101,7 @@ export const {
     setPartnerIndex,
     setPartnerSelected,
     setDateSelected,
+    setToast,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -120,6 +129,10 @@ export const addUser = user => async dispatch => {
             dispatch( selectUserActive( user.id ) )
         })
     })
+}
+
+export const showToast = toast => async dispatch => {
+    dispatch( setToast( toast ) )
 }
 
 export const generateUserId = () => Math.random().toString(36).substring(2, 9);

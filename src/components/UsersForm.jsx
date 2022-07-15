@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Formik } from 'formik'
 
-import { addUser, setIsEditing,editUser } from '../store/slices/users/users';
+import { addUser, setIsEditing, editUser, showToast } from '../store/slices/users/users';
 
 import add_user_main from '../assets/icons/add_user_main.svg'
 
@@ -38,6 +38,10 @@ export const UsersForm = (props) => {
           dispatch(editUser(user, dataUserIndex))
         }else{
           dispatch(addUser( user ))
+          dispatch(showToast({
+            message: 'Consultante agregado',
+            type: 'success',
+            show: true } ) )
         }
         setSubmitting(false);
         resetForm({})
