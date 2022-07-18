@@ -23,10 +23,11 @@ const ConsultantePage = () => {
   useEffect( () => {
     dispatch(fetchAllUsers())
   }, [dispatch])
-  const editUserHandler = (index,user) =>{
+
+  const editUserHandler = user =>{
     dispatch(setIsEditing(true))
     setUserEdit(user)
-    setUserIndex(index)
+    setUserIndex(user.id)
   }
 
   useEffect( ()=> {
@@ -35,25 +36,25 @@ const ConsultantePage = () => {
 
   const userList = () => {
     if( searchUser === "" ){
-      return users.map( (user,index) => userTemplate(user, index))
+      return users.map( user => userTemplate(user) )
     }
 
     const search =  users.filter( user => {
       return `${user.names.toLowerCase()} ${user.lastName.toLowerCase()} ${user.scdLastName.toLowerCase()}`
         .includes( searchUser.toLowerCase() )
     });
-    return search.map( (user,index) => userTemplate(user, index))
+    return search.map( user => userTemplate(user) )
   }
 
-  const userTemplate = (user, index) => {
-    return <li key={index}  className='w-full grid grid-cols-12 h-10'>
+  const userTemplate = user => {
+    return <li key={`${user.id}-${user.date}`}  className='w-full grid grid-cols-12 h-10'>
     <div className='col-span-6'>{user.names} {user.lastName} {user.scdLastName}</div>
     <div className='col-span-4'>{formatDate(user.date)}</div>
     <div className='col-span-2'>
-      <button onClick={()=>{editUserHandler(index, user)}}>
+      <button onClick={()=>{editUserHandler(user)}}>
         <img src={c_edit} alt="edit" />
       </button>
-      <button onClick={()=>{dispatch(removeUser(index))}} className="ml-6">
+      <button onClick={()=>{dispatch(removeUser(user.id))}} className="ml-6">
         <img src={c_delete} alt="delete" />
       </button>
     </div>
