@@ -1,5 +1,5 @@
 export const CircleNumber = props => {
-  const borderWithClass = props.borderWidth ? 'border' : `border-${props.borderWidth}`
+  const borderWithClass = props.borderwidth ? 'border' : `border-${props.borderwidth}`
   const radiantClass = props.radiant ? 'inner-shadow-gold' : ''
 
   return(

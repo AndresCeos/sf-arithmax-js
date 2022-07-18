@@ -44,7 +44,7 @@ const PinnaclePage = () => {
             </div>
             <div className='flex items-center justify-center text-gray-500 font-bold'>
               <label className='mr-1'>Alma</label>
-              <CircleNumber size="sm" appearance="blue-30" border="blue" radiant>
+              <CircleNumber size="sm" appearance="blue-30" border="blue" radiant="true">
                 {consultant.calcSoulNumber()}{consultant.calcSoulNumberISK()}
               </CircleNumber>
             </div>
@@ -120,19 +120,19 @@ const PinnaclePage = () => {
                   </h2>
                   <div className='w-full flex items-center justify-center bg-opacity-100'>
                     <div className='grid grid-cols-3 mt-3 w-36 gap-2 bridge-wrap relative'>
-                      <CircleNumber size="sm" appearance="green" border="green" position="et" descRT="E">
+                      <CircleNumber size="sm" appearance="green" border="green" position="et" descrt="E">
                         {consultant.getE()}{consultant.getEISK()}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descB="A">
+                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descb="A">
                         {consultant.getA()}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
                         {Math.abs(consultant.getE() - consultant.getK())}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="main" position="er" descB="B">
+                      <CircleNumber size="sm" appearance="white" border="main" position="er" descb="B">
                         {consultant.getB()}{consultant.getBISK()}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descRB="K">
+                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descrb="K">
                         {consultant.getK()}
                       </CircleNumber>
                     </div>
@@ -152,19 +152,19 @@ const PinnaclePage = () => {
                   </h2>
                   <div className='w-full flex items-center justify-center bg-opacity-100'>
                     <div className='grid grid-cols-3 mt-3 w-36 gap-2 bridge-wrap relative'>
-                      <CircleNumber size="sm" appearance="green" border="green" position="et" descRT="F">
+                      <CircleNumber size="sm" appearance="green" border="green" position="et" descrt="F">
                         {consultant.getF()}{consultant.getFISK()}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descB="B">
+                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descb="B">
                         {consultant.getB()}{consultant.getBISK()}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
                         {Math.abs(consultant.getF() - consultant.getL())}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="main" position="er" descB="C">
+                      <CircleNumber size="sm" appearance="white" border="main" position="er" descb="C">
                         {consultant.getC()}{consultant.getCISK()}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descRB="L">
+                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descrb="L">
                         {consultant.getL()}
                       </CircleNumber>
                     </div>
@@ -184,19 +184,19 @@ const PinnaclePage = () => {
                   </h2>
                   <div className='w-full flex items-center justify-center bg-opacity-100'>
                     <div className='grid grid-cols-3 mt-3 w-36 gap-2 bridge-wrap relative'>
-                      <CircleNumber size="sm" appearance="green" border="green" position="et" descRT="G">
+                      <CircleNumber size="sm" appearance="green" border="green" position="et" descrt="G">
                         {consultant.getG()}{consultant.getGISK()}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descB="E">
+                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descb="E">
                         {consultant.getE()}{consultant.getEISK()}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
                         {Math.abs(consultant.getG() - consultant.getM())}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="main" position="er" descB="F">
+                      <CircleNumber size="sm" appearance="white" border="main" position="er" descb="F">
                         {consultant.getF()}{consultant.getFISK()}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descRB="M">
+                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descrb="M">
                         {consultant.getM()}
                       </CircleNumber>
                     </div>
@@ -216,19 +216,19 @@ const PinnaclePage = () => {
                   </h2>
                   <div className='w-full flex items-center justify-center bg-opacity-100'>
                     <div className='grid grid-cols-3 mt-3 w-36 gap-2 bridge-wrap relative'>
-                      <CircleNumber size="sm" appearance="green" border="green" position="et" descRT="H">
+                      <CircleNumber size="sm" appearance="green" border="green" position="et" descrt="H">
                         {consultant.getH()}{consultant.getHISK()}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descB="A">
+                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descb="A">
                         {consultant.getA()}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
                         {Math.abs(consultant.getH() - consultant.getN())}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="main" position="er" descB="C">
+                      <CircleNumber size="sm" appearance="white" border="main" position="er" descb="C">
                         {consultant.getC()}{consultant.getCISK()}
                       </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descRB="M">
+                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descrb="M">
                         {consultant.getN()}
                       </CircleNumber>
                     </div>

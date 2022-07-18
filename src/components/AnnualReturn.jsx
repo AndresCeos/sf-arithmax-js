@@ -105,13 +105,13 @@ export const AnnualReturn = ({ annualReturn, current, months, group, personalYea
                         <line x1="90" y1="196" x2="133" y2="196" stroke="#DF4545" strokeWidth="3" />
                     </svg> : '' }
 
-                    <CircleNumber size="sm" appearance="white" border="red" position="vf" borderWidth={ current ? '4' : '1'} >
+                    <CircleNumber size="sm" appearance="white" border="red" position="vf" borderwidth={ current ? '4' : '1'} >
                         {annualReturn.F}
                     </CircleNumber>
                     <CircleNumber size="sm" appearance="white" border="red" position="vd">
                         {annualReturn.D}
                     </CircleNumber>
-                    <CircleNumber size="sm" appearance="white" border="red" position="vg" borderWidth={ current ? '4' : '1'} >
+                    <CircleNumber size="sm" appearance="white" border="red" position="vg" borderwidth={ current ? '4' : '1'} >
                         {annualReturn.G}
                     </CircleNumber>
                     <CircleNumber size="sm" appearance="white" border="red" position="ve">
@@ -120,7 +120,7 @@ export const AnnualReturn = ({ annualReturn, current, months, group, personalYea
                     <CircleNumber size="sm" appearance="white" border="purple" position="va">
                         {annualReturn.A}
                     </CircleNumber>
-                    <CircleNumber size="sm" appearance="purple-30" border={ current ? 'main' : 'purple'} position="vb" borderWidth={ current ? '4' : '1'} >
+                    <CircleNumber size="sm" appearance="purple-30" border={ current ? 'main' : 'purple'} position="vb" borderwidth={ current ? '4' : '1'} >
                         {annualReturn.B}
                     </CircleNumber>
                     <CircleNumber size="sm" appearance="white" border="purple" position="vc">

@@ -2158,10 +2158,10 @@ svg {
   bottom: 270px;
 }
 
-[descRT]:after {
+[descrt]:after {
   width: 16px;
   text-align: center;
-  content: attr(descRT);
+  content: attr(descrt);
   font-size: 13px;
   color: #7E7E7E;
   right: -15px;
@@ -2169,10 +2169,10 @@ svg {
   position: absolute;
 }
 
-[descRB]:after {
+[descrb]:after {
   width: 16px;
   text-align: center;
-  content: attr(descRB);
+  content: attr(descrb);
   font-size: 13px;
   color: #7E7E7E;
   right: -15px;
@@ -2180,10 +2180,10 @@ svg {
   position: absolute;
 }
 
-[descB]:after {
+[descb]:after {
   width: 16px;
   text-align: center;
-  content: attr(descB);
+  content: attr(descb);
   font-size: 13px;
   color: #7E7E7E;
   left: 15px;
