@@ -9,13 +9,21 @@ import add_user_main from '../assets/icons/add_user_main.svg'
 export const UsersForm = (props) => {
   const dispatch = useDispatch();
   const { isEditing } = useSelector(state => state.users);
-  const {dataUserEdit,dataUserIndex} = props;
+  const { dataUserEdit, dataUserIndex } = props;
+
+  const handleCancel = e => {
+    e.preventDefault()
+    dispatch( setIsEditing(false) )
+  }
 
   return(
     <Formik
       enableReinitialize
-      initialValues={(!isEditing)?{ names: '', date: '',lastName:'',scdLastName:'',partner:[] }:
-      { names: dataUserEdit.names, date: dataUserEdit.date,lastName:dataUserEdit.lastName,scdLastName:dataUserEdit.scdLastName,partner:[dataUserEdit.partner]}}
+      initialValues={ isEditing ?
+        { names: dataUserEdit.names, date: dataUserEdit.date,lastName:dataUserEdit.lastName,scdLastName:dataUserEdit.scdLastName,partner:[dataUserEdit.partner] }
+        :
+        { names: '', date: '',lastName:'',scdLastName:'',partner:[] }
+      }
       validate={ values => {
         const errors = {};
         const letters = /^[A-Za-z ]+$/
@@ -42,11 +50,12 @@ export const UsersForm = (props) => {
         }
         return errors;
       } }
-      onSubmit={(user,  { setSubmitting, resetForm }) => {
-        if(isEditing){
+      onSubmit={ (user, { setSubmitting, resetForm } ) => {
+        console.log( isEditing, dataUserIndex )
+        if (isEditing) {
           user.id = dataUserEdit.id;
           dispatch(editUser(user, dataUserIndex))
-        }else{
+        } else {
           dispatch(addUser( user ))
           dispatch(showToast({
             message: 'Consultante agregado',
@@ -162,7 +171,7 @@ export const UsersForm = (props) => {
               :
               <div className='w-full flex flex-wrap'>
                 <button className='w-full btn-conf mb-3'  type="submit"  disabled={isSubmitting}>Confirmar</button>
-                <button className='w-full btn-cancel' type='button' onClick={()=>{dispatch(setIsEditing(false))}} >Cancelar</button>
+                <button className='w-full btn-cancel' type='button' onClick={ handleCancel } >Cancelar</button>
               </div>
             }
           </div>
