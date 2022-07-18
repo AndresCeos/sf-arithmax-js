@@ -6,7 +6,7 @@ import { useConsultant } from '../hooks';
 import { TiPlus } from "react-icons/ti";
 
 const DestinityTablePage = () => {
-  const { userActive } = useSelector(state => state.users);
+  const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
 
@@ -45,6 +45,8 @@ const DestinityTablePage = () => {
 
       <div className='grid grid-cols-12 mt-9 mx-14 gap-6'>
 
+      {(isSelectPartner)?
+      <>
         <div className='col-span-12 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
@@ -117,6 +119,10 @@ const DestinityTablePage = () => {
             </div>
           </div>
         </div>
+      </>
+      :
+      <div className="col-span-12 text-center"><strong>Agrega/Selecciona una pareja para ver esta información</strong></div>
+      }
       </div>
     </>
   )
