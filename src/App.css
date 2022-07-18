@@ -2793,3 +2793,11 @@ top: 134px;
     font-size: 2rem;
   }
 }
+.selectConsultant .px-2.w-72 > span + div.bg-transparent {
+  background-color: transparent;
+  box-shadow: none;
+}
+.selectConsultant .px-2.w-72 > span + div.border-0,
+.selectConsultant .px-2.w-72 > span + div.border-0:hover {
+  border-width: 0px;
+}
