@@ -18,7 +18,7 @@ export class Person{
     let initials = names.map( el => el.toUpperCase().charAt(0) + ', ')
     initials += this.lastName.toUpperCase().charAt(0) + ', '
     initials += this.scdLastName.toUpperCase().charAt(0)
-    return initials.replaceAll(',', '')
+    return initials //.replaceAll(',', '')
   }
 
   getFormBirthDate(){
