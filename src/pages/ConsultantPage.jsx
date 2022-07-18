@@ -18,7 +18,7 @@ const ConsultantePage = () => {
   const dispatch = useDispatch();
   const [userEdit, setUserEdit] = useState({})
   const [userIndex, setUserIndex] = useState(null)
-
+  const [searchUser, setSearchUser] = useState("")
 
   useEffect( () => {
     dispatch(fetchAllUsers())
@@ -28,6 +28,39 @@ const ConsultantePage = () => {
     setUserEdit(user)
     setUserIndex(index)
   }
+
+  useEffect( ()=> {
+    console.log( searchUser )
+  }, [searchUser, setSearchUser])
+
+  const userList = () => {
+    if( searchUser === "" ){
+      return users.map( (user,index) => userTemplate(user, index))
+    }
+
+    const search =  users.filter( user => {
+      return `${user.names.toLowerCase()} ${user.lastName.toLowerCase()} ${user.scdLastName.toLowerCase()}`
+        .includes( searchUser.toLowerCase() )
+    });
+    return search.map( (user,index) => userTemplate(user, index))
+  }
+
+  const userTemplate = (user, index) => {
+    return <li key={index}  className='w-full grid grid-cols-12 h-10'>
+    <div className='col-span-6'>{user.names} {user.lastName} {user.scdLastName}</div>
+    <div className='col-span-4'>{formatDate(user.date)}</div>
+    <div className='col-span-2'>
+      <button onClick={()=>{editUserHandler(index, user)}}>
+        <img src={c_edit} alt="edit" />
+      </button>
+      <button onClick={()=>{dispatch(removeUser(index))}} className="ml-6">
+        <img src={c_delete} alt="delete" />
+      </button>
+    </div>
+  </li>
+  }
+
+
   return(
     <>
       <div className='mt-8 ml-14 flex justify-start items-center pt-10'>
@@ -75,8 +108,13 @@ const ConsultantePage = () => {
           </div>
           <div className='users-wrap'>
             <div className='users-search rounded-3xl relative mb-6'>
-              <img src={search} alt="edit" className='absolute left-2 top-2' />
-              <input type="search" className='w-full h-8 bg-transparent outline-none' />
+              <img src={search} alt="edit" className='absolute left-2 top-2'
+              />
+              <input
+                type="search"
+                className='w-full h-8 bg-transparent outline-none pl-10 pr-4'
+                value={ searchUser }
+                onChange={ e => setSearchUser(e.target.value) } />
             </div>
             <ul className='users-table h-36 overflow-y-scroll'>
               <li className='w-full grid grid-cols-12 font-bold h-10'>
@@ -84,20 +122,7 @@ const ConsultantePage = () => {
                 <div className='col-span-4'>Fecha de Nacimiento</div>
                 <div className='col-span-2'>Acciones</div>
               </li>
-              {users.map( (user,index) =>
-                <li key={index}  className='w-full grid grid-cols-12 h-10'>
-                  <div className='col-span-6'>{user.names} {user.lastName} {user.scdLastName}</div>
-                  <div className='col-span-4'>{formatDate(user.date)}</div>
-                  <div className='col-span-2'>
-                    <button onClick={()=>{editUserHandler(index, user)}}>
-                      <img src={c_edit} alt="edit" />
-                    </button>
-                    <button onClick={()=>{dispatch(removeUser(index))}} className="ml-6">
-                      <img src={c_delete} alt="delete" />
-                    </button>
-                  </div>
-                </li>
-              )}
+              { userList() }
             </ul>
           </div>
         </div>
