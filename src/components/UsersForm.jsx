@@ -18,8 +18,12 @@ export const UsersForm = (props) => {
       { names: dataUserEdit.names, date: dataUserEdit.date,lastName:dataUserEdit.lastName,scdLastName:dataUserEdit.scdLastName,partner:[dataUserEdit.partner]}}
       validate={ values => {
         const errors = {};
+        const letters = /^[A-Za-z ]+$/
         if (!values.names) {
           errors.names = 'Requerido';
+        }
+        if (!values.names.match( letters )) {
+          errors.names = 'No valido';
         }
         if (!values.date) {
           errors.date = 'Requerido';
@@ -27,8 +31,14 @@ export const UsersForm = (props) => {
         if (!values.lastName) {
           errors.lastName = 'Requerido';
         }
+        if (!values.lastName.match( letters )) {
+          errors.lastName = 'No valido';
+        }
         if (!values.scdLastName) {
           errors.scdLastName = 'Requerido';
+        }
+        if (!values.scdLastName.match( letters )) {
+          errors.scdLastName = 'No valido';
         }
         return errors;
       } }
