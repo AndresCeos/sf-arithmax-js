@@ -20,7 +20,7 @@ export const UsersForm = (props) => {
     <Formik
       enableReinitialize
       initialValues={ isEditing ?
-        { names: dataUserEdit.names, date: dataUserEdit.date,lastName:dataUserEdit.lastName,scdLastName:dataUserEdit.scdLastName,partner:[dataUserEdit.partner] }
+        { names: dataUserEdit.names, date: dataUserEdit.date,lastName:dataUserEdit.lastName,scdLastName:dataUserEdit.scdLastName }
         :
         { names: '', date: '',lastName:'',scdLastName:'',partner:[] }
       }
@@ -51,10 +51,14 @@ export const UsersForm = (props) => {
         return errors;
       } }
       onSubmit={ (user, { setSubmitting, resetForm } ) => {
-        console.log( isEditing, dataUserIndex )
         if (isEditing) {
           user.id = dataUserEdit.id;
-          dispatch(editUser(user, dataUserIndex))
+          user.partner = dataUserEdit.partner
+          dispatch( editUser(user) )
+          dispatch(showToast({
+            message: 'Consultante actualizado',
+            type: 'success',
+            show: true } ) )
         } else {
           dispatch(addUser( user ))
           dispatch(showToast({

@@ -162,26 +162,29 @@ export const removeUser = id => async dispatch => {
   })
 }
 
-export const editUser = ( user, index) => async dispatch => {
+export const editUser = user => async dispatch => {
   const users = await localForage.getItem('users')
-  const newUsers = [...users]
-  newUsers[index] = user
-  localForage.setItem('users', newUsers).then( () => {
-    dispatch( setUserList(newUsers) )
+  const listUsers = users.filter( e => e.id !== user.id )
+  const updatedUsers = [
+    ...listUsers,
+    user
+  ]
+  localForage.setItem('users', updatedUsers).then( () => {
+    dispatch( setUserList(updatedUsers) )
     dispatch( setIsEditing(false) )
-    dispatch( setAddPartner(false) )
-    dispatch( setIsPartnerEditing(false) )
-    // window.location.reload(false);
     dispatch( selectUserActive( user.id ) )
-    if( user.partner ){
-      console.log({
-        id: user.id,
-        len: user.partner.length
-      })
-      dispatch( selectUserPartnerActive( user.id, user.partner.length - 1 ) )
-      dispatch( setIsSelectPartner(true) )
-      dispatch( setPartnerIndex(user.partner.length - 1 ) )
-    }
+    // dispatch( setAddPartner(false) )
+    // dispatch( setIsPartnerEditing(false) )
+    // window.location.reload(false);
+    // if( user.partner ){
+    //   console.log({
+    //     id: user.id,
+    //     len: user.partner.length
+    //   })
+    //   dispatch( selectUserPartnerActive( user.id, user.partner.length - 1 ) )
+    //   dispatch( setIsSelectPartner(true) )
+    //   dispatch( setPartnerIndex(user.partner.length - 1 ) )
+    // }
   })
 }
 

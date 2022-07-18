@@ -9,7 +9,6 @@ import ic_search from '../assets/icons/sb_search.svg'
 export const ConsultantPicker = () => {
 
   const { list: users, userActive } = useSelector(state => state.users);
-  const [userSelected, setUserSelected] = useState(null)
 
   const dispatch = useDispatch();
 
@@ -18,7 +17,6 @@ export const ConsultantPicker = () => {
   }, [dispatch])
 
   const handleChange = (e) => {
-    setUserSelected( e )
     dispatch( selectUserActive(e.value) )
     dispatch( setIsSelectPartner(false) )
   }
@@ -27,6 +25,16 @@ export const ConsultantPicker = () => {
     label: `${names} ${lastName} ${scdLastName}`
   }))
 
+  const formatUserActive = () => {
+    if( userActive?.id ){
+      return {
+        value: userActive.id,
+        label: `${userActive.names} ${userActive.lastName} ${userActive.scdLastName}`
+      };
+    }
+    return null;
+  }
+
   return(
     <div className='selectConsultant flex items-center'>
       <img src={ic_search} className="mx-2 drop-shadow-sm" alt='consultant search' />
@@ -34,7 +42,7 @@ export const ConsultantPicker = () => {
       <Select
         options={options}
         onChange={handleChange}
-        value={userSelected}
+        value={ formatUserActive() }
         className='px-2 w-72'
         placeholder="Selecccionar"
         classNamePrefix="bg-transparent border-0 outline-none font-bold"
