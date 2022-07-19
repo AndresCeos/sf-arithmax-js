@@ -51,9 +51,10 @@ const getErrorMessage = code => {
 
 export const fetchStatus = () => async dispatch => {
   await localForage.getItem('session', (e, session) => {
-    // console.log( { session } )
     if( session !== null ){
       dispatch( login(session) )
+    } else {
+      dispatch( checkingCredentials( { payload: 'not-authenticated' } ) )
     }
   })
 }
