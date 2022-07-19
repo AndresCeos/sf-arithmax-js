@@ -122,7 +122,7 @@ const SinastyVibrationTimePage = () => {
             </div>
             <div className='pinnacle-wrap grid grid-cols-9 px-4 py-8 w-full'>
               <div className="col-start-4 col-end-6 flex justify-center items-center mb-6 row-start-1">
-                Etapa {synastry.getLifeStageNumber()}:
+                Etapa {synastry.getLifeStageNumber(currentYear)}:
                 <CircleNumber  size="sm" appearance="green-50" border="green">
                   {synastry.getLifeStage(currentYear)}{synastry.getLifeStageISK(currentYear)}
                 </CircleNumber>
@@ -130,7 +130,7 @@ const SinastyVibrationTimePage = () => {
               {nineYearCycleStage.map((year,i)=>
                 <div key={i} className={`col-start-${i+1} row-start-2 border-t-2 border-green-700 pt-5`}>
                   <CircleNumber  size="sm" appearance={(year===currentYear)?'purple-30':'white'} border="main">
-                    {synastry.calcPersonalYear(year)}{synastry.calcPersonalYearISK(year)}
+                    {synastry.calcPersonalYear(year)}{(synastry.calcPersonalYear(year)===2)?'/11':''}{(synastry.calcPersonalYear(year)===4)?'/22':''}{synastry.calcPersonalYearISK(year)}
                   </CircleNumber>
                   <b className={`${(year===currentYear)?'text-black':'text-gray-300'}`}>{year}</b><br/>
                   {synastry.getLifeStageNumber()===1?
