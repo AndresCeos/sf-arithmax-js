@@ -75,11 +75,15 @@ export const UserPartnerSelect = () => {
             </div>
             Datos de Pareja
           </div>
-          <button
-            onClick={ () => setIsAddFormActive( !isAddFormActive ) }
-            className={`float-right ${ isAddFormActive ? 'bg-red-500' : 'bg-gold' } px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl`}>
-              { isAddFormActive ? 'Cancelar' : 'Agregar Pareja' }
-          </button>
+          {
+            listPartners.length > 0 ?
+            <button
+              onClick={ () => setIsAddFormActive( !isAddFormActive ) }
+              className={`float-right ${ isAddFormActive ? 'bg-red-500' : 'bg-gold' } px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl`}>
+                { isAddFormActive ? 'Cancelar' : 'Agregar Pareja' }
+            </button>
+            : null
+          }
         </div>
         <div className='pinnacle-wrap px-8 py-8'>
           <UserFormInline
