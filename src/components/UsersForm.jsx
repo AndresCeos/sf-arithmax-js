@@ -81,7 +81,7 @@ export const UsersForm = (props) => {
       /* and other goodies */
     }) => (
       <form id='App-add-user-form' className="form-container block" onSubmit={handleSubmit}>
-        <div className="flex w-full gap-4">
+        <div className="flex w-full">
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
               Nombre(s)
@@ -128,7 +128,7 @@ export const UsersForm = (props) => {
             {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span>  : null }
           </div>
         </div>
-        <div className="flex w-full gap-4 mt-3">
+        <div className="flex w-full mt-3">
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
               Fecha de Nacimiento
