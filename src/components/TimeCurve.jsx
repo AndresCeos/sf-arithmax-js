@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import { dateSelect } from '../hooks';
 
+import time_curve from '../assets/time-curve.svg'
+
 export const TimeCurve = ({ consultant }) => {
     const {newDate} = dateSelect()
     const activeStage = consultant.getLifeStageNumber(newDate.year())
@@ -192,27 +194,7 @@ export const TimeCurve = ({ consultant }) => {
                     </div>
                 </div>
 
-                <svg width="1057" height="193" viewBox="0 0 1057 193" fill="none" xmlns="http://www.w3.org/2000/svg" className='absolute bottom-0 left-0 w-full'>
-                    <g filter="url(#filter0_i_73_2520)">
-                        <path d="M1 182.875C1 182.875 188.888 187.042 331.294 147.308C523.668 101.113 537.259 -109.373 766.947 79.1422C835 134.996 969.409 185.983 1056 191" stroke="url(#paint0_linear_73_2520)" strokeWidth="4" strokeMiterlimit="10"/>
-                    </g>
-                    <defs>
-                        <filter id="filter0_i_73_2520" x="0.957764" y="-4.00026" width="1055.16" height="196.997" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                            <feFlood strokeMiterlimit="0" result="BackgroundImageFix"/>
-                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                            <feOffset dy="-4"/>
-                            <feGaussianBlur stdDeviation="2"/>
-                            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                            <feBlend mode="normal" in2="shape" result="effect1_innerShadow_73_2520"/>
-                        </filter>
-                        <linearGradient id="paint0_linear_73_2520" x1="509" y1="2" x2="509" y2="183" gradientUnits="userSpaceOnUse">
-                            <stop stopColor="#008C60"/>
-                            <stop offset="1" stopColor="#EEF9D9"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
+                <img src={time_curve} className="absolute bottom-0 left-0 w-full" />
                 <div className='col-start-1 col-end-7 row-start-5 h-6'></div>
                 <div className='col-start-1 col-end-7 row-start-8 h-6'></div>
                 <div className='col-start-1 col-end-7 row-start-9 h-6'></div>
