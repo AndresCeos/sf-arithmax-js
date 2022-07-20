@@ -92,7 +92,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
           <MdEdit className='text-xl text-gray-400'/> Se conocieron en el año:
         </label>
         <input
-          value={ partner.yearMeet !== undefined ? partner.yearMeet.split('-')[0] : '' }
+          value={ partner.yearMeet }
           type="text"
           className="rounded w-20 text-center"
           disabled={ hasPartner }

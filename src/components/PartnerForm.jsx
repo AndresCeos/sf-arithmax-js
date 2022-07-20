@@ -17,12 +17,25 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
   return(
     <Formik
       enableReinitialize
-      initialValues={(!isPartnerEditing)?{ names: '', date: '',lastName:'',scdLastName:'',yearMeet:'' }:
-      {names:userPartnerActive.names,date:userPartnerActive.date,lastName:userPartnerActive.lastName,scdLastName:userPartnerActive.scdLastName,yearMeet:userPartnerActive.yearMeet}}
+      initialValues={ ( ! isPartnerEditing ) ?
+        { names: '', date: '',lastName:'',scdLastName:'',yearMeet:'' }
+        :
+        {
+          names:userPartnerActive.names,
+          date:userPartnerActive.date,
+          lastName:userPartnerActive.lastName,
+          scdLastName:userPartnerActive.scdLastName,
+          yearMeet:userPartnerActive.yearMeet
+        }
+      }
       validate={ values => {
         const errors = {};
+        const letters = /^[A-Za-z ]+$/
         if (!values.names) {
           errors.names = 'Requerido';
+        }
+        if (!values.names.match( letters )) {
+          errors.names = 'No valido';
         }
         if (!values.date) {
           errors.date = 'Requerido';
@@ -30,8 +43,20 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
         if (!values.lastName) {
           errors.lastName = 'Requerido';
         }
+        if (!values.lastName.match( letters )) {
+          errors.lastName = 'No valido';
+        }
         if (!values.scdLastName) {
           errors.scdLastName = 'Requerido';
+        }
+        if (!values.scdLastName.match( letters )) {
+          errors.scdLastName = 'No valido';
+        }
+        if (!values.scdLastName.match( letters )) {
+          errors.scdLastName = 'No valido';
+        }
+        if ( values.yearMeet < 1 ) {
+          errors.yearMeet = 'No valido';
         }
         return errors;
       } }
@@ -93,23 +118,27 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
           <img src={add_user_main} className="mr-3" alt='add_user_main'/>
           Asignar Pareja
         </h2>
-        <div className="flex w-full">
-          <div className="form-group w-full">
-          <label>Nombre(s)</label>
-          <input
-            type="text"
-            name="names"
-            className="rounded"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.names}
-          />
-          {errors.names && touched.names ? <span className="form-error">{errors.names}</span>  : null }
+        <div className="flex w-full mt-6">
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Nombre(s)
+              <span className='text-red-800'>*</span>
+            </label>
+            <input
+              type="text"
+              name="names"
+              className="rounded"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.names}
+            />
+            {errors.names && touched.names ? <span className="form-error">{errors.names}</span>  : null }
           </div>
-        </div>
-        <div className="flex w-full">
-          <div className="form-group w-6/12">
-            <label>Apellido Paterno</label>
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Apellido Paterno
+              <span className='text-red-800'>*</span>
+            </label>
             <input
               type="text"
               name="lastName"
@@ -120,8 +149,11 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
             />
             {errors.lastName && touched.lastName ? <span className="form-error">{errors.lastName}</span>  : null }
           </div>
-          <div className="form-group w-6/12">
-            <label>Apellido Materno</label>
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Apellido Materno
+              <span className='text-red-800'>*</span>
+            </label>
             <input
               type="text"
               name="scdLastName"
@@ -133,9 +165,12 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
             {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span>  : null }
           </div>
         </div>
-        <div className="flex w-full items-end">
-          <div className="form-group w-6/12">
-            <label>Fecha de Nacimiento</label>
+        <div className="flex w-full mt-3">
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Fecha de Nacimiento
+              <span className='text-red-800'>*</span>
+            </label>
             <input
               type="date"
               name="date"
@@ -146,10 +181,13 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
             />
             {errors.date && touched.date ? <span className="form-error">{errors.date}</span>  : null }
           </div>
-          <div className='form-group w-6/12'>
-            <label>Año del evento</label>
+          <div className="form-group w-1/3">
+            <label className='font-bold mb-1'>
+              Año del evento
+              <span className='text-red-800'>*</span>
+            </label>
             <input
-              type="date"
+              type="number"
               name="yearMeet"
               className="rounded"
               onChange={handleChange}
@@ -159,8 +197,8 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
             {errors.yearMeet && touched.yearMeet ? <span className="form-error">{errors.yearMeet}</span>  : null }
           </div>
         </div>
-        <div className='flex w-full mt-5 '>
-          <button type="submit" className="btn-save w-6/12 " disabled={isSubmitting}>Guardar</button>
+        <div className="flex w-full mt-3 justify-center">
+          <button type="submit" className="btn-save w-32" disabled={isSubmitting}>Guardar</button>
           {/* <button className='w-6/12 btn-cancel rounded' type='button' onClick={closeForm} >Cancelar</button> */}
         </div>
       </form>

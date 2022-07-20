@@ -494,8 +494,10 @@ svg {
 
 .form-group input[type="text"],
 .form-group input[type="date"],
+.form-group input[type="number"],
 .form-group textarea,
 .form-group-inline input[type="text"],
+.form-group-inline input[type="number"],
 .form-group-inline input[type="date"],
 .form-group-inline select,
 .form-group-inline textarea {

@@ -31,7 +31,8 @@ const SinastyDestinityTablePage = () => {
 
   // console.log( moment(userPartnerActive.yearMeet).year() )
   // console.log( consultant.birthDate.year() )
-  const ageMeet = moment(userPartnerActive.yearMeet).year() - consultant.birthDate.year()
+  // const ageMeet = moment(userPartnerActive.yearMeet).year() - consultant.birthDate.year()
+  const ageMeet = userPartnerActive.yearMeet - consultant.birthDate.year()
   const t = consultant.getDestinityTable()
   const table = t.slice(ageMeet)
   // console.log(table)
@@ -42,7 +43,8 @@ const SinastyDestinityTablePage = () => {
 
   // console.log( moment(userPartnerActive.yearMeet).year() )
   // console.log( partner.birthDate.year() )
-  const ageMeetP = moment(userPartnerActive.yearMeet).year() - partner.birthDate.year()
+  // const ageMeetP = moment(userPartnerActive.yearMeet).year() - partner.birthDate.year()
+  const ageMeetP = userPartnerActive.yearMeet - partner.birthDate.year()
   const tP = partner.getDestinityTable()
   const partnerTable = tP.slice(ageMeetP)
   // console.log(partnerTable)
