@@ -647,7 +647,7 @@ calcDurationStage(stage){
       return this.karmicos.includes(stageThr)? '*':'';
     }
 
-    let stageFou = this.reduceNumbeISK(this.getA() +this.getC())
+    let stageFou = this.reduceNumberISK(this.getA() +this.getC())
     let stageFouEnd = stageThrEnd + 9
     if( stageThrEnd <= yearToCalculate &&yearToCalculate <= stageFouEnd ){
       return this.karmicos.includes(stageFou)? '*':'';

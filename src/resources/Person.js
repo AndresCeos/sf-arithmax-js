@@ -12,6 +12,9 @@ export class Person{
     this.NOW = moment()
     this.yearMeet = yearMeet
   }
+  getYearMeet(){
+    return this.yearMeet
+  }
 
   getInitials(){
     const names = this.name.split(' ')

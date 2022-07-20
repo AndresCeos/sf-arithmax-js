@@ -204,7 +204,7 @@ export const TimeCurve = ({ consultant }) => {
             </div>
             <div id="lifePathYears" className="grid grid-cols-19 w-full -ml-3 mt-3">
                 <div className='col-start-1 col-end-7 text-13 row-start-1'>
-                    {consultant.getYearMeet() }
+                    {(consultant.getYearMeet()==='')?consultant.getYearOfBirth() :consultant.getYearMeet}
                 </div>
                 <div className='col-start-7 col-end-9 text-13 row-start-1'>
                     {consultant.calcLifeStageDuration(1)}
