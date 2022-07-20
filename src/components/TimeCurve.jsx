@@ -102,7 +102,7 @@ export const TimeCurve = ({ consultant }) => {
 
 
                 <div className='col-start-1 col-end-7 row-start-8 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-                    Del nacimiento a los {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() }
+                    {/*Del nacimiento a los {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() }*/}
                 </div>
                 <div className='col-start-1 col-end-7 row-start-9 text-center text-13 h-6 flex items-start justify-center'>
                 </div>
@@ -115,7 +115,7 @@ export const TimeCurve = ({ consultant }) => {
                 </div>
 
                 <div className='col-start-7 col-end-9 row-start-6 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-                    {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 }
+                   {/* {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 } */}
                 </div>
                 <div className='col-start-7 col-end-9 row-start-7 text-center text-13 h-6'>
                 </div>
@@ -128,7 +128,7 @@ export const TimeCurve = ({ consultant }) => {
                 </div>
 
                 <div className='col-start-9 col-end-11 row-start-3 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-                    {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18 }
+                  {/* {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18 }*/}
                 </div>
                 <div className='col-start-9 col-end-11 row-start-4 text-center text-13 h-6'>
                 </div>
@@ -143,7 +143,7 @@ export const TimeCurve = ({ consultant }) => {
 
                 <div className='col-start-11 col-end-13 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400'></div>
                 <div className='col-start-11 col-end-13 row-start-1 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-                    {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27 }
+                      {/*{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27 }*/}
                 </div>
                 <div className='col-start-11 col-end-13 row-start-2 text-center text-13 h-6'>
                 </div>
@@ -156,7 +156,7 @@ export const TimeCurve = ({ consultant }) => {
                 </div>
 
                 <div className='col-start-13 col-end-15 row-start-3 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-                    {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36 }
+                    {/*{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36 }*/}
                 </div>
                 <div className='col-start-13 col-end-15 row-start-4 text-center text-13 h-6'>
                 </div>
@@ -169,7 +169,7 @@ export const TimeCurve = ({ consultant }) => {
                 </div>
 
                 <div className='col-start-15 col-end-17 row-start-6 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-                    {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45 }
+                    {/*{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45 }*/}
                 </div>
                 <div className='col-start-15 col-end-17 row-start-7 text-center text-13 h-6'>
                 </div>
@@ -182,7 +182,7 @@ export const TimeCurve = ({ consultant }) => {
                 </div>
 
                 <div className='col-start-17 col-end-21 row-start-8 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-                    {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45 } - ...
+                    {/*{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45 } - ...*/}
                 </div>
                 <div className='col-start-17 col-end-21 row-start-9 text-center text-13 h-6'>
                 </div>
@@ -201,32 +201,10 @@ export const TimeCurve = ({ consultant }) => {
                 <div className='col-start-1 col-end-7 row-start-10 h-6'></div>
                 <div className='col-start-1 col-end-7 row-start-11 h-6'></div>
                 <div className='col-start-1 col-end-7 row-start-12 h-6'></div>
-
-                {(dobleStage)?<div className='col-start-1 col-end-7 row-start-9 h-6 flex justify-center text-13'>
-                    Del nacimiento a los {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() }
-                </div>:''}
-                {(dobleStage)?<div className='col-start-7 col-end-9 row-start-7 h-6 flex justify-center text-13'>
-                    {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 9 }
-                </div>:''}
-                {(dobleStage)?<div className='col-start-9 col-end-11 row-start-4 h-6 flex justify-center text-13'>
-                    {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 9 } - {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 18 }
-                </div>:''}
-                {(dobleStage)?<div className='col-start-11 col-end-13 row-start-2 h-6 flex justify-center text-13'>
-                    {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 18 } - {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 27 }
-                </div>:''}
-                {(dobleStage)?<div className='col-start-13 col-end-15 row-start-4 h-6 flex justify-center text-13'>
-                    {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 27 } - {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 36 }
-                </div>:''}
-                {(dobleStage)?<div className='col-start-15 col-end-17 row-start-7 h-6 flex justify-center text-13'>
-                    {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 36 } - {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 45 }
-                </div>:''}
-                {(dobleStage)?<div className='col-start-17 col-end-21 row-start-9 h-6 flex justify-center text-13 text-center'>
-                    {consultant.calcDoubleLifeStageDuration(1) -consultant.birthDate.year() + 45 } - ...
-                </div>:''}
             </div>
             <div id="lifePathYears" className="grid grid-cols-19 w-full -ml-3 mt-3">
                 <div className='col-start-1 col-end-7 text-13 row-start-1'>
-                    {consultant.birthDate.year() }
+                    {consultant.getYearMeet() }
                 </div>
                 <div className='col-start-7 col-end-9 text-13 row-start-1'>
                     {consultant.calcLifeStageDuration(1)}
@@ -252,7 +230,7 @@ export const TimeCurve = ({ consultant }) => {
                 {(dobleStage)?
                 <>
                     <div className='col-start-1 col-end-7 text-13 row-start-2'>
-                    {consultant.birthDate.year() }
+                    {consultant.getYearMeet()}
                 </div>
                 <div className='col-start-7 col-end-9 text-13 row-start-2'>
                     {consultant.calcDoubleLifeStageDuration(1)}

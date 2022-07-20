@@ -1,4 +1,5 @@
 import moment from 'moment/min/moment-with-locales'
+import { FaThumbsDown } from 'react-icons/fa'
 moment.locale("es-mx")
 
 export class Synastry{
@@ -22,7 +23,8 @@ export class Synastry{
   getA(){
     const birthDate = this.consultant.getBirthDate()
     const partnerBirthDate = this.partner.getBirthDate()
-    return this.reduceNumber( birthDate.month() + 1 + partnerBirthDate.month() + 1 );
+
+    return this.reduceNumber( (birthDate.month() + 1) + (partnerBirthDate.month() + 1 ));
   }
 
   getB(){
@@ -40,11 +42,16 @@ export class Synastry{
   getC(){
     const birthDate = this.consultant.getBirthDate()
     const partnerBirthDate = this.partner.getBirthDate()
+    console.log(birthDate.year() )
+    console.log(birthDate.year() )
 
     return this.reduceNumber( birthDate.year() + partnerBirthDate.year() );
   }
   getCISK(){
-    // todo
+    const birthDate = this.consultant.getBirthDate()
+    const partnerBirthDate = this.partner.getBirthDate()
+    const C = this.reduceNumberISK(birthDate.year()+ partnerBirthDate.year())
+    return this.karmicos.includes(C)? '*' : ''
   }
   getD(){
     return this.reduceNumber(
@@ -54,7 +61,12 @@ export class Synastry{
     );
   }
   getDISK(){
-    // todo
+    const D =  this.reduceNumberISK(
+      this.getA() +
+      this.getB() +
+      this.getC()
+    )
+    return this.karmicos.includes(D)? '*': ''
   }
 
   getE(){
@@ -64,7 +76,11 @@ export class Synastry{
     );
   }
   getEISK(){
-    //  todo
+    const E =  this.reduceNumberISK(
+      this.getA() +
+      this.getB()
+    )
+    return this.karmicos.includes(E)?'*' : ''
   }
 
   getF(){
@@ -74,7 +90,11 @@ export class Synastry{
     );
   }
   getFISK(){
-    // todo
+    const F =  this.reduceNumberISK(
+      this.getC() +
+      this.getB()
+    )
+    return this.karmicos.includes(F)?'*':''
   }
 
   getG(){
@@ -84,7 +104,11 @@ export class Synastry{
     );
   }
   getGISK(){
-    // todo
+    const G = this.reduceNumberISK(
+      this.getE() +
+      this.getF()
+    )
+    return this.karmicos.includes(G)?'*' : ''
   }
 
   getH(){
@@ -94,7 +118,11 @@ export class Synastry{
     );
   }
   getHISK(){
-    // todo
+    const H =  this.reduceNumberISK(
+      this.getA() +
+      this.getC()
+    )
+    return this.karmicos.includes(H)?'*':''
   }
 
   getI(){
@@ -105,7 +133,12 @@ export class Synastry{
     );
   }
   getIISK(){
-    // todo
+    const I=  this.reduceNumberISK(
+      this.getE() +
+      this.getF() +
+      this.getG()
+    )
+    return this.karmicos.includes(I)?'*': ''
   }
 
   getJ(){
@@ -115,7 +148,11 @@ export class Synastry{
     );
   }
   getJISK(){
-    // todo
+    const J =  this.reduceNumberISK(
+      this.getH() +
+      this.getD()
+    )
+    return this.karmicos.includes(J)? '*': ''
   }
 
   getAs(){
@@ -507,7 +544,7 @@ calcDurationStage(stage){
 
   calcLifeStageDuration( stage = 1){
     let start = this.yearMeet //.year()
-    let stageOne = 9 - this.reduceNumberForSub(this.getA() +this.getB())
+    let stageOne = 9 - this.calcPersonalYear(start)
     let stageOneEnd = start + stageOne
     if(stageOne === 0){
       stageOneEnd = stageOneEnd +9
@@ -547,7 +584,7 @@ calcDurationStage(stage){
   getLifeStage(yearToCalculate = null){
     yearToCalculate = yearToCalculate || this.NOW.year()
     let start = this.yearMeet //.year()
-    let duration = 9 - this.reduceNumberForSub(this.getA() +this.getB())
+    let duration = 9 - this.calcPersonalYear(start)
     let stageOneEnd = start + duration
     if(duration === 0){
       stageOneEnd = stageOneEnd +9
@@ -588,29 +625,29 @@ calcDurationStage(stage){
   /** Life Stage Karmica */
   getLifeStageISK(yearToCalculate = null){
     let start = this.yearMeet //.year()
-    let duration = 9 - this.reduceNumberForSub(this.getA() +this.getB())
+    let duration = 9 - this.calcPersonalYear(start)
     let stageOneEnd = start + duration
     if(duration === 0){
       stageOneEnd = stageOneEnd +9
     }
-    let stageOne = this.getE()
+    let stageOne = this.reduceNumberISK(this.getA() +this.getB())
     if( start<= yearToCalculate && yearToCalculate <= stageOneEnd ){
       return this.karmicos.includes(stageOne)? '*':'';
     }
 
-    let stageTwo = this.getF()
+    let stageTwo = this.reduceNumberISK( this.getC() +this.getB())
     let stageTwoEnd = stageOneEnd + 9
     if( stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd ){
       return this.karmicos.includes(stageTwo)? '*':'';
     }
 
-    let stageThr = this.getG()
+    let stageThr = this.reduceNumberISK(this.getE() +this.getF())
     let stageThrEnd = stageTwoEnd + 9
     if( stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd ){
       return this.karmicos.includes(stageThr)? '*':'';
     }
 
-    let stageFou = this.getH()
+    let stageFou = this.reduceNumbeISK(this.getA() +this.getC())
     let stageFouEnd = stageThrEnd + 9
     if( stageThrEnd <= yearToCalculate &&yearToCalculate <= stageFouEnd ){
       return this.karmicos.includes(stageFou)? '*':'';
@@ -630,83 +667,85 @@ calcDurationStage(stage){
    * calculate current satge number
    * @returns {Number} stage
    */
-  getLifeStageNumber(){
+  getLifeStageNumber(yearToCalculate= null){
+    yearToCalculate = yearToCalculate|| this.NOW.year()
     const start = this.yearMeet //.year()
-    let duration = 9 - this.reduceNumberForSub(this.getA() +this.getB())
+    let duration = 9 - this.calcPersonalYear(yearToCalculate)
     let stageOneEnd = start + duration
     if(duration === 0){
       stageOneEnd = stageOneEnd +9
     }
     // let stageOne = this.getE()
-    if( start<= this.NOW.year() && this.NOW.year() <= stageOneEnd ){
+    if( start<= yearToCalculate && yearToCalculate <= stageOneEnd ){
       return 1;
     }
 
     // let stageTwo = this.getF()
     let stageTwoEnd = stageOneEnd + 9
-    if( stageOneEnd <= this.NOW.year() && this.NOW.year() <= stageTwoEnd ){
+    if( stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd ){
       return 2;
     }
 
     // let stageThr = this.getG()
     let stageThrEnd = stageTwoEnd + 9
-    if( stageTwoEnd <= this.NOW.year() && this.NOW.year() <= stageThrEnd ){
+    if( stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd ){
       return 3;
     }
 
     // const stageFou = this.getH()
     let stageFouEnd = stageThrEnd + 9
-    if( stageThrEnd <= this.NOW.year() && this.NOW.year() <= stageFouEnd ){
+    if( stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd ){
       return 4;
     }
 
-    if( stageFouEnd <= this.NOW.year() && this.NOW.year() <= (stageFouEnd + 9) ){
+    if( stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) ){
       return 5;
     }
-    if( (stageFouEnd + 9) <= this.NOW.year() && this.NOW.year() <= (stageFouEnd + 18) ){
+    if( (stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) ){
       return 6;
     }
-    if( (stageFouEnd + 18) <= this.NOW.year() ){
+    if( (stageFouEnd + 18) <= yearToCalculate ){
       return 7;
     }
   }
-  getDoubleLifeStageNumber(){
+  getDoubleLifeStageNumber(yearToCalculate = null){
     const start = this.yearMeet //.year()
+    yearToCalculate = yearToCalculate || this.NOW.year()
     let duration = 9 - this.reduceNumberForSub(this.getA() +this.getB())
     let stageOneEnd = start + duration
     if(duration === 0){
       stageOneEnd = stageOneEnd +9
     }
     // const stageOne = this.reduceNumber( reducedMonth + reducedDay )
-    if( start <= this.NOW.year() && this.NOW.year() <= stageOneEnd ){
+    if( start <= yearToCalculate && yearToCalculate <= stageOneEnd ){
       return 1;
     }
 
     // const stageTwo = this.reduceNumber( dayBirthDate + yearBirthDate )
     const stageTwoEnd = stageOneEnd + 9
-    if( stageOneEnd <= this.NOW.year() && this.NOW.year() <= stageTwoEnd ){
+    if( stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd ){
       return 2;
     }
 
     // const stageThr = this.reduceNumber( stageOne + stageTwo )
     const stageThrEnd = stageTwoEnd + 9
-    if( stageTwoEnd <= this.NOW.year() && this.NOW.year() <= stageThrEnd ){
+    if( stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd ){
       return 3;
     }
 
     // const stageFou = this.reduceNumber( monthBirthDate + yearBirthDate )
     const stageFouEnd = stageThrEnd + 9
-    if( stageThrEnd <= this.NOW.year() && this.NOW.year() <= stageFouEnd ){
+    if( stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd ){
       return 4;
     }
 
-    if( stageFouEnd <= this.NOW.year() && this.NOW.year() <= (stageFouEnd + 9) ){
+    if( stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) ){
       return 5;
     }
-    if( (stageFouEnd + 9) <= this.NOW.year() && this.NOW.year() <= (stageFouEnd + 18) ){
+    if( (stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) ){
       return 6;
     }
-    if( (stageFouEnd + 18) <= this.NOW.year() ){
+    if( (stageFouEnd + 18) <= yearToCalculate ){
       return 7;
     }
   }
