@@ -27,7 +27,7 @@ export const StatusBar = ({consultant}) => {
       </div>
       <div>
         Edad:
-        <strong className='ml-2'>{ consultant.getYearsOld() }</strong>
+        <strong className='ml-2'>{ consultant.getYearsOld(newDate.year()) }</strong>
       </div>
       <div>
         Fecha de Consulta:

@@ -42,7 +42,9 @@ export class Person{
 
   getYearsOld( yearToCalculate = null ){
     yearToCalculate = yearToCalculate || this.NOW.year()
-    return yearToCalculate - this.birthDate.year()
+    let age = yearToCalculate - this.birthDate.year()
+    if(age<1){age = 0}
+    return age
   }
 
   /**

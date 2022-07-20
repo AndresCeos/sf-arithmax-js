@@ -6,6 +6,7 @@ import { useConsultant, dateSelect } from '../hooks';
 import currentM from '../assets/currentMonth.png'
 
 import bkMan from '../assets/bk-man.png'
+import { currentDate } from '../resources';
 
 const TimeCirclePage = () =>{
   const { userActive } = useSelector(state => state.users);
@@ -14,7 +15,6 @@ const TimeCirclePage = () =>{
   const currentMonth = newDate.month() +1
   const nameOfMonth = newDate.format('MMM')
   const { consultant } = useConsultant()
-  
 
   if( isEmpty ){
     return <UnselectedConsultant />
@@ -36,6 +36,10 @@ const TimeCirclePage = () =>{
             <span className='time-circle-months'>{consultant.calcPersonalMonth(currentMonth, newDate.year())}{consultant.calcPersonalMonthISK(currentMonth, newDate.year())} / {consultant.calcUniversalMonth(currentMonth, newDate.year())}{consultant.calcUniversalMonthISK(currentMonth, newDate.year())}</span>
             <span className='time-circle-quater'>{consultant.getQuaterMonth(currentMonth, newDate.year())}</span>
             <span className='time-circle-name-month text-white font-bold'>{nameOfMonth.toUpperCase()}</span>
+          </div>
+          <div className='mt-5 text-center text-2xl'>
+            <div>Estas Consultando en:</div>
+            <div className='font-bold'>{currentDate()}</div>
           </div>
         </div>
       </div>
