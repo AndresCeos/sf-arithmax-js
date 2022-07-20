@@ -38,8 +38,8 @@ const TimeCirclePage = () =>{
             <span className='time-circle-name-month text-white font-bold'>{nameOfMonth.toUpperCase()}</span>
           </div>
           <div className='mt-5 text-center text-2xl'>
-            <div>Estas Consultando en:</div>
-            <div className='font-bold'>{currentDate()}</div>
+            <div>Estas Consultando el:</div>
+            <div className='font-bold'>{currentDate(newDate)}</div>
           </div>
         </div>
       </div>
