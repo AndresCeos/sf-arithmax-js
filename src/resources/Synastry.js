@@ -14,6 +14,9 @@ export class Synastry{
   getYearMeet(){
     return this.yearMeet.year()
   }
+  getYearTimeCurve(){
+    return this.yearMeet.year()
+  }
 
   getYearsOld( yearToCalculate = null ){
     yearToCalculate = yearToCalculate || this.NOW.year()

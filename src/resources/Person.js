@@ -12,8 +12,8 @@ export class Person{
     this.NOW = moment()
     this.yearMeet = yearMeet
   }
-  getYearMeet(){
-    return this.yearMeet
+  getYearTimeCurve(){
+    return this.birthDate.year()
   }
 
   getInitials(){
