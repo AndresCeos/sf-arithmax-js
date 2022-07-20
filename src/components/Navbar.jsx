@@ -17,25 +17,35 @@ import mail from '../assets/icons/mail.svg'
 import bell from '../assets/icons/bell.svg'
 import Swal from "sweetalert2";
 
+import moment from 'moment/min/moment-with-locales'
 
 export const Navbar = () => {
-const {newDate} = dateSelect()
+  const {newDate} = dateSelect()
   const { names } = useSelector(state => state.auth);
+  const now =  moment()
 
   const dispatch = useDispatch();
   const changeDate = () =>{
     Swal.fire({
-      title:'Ingrese Nueva Fecha',
+      title:'Seleccione la fecha que quieras consultar',
       icon: 'info',
       html:
         `<input  type="date" id="newDate" class="border-1 border-black p-1" value="${newDate.format('YYYY-MM-DD')}"   />`,
       showCloseButton: true,
       showCancelButton: true,
+      showDenyButton: true,
+      denyButtonText: 'Seleccionar',
       focusConfirm: false,
-      confirmButtonText:'Aplicar',
+      confirmButtonText:'Hoy',
       cancelButtonText:'Cancelar',
+      confirmButtonColor:'#693061',
+      denyButtonColor:'#9F5D9B',
+      cancelButtonColor:'#ff0000'
     }).then((result)=>{
       if(result.isConfirmed){
+        dispatch(setDate(now))
+      }
+      if(result.isDenied){
         let date = document.getElementById('newDate').value
         dispatch(setDate(date))
       }
