@@ -7,12 +7,12 @@ export class Synastry{
     this.consultant = consultant
     this.partner = partner
     this.NOW = moment()
-    this.yearMeet =  moment(partner.yearMeet)
+    this.yearMeet =  partner.yearMeet //  moment()
     this.birthDate = moment(partner.birthDate)
     this.karmicos = [13, 14, 16, 19]
   }
   getYearMeet(){
-    return this.yearMeet.year()
+    return this.yearMeet //.year()
   }
   getYearTimeCurve(){
     return this.yearMeet.year()
@@ -20,7 +20,7 @@ export class Synastry{
 
   getYearsOld( yearToCalculate = null ){
     yearToCalculate = yearToCalculate || this.NOW.year()
-    return yearToCalculate - this.yearMeet.year()
+    return yearToCalculate - this.yearMeet //.year()
   }
 
   getA(){
@@ -546,7 +546,7 @@ calcDurationStage(stage){
 
 
   calcLifeStageDuration( stage = 1){
-    let start = this.yearMeet.year()
+    let start = this.yearMeet //.year()
     let stageOne = 9 - this.calcPersonalYear(start)
     let stageOneEnd = start + stageOne
     if(stageOne === 0){
@@ -564,7 +564,7 @@ calcDurationStage(stage){
     return 0
   }
   calcDoubleLifeStageDuration( stage = 1){
-    let start = this.yearMeet.year()
+    let start = this.yearMeet //.year()
     let stageOne = 9 - this.reduceNumberForSub(this.getA() +this.getB())
     let stageOneEnd = start + stageOne
     if(stageOne === 0){
@@ -586,7 +586,7 @@ calcDurationStage(stage){
    */
   getLifeStage(yearToCalculate = null){
     yearToCalculate = yearToCalculate || this.NOW.year()
-    let start = this.yearMeet.year()
+    let start = this.yearMeet //.year()
     let duration = 9 - this.calcPersonalYear(start)
     let stageOneEnd = start + duration
     if(duration === 0){
@@ -627,7 +627,7 @@ calcDurationStage(stage){
   }
   /** Life Stage Karmica */
   getLifeStageISK(yearToCalculate = null){
-    let start = this.yearMeet.year()
+    let start = this.yearMeet //.year()
     let duration = 9 - this.calcPersonalYear(start)
     let stageOneEnd = start + duration
     if(duration === 0){
@@ -672,7 +672,7 @@ calcDurationStage(stage){
    */
   getLifeStageNumber(yearToCalculate= null){
     yearToCalculate = yearToCalculate|| this.NOW.year()
-    const start = this.yearMeet.year()
+    const start = this.yearMeet //.year()
     let duration = 9 - this.calcPersonalYear(yearToCalculate)
     let stageOneEnd = start + duration
     if(duration === 0){
@@ -712,7 +712,7 @@ calcDurationStage(stage){
     }
   }
   getDoubleLifeStageNumber(yearToCalculate = null){
-    const start = this.yearMeet.year()
+    const start = this.yearMeet //.year()
     yearToCalculate = yearToCalculate || this.NOW.year()
     let duration = 9 - this.reduceNumberForSub(this.getA() +this.getB())
     let stageOneEnd = start + duration
@@ -777,7 +777,7 @@ calcDurationStage(stage){
   }
 
   getCycleCustom(stage){
-    let start = this.yearMeet.year()
+    let start = this.yearMeet //.year()
     let stageOne = 9 - this.reduceNumberForSub(this.getA() +this.getB())
     if(stageOne === 0){
       stageOne = stageOne +9
@@ -928,8 +928,8 @@ calcDurationStage(stage){
 
   annualReturn( yearToCalculate = null ){
     yearToCalculate = yearToCalculate || this.NOW.year()
-    const yearMeetDate = moment( this.partner.yearMeet )
-    const age = yearToCalculate - yearMeetDate.year()
+    // const yearMeetDate = moment( this.partner.yearMeet )
+    const age = yearToCalculate - this.partner.yearMeet // yearMeetDate.year()
     const A = this.partner.reduceNumber(yearToCalculate)
     const B = this.partner.reduceNumber(
       yearToCalculate +
