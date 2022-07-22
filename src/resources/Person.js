@@ -46,6 +46,51 @@ export class Person{
     if(age<1){age = 0}
     return age
   }
+  getNameCheck(){
+    const names = this.fullName.toString().toLowerCase().split(' ')
+    let nameValues = 0
+    let namev = 0
+    names.map( el =>  {
+      const vowels = el.split('')
+      let val = 0
+      let val2 = 0
+      vowels.map(element => {
+        val += this.consonantValues( element )
+      })
+      vowels.map(element => {
+        val2 += this.vowelsValues( element )
+      })
+      nameValues += val
+      namev+= val2
+    })
+    return this.reduceNumber(nameValues+namev)
+  }
+  getSoulCheck(){
+    const names = this.fullName.toString().toLowerCase().split(' ')
+    let nameValues = 0
+    names.map( el =>  {
+      const vowels = el.split('')
+      let val = 0
+      vowels.map(element => {
+        val += this.vowelsValues( element )
+      })
+      nameValues += val
+    })
+    return this.reduceNumber(nameValues)
+  }
+  getExpressionSoulCheck(){
+    const names = this.fullName.toString().toLowerCase().split(' ')
+    let nameValues = 0
+    names.map( el =>  {
+      const vowels = el.split('')
+      let val = 0
+      vowels.map(element => {
+        val += this.consonantValues( element )
+      })
+      nameValues += val
+    })
+    return this.reduceNumber(nameValues)
+  }
 
   /**
     * calculate name
@@ -536,6 +581,20 @@ export class Person{
       this.birthDate.year()
     )
     return this.karmicos.includes( D ) ? '*' : '';
+  }
+  getDCheck(){
+    let yearReduce = this.reduceNumber(this.birthDate.year())
+    let monthReduce = this.reduceNumber(this.birthDate.month()+1)
+    let dayReduce = this.reduceNumber(this.birthDate.date())
+    let sumReduce = this.reduceNumber(yearReduce + monthReduce + dayReduce)
+    return sumReduce
+
+  }
+  getHCheck(){
+    let monthReduce = this.birthDate.month() + 1
+    let yearReduce = this.birthDate.year()
+    let sumReduce = this.reduceNumber(monthReduce + yearReduce)
+    return sumReduce
   }
 
   /**

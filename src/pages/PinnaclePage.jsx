@@ -6,12 +6,16 @@ import { AnnualReturn, TimeCurve, Pinnacle,
 
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
 import { TiPlus } from "react-icons/ti";
+import check from '../assets/icons/check.svg'
+import { useState } from 'react';
 
 const PinnaclePage = () => {
   const { userActive} = useSelector(state => state.users);
   const { consultant } = useConsultant()
   const {newDate} = dateSelect()
   const isEmpty = Object.keys(userActive).length === 0;
+  const [checkP, setcheckP] =  useState(false)
+  const [checkN, setcheckN] =  useState(false)
 
   if( isEmpty ){
     return <UnselectedConsultant />
@@ -24,34 +28,49 @@ const PinnaclePage = () => {
   const activeStage = consultant.getLifeStageNumber()
   const secondStage = consultant.hasDoubleStage()
 
+  const checkPinacle = () =>{
+    (checkP)?setcheckP(false):setcheckP(true)
+  }
+
+  const checkName = () =>{
+    (checkN)?setcheckN(false):setcheckN(true)
+  }
+
   return(
     <>
       <div className='grid grid-cols-24 mt-8 mx-14 gap-6 pt-10'>
 
         <div className='col-span-13'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+          <div className='bg-black text-white text-base font-bold h-8 flex justify-between items-center rounded-tl-2xl rounded-tr-2xl'>
+            <div className='flex items-center'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
               <TiPlus className='text-2xl'/>
             </div>
             Nombre
+            </div>
+            <button
+              onClick={checkName}
+              className={`float-right ${(checkN)?'bg-gold':'bg-yellow'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl flex justify-center items-center`}>
+                <img src={check} alt="" />Comprobación
+            </button>
           </div>
           <div className='pinnacle-wrap grid grid-cols-4 px-4 py-8'>
             <div className='flex items-center justify-center text-gray-500 font-bold'>
               <label className='mr-1'>Nombre</label>
               <CircleNumber size="sm" appearance="blue-30" border="blue">
-                {consultant.calcName()}{consultant.calcNameISK()}
+                {(!checkN)?`${consultant.calcName()}${consultant.calcNameISK()}`:`${consultant.getNameCheck()}${consultant.calcNameISK()}`}
               </CircleNumber>
             </div>
             <div className='flex items-center justify-center text-gray-500 font-bold'>
               <label className='mr-1'>Alma</label>
               <CircleNumber size="sm" appearance="blue-30" border="blue" radiant="true">
-                {consultant.calcSoulNumber()}{consultant.calcSoulNumberISK()}
+                {(!checkN)?`${consultant.calcSoulNumber()}${consultant.calcSoulNumberISK()}`:`${consultant.getSoulCheck()}${consultant.calcSoulNumberISK()}`}
               </CircleNumber>
             </div>
             <div className='flex items-center justify-center text-gray-500 font-bold'>
               <label className='mr-1'>Expresión</label>
               <CircleNumber size="sm" appearance="blue-30" border="blue">
-                {consultant.calcSoulExpresion()}{consultant.calcSoulExpresionISK()}
+                {(!checkN)?`${consultant.calcSoulExpresion()}${consultant.calcSoulExpresionISK()}`:`${consultant.getExpressionSoulCheck()}${consultant.calcSoulExpresionISK()}`}
               </CircleNumber>
             </div>
             <div className='flex items-center justify-center text-gray-500 font-bold'>
@@ -93,14 +112,21 @@ const PinnaclePage = () => {
         </div>
 
         <div className='col-span-13'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+          <div className='bg-black text-white text-base font-bold h-8 flex justify-between items-center rounded-tl-2xl rounded-tr-2xl'>
+            <div className='flex items-center'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
               <TiPlus className='text-2xl'/>
             </div>
             Pináculo
           </div>
+          <button
+              onClick={checkPinacle}
+              className={`float-right ${(checkP)?'bg-gold':'bg-yellow'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl flex justify-center items-center`}>
+                <img src={check} alt="" />Comprobación
+            </button>
+            </div>
           <div className='pinnacle-wrap p-7 pb-16'>
-            <Pinnacle consultant={consultant} />
+            <Pinnacle consultant={consultant} checkP={checkP}/>
           </div>
         </div>
 
