@@ -348,9 +348,9 @@ const NamePage = () => {
           <div className='pinnacle-wrap px-8 py-8'>
 
             <ActiveName table={table1} start={0} consultant={consultant} nameCycles={nameCycles} />
-            <ActiveName table={table2} start={30} consultant={consultant} nameCycles={nameCycles} />
-            <ActiveName table={table3} start={60} consultant={consultant} nameCycles={nameCycles} />
-            <ActiveName table={table4} start={90} consultant={consultant} nameCycles={nameCycles} />
+            <ActiveName table={table2} start={31} consultant={consultant} nameCycles={nameCycles} />
+            <ActiveName table={table3} start={61} consultant={consultant} nameCycles={nameCycles} />
+            <ActiveName table={table4} start={91} consultant={consultant} nameCycles={nameCycles} />
 
           </div>
         </div>

@@ -1272,21 +1272,15 @@ export class Person{
     return [1, 2, 3, 4].map( i => this.nameCount() * i)
   }
   calcNameSubCycles(){
-    const subCycle = Math.abs( parseInt( this.nameCount() / 2  ) )
-    let vals = [8, 23]
-    vals.push( subCycle )
-    vals = vals.sort( (a, b) => a - b )
+    const factor = ( this.nameCount() / 2 ) / 2;
+    const subCycles = [];
+    let current = factor;
+    while (current < 120 ) {
+      subCycles.push( Math.round( current ) )
+      current += factor;
+    }
 
-    let cycles = [0, 1, 2, 3].map( i => this.nameCount() * i)
-
-    let subCycles = []
-    cycles.forEach( el => {
-      vals.forEach( val => {
-        subCycles.push( el + val )
-      })
-    })
-
-    return subCycles.slice(0, 10)
+    return subCycles
   }
 
   calcOneDigitYearsOld(){

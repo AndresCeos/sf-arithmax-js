@@ -1,4 +1,5 @@
 import { checkingCredentials, login, logout } from './'
+import { setUsers } from '../users/users'
 import localForage from 'localforage'
 
 import axios from 'axios';
@@ -28,6 +29,9 @@ export const startLogin = ( userData ) => {
             'date': res.data.birthDate,
           }
           dispatch(login(user))
+          if( res.data?.user_consultants.length > 0 ){
+            dispatch(setUsers(res.data?.user_consultants))
+          }
           localForage.setItem('session', { status: 'authenticated', ...user})
         }
       }).catch( err => {
