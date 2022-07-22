@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import Swal from 'sweetalert2';
 import localForage from 'localforage'
 import moment from 'moment/min/moment-with-locales'
+import { syncUserInfo } from "./thunks";
 moment.locale("es-mx")
 
 const serializableDate = JSON.stringify(moment())
@@ -126,8 +127,15 @@ export const addUser = user => async dispatch => {
     users = [...users, user]
     localForage.setItem('users', users).then(() => {
       dispatch( setUserList(users) )
+      syncUserInfo( users )
       dispatch( selectUserActive( user.id ) )
     })
+  })
+}
+
+export const setUsers = users => async dispatch => {
+  localForage.setItem('users', users).then(() => {
+    dispatch( setUserList(users) )
   })
 }
 
@@ -153,6 +161,7 @@ export const removeUser = id => async dispatch => {
       const listUsers = users.filter( e => e.id !== id )
       localForage.setItem('users', listUsers ).then(val=>{console.log(val)})
       dispatch( setUserList(listUsers) )
+      syncUserInfo( users )
       Swal.fire(
         'Borrado!',
         'La persona ha sido borrada',
@@ -171,6 +180,7 @@ export const editUser = user => async dispatch => {
   ]
   localForage.setItem('users', updatedUsers).then( () => {
     dispatch( setUserList(updatedUsers) )
+    syncUserInfo( updatedUsers )
     dispatch( setIsEditing(false) )
     dispatch( selectUserActive( user.id ) )
     // dispatch( setAddPartner(false) )
