@@ -44,9 +44,6 @@ const DestinityTablePage = () => {
       </div>
 
       <div className='grid grid-cols-12 mt-9 mx-14 gap-6'>
-
-      {(isSelectPartner)?
-      <>
         <div className='col-span-12 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
@@ -77,7 +74,7 @@ const DestinityTablePage = () => {
                   Subciclos del Nombre:
                 </strong>
                 <div className='h-10 text-2xl font-black text-black flex justify-center items-center bg-white border border-green inner-shadow px-4 rounded-md'>
-                  {nameSubCycles.toString()}
+                  {nameSubCycles.slice(0, 10).toString()}
                 </div>
               </div>
               <div>
@@ -119,10 +116,6 @@ const DestinityTablePage = () => {
             </div>
           </div>
         </div>
-      </>
-      :
-      <div className="col-span-12 text-center"><strong>Agrega/Selecciona una pareja para ver esta información</strong></div>
-      }
       </div>
     </>
   )
