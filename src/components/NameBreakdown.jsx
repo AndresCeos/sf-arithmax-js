@@ -18,20 +18,20 @@ export const NameBreakdown = ({ name, values, total, description }) => {
 
       { name.map( (el, i, row) =>
         <div key={i} className='destinityValue border-l border-gray-500'>
-          <div className={`text-13 w-30 h-30 bg-black bg-opacity-10 border-t border-gray-500 ${ i + 1 === row.length ? 'lastOne' : ''}`}>
+          <div className={`text-13 w-30 h-30 bg-black bg-opacity-10 border-t border-gray-500 ${ i + 1 === row.length ? 'border-r' : ''}`}>
             {el.v !== 0 ? el.v : ''}
           </div>
-          <div className="text-13 w-30 h-30 font-bold bg-main-40 border-t border-b border-gray-500">
+          <div className={`text-13 w-30 h-30 font-bold bg-main-40 border-t border-b border-gray-500 ${ i + 1 === row.length ? 'border-r' : ''}`}>
             {el.L}
           </div>
-          <div className="text-13 w-30 h-30 bg-black bg-opacity-10 border-b border-gray-500">
+          <div className={`text-13 w-30 h-30 bg-black bg-opacity-10 border-b border-gray-500 ${ i + 1 === row.length ? 'border-r' : ''}`}>
             {el.c !== 0 ? el.c : ''}
           </div>
         </div>
       )}
 
       { hasValues() ?
-        <div className='border-l border-gray-500'>
+        <div className=''>
           <div className="text-13 w-30 h-30 bg-black bg-opacity-10 ml-5 rounded-md inner-shadow">
             {values[0].v !== 0 ? values[0].v : ''}
           </div>
