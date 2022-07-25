@@ -18,6 +18,8 @@ import bell from '../assets/icons/bell.svg'
 import Swal from "sweetalert2";
 
 import moment from 'moment/min/moment-with-locales'
+import  { Document, Page, Text, View, PDFDownloadLink, Image } from '@react-pdf/renderer';
+import { exampleRreport } from "../components-pdf/styles";
 
 export const Navbar = () => {
   const {newDate} = dateSelect()
@@ -51,6 +53,17 @@ export const Navbar = () => {
       }
     })
   }
+
+  const Mydoc = () =>(
+    <Document >
+        <Page size="A4" style={exampleRreport.page}  >
+            <View  style={exampleRreport.section}>
+              <Text style={exampleRreport.text}>hoa perrilo</Text>
+            </View>
+        </Page>
+    </Document>
+  )
+
   return (
     <>
       <nav id="App-nabvar" className="bg-white border-gray-200">
@@ -136,14 +149,17 @@ export const Navbar = () => {
                 </button>
               </li>
               <li className="flex items-center">
-                <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
+                <PDFDownloadLink
+                  document={<Mydoc/>}
+                  fileName='example.pdf'
+                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
                   <img
                     src={save_report}
                     className="mb-1"
                     alt="save_report"
                   />
                   Guardar<br />reporte
-                </button>
+                </PDFDownloadLink>
               </li>
               <li className="flex items-center">
                 <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
