@@ -202,7 +202,7 @@ const SinastryPage = () => {
             </div>
           </div>
           <div className='pinnacle-wrap px-5 py-4 shadow-sm'>
-            <Pinnacle consultant={partner} size="small" />
+            <Pinnacle consultant={partner} size="small" checkP />
           </div>
         </div>
 

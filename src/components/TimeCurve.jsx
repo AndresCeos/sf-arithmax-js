@@ -3,7 +3,7 @@ import { dateSelect } from '../hooks';
 
 import time_curve from '../assets/time-curve.svg'
 
-export const TimeCurve = ({ consultant }) => {
+export const TimeCurve = ({ consultant, isPartner }) => {
     const {newDate} = dateSelect()
     const activeStage = consultant.getLifeStageNumber(newDate.year())
     const activeSecondStage = consultant.getDoubleLifeStageNumber(newDate.year())
@@ -227,7 +227,7 @@ export const TimeCurve = ({ consultant }) => {
                 <div className='col-start-18 col-end-20 text-13 row-start-1'>
                     En adelante...
                 </div>
-                {(dobleStage)?
+                {(dobleStage&&!isPartner)?
                 <>
                     <div className='col-start-1 col-end-7 text-13 row-start-2'>
                     {consultant.getYearTimeCurve()}

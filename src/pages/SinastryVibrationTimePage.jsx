@@ -170,7 +170,7 @@ const SinastyVibrationTimePage = () => {
               Curva del Tiempo
             </div>
             <div className='pinnacle-wrap px-4'>
-              <TimeCurve consultant={synastry} isPartner={true} partner={consultant} />
+              <TimeCurve consultant={synastry} isPartner partner={consultant} />
             </div>
           </div>
         </>

@@ -63,6 +63,12 @@ export class Synastry{
       this.getC()
     );
   }
+  getDCheck(){
+    let A = this.reduceNumber(this.getA())
+    let B = this.reduceNumber(this.getB())
+    let C = this.reduceNumber(this.getC())
+    return this.reduceNumber(A + B + C)
+  }
   getDISK(){
     const D =  this.reduceNumberISK(
       this.getA() +
