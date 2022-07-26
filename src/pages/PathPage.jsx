@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { UnselectedConsultant, PathMonth } from '../components/';
+import { UnselectedConsultant, PathMonth, HierarchyLine } from '../components/';
 import moment from 'moment/min/moment-with-locales'
 moment.locale("es-mx")
 
@@ -605,6 +605,17 @@ const PathPage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className='col-span-24 mb-10'>
+          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
+              <TiPlus className='text-2xl'/>
+            </div>
+            Línea de Jerarquía del Diálogo Energético
+          </div>
+          <div className='pinnacle-wrap px-8'>
+            <HierarchyLine consultant={consultant}/>
           </div>
         </div>
       </div>

@@ -2368,6 +2368,17 @@ export class Person{
     }
 
   }
+  getSumHierarchy(a,b){
+    return this.reduceNumber(a+b)
+  }
+  getResHierarchy(a,b){
+    (a===11)?a=2:a=a;
+    (a===22)?a=4:a=a;
+    (b===11)?b=2:b=b;
+    (b===22)?b=4:b=b;
+    let res = this.reduceNumber(a-b)
+    return Math.abs(res)
+  }
 
 
 
