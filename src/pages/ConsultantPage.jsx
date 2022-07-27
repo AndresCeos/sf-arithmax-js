@@ -14,9 +14,9 @@ import search from '../assets/icons/search.svg'
 import welcome from '../assets/welcome.png'
 
 const ConsultantePage = () => {
-  const { list: users } = useSelector(state => state.users);
+  const { list: users, userActive } = useSelector(state => state.users);
   const dispatch = useDispatch();
-  const [userEdit, setUserEdit] = useState({})
+  const [userEdit, setUserEdit] = useState(userActive)
   const [userIndex, setUserIndex] = useState(null)
   const [searchUser, setSearchUser] = useState("")
 
@@ -33,7 +33,7 @@ const ConsultantePage = () => {
   useEffect( ()=> {
     console.log( searchUser )
   }, [searchUser, setSearchUser])
-
+  console.log(userActive);
   const userList = () => {
     if( searchUser === "" ){
       return users.map( user => userTemplate(user) )

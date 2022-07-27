@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch,useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { dateSelect } from "../hooks";
-import { setDate } from '../store/slices/users/users';
+import { setDate,setIsEditing } from '../store/slices/users/users';
 
 import Logo from '../assets/logo.png'
 import add_user from '../assets/icons/add_user.svg'
@@ -53,6 +53,9 @@ export const Navbar = () => {
       }
     })
   }
+  const handlerEdit = () =>{
+    dispatch(setIsEditing(true))
+  }
 
   const Mydoc = () =>(
     <Document >
@@ -94,15 +97,15 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="flex items-center">
-                <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
-                >
+                <Link className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                to="consultante" onClick={handlerEdit}>
                   <img
                     src={update_user}
                     className="mb-1"
                     alt="update_user"
                   />
                   Actualizar<br />Datos
-                </button>
+                </Link>
               </li>
               <li className="flex items-center">
                 <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
