@@ -6,7 +6,8 @@ export const HierarchyLine = ({consultant}) =>{
   return(
     <div>
       <div className='w-full flex items-center justify-center bg-opacity-100'>
-        <div className='grid grid-cols-3 pt-3 w-1/5 gap-2 relative hierarchy-lines m-auto px-5 border-r border-black'>
+        <div className="w-1/5 flex justify-center border-r border-black">
+          <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5 '>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
             <CircleNumber size="sm" appearance="green" border="green" >
@@ -31,8 +32,10 @@ export const HierarchyLine = ({consultant}) =>{
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">NP</div>
           <div className="col-start-3 row-start-3 font-bold text-sm">Etapa</div>
+          </div>
         </div>
-        <div className='grid grid-cols-3 pt-3 w-1/5 gap-2 relative hierarchy-lines m-auto px-5 border-r border-black'>
+        <div className="w-1/5 flex justify-center border-r border-black">
+          <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5 '>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
             <CircleNumber size="sm" appearance="green" border="green" >
@@ -57,8 +60,10 @@ export const HierarchyLine = ({consultant}) =>{
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">Etapa</div>
           <div className="col-start-3 row-start-3 font-bold text-sm">Año P.</div>
+          </div>
         </div>
-        <div className='grid grid-cols-3 pt-3 w-1/5 gap-2 relative hierarchy-lines m-auto px-5 border-r border-black'>
+        <div className="w-1/5 flex justify-center border-r border-black">
+          <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5 '>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
             <CircleNumber size="sm" appearance="green" border="green" >
@@ -83,8 +88,10 @@ export const HierarchyLine = ({consultant}) =>{
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">Año P.</div>
           <div className="col-start-3 row-start-3 font-bold text-sm">Cuat.</div>
+          </div>
         </div>
-        <div className='grid grid-cols-3 pt-3 w-1/5 gap-2 relative hierarchy-lines m-auto px-5 border-r border-black'>
+        <div className="w-1/5 flex justify-center border-r border-black">
+          <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5 '>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
             <CircleNumber size="sm" appearance="green" border="green" >
@@ -109,8 +116,10 @@ export const HierarchyLine = ({consultant}) =>{
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">Cuat.</div>
           <div className="col-start-3 row-start-3 font-bold text-sm">Mes P.</div>
+          </div>
         </div>
-        <div className='grid grid-cols-3 pt-3 w-1/5 gap-2 relative hierarchy-lines m-auto px-5'>
+        <div className="w-1/5 flex justify-center ">
+          <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5'>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
             <CircleNumber size="sm" appearance="green" border="green" >
@@ -135,6 +144,7 @@ export const HierarchyLine = ({consultant}) =>{
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">Mes P.</div>
           <div className="col-start-3 row-start-3 font-bold text-sm">Semana P.</div>
+          </div>
         </div>
       </div>
     </div>
