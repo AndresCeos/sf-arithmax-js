@@ -23,6 +23,7 @@ import SinastryAnnualReturnsPage from "../pages/SinastryAnnualReturnsPage";
 import SinastryDestinityTablePage from "../pages/SinastryDestinityTablePage";
 import CompatibilityTablePage from "../pages/CompatibilityTablePage";
 import ConfigPage from "../pages/ConfigPage";
+import { PreviewPDF } from '../components-pdf/PreviewPDF';
 
 export const PageManager = () => {
   const { consultant } = useConsultant()
@@ -52,6 +53,8 @@ export const PageManager = () => {
         <Route path="/sinastria_destino" element={ <SinastryDestinityTablePage /> } />
         <Route path="/sinastria_compatibilidad" element={ <CompatibilityTablePage /> } />
         <Route path="/config" element={ <ConfigPage /> } />
+
+        <Route path="/pdf" element={ <PreviewPDF /> } />
 
       </Routes>
     </section>
