@@ -2,11 +2,14 @@ import  { Document, Page, Text, View, Image, PDFViewer } from '@react-pdf/render
 import { ncReport } from './styles';
 
 import pdf_logo from '../assets/LOGO_PDF.png';
-import { PinnacleName, Pinnacle, PinnaclePotential } from '../components-pdf/';
+import { PinnacleName, Pinnacle, PinnaclePotential, VibrationTimeStage, VibrationTimeQuarterM, VibrationTimeCycle,
+  VibrationTimeQuarterY } from '../components-pdf/';
 
-import { useConsultant } from '../hooks';
+import { dateSelect, useConsultant } from '../hooks';
 import { useSelector } from 'react-redux';
 import { UnselectedConsultant } from '../components/UnselectedConsultant';
+import moment from 'moment/min/moment-with-locales'
+moment.locale("es-mx")
 
 export const PreviewPDF = () => {
 
@@ -59,6 +62,8 @@ export const PreviewPDF = () => {
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
+  const {newDate} = dateSelect()
+  const now = moment()
 
   if( isEmpty ){
     return <UnselectedConsultant />
@@ -68,9 +73,13 @@ export const PreviewPDF = () => {
     <>
       <PDFViewer width='100%' height='100%'>
         <Template consultant={consultant}>
-          <PinnacleName consultant={consultant}></PinnacleName>
+          {/*<PinnacleName consultant={consultant}></PinnacleName>
           <PinnaclePotential consultant={consultant}></PinnaclePotential>
-          <Pinnacle consultant={consultant}></Pinnacle>
+          <Pinnacle consultant={consultant}></Pinnacle>*/}
+          <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
+          <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
+          <VibrationTimeCycle consultant={consultant} newDate={newDate}></VibrationTimeCycle>
+          <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY>
         </Template>
       </PDFViewer>
     </>

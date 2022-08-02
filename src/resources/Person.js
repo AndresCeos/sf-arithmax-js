@@ -362,6 +362,9 @@ export class Person{
   }
   /* Personal Week Karmico*/
   calcPersonalWeekISK( dayToCalculate = null, monthToCalculate=null, yearToCalculate=null){
+    dayToCalculate = dayToCalculate || this.NOW.date()
+    monthToCalculate = monthToCalculate || this.NOW.month()+1
+    yearToCalculate = yearToCalculate || this.NOW.year()
 
     let personalYear = this.calcPersonalYear(yearToCalculate);
     let sumPersonalWeekOne = this.reduceNumberISK(personalYear + monthToCalculate);
@@ -1594,10 +1597,13 @@ export class Person{
   getAllMonths(){
     return ['Enero', 'Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
   }
+  getAllMonthsEnglish(){
+    return ['January', 'February','March','April','May','June','July','August','September','October','November','December']
+  }
 
-  getCustomMonths(){
+  getCustomMonths(months = null){
     let indexMonth = this.birthDate.month()
-    const months = this.getAllMonths()
+    months = months || this.getAllMonths()
     const listOfMonths = []
     for (let index = 0; index < 13; index++) {
       if(indexMonth>11 ){
@@ -1627,6 +1633,28 @@ export class Person{
       yearToCalculate+3,
       yearToCalculate+4
     ]
+    return nineYearCycle
+  }
+  /**
+   * get nine year cycle
+   * @returns {Number} nineYearCycle2
+   */
+   getNineYearCycleStage(yearToCalculate = null){
+    yearToCalculate=yearToCalculate|| this.NOW.year()
+    let fisrtValue = false
+    let firstYear
+    let nineYearCycle =[]
+    for (let index = 0; index <=9; index++) {
+      let personalYear = this.calcPersonalYear(yearToCalculate - index)
+      if(personalYear === 9&&fisrtValue===false){
+        nineYearCycle.push(yearToCalculate - index)
+          firstYear = yearToCalculate - index
+          fisrtValue = true
+      }
+    }
+    for (let index = 1; index <=9; index++) {
+      nineYearCycle[index] = firstYear+index
+    }
     return nineYearCycle
   }
 
@@ -1679,6 +1707,7 @@ export class Person{
    * @returns {Number} current quater
    */
   calcCurrentQuater(monthToCalculate=null, yearToCalculate = null){
+    monthToCalculate = monthToCalculate || this.NOW
     yearToCalculate = yearToCalculate || this.NOW.year()
     String.prototype.capitalize = function() {
       return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
@@ -1712,6 +1741,8 @@ export class Person{
   }
   /* Current Quater Karmico */
   calcCurrentQuaterISK(monthToCalculate=null, yearToCalculate = null){
+    monthToCalculate = monthToCalculate || this.NOW
+    yearToCalculate = yearToCalculate || this.NOW.year()
     String.prototype.capitalize = function() {
       return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
     }
