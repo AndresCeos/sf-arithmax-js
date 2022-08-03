@@ -33,7 +33,9 @@ const initialState = {
     message: '',
     type: '',
     show: false
-  }
+  },
+  groupParty:[],
+  eventYear: null
 }
 
 export const userSlice = createSlice({
@@ -84,6 +86,12 @@ export const userSlice = createSlice({
     },
     setToast: (state, action) =>{
       state.toast = action.payload
+    },
+    setGroupParty: (state, action)=>{
+      state.groupParty = action.payload
+    },
+    setEventYear:(state, action)=>{
+      state.eventYear = action.payload
     }
   }
 })
@@ -103,6 +111,8 @@ export const {
   setPartnerSelected,
   setDateSelected,
   setToast,
+  setGroupParty,
+  setEventYear,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -208,6 +218,8 @@ export const selectUserActive = userId => async dispatch => {
   const users = await localForage.getItem('users')
   const user = users.find( ({ id }) => id === userId )
   dispatch( setUserActive(user) )
+  dispatch(setGroupParty([]))
+  dispatch(setEventYear(null))
 }
 export const selectUserPartnerActive = (userId,parnetIndex) => async dispatch => {
   const users = await localForage.getItem('users')
