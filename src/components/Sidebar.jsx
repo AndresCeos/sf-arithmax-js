@@ -9,6 +9,7 @@ import ic_home from '../assets/icons/s_home.svg'
 import ic_consultant from '../assets/icons/s_consultant.svg'
 import ic_personal from '../assets/icons/s_personal.svg'
 import ic_partner from '../assets/icons/s_partner.svg'
+import ic_group from '../assets/icons/s_group.svg'
 
 import ic_pinnacle from '../assets/icons/s_pinnacle.svg'
 import ic_life_path from '../assets/icons/s_life_path.svg'
@@ -287,6 +288,55 @@ export const Sidebar = () => {
               >
                 <img src={ic_compatibility_table} className="w-6 h-4 object-center" alt='ic_pinnacle' />
                 <label className='ml-2'>Tabla Compatibilidad</label>
+              </NavLink>
+            </li>
+            <li className="">
+              <button
+                className="sidebar-link text-13 pl-3 pr-1 py-2 flex items-center border-b border-separator w-full"
+                aria-current="page"
+                onClick={() => setItemActive('group')}
+              >
+                <img src={ic_group} className="w-6 h-4 object-center" alt='ic_partner' />
+                <label className='ml-2'>Numerología de Grupo</label>
+              </button>
+            </li>
+            <li className={ itemActive === 'group' ? '' : 'hidden' }>
+              <NavLink
+                // exact
+                end
+                to="/group_pinnacle"
+                // activeClassName='is-active'
+                className="sidebar-link text-13 sidebar-submenu pl-3 pr-1 py-2 flex items-center"
+                aria-current="page"
+              >
+                <img src={ic_pinnacle} className="w-6 h-4 object-center" alt='ic_pinnacle' />
+                <label className='ml-2'>Pináculo</label>
+              </NavLink>
+            </li>
+            <li className={ itemActive === 'group' ? '' : 'hidden' }>
+              <NavLink
+                // exact
+                end
+                to="/group_vibracion"
+                // activeClassName='is-active'
+                className="sidebar-link text-13 sidebar-submenu pl-3 pr-1 py-2 flex items-center"
+                aria-current="page"
+              >
+                <img src={ic_vibration_time} className="w-6 h-4 object-center" alt='ic_vibration_time' />
+                <label className='ml-2'>Vibración de Tiempo</label>
+              </NavLink>
+            </li>
+            <li className={ itemActive === 'group' ? '' : 'hidden' }>
+              <NavLink
+                // exact
+                end
+                to="/group_retornos"
+                // activeClassName='is-active'
+                className="sidebar-link text-13 sidebar-submenu pl-3 pr-1 py-2 flex items-center"
+                aria-current="page"
+              >
+                <img src={ic_annual_return} className="w-6 h-4 object-center" alt='ic_annual_return'/>
+                <label className='ml-2'>Retornos Anuales</label>
               </NavLink>
             </li>
             <li className='config-menu'>

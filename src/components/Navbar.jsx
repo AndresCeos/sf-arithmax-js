@@ -132,14 +132,15 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="flex items-center">
-                <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
+                <Link className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                to="/group_pinnacle">
                   <img
                     src={group_data}
                     className="mb-1"
                     alt="group_data"
                   />
                   Datos<br />de Grupo
-                </button>
+                </Link>
               </li>
               <li className="flex items-center">
                 <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
