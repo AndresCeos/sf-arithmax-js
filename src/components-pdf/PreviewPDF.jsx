@@ -73,13 +73,15 @@ export const PreviewPDF = () => {
     <>
       <PDFViewer width='100%' height='100%'>
         <Template consultant={consultant}>
-          {/*<PinnacleName consultant={consultant}></PinnacleName>
+          <PinnacleName consultant={consultant}></PinnacleName>
           <PinnaclePotential consultant={consultant}></PinnaclePotential>
-          <Pinnacle consultant={consultant}></Pinnacle>*/}
+          <Pinnacle consultant={consultant}></Pinnacle>
+          {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
           <VibrationTimeCycle consultant={consultant} newDate={newDate}></VibrationTimeCycle>
           <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY>
+          */}
         </Template>
       </PDFViewer>
     </>
