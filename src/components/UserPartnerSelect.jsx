@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useConsultant } from '../hooks/useConsultant';
 import { fetchAllUsers, setHasPartner, selectUserPartnerActive,
   setAddPartner, setIsSelectPartner, setIsPartnerEditing, setPartnerIndex } from '../store/slices/users/users';
-import { PartnerForm, AssingPartner, UserFormInline, PartnerFormInline } from './';
+import { PartnerForm, AssingPartner, UserFormInline, PartnerFormInline,GroupFormInline } from './';
 
 import { TiPlus } from 'react-icons/ti';
 
-export const UserPartnerSelect = () => {
+export const UserPartnerSelect = ({isGroup}) => {
   const { consultant } = useConsultant()
   const { list: users, userActive, userPartnerActive,
     hasPartner, addPartner, isSelectPartner, isPartnerEditing } = useSelector(state => state.users);
@@ -90,13 +90,19 @@ export const UserPartnerSelect = () => {
             name={consultant.fullName}
             birthDate={consultant.getFormBirthDate()}
             age={consultant.getYearsOld()}
+
           />
-          <PartnerFormInline
+          {(isGroup)?
+          <GroupFormInline
+          hasPartner={hasPartner}
+          partners={listPartners}
+          isAddFormActive={isAddFormActive}/>
+          :<PartnerFormInline
             hasPartner={hasPartner}
             partners={listPartners}
             currentPartner={userPartnerActive}
             isAddFormActive={isAddFormActive}
-            setIsAddFormActive={setIsAddFormActive} />
+            setIsAddFormActive={setIsAddFormActive} />}
         </div>
       </div>
       {/* TODO: Edit partner

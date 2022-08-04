@@ -22,8 +22,12 @@ import SinastryVibrationTimePage from "../pages/SinastryVibrationTimePage";
 import SinastryAnnualReturnsPage from "../pages/SinastryAnnualReturnsPage";
 import SinastryDestinityTablePage from "../pages/SinastryDestinityTablePage";
 import CompatibilityTablePage from "../pages/CompatibilityTablePage";
+import GroupAnnualReturnsPage  from "../pages/GroupsAnnualReturnsPage";
+import GroupPinnaclePage  from "../pages/GroupPinnaclePage";
+import GroupVibrationTimePage  from "../pages/GroupVibrationTimePage";
 import ConfigPage from "../pages/ConfigPage";
 import { PreviewPDF } from '../components-pdf/PreviewPDF';
+
 
 export const PageManager = () => {
   const { consultant } = useConsultant()
@@ -52,6 +56,11 @@ export const PageManager = () => {
         <Route path="/sinastria_retornos" element={ <SinastryAnnualReturnsPage /> } />
         <Route path="/sinastria_destino" element={ <SinastryDestinityTablePage /> } />
         <Route path="/sinastria_compatibilidad" element={ <CompatibilityTablePage /> } />
+
+        <Route path="/group_pinnacle" element={ <GroupPinnaclePage /> } />
+        <Route path="/group_vibracion" element={ <GroupVibrationTimePage /> } />
+        <Route path="/group_retornos" element={ <GroupAnnualReturnsPage /> } />
+
         <Route path="/config" element={ <ConfigPage /> } />
 
         <Route path="/pdf" element={ <PreviewPDF /> } />
