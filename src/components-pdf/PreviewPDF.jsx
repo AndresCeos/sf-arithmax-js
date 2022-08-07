@@ -1,33 +1,31 @@
-import  { Document, Page, Text, View, Image, PDFViewer } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, PDFViewer } from '@react-pdf/renderer';
 import { ncReport } from './styles';
 
 import pdf_logo from '../assets/LOGO_PDF.png';
-import { PinnacleName, Pinnacle, PinnaclePotential, VibrationTimeStage, VibrationTimeQuarterM, VibrationTimeCycle,
-  VibrationTimeQuarterY } from '../components-pdf/';
+import {
+  PinnacleName, Pinnacle, PinnaclePotential, VibrationTimeStage, VibrationTimeQuarterM, VibrationTimeCycle,
+  VibrationTimeQuarterY
+} from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
 import { useSelector } from 'react-redux';
 import { UnselectedConsultant } from '../components/UnselectedConsultant';
 import moment from 'moment/min/moment-with-locales'
+import { BridgeStage } from './BridgeStage';
+import { AnnualReturns } from './AnnualReturns';
 moment.locale("es-mx")
+
+import pinnacleImage from './assets/pinnacle.jpg'
 
 export const PreviewPDF = () => {
 
-  const Template = ({ children }) =>(
+  const Template = ({ children }) => (
     <Document >
-      <Page size="A4" style={ncReport.page}  >
+      <Page size={[612, 795]} style={ncReport.page}  >
+        <Image src={pinnacleImage} style={ncReport.pageBackground}></Image>
         <View style={ncReport.header}>
-          <View style={ncReport.header_logo}>
-            <Image src={pdf_logo} style={ncReport.pdf_logo} />
-            <Text style={ncReport.pdf_logo_description}>
-              REPORTE:
-              <Text style={ncReport.pdf_logo_description_bold}> PINÁCULO (1/1)</Text>
-            </Text>
-          </View>
           <View style={ncReport.header_consultor}>
-            <Text>CONSULTOR:</Text>
             <Text style={ncReport.header_input}>Tu nombre aquí</Text>
-            <Text>CONSULTANTE:</Text>
             <Text style={ncReport.header_input}>Laura Ludivina Rodriguez Martinez</Text>
           </View>
           <View style={ncReport.header_date}>
@@ -52,6 +50,7 @@ export const PreviewPDF = () => {
           <Text style={ncReport.page_copy_4} >consulta@numerologia-cotidiana.com</Text>
           <Text style={ncReport.page_copy_5} >Tels: (81) 2086-7071 / 2086-7072</Text>
         </View>
+
         <View style={ncReport.content}>
           {children}
         </View>
@@ -62,10 +61,10 @@ export const PreviewPDF = () => {
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
-  const {newDate} = dateSelect()
+  const { newDate } = dateSelect()
   const now = moment()
 
-  if( isEmpty ){
+  if (isEmpty) {
     return <UnselectedConsultant />
   }
 
@@ -76,6 +75,8 @@ export const PreviewPDF = () => {
           <PinnacleName consultant={consultant}></PinnacleName>
           <PinnaclePotential consultant={consultant}></PinnaclePotential>
           <Pinnacle consultant={consultant}></Pinnacle>
+          <BridgeStage consultant={consultant}></BridgeStage>
+          <AnnualReturns consultant={consultant} />
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>

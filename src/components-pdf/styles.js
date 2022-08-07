@@ -1,41 +1,43 @@
-import {StyleSheet, Font} from '@react-pdf/renderer';
+import { StyleSheet, Font } from '@react-pdf/renderer';
 import OpenSans from '../assets/fonts/OpenSans/OpenSans-Regular.ttf'
 import OpenSansItalic from '../assets/fonts/OpenSans/OpenSans-Italic.ttf'
 import OpenSansBold from '../assets/fonts/OpenSans/OpenSans-Bold.ttf'
 import OpenSansBoldItalic from '../assets/fonts/OpenSans/OpenSans-BoldItalic.ttf'
 
+import pinnacleReport from './assets/pinnacle.jpg'
+
 export const exampleRreport = StyleSheet.create({
-  page:{
+  page: {
     flexDirection: 'row',
     backgroundColor: '#E4E4E4'
   },
-  section:{
+  section: {
     margin: 10,
     padding: 10,
     flexGrow: 1
   },
-  pageBackground:{
+  pageBackground: {
     position: 'absolute',
     minWidth: '100%',
     minHeight: '100%',
     display: 'block',
     height: '100%',
     width: '100%',
-    zIndex:2,
+    zIndex: 2,
   },
-  text:{
+  text: {
     position: 'absolute',
-    top:'300px',
-    left:'90px',
-    display:'block',
-    color:'white',
-    fontSize:30,
-    zIndex:1,
+    top: '300px',
+    left: '90px',
+    display: 'block',
+    color: 'white',
+    fontSize: 30,
+    zIndex: 1,
   },
-  pinaculo:{
+  pinaculo: {
     position: 'absolute',
-    top:'300px',
-    left:'90px',
+    top: '300px',
+    left: '90px',
     gridTemplateColumns: 'repeat(8, minmax(0, 1fr))'
   }
 });
@@ -67,8 +69,16 @@ export const ncReport = StyleSheet.create({
     backgroundColor: '#fff',
     width: '1000%'
   },
+  pageBackground: {
+    position: "absolute",
+    minWidth: "100%",
+    minHeight: "100%",
+    display: "block",
+    height: "100%",
+    width: "100%",
+  },
   header: {
-    backgroundColor: '#D8C7EB',
+    // backgroundColor: '#D8C7EB',
     color: '#000000',
     fontSize: '12px',
     fontFamily: 'Open Sans',
