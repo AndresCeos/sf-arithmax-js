@@ -64,6 +64,64 @@ Font.register({
   ]
 })
 
+export const configReport = StyleSheet.create({
+  page: {
+    backgroundColor: '#fff',
+    width: '1000%'
+  },
+  pageBackground: {
+    position: "absolute",
+    minWidth: "100%",
+    minHeight: "100%",
+    display: "block",
+    height: "100%",
+    width: "100%",
+  },
+  header: {
+    color: '#000000',
+    fontSize: '7px',
+    fontFamily: 'Open Sans',
+    width: '795px',
+    height: '88px',
+    position: 'relative'
+  },
+  header_consultor_name: {
+    position: 'absolute',
+    left: '148px',
+    top: '34px',
+    // backgroundColor: '#ff0000',
+    width: '155px',
+  },
+  header_consultant_name: {
+    position: 'absolute',
+    left: '148px',
+    top: '64px',
+    // backgroundColor: '#ff0000',
+    width: '155px',
+  },
+  header_date: {
+    position: 'absolute',
+    left: '325px',
+    top: '34px',
+    // backgroundColor: '#ff0000',
+    width: '118px',
+  },
+  header_birth_date: {
+    position: 'absolute',
+    left: '325px',
+    top: '64px',
+    // backgroundColor: '#ff0000',
+    width: '118px',
+  },
+  header_age: {
+    position: 'absolute',
+    left: '462px',
+    top: '64px',
+    // backgroundColor: '#ff0000',
+    width: '15px',
+  },
+})
+
 export const ncReport = StyleSheet.create({
   page: {
     backgroundColor: '#fff',

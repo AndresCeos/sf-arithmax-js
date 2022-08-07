@@ -1,55 +1,29 @@
 import { Text, View } from "@react-pdf/renderer"
-import {StyleSheet} from '@react-pdf/renderer';
+import { StyleSheet } from '@react-pdf/renderer';
 
-export const PinnacleName = ({consultant}) => {
+export const PinnacleName = ({ consultant }) => {
   return (
     <View style={pinnacleName.container}>
-      <View style={pinnacleName.bar}>
-        <Text>
-          Nombre
-        </Text>
-      </View>
       <View style={pinnacleName.wrap}>
-        <View style={pinnacleName.item}>
-          <Text style={pinnacleName.title}>
-            Nombres
+        <View style={[pinnacleName.circle, pinnacleName.name]}>
+          <Text>
+            {consultant.calcName()}{consultant.calcNameISK()}
           </Text>
-          <View style={pinnacleName.circle}>
-            <Text>
-              {consultant.calcName()}{consultant.calcNameISK()}
-            </Text>
-          </View>
         </View>
-        <View style={pinnacleName.item}>
-          <Text style={pinnacleName.title}>
-            Alma
+        <View style={[pinnacleName.circle, pinnacleName.soul]}>
+          <Text>
+            {consultant.calcSoulNumber()}{consultant.calcSoulNumberISK()}
           </Text>
-          <View style={pinnacleName.circle}>
-            <View style={pinnacleName.main_circle}></View>
-            <Text>
-              {consultant.calcSoulNumber()}{consultant.calcSoulNumberISK()}
-            </Text>
-          </View>
         </View>
-        <View style={pinnacleName.item}>
-          <Text style={pinnacleName.title}>
-            Expresión
-          </Text>
-          <View style={pinnacleName.circle}>
-            <Text>
+        <View style={[pinnacleName.circle, pinnacleName.soul_expresion]}>
+          <Text>
             {consultant.calcSoulExpresion()}{consultant.calcSoulExpresionISK()}
-            </Text>
-          </View>
-        </View>
-        <View style={pinnacleName.item}>
-          <Text style={pinnacleName.title}>
-            Madurez
           </Text>
-          <View style={pinnacleName.circle}>
-            <Text>
+        </View>
+        <View style={[pinnacleName.circle, pinnacleName.maturity]}>
+          <Text>
             {consultant.calcMaturity()}{consultant.calcMaturityISK()}
-            </Text>
-          </View>
+          </Text>
         </View>
       </View>
     </View>
@@ -57,62 +31,41 @@ export const PinnacleName = ({consultant}) => {
 }
 
 export const pinnacleName = StyleSheet.create({
-  container:{
+  container: {
     position: 'absolute',
-    top:'10px',
-    left:'10px',
+    top: '10px',
+    left: '10px',
     fontSize: '7px',
     width: '271px'
   },
-  bar: {
-    backgroundColor: '#000',
-    fontWeight: 'bold',
-    color: '#fff',
-    padding: '3px',
-    borderTopLeftRadius: '5px',
-    borderTopRightRadius: '5px'
-  },
   wrap: {
-    border: '1px solid gray',
-    borderBottomRightRadius: '5px',
-    borderBottomLeftRadius: '5px',
-    borderTopWidth: 0,
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  item: {
-    width: '25%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '5px 0'
-  },
-  title: {
-    fontSize: '8px',
-    'marginRight': '3px',
-    color: '#7E7E7E'
+    position: 'relative'
   },
   circle: {
-    width:'23px',
-    height:'23px',
-    backgroundColor:'#056be24d',
-    border:'1px',
-    borderColor:'#056BE2',
-    borderRadius:'25px',
+    // backgroundColor: '#00000090',
+    position: 'absolute',
+    width: '24px',
+    height: '24px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize:'12px',
-    fontWeight: 'bold',
-    padding: '1.5px 0',
+    color: '#000',
+    fontSize: '12px',
+    top: '17px',
   },
-  main_circle: {
-    minWidth: '27px',
-    minHeight: '27px',
-    border: '2px solid #E28A05',
-    position: 'absolute',
-    borderRadius:'25px',
-    zIndex: 0
-  }
+  name: {
+    left: '44px',
+  },
+  soul: {
+    left: '100px',
+
+  },
+  soul_expresion: {
+    left: '171px',
+
+  },
+  maturity: {
+    left: '238px',
+
+  },
 })
