@@ -4,141 +4,191 @@ import { StyleSheet } from '@react-pdf/renderer';
 export const BridgeStage = ({ consultant }) => {
   return (
     <View style={pinnacleStage.container}>
-      <View style={pinnacleStage.bar}>
-        <Text>
-          Puentes por Etapa
-        </Text>
-      </View>
       <View style={pinnacleStage.wrap}>
-        <View style={pinnacleStage.bridge}>
-          <View style={pinnacleStage.bridgeTitle}>
+        <View style={pinnacleStage.bridge_1}>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
             <Text>
-              Puente 1
+              {consultant.getE()}{consultant.getEISK()}
             </Text>
           </View>
-          <View style={pinnacleStage.bridgeContainer}>
-            <View style={pinnacleStage.bridgeTop}>
-              <Text style={pinnacleStage.demo}>
-                {consultant.getE()}{consultant.getEISK()}
-              </Text>
-            </View>
-            <View style={pinnacleStage.demo}>
-              <Text style={pinnacleStage.demo}>
-                {consultant.getA()}
-              </Text>
-            </View>
-            <View style={pinnacleStage.demo}>
-              <Text style={pinnacleStage.demo}>
-                {Math.abs(consultant.getE() - consultant.getK())}
-              </Text>
-            </View>
-            <View style={pinnacleStage.demo}>
-              <Text style={pinnacleStage.demo}>
-                {consultant.getB()}{consultant.getBISK()}
-              </Text>
-            </View>
-            <View style={pinnacleStage.demo}>
-              <Text style={pinnacleStage.demo}>
-                {consultant.getK()}
-              </Text>
-            </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeLeft]}>
+            <Text>
+              {consultant.getA()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
+            <Text>
+              {Math.abs(consultant.getE() - consultant.getK())}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
+            <Text>
+              {consultant.getB()}{consultant.getBISK()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeBottom]}>
+            <Text>
+              {consultant.getK()}
+            </Text>
           </View>
         </View>
-        <View style={pinnacleStage.demo}>
-          <View style={pinnacleStage.demo}>
-            0 - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} años
+        <View style={pinnacleStage.bridge_2}>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
+            <Text>
+              {consultant.getF()}{consultant.getFISK()}
+            </Text>
           </View>
-          <View style={pinnacleStage.demo}>
-            0 - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} años
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeLeft]}>
+            <Text>
+              {consultant.getB()}{consultant.getBISK()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
+            <Text>
+              {Math.abs(consultant.getF() - consultant.getL())}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
+            <Text>
+              {consultant.getC()}{consultant.getCISK()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeBottom]}>
+            <Text>
+              {consultant.getL()}
+            </Text>
+          </View>
+        </View>
+        <View style={pinnacleStage.bridge_3}>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
+            <Text>
+              {consultant.getG()}{consultant.getGISK()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeLeft]}>
+            <Text>
+              {consultant.getE()}{consultant.getEISK()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
+            <Text>
+              {Math.abs(consultant.getG() - consultant.getM())}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
+            <Text>
+              {consultant.getF()}{consultant.getFISK()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeBottom]}>
+            <Text>
+              {consultant.getM()}
+            </Text>
+          </View>
+        </View>
+        <View style={pinnacleStage.bridge_4}>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
+            <Text>
+              {consultant.getH()}{consultant.getHISK()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeLeft]}>
+            <Text>
+              {consultant.getA()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
+            <Text>
+              {Math.abs(consultant.getH() - consultant.getN())}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
+            <Text>
+              {consultant.getC()}{consultant.getCISK()}
+            </Text>
+          </View>
+          <View style={[pinnacleStage.circle, pinnacleStage.bridgeBottom]}>
+            <Text>
+              {consultant.getN()}
+            </Text>
           </View>
         </View>
       </View>
+
     </View>
   )
 }
 
 export const pinnacleStage = StyleSheet.create({
   container: {
+    // backgroundColor: '#ff000012',
     position: 'absolute',
-    top: '63px',
-    left: '290px',
-    fontSize: '7px',
-    width: '100px',
-  },
-  bar: {
-    backgroundColor: '#000',
-    fontWeight: 'bold',
-    color: '#fff',
-    padding: '3px',
-    borderTopLeftRadius: '5px',
-    borderTopRightRadius: '5px'
+    top: '76px',
+    width: '105px',
+    left: '300px',
+    fontSize: '10px',
   },
   wrap: {
-    border: '1px solid gray',
-    borderBottomRightRadius: '5px',
-    borderBottomLeftRadius: '5px',
-    borderTopWidth: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    height: '445px'
+    position: 'relative'
   },
-  bridge: {
-
+  bridge_1: {
+    // backgroundColor: 'blue',
+    top: '0px',
+    width: '105px',
+    height: '112px',
+    position: 'relative'
   },
-  bridgeTitle: {
-    width: '100%',
-    textAlign: 'center',
-    fontSize: '10px',
-    fontWeight: 'bold'
+  bridge_2: {
+    // backgroundColor: '#ff000012',
+    top: '2px',
+    width: '105px',
+    height: '112px',
+    position: 'relative'
   },
-  bridgeContainer: {
-    width: '100%',
-    backgroundColor: 'red',
-    display: 'grid',
-    flexDirection: "row",
-    alignSelf: "stretch",
-    flexShrink: 0
+  bridge_3: {
+    // backgroundColor: 'blue',
+    top: '0px',
+    left: '1px',
+    width: '105px',
+    height: '112px',
+    position: 'relative'
   },
-  bridgeTop: {
-    gridArea: '1 / 2 / 2 / 3'
-  },
-  bridgeLeft: {
-    gridArea: '2 / 1 / 3 / 2'
-  },
-  bridgeCenter: {
-    gridArea: '3 / 2 / 4 / 3'
-  },
-  bridgeRight: {
-    gridArea: '2 / 3 / 3 / 4'
-  },
-  bridgeBottom: {
-    gridArea: '2 / 2 / 3 / 3'
-  },
-  item: {
-    width: '33%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '4px 0'
-  },
-  title: {
-    fontSize: '8px',
-    'marginRight': '3px',
-    color: '#7E7E7E'
+  bridge_4: {
+    // backgroundColor: 'green',
+    top: '-1px',
+    left: '1px',
+    width: '105px',
+    height: '112px',
+    position: 'relative'
   },
   circle: {
-    width: '23px',
-    height: '23px',
-    backgroundColor: '#B28FD64d',
-    border: '1px',
-    borderColor: '#B28FD6',
-    borderRadius: '25px',
+    // backgroundColor: '#00000090',
+    position: 'absolute',
+    width: '18px',
+    height: '18px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '12px',
-    fontWeight: 'bold',
-    padding: '1.5px 0',
+    color: '#000',
+  },
+  bridgeTop: {
+    top: '20.5px',
+    left: '42.5px',
+  },
+  bridgeLeft: {
+    top: '43px',
+    left: '20.5px',
+  },
+  bridgeCenter: {
+    top: '43px',
+    left: '42.5px',
+  },
+  bridgeRight: {
+    top: '43px',
+    left: '64.5px',
+  },
+  bridgeBottom: {
+    top: '65px',
+    left: '42.5px',
   },
 })

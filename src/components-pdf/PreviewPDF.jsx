@@ -76,8 +76,8 @@ export const PreviewPDF = () => {
           <PinnacleName consultant={consultant}></PinnacleName>
           <PinnaclePotential consultant={consultant}></PinnaclePotential>
           <Pinnacle consultant={consultant}></Pinnacle>
-          {/* <BridgeStage consultant={consultant}></BridgeStage>
-          <AnnualReturns consultant={consultant} /> */}
+          <BridgeStage consultant={consultant}></BridgeStage>
+          <AnnualReturns consultant={consultant} />
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
