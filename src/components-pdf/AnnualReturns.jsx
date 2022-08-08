@@ -1,90 +1,64 @@
 import { Text, View } from "@react-pdf/renderer"
-import {StyleSheet} from '@react-pdf/renderer';
+import { StyleSheet } from '@react-pdf/renderer';
+import moment from "moment";
+import { AnnualReturn } from "./AnnualReturn";
 
 export const AnnualReturns = ({ consultant }) => {
+  const newDate = moment()
+
+  const annualReturnCurrent = consultant.annualReturn(newDate.year())
+  const annualReturnLastYear = consultant.annualReturn(newDate.year() - 1)
+  const annualReturnNextYear = consultant.annualReturn(newDate.year() + 1)
+
   return (
-    <View style={pinnaclePotential.container}>
-      <View style={pinnaclePotential.bar}>
-        <Text>
-          Retornos Anuales
-        </Text>
-      </View>
-      <View style={pinnaclePotential.wrap}>
-        <View style={pinnaclePotential.item}>
-          <Text style={pinnaclePotential.title}>Reacción</Text>
-          <View style={pinnaclePotential.circle}>
-            <Text>{consultant.calcName()}{consultant.calcNameISK()}*</Text>
-          </View>
+    <View style={annualReturn.container}>
+      <View style={annualReturn.wrap}>
+        <View style={annualReturn.return_1}>
+          <AnnualReturn annualReturn={annualReturnLastYear} />
         </View>
-        <View style={pinnaclePotential.item}>
-          <Text style={pinnaclePotential.title}>Síntesis</Text>
-
-          <View style={pinnaclePotential.circle}>
-            <Text>5*</Text>
-          </View>
+        <View style={annualReturn.return_2}>
+          <AnnualReturn annualReturn={annualReturnCurrent} />
         </View>
-        <View style={pinnaclePotential.item}>
-          <Text style={pinnaclePotential.title}>Regalo</Text>
-
-          <View style={pinnaclePotential.circle}>
-            <Text>5*</Text>
-          </View>
+        <View style={annualReturn.return_3}>
+          <AnnualReturn annualReturn={annualReturnNextYear} />
         </View>
       </View>
     </View>
   )
 }
 
-export const pinnaclePotential = StyleSheet.create({
-  container:{
+export const annualReturn = StyleSheet.create({
+  container: {
+    // backgroundColor: '#ff0000',
     position: 'absolute',
-    top:'63px',
-    left:'410px',
-    fontSize: '7px',
-    width: '120px',
-  },
-  bar: {
-    backgroundColor: '#000',
-    fontWeight: 'bold',
-    color: '#fff',
-    padding: '3px',
-    borderTopLeftRadius: '5px',
-    borderTopRightRadius: '5px'
+    top: '75px',
+    width: '119px',
+    left: '425px',
+    fontSize: '10px',
+
   },
   wrap: {
-    border: '1px solid gray',
-    borderBottomRightRadius: '5px',
-    borderBottomLeftRadius: '5px',
-    borderTopWidth: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    height: '445px'
+    position: 'relative'
   },
-  item: {
-    width: '33%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '4px 0'
+  return_1: {
+    position: 'absolute',
+    top: '0px',
+    height: '150px',
+    width: '119px',
+    // backgroundColor: '#ff000012',
   },
-  title: {
-    fontSize: '8px',
-    'marginRight': '3px',
-    color: '#7E7E7E'
+  return_2: {
+    position: 'absolute',
+    top: '150px',
+    height: '148px',
+    width: '119px',
+    // backgroundColor: '#00ff0012',
   },
-  circle: {
-    width:'23px',
-    height:'23px',
-    backgroundColor:'#B28FD64d',
-    border:'1px',
-    borderColor:'#B28FD6',
-    borderRadius:'25px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize:'12px',
-    fontWeight: 'bold',
-    padding: '1.5px 0',
+  return_3: {
+    position: 'absolute',
+    top: '298px',
+    height: '148px',
+    width: '119px',
+    // backgroundColor: '#0000ff12',
   },
 })
