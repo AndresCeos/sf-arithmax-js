@@ -1,6 +1,7 @@
 export * from './Pinnacle'
 export * from './PinnacleName'
 export * from './PinnaclePotential'
+export * from './PinnacleTimeCurve'
 export * from './VibrationTimeStages'
 export * from './VibrationTimeQuarterM'
 export * from './VibrationTimeCycle'

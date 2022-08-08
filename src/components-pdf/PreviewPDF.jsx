@@ -4,7 +4,7 @@ import { configReport, ncReport } from './styles';
 import pdf_logo from '../assets/LOGO_PDF.png';
 import {
   PinnacleName, Pinnacle, PinnaclePotential, VibrationTimeStage, VibrationTimeQuarterM, VibrationTimeCycle,
-  VibrationTimeQuarterY
+  PinnacleTimeCurve
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -78,6 +78,8 @@ export const PreviewPDF = () => {
           <Pinnacle consultant={consultant}></Pinnacle>
           <BridgeStage consultant={consultant}></BridgeStage>
           <AnnualReturns consultant={consultant} />
+          <PinnacleTimeCurve consultant={consultant} />
+
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>

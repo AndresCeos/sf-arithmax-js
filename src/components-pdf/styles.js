@@ -296,6 +296,6 @@ export const ncReport = StyleSheet.create({
   },
   content: {
     marginLeft: '55px',
-    height: '751.8px',
+    // height: '751.8px',
   }
 });
