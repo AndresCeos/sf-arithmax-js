@@ -4,7 +4,7 @@ import { configReport, ncReport } from './styles';
 import pdf_logo from '../assets/LOGO_PDF.png';
 import {
   PinnacleName, Pinnacle, PinnaclePotential, VibrationTimeStage, VibrationTimeQuarterM, VibrationTimeCycle,
-  PinnacleTimeCurve
+  PinnacleTimeCurve, LifePathLearningStage
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -84,6 +84,7 @@ export const PreviewPDF = () => {
           <PinnacleTimeCurve consultant={consultant} /> */}
 
           <LifePath9Years consultant={consultant} />
+          <LifePathLearningStage consultant={consultant} />
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
