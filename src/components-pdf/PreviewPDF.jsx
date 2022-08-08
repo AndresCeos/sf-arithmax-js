@@ -3,8 +3,16 @@ import { configReport, ncReport } from './styles';
 
 import pdf_logo from '../assets/LOGO_PDF.png';
 import {
-  PinnacleName, Pinnacle, PinnaclePotential, VibrationTimeStage, VibrationTimeQuarterM, VibrationTimeCycle,
-  PinnacleTimeCurve, LifePathLearningStage
+  PinnacleName,
+  Pinnacle,
+  PinnaclePotential,
+  VibrationTimeStage,
+  VibrationTimeQuarterM,
+  VibrationTimeCycle,
+  PinnacleTimeCurve,
+  LifePathLearningStage,
+  LifePath9Years,
+  LifePathPersonalYears
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -17,8 +25,6 @@ moment.locale("es-mx")
 
 import pinnacleImage from './assets/pinnacle.jpg'
 import lifePathImage from './assets/life-Path.jpg'
-
-import { LifePath9Years } from './LifePath9Years';
 
 export const PreviewPDF = () => {
 
@@ -85,6 +91,7 @@ export const PreviewPDF = () => {
 
           <LifePath9Years consultant={consultant} />
           <LifePathLearningStage consultant={consultant} />
+          <LifePathPersonalYears consultant={consultant} />
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>

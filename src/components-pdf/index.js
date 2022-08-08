@@ -1,8 +1,12 @@
-export * from './Pinnacle'
-export * from './PinnacleName'
-export * from './PinnaclePotential'
-export * from './PinnacleTimeCurve'
-export * from './LifePathLearningStage'
+export * from './pinnacle/Pinnacle'
+export * from './pinnacle/PinnacleName'
+export * from './pinnacle/PinnaclePotential'
+export * from './pinnacle/PinnacleTimeCurve'
+
+export * from './lifePath/LifePath9Years'
+export * from './lifePath/LifePathLearningStage'
+export * from './lifePath/LifePathPersonalYears'
+
 export * from './VibrationTimeStages'
 export * from './VibrationTimeQuarterM'
 export * from './VibrationTimeCycle'
