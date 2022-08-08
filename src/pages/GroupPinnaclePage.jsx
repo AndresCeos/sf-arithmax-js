@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { CircleNumber, UnselectedConsultant, UserPartnerSelect } from "../components";
 import { dateSelect, useConsultant, useGroup } from "../hooks"
@@ -7,20 +7,23 @@ import { Group, Person } from "../resources";
 const  GroupPinnaclePage = () =>{
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
+  const [listGroup, setGroupList] = useState()
+  const {newDate} = dateSelect()
+  const {group} = useGroup()
+  useEffect(() => {
+    if(!isEmpty){
+    setGroupList(userActive.dateGroup)
+    }
+  }, [])
+
 
   if( isEmpty ){
     return<UnselectedConsultant />
   }
 
-  const isEmptyGroup = Object.keys(userActive.group).length === 0;
   const groupDate = userActive.dateGroup
-  const { consultant } = useConsultant()
-  const {newDate} = dateSelect()
-  const {group} = useGroup()
-  const [listGroup, setGroupList] = useState(userActive.group)
-
   const groupConsult = new Group(group,groupDate )
-console.log(listGroup)
+  const isEmptyGroup = Object.keys(userActive.group).length === 0;
 
 return(
   <div className='grid grid-cols-12 mx-14 gap-6 mt-8 pt-10'>

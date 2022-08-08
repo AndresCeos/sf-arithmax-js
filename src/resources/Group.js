@@ -18,7 +18,7 @@ export class Group {
   }
   getYearsOld( yearToCalculate = null ){
     yearToCalculate = yearToCalculate || this.NOW.year()
-    return yearToCalculate - this.NOW.year() //.year()
+    return yearToCalculate - this.groupDate //.year()
   }
 
   getA(){
@@ -29,6 +29,15 @@ export class Group {
       A+=birthDate.month()+1
     })
     return this.reduceNumber(A)
+  }
+  getAWOR(){
+    const partnerGroup = this.group
+    let A = 0
+    partnerGroup.forEach(a =>{
+      let birthDate = a.getBirthDate()
+      A+=birthDate.month()+1
+    })
+    return A
   }
 
   getAISK(){
@@ -51,6 +60,15 @@ export class Group {
     })
     return this.reduceNumber(B)
   }
+  getBWOR(){
+    const partnerGroup = this.group
+    let B = 0
+    partnerGroup.forEach(b =>{
+      let birthDate = b.getBirthDate()
+      B+=birthDate.date()
+    })
+    return B
+  }
 
   getBISK(){
     const partnerGroup = this.group
@@ -71,6 +89,15 @@ export class Group {
       C+=birthDate.year()
     })
     return this.reduceNumber(C)
+  }
+  getCWOR(){
+    const partnerGroup = this.group
+    let C = 0
+    partnerGroup.forEach(c =>{
+      let birthDate = c.getBirthDate()
+      C+=birthDate.year()
+    })
+    return C
   }
 
   getCISK(){
@@ -749,6 +776,26 @@ export class Group {
     (b===22)?b=4:b=b;
     let res = this.reduceNumber(a-b)
     return Math.abs(res)
+  }
+
+  annualReturn( yearToCalculate = null ){
+    yearToCalculate = yearToCalculate || this.NOW.year()
+    // const yearMeetDate = moment( this.partner.yearMeet )
+    const age = yearToCalculate - this.groupDate // yearMeetDate.year()
+    const A = this.reduceNumber(yearToCalculate)
+    const B = this.reduceNumber(
+      yearToCalculate +
+      this.getAWOR() +
+      this.getBWOR()
+    )
+    const C = this.reduceNumber(this.getCWOR() - yearToCalculate)
+    const D = this.reduceNumber( A + B )
+    const E = this.reduceNumber( B + C )
+    const F = this.reduceNumber( D + E )
+    const G = this.reduceNumber( D + E + F )
+    const H = this.reduceNumber( A + C )
+
+    return { yearToCalculate, age, A, B, C, D, E, F, G, H}
   }
 
   reduceNumber(reduceSum){

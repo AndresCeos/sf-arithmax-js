@@ -3,12 +3,16 @@ import Person from "../resources/Person";
 
 export const useGroup = () => {
   const { userActive } = useSelector(state => state.users);
+  const isEmpty = Object.keys(userActive).length === 0;
   let group = []
-  userActive.group.forEach( p => {
-    const { names: name, lastName, scdLastName, date: birthDate } = p
-    console.log(p);
-    let person = new Person({name, lastName, scdLastName, birthDate})
-    group.push(person)
-  })
+  if(!isEmpty){
+    userActive.group.forEach( p => {
+      const { names: name, lastName, scdLastName, date: birthDate } = p
+      console.log(p);
+      let person = new Person({name, lastName, scdLastName, birthDate})
+      group.push(person)
+    })
+  }
+
   return { group }
 }

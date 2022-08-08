@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { dateSelect } from '../hooks';
 
-export const QuaterPerYear = ({consultant}) =>{
+export const QuaterPerYear = ({consultant, isGroup}) =>{
   const {newDate} = dateSelect()
 
   const nineYearCycle = consultant.getNineYearCycle(newDate.year())
@@ -11,20 +11,34 @@ export const QuaterPerYear = ({consultant}) =>{
   // console.log(indexOfMonth);
   const CurrentQuaterFont = () =>{
     if(indexOfMonth===0){
-      return(
-        <>
-          <div className='col-start-7 row-span-4 row-start-8 bg-gray-200'></div>
-          <div className='col-start-7 row-span-3 row-start-12 bg-gray-200'></div>
-          <div className='col-start-7 row-span-5 row-start-3 bg-gray-200'></div>
-          {(consultant.birthDate.date()>1?
-            <div className='col-start-6 row-span-1 row-start-15 bg-gray-200'></div>:
-            <div className='col-start-7 row-span-1 row-start-15 bg-gray-200'></div>
-          )}
-          {nineYearCycle.map((d,i)=>
-            <div  key={i} className={`row-start-3 col-start-${i+3} flex justify-center text-gray-500`}>{d}</div>
-          )}
-        </>
-      )
+      if(isGroup){
+        return(
+          <>
+            <div className='col-start-7 row-span-4 row-start-8 bg-gray-200'></div>
+            <div className='col-start-7 row-span-3 row-start-12 bg-gray-200'></div>
+            <div className='col-start-7 row-span-5 row-start-3 bg-gray-200'></div>
+            {nineYearCycle.map((d,i)=>
+              <div  key={i} className={`row-start-3 col-start-${i+3} flex justify-center text-gray-500`}>{d}</div>
+            )}
+          </>
+        )
+      }else{
+        return(
+          <>
+            <div className='col-start-7 row-span-4 row-start-8 bg-gray-200'></div>
+            <div className='col-start-7 row-span-3 row-start-12 bg-gray-200'></div>
+            <div className='col-start-7 row-span-5 row-start-3 bg-gray-200'></div>
+            {(consultant.birthDate.date()>1?
+              <div className='col-start-6 row-span-1 row-start-15 bg-gray-200'></div>:
+              <div className='col-start-7 row-span-1 row-start-15 bg-gray-200'></div>
+            )}
+            {nineYearCycle.map((d,i)=>
+              <div  key={i} className={`row-start-3 col-start-${i+3} flex justify-center text-gray-500`}>{d}</div>
+            )}
+          </>
+        )
+
+      }
     }
     if(indexOfMonth!==0&&indexOfMonth<5){
       return(
