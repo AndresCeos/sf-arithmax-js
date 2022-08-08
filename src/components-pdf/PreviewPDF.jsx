@@ -16,13 +16,16 @@ import { AnnualReturns } from './AnnualReturns';
 moment.locale("es-mx")
 
 import pinnacleImage from './assets/pinnacle.jpg'
+import lifePathImage from './assets/life-Path.jpg'
+
+import { LifePath9Years } from './LifePath9Years';
 
 export const PreviewPDF = () => {
 
   const Template = ({ children }) => (
     <Document >
       <Page size={[612, 795]} style={configReport.page}  >
-        <Image src={pinnacleImage} style={configReport.pageBackground}></Image>
+        <Image src={lifePathImage} style={configReport.pageBackground}></Image>
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -73,12 +76,14 @@ export const PreviewPDF = () => {
     <>
       <PDFViewer width='100%' height='100%'>
         <Template consultant={consultant}>
-          <PinnacleName consultant={consultant}></PinnacleName>
+          {/* <PinnacleName consultant={consultant}></PinnacleName>
           <PinnaclePotential consultant={consultant}></PinnaclePotential>
           <Pinnacle consultant={consultant}></Pinnacle>
           <BridgeStage consultant={consultant}></BridgeStage>
           <AnnualReturns consultant={consultant} />
-          <PinnacleTimeCurve consultant={consultant} />
+          <PinnacleTimeCurve consultant={consultant} /> */}
+
+          <LifePath9Years consultant={consultant} />
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
