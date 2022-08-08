@@ -1,5 +1,4 @@
 import moment from 'moment/min/moment-with-locales'
-import { FaThumbsDown } from 'react-icons/fa'
 moment.locale("es-mx")
 
 export class Synastry{

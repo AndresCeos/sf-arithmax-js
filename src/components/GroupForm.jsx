@@ -1,29 +1,35 @@
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Formik } from 'formik'
 
-import { addUser, setIsEditing, editUser, showToast } from '../store/slices/users/users';
+import { editUser, generateUserId } from '../store/slices/users/users';
 
-import add_user_main from '../assets/icons/add_user_main.svg'
+import add_user_main from '../assets/icons/add_user_group.svg'
+import { useState } from 'react';
 
-export const UsersForm = (props) => {
+export const GroupForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
   const dispatch = useDispatch();
-  const { isEditing } = useSelector(state => state.users);
-  const { dataUserEdit, dataUserIndex } = props;
-
-  const handleCancel = e => {
-    e.preventDefault()
-    dispatch( setIsEditing(false) )
-  }
+  const { isPartnerEditing, userActive } = useSelector(state => state.users);
+  let groupDateEmpty = true
+  const [groupDate, setGroupDate] = useState(userActive.dateGroup)
+if(userActive.dateGroup !== null){
+  groupDateEmpty = false
+}
 
   return(
+    <>
     <Formik
       enableReinitialize
-      initialValues={ isEditing ?
-        { names: dataUserEdit.names, date: dataUserEdit.date,lastName:dataUserEdit.lastName,scdLastName:dataUserEdit.scdLastName }
+      initialValues={{names: '', date: '',lastName:'',scdLastName:'' }}
+      /*initialValues={ ( ! isPartnerEditing ) ?
+        { names: '', date: '',lastName:'',scdLastName:'' }
         :
-        { names: '', date: '',lastName:'',scdLastName:'',partner:[],group:[], dateGroup:null}
-      }
+        {
+          names:userPartnerActive.names,
+          date:userPartnerActive.date,
+          lastName:userPartnerActive.lastName,
+          scdLastName:userPartnerActive.scdLastName
+        }
+      }*/
       validate={ values => {
         const errors = {};
         const letters = /^[A-Za-z ]+$/
@@ -48,27 +54,49 @@ export const UsersForm = (props) => {
         if (!values.scdLastName.match( letters )) {
           errors.scdLastName = 'No valido';
         }
+        if (!values.scdLastName.match( letters )) {
+          errors.scdLastName = 'No valido';
+        }
         return errors;
       } }
-      onSubmit={ (user, { setSubmitting, resetForm } ) => {
-        if (isEditing) {
-          user.id = dataUserEdit.id;
-          user.partner = dataUserEdit.partner
-          user.group = dataUserEdit.group
-          dispatch( editUser(user) )
-          dispatch(showToast({
-            message: 'Consultante actualizado',
-            type: 'success',
-            show: true } ) )
-        } else {
-          dispatch(addUser( user ))
-          dispatch(showToast({
-            message: 'Consultante agregado',
-            type: 'success',
-            show: true } ) )
+      onSubmit={(user,  { setSubmitting, resetForm }) => {
+        if( ! isPartnerEditing ){
+          user.id = generateUserId()
+          const updatedUser = {
+            ...dataPartner,
+            group :[
+              ...dataPartner.group,
+              user,
+            ],
+            dateGroup:groupDate
+          }
+          
+          console.log( {updatedUser} )
+          dispatch( editUser(updatedUser, userIndex) )
         }
-        setSubmitting(false);
-        resetForm({})
+        /*
+         * TODO: EDIT PARTNER
+         */
+
+      // if(isPartnerEditing){
+      //   let arrayPartners =Object.assign({},dataPartner.partner,{})
+      //   arrayPartners[partnerIndex] = user
+      //   let userPartners = Object.assign({}, dataPartner,{
+      //     partner : Object.keys(arrayPartners).map(key => arrayPartners[key])
+      //   })
+      //   console.log(userPartners);
+      //   dispatch(editUser(userPartners, userIndex))
+      // } else {
+        // const newdata = Object.assign(dataPartner,{
+        //   partner:[...dataPartner.partner, user]
+        // })
+        // dispatch( editUser(newdata, userIndex) )
+      //   console.log({'add partner': newdata});
+      // }
+      // //window.location.reload(false);
+      setIsAddFormActive(false)
+      setSubmitting(false);
+      resetForm({})
       }}
     >
     {({
@@ -81,8 +109,12 @@ export const UsersForm = (props) => {
       isSubmitting,
       /* and other goodies */
     }) => (
-      <form id='App-add-user-form' className="form-container block" onSubmit={handleSubmit}>
-        <div className="flex w-full">
+      <form  className="block w-full mt-3" onSubmit={handleSubmit}>
+        <h2 className="flex justify-center items-center text-xl font-bold">
+          <img src={add_user_main} className="mr-3" alt='add_user_main'/>
+          Agregar Persona al Grupo
+        </h2>
+        <div className="flex w-full mt-6">
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
               Nombre(s)
@@ -145,44 +177,29 @@ export const UsersForm = (props) => {
             />
             {errors.date && touched.date ? <span className="form-error">{errors.date}</span>  : null }
           </div>
-          <div className="form-group w-1/3">
-            <label className='font-bold mb-1'>Nacionalidad</label>
-            <input
-              type="text"
-              name="nat"
-              className="rounded"
-            />
-          </div>
-          <div className="form-group w-1/3">
-            <label className='font-bold mb-1'>Sexo</label>
-            <input
-              type="text"
-              name="sex"
-              className="rounded"
-            />
-          </div>
         </div>
-        <div className="flex w-full gap-4 mt-3 items-center">
-          <div className='form-group w-2/3'>
-            <label className='font-bold mb-1'>Motivo de la Consulta</label>
-            <textarea className='rounded'></textarea>
-          </div>
-          <div className='w-1/3'>
-            { (!isEditing) ?
-              <div className='text-center flex justify-center items-center flex-col'>
-                <img src={add_user_main} className="mb-3" alt='add_user_main'/>
-                <button type="submit" className="btn-save w-full" disabled={isSubmitting}>Guardar</button>
-              </div>
-              :
-              <div className='w-full flex flex-wrap'>
-                <button className='w-full btn-conf mb-3'  type="submit"  disabled={isSubmitting}>Confirmar</button>
-                <button className='w-full btn-cancel' type='button' onClick={ handleCancel } >Cancelar</button>
-              </div>
-            }
-          </div>
+        <div className="flex w-full mt-3 justify-center">
+          <button type="submit" className="btn-save w-32" disabled={isSubmitting}>Guardar</button>
+          {/* <button className='w-6/12 btn-cancel rounded' type='button' onClick={closeForm} >Cancelar</button> */}
         </div>
       </form>
     )}
     </Formik>
+    {groupDateEmpty?<div className="flex w-full mt-3">
+      <div className="form-group w-1/3">
+        <label className='font-bold mb-1'>
+          Fecha de Integración
+          <span className='text-red-800'>*</span>
+        </label>
+        <input
+          type="number"
+          name="dateInit"
+          className="rounded"
+          value={groupDate}
+          onChange={(e)=>{setGroupDate(e.target.value)}}
+        />
+      </div>
+    </div>:''}
+    </>
   )
 }

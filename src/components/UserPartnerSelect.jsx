@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useConsultant } from '../hooks/useConsultant';
 import { fetchAllUsers, setHasPartner, selectUserPartnerActive,
-  setAddPartner, setIsSelectPartner, setIsPartnerEditing, setPartnerIndex } from '../store/slices/users/users';
+  setAddPartner, setIsSelectPartner, setIsPartnerEditing, setPartnerIndex, setHasGroup } from '../store/slices/users/users';
 import { PartnerForm, AssingPartner, UserFormInline, PartnerFormInline,GroupFormInline } from './';
 
 import { TiPlus } from 'react-icons/ti';
@@ -11,12 +11,13 @@ import { TiPlus } from 'react-icons/ti';
 export const UserPartnerSelect = ({isGroup}) => {
   const { consultant } = useConsultant()
   const { list: users, userActive, userPartnerActive,
-    hasPartner, addPartner, isSelectPartner, isPartnerEditing } = useSelector(state => state.users);
+    hasPartner, hasGroup, addPartner, isSelectPartner, isPartnerEditing } = useSelector(state => state.users);
   const [isAddFormActive, setIsAddFormActive] = useState( false )
 
   const dispatch = useDispatch();
 
   const [listPartners, setListPartners] = useState( userActive.partner )
+  const [listGroup, setListGroup] = useState( userActive.group )
 
   const isEmpty = Object.keys(userPartnerActive).length === 0;
   // const objPartner = userActive.partner
@@ -36,18 +37,25 @@ export const UserPartnerSelect = ({isGroup}) => {
     } else {
       dispatch( setHasPartner(true) )
     }
+    if( listGroup === undefined || listGroup.length === 0){
+      dispatch( setHasGroup(false) )
+    } else {
+      dispatch( setHasGroup(true) )
+    }
   }, [])
 
   useEffect( () => {
     // console.log('users active... updated...')
     // console.log( {partners: userActive.partner} )
     setListPartners( userActive.partner )
+    setListGroup(userActive.group)
   }, [userActive])
 
   useEffect( () => {
     // console.log('users... updated...')
     // console.log( {partners: userActive.partner} )
     setListPartners( userActive.partner )
+    setListGroup(userActive.group)
   }, [users])
 
   const selectPartner = (e) => {
@@ -70,39 +78,40 @@ export const UserPartnerSelect = ({isGroup}) => {
       <div className='col-span-12 mb-10'>
         <div className='bg-black text-white text-base font-bold h-8 flex items-center justify-between rounded-tl-2xl rounded-tr-2xl'>
           <div className='flex items-center'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-red-day p-2'>
+            <div className={`w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 ${(isGroup)?'bg-group ':'bg-red-day'} p-2`}>
               <TiPlus className='text-2xl'/>
             </div>
-            Datos de Pareja
+            Datos de {(isGroup)?'Grupo':'Pareja'}
           </div>
           {
-            listPartners.length > 0 ?
+            (listPartners.length > 0 || listGroup.length >0) ?
             <button
               onClick={ () => setIsAddFormActive( !isAddFormActive ) }
               className={`float-right ${ isAddFormActive ? 'bg-red-500' : 'bg-gold' } px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl`}>
-                { isAddFormActive ? 'Cancelar' : 'Agregar Pareja' }
+                { isAddFormActive ? 'Cancelar' : (isGroup)?'Agregar al Grupo':'Agregar Pareja' }
             </button>
             : null
           }
         </div>
         <div className='pinnacle-wrap px-8 py-8'>
-          <UserFormInline
-            name={consultant.fullName}
-            birthDate={consultant.getFormBirthDate()}
-            age={consultant.getYearsOld()}
-
-          />
           {(isGroup)?
           <GroupFormInline
-          hasPartner={hasPartner}
-          partners={listPartners}
-          isAddFormActive={isAddFormActive}/>
-          :<PartnerFormInline
+          hasPartner={hasGroup}
+          group={listGroup}
+          isAddFormActive={isAddFormActive}
+          setIsAddFormActive={setIsAddFormActive} />
+          :
+          <><UserFormInline
+          name={consultant.fullName}
+          birthDate={consultant.getFormBirthDate()}
+          age={consultant.getYearsOld()}/>
+          <PartnerFormInline
             hasPartner={hasPartner}
             partners={listPartners}
             currentPartner={userPartnerActive}
             isAddFormActive={isAddFormActive}
-            setIsAddFormActive={setIsAddFormActive} />}
+            setIsAddFormActive={setIsAddFormActive} />
+            </>}
         </div>
       </div>
       {/* TODO: Edit partner
