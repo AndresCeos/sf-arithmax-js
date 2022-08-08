@@ -7,20 +7,20 @@ import { Group, Person } from "../resources";
 const GroupVibrationTimePage = () =>{
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
-  const groupDate = userActive.dateGroup
-  const {newDate} = dateSelect()
-  const {group} = useGroup()
-  const isEmptyGroup = Object.keys(userActive.group).length === 0;
-  const groupConsult = new Group(group, groupDate )
-  const currentYear = newDate.year()
-  const currentMonth = newDate.month()+1
-  const currentDay = newDate.date()
-  const nineYearCycleStage = groupConsult.getNineYearCycleStage(currentYear)
-
   if( isEmpty ){
     return<UnselectedConsultant />
   }
+  const groupDate = userActive.dateGroup
+  const {newDate} = dateSelect()
+  const isEmptyGroup = Object.keys(userActive.group).length === 0;
 
+  const currentYear = newDate.year()
+  const currentMonth = newDate.month()+1
+  const currentDay = newDate.date()
+
+  const {group} = useGroup()
+  const groupConsult = new Group(group, groupDate )
+  const nineYearCycleStage = groupConsult.getNineYearCycleStage(currentYear)
   return(
     <div className="grid grid-cols-12 mx-14 gap-6 mt-8 py-10">
       <UserPartnerSelect isGroup />

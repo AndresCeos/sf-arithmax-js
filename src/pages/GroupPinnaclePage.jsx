@@ -7,6 +7,11 @@ import { Group, Person } from "../resources";
 const  GroupPinnaclePage = () =>{
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
+
+  if( isEmpty ){
+    return<UnselectedConsultant />
+  }
+
   const isEmptyGroup = Object.keys(userActive.group).length === 0;
   const groupDate = userActive.dateGroup
   const { consultant } = useConsultant()
@@ -17,9 +22,6 @@ const  GroupPinnaclePage = () =>{
   const groupConsult = new Group(group,groupDate )
 console.log(listGroup)
 
-  if( isEmpty ){
-    return<UnselectedConsultant />
-  }
 return(
   <div className='grid grid-cols-12 mx-14 gap-6 mt-8 pt-10'>
     <UserPartnerSelect isGroup />
@@ -60,7 +62,7 @@ return(
       </div>
     </div>
     </div>
-  
+
   </>
   :
     <div className="col-span-12 text-center"><strong>Agrega/Selecciona una pareja para ver esta información</strong></div>
