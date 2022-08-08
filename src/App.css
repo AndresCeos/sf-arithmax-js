@@ -350,6 +350,10 @@ svg {
     background-color: rgb(185, 82, 83, 0.8);
 }
 
+.bg-group {
+    background-color: #5DC4FE;
+}
+
 .bg-active-radial,
 .pinnacle-wrap.bg-active-radial {
     background: rgb(255, 255, 255);

@@ -6,8 +6,8 @@ import time_curve from '../assets/time-curve.svg'
 export const TimeCurve = ({ consultant, isPartner }) => {
     const {newDate} = dateSelect()
     const activeStage = consultant.getLifeStageNumber(newDate.year())
-    const activeSecondStage = consultant.getDoubleLifeStageNumber(newDate.year())
-    const dobleStage = consultant.hasDoubleStage()
+    //const activeSecondStage = consultant.getDoubleLifeStageNumber(newDate.year())
+   // const dobleStage = consultant.hasDoubleStage()
 
     return(
         <div>
@@ -54,7 +54,7 @@ export const TimeCurve = ({ consultant, isPartner }) => {
                         ${activeStage === 7? 'bg-active' : null }
                     `
                 }></div>
-                {(dobleStage)?
+                {/*(dobleStage)?
                     <>
                         <div
                         className={`
@@ -98,7 +98,7 @@ export const TimeCurve = ({ consultant, isPartner }) => {
                             ${activeSecondStage === 7? 'bg-active' : null }
                         `
                     }></div>
-                    </>:''}
+                </>:'' */}
 
 
                 <div className='col-start-1 col-end-7 row-start-8 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
@@ -227,7 +227,7 @@ export const TimeCurve = ({ consultant, isPartner }) => {
                 <div className='col-start-18 col-end-20 text-13 row-start-1'>
                     En adelante...
                 </div>
-                {(dobleStage&&!isPartner)?
+                {/*(dobleStage&&!isPartner)?
                 <>
                     <div className='col-start-1 col-end-7 text-13 row-start-2'>
                     {consultant.getYearTimeCurve()}
@@ -253,7 +253,7 @@ export const TimeCurve = ({ consultant, isPartner }) => {
                 <div className='col-start-18 col-end-20 text-13 row-start-2'>
                     En adelante...
                 </div>
-            </>:''}
+            </>:'' */}
             </div>
         </div>
     )
