@@ -7,6 +7,7 @@ export * from './lifePath/LifePath9Years'
 export * from './lifePath/LifePathLearningStage'
 export * from './lifePath/LifePathPersonalYears'
 export * from './lifePath/LifePathQuarters'
+export * from './lifePath/LifePathPersonalMonths'
 
 export * from './VibrationTimeStages'
 export * from './VibrationTimeQuarterM'
