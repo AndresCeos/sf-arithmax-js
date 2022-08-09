@@ -14,7 +14,8 @@ import {
   LifePath9Years,
   LifePathPersonalYears,
   LifePathQuarters,
-  LifePathPersonalMonths
+  LifePathPersonalMonths,
+  LifePathPersonalWeeks
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -96,6 +97,7 @@ export const PreviewPDF = () => {
           <LifePathPersonalYears consultant={consultant} />
           <LifePathQuarters consultant={consultant} />
           <LifePathPersonalMonths consultant={consultant} />
+          <LifePathPersonalWeeks consultant={consultant} />
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
