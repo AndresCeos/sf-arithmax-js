@@ -12,7 +12,11 @@ import {
   PinnacleTimeCurve,
   LifePathLearningStage,
   LifePath9Years,
-  LifePathPersonalYears
+  LifePathPersonalYears,
+  LifePathQuarters,
+  LifePathPersonalMonths,
+  LifePathPersonalWeeks,
+  LifePathDialogs
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -92,6 +96,10 @@ export const PreviewPDF = () => {
           <LifePath9Years consultant={consultant} />
           <LifePathLearningStage consultant={consultant} />
           <LifePathPersonalYears consultant={consultant} />
+          <LifePathQuarters consultant={consultant} />
+          <LifePathPersonalMonths consultant={consultant} />
+          <LifePathPersonalWeeks consultant={consultant} />
+          <LifePathDialogs consultant={consultant} />
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
