@@ -7,6 +7,7 @@ import { fetchAllUsers, setHasPartner, selectUserPartnerActive,
 import { PartnerForm, AssingPartner, UserFormInline, PartnerFormInline,GroupFormInline } from './';
 
 import { TiPlus } from 'react-icons/ti';
+import {  MdEdit } from 'react-icons/md';
 
 export const UserPartnerSelect = ({isGroup}) => {
   const { consultant } = useConsultant()
@@ -81,7 +82,7 @@ export const UserPartnerSelect = ({isGroup}) => {
             <div className={`w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 ${(isGroup)?'bg-group ':'bg-red-day'} p-2`}>
               <TiPlus className='text-2xl'/>
             </div>
-            Datos de {(isGroup)?'Grupo':'Pareja'}
+            Datos de {(isGroup)?'Grupo':'Pareja'} <MdEdit className='text-xl text-white'/>
           </div>
           {
             (listPartners.length > 0 || listGroup.length >0) ?

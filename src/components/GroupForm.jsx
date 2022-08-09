@@ -10,7 +10,7 @@ export const GroupForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
   const dispatch = useDispatch();
   const { isPartnerEditing, userActive } = useSelector(state => state.users);
   let groupDateEmpty = true
-  const [groupDate, setGroupDate] = useState(userActive.dateGroup)
+  const [groupDate, setGroupDate] = useState()
 if(userActive.dateGroup !== null){
   groupDateEmpty = false
 }
@@ -185,7 +185,7 @@ if(userActive.dateGroup !== null){
       </form>
     )}
     </Formik>
-    {groupDateEmpty?<div className="flex w-full mt-3">
+    <div className="flex w-full mt-3">
       <div className="form-group w-1/3">
         <label className='font-bold mb-1'>
           Fecha de Integración
@@ -199,7 +199,7 @@ if(userActive.dateGroup !== null){
           onChange={(e)=>{setGroupDate(e.target.value)}}
         />
       </div>
-    </div>:''}
+    </div>
     </>
   )
 }

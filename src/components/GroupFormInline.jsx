@@ -86,6 +86,7 @@ export const GroupFormInline = ({ hasPartner = false, group, isAddFormActive = f
             value={ groupDateEmpty }
             type="number"
             className="rounded w-20 text-center"
+            disabled
           />
         </div>
     </div>

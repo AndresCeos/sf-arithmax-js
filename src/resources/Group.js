@@ -12,6 +12,7 @@ export class Group {
   getGroup(){
     console.log('Grupo => '+this.group)
     console.log('Fecha de inte => '+this.groupDate);
+    return this.group
   }
   getYearTimeCurve(){
     return this.groupDate
@@ -29,6 +30,15 @@ export class Group {
       A+=birthDate.month()+1
     })
     return this.reduceNumber(A)
+  }
+  getAs(){
+    const partnerGroup = this.group
+    let A = 0
+    partnerGroup.forEach(a =>{
+      let birthDate = a.getBirthDate()
+      A+=birthDate.month()+1
+    })
+    return this.reduceNumberForSub(A)
   }
   getAWOR(){
     const partnerGroup = this.group
@@ -60,6 +70,15 @@ export class Group {
     })
     return this.reduceNumber(B)
   }
+  getBs(){
+    const partnerGroup = this.group
+    let B = 0
+    partnerGroup.forEach(b =>{
+      let birthDate = b.getBirthDate()
+      B+=birthDate.date()
+    })
+    return this.reduceNumberForSub(B)
+  }
   getBWOR(){
     const partnerGroup = this.group
     let B = 0
@@ -89,6 +108,15 @@ export class Group {
       C+=birthDate.year()
     })
     return this.reduceNumber(C)
+  }
+  getCs(){
+    const partnerGroup = this.group
+    let C = 0
+    partnerGroup.forEach(c =>{
+      let birthDate = c.getBirthDate()
+      C+=birthDate.year()
+    })
+    return this.reduceNumberForSub(C)
   }
   getCWOR(){
     const partnerGroup = this.group
@@ -126,6 +154,12 @@ export class Group {
       this.getC()
     )
     return this.karmicos.includes(D)? '*': ''
+  }
+  getDCheck(){
+    let A = this.reduceNumber(this.getA())
+    let B = this.reduceNumber(this.getB())
+    let C = this.reduceNumber(this.getC())
+    return this.reduceNumber(A + B + C)
   }
 
   getE(){
@@ -213,6 +247,94 @@ export class Group {
     )
     return this.karmicos.includes(J)? '*': ''
   }
+  getK(){
+    return Math.abs(this.reduceNumber(
+      this.getAs() -
+      this.getBs()
+    ));
+  }
+  getL(){
+    return Math.abs(this.reduceNumber(
+      this.getBs() -
+      this.getCs()
+    ));
+  }
+  getM(){
+    return Math.abs(this.reduceNumber(
+      this.getK() -
+      this.getL()
+    ));
+  }
+
+  getN(){
+    return Math.abs(this.reduceNumber(
+      this.getAs() -
+      this.getCs()
+    ));
+  }
+
+  getO(){
+    return this.reduceNumber(
+      this.getM() +
+      this.getK() +
+      this.getL()
+    );
+  }
+  getP(){
+    return this.reduceNumber(
+      this.getD() +
+      this.getO()
+    );
+  }
+  getQ(){
+    return this.reduceNumber(
+      this.getM() +
+      this.getK()
+    );
+  }
+  getR(){
+    return this.reduceNumber(
+      this.getM() +
+      this.getL()
+    );
+  }
+  getS(){
+    return this.reduceNumber(
+      this.getQ() +
+      this.getR()
+    );
+  }
+  getW(){
+    const appearances= [
+      this.getK(),
+      this.getO(),
+      this.getL(),
+      this.getM(),
+      this.getN(),
+      this.getQ(),
+      this.getR(),
+      this.getS(),
+      this.getP(),
+    ]
+    const occurrences = appearances.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {});
+
+    let w = 0;
+    let W = ''
+    Object.values(occurrences).forEach( el => el === 3 ? w++ : w )
+    if( w === 1 ){
+      Object.entries(occurrences).map( (el, i) => {
+        if( el[1] === 3 ){
+          W = parseInt(el[0]) * 3
+        }
+      })
+
+    }
+    return W === '' ? '' : this.reduceNumber(W)
+  }
+
+
 
 
 
@@ -816,5 +938,40 @@ export class Group {
       reduceSum = reduceSum.toString().split('').reduce((r,c)=>r += parseInt(c), 0);
     }
     return reduceSum;
+  }
+  getAbsences(){
+    const appearances= [
+      this.getA(),
+      this.getB(),
+      this.getC(),
+      this.getD(),
+      this.getE(),
+      this.getF(),
+      this.getG(),
+      this.getH(),
+      this.getI(),
+      this.getJ(),
+      this.getK(),
+      this.getL(),
+      this.getM(),
+      this.getN(),
+      this.getO(),
+      this.getP(),
+      this.getQ(),
+      this.getR(),
+      this.getS(),
+      this.getW(),
+    ]
+    console.log({ appearances })
+    const occurrences = appearances.reduce(function (acc, curr) {
+      if( curr !== '' & curr !== 0 ){
+        return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+      }
+      return acc
+    }, {});
+
+    const base = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    let intersection = base.filter(x => ! Object.keys(occurrences).includes(x));
+    return intersection.toString()
   }
 }
