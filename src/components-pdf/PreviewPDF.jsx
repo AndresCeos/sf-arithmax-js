@@ -46,20 +46,20 @@ export const PreviewPDF = () => {
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
-            <Text>{consultant.fullName}</Text>
+            <Text>Laura Ludivina Rodriguez Martinez</Text>
           </View>
           <View style={configReport.header_consultant_name}>
-            <Text>Laura Ludivina Rodriguez Martinez</Text>
+            <Text>{consultant.fullName}</Text>
           </View>
 
           <View style={configReport.header_date}>
             <Text>-</Text>
           </View>
           <View style={configReport.header_birth_date}>
-            <Text>-</Text>
+            <Text>{consultant.getFormBirthDate()}</Text>
           </View>
           <View style={configReport.header_age}>
-            <Text>-</Text>
+            <Text>{consultant.getYearsOld()}</Text>
           </View>
         </View>
 
