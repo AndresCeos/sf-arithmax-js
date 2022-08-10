@@ -17,3 +17,4 @@ export * from './VibrationTimeCycle'
 export * from './VibrationTimeQuarterY'
 
 export * from './name/NameValues';
+export * from './name/NamePotential';
