@@ -16,7 +16,8 @@ import {
   LifePathQuarters,
   LifePathPersonalMonths,
   LifePathPersonalWeeks,
-  LifePathDialogs
+  LifePathDialogs,
+  NameValues
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -29,6 +30,7 @@ moment.locale("es-mx")
 
 import pinnacleImage from './assets/pinnacle.jpg'
 import lifePathImage from './assets/life-Path.jpg'
+import nameImage from './assets/name.jpg'
 
 export const PreviewPDF = () => {
 
@@ -37,6 +39,7 @@ export const PreviewPDF = () => {
       <Page size={[612, 795]} style={configReport.page}  >
         <Image src={pinnacleImage} style={configReport.pageBackground}></Image>
         <Image src={lifePathImage} style={configReport.pageBackground}></Image>
+        <Image src={nameImage} style={configReport.pageBackground}></Image>
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -94,13 +97,15 @@ export const PreviewPDF = () => {
           <AnnualReturns consultant={consultant} />
           <PinnacleTimeCurve consultant={consultant} /> */}
 
-          <LifePath9Years consultant={consultant} />
+          {/* <LifePath9Years consultant={consultant} />
           <LifePathLearningStage consultant={consultant} />
           <LifePathPersonalYears consultant={consultant} />
           <LifePathQuarters consultant={consultant} />
           <LifePathPersonalMonths consultant={consultant} />
           <LifePathPersonalWeeks consultant={consultant} />
-          <LifePathDialogs consultant={consultant} />
+          <LifePathDialogs consultant={consultant} /> */}
+
+          <NameValues consultant={consultant} />
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
