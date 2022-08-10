@@ -19,7 +19,8 @@ import {
   LifePathDialogs,
   NameValues,
   NamePotential,
-  NameTable
+  NameTable,
+  NameActive
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -110,6 +111,7 @@ export const PreviewPDF = () => {
           <NameValues consultant={consultant} />
           <NamePotential consultant={consultant} />
           <NameTable consultant={consultant} />
+          <NameActive consultant={consultant} />
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
