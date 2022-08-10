@@ -1,38 +1,43 @@
 import { Text, View, StyleSheet } from "@react-pdf/renderer"
+import moment from 'moment/min/moment-with-locales'
+moment.locale("es-mx")
 
 export const LifePath9Years = ({ consultant }) => {
+
+  const now = moment()
+
   return (
     <View style={lifePath.container}>
       <View style={lifePath.wrap}>
         <View style={[lifePath.item, lifePath.currentYear]}>
-          <Text>2022</Text>
+          <Text>{now.year()}</Text>
         </View>
         <View style={[lifePath.year, lifePath.currentYear_1]}>
-          <Text>2013</Text>
+          <Text>{now.year() - 9}</Text>
         </View>
         <View style={[lifePath.year, lifePath.currentYear_2]}>
-          <Text>2022</Text>
+          <Text>{now.year()}</Text>
         </View>
         <View style={[lifePath.year, lifePath.currentYear_3]}>
-          <Text>2031</Text>
+          <Text>{now.year() + 9}</Text>
         </View>
         <View style={[lifePath.year, lifePath.currentYear_4]}>
-          <Text>2040</Text>
+          <Text>{now.year() + 19}</Text>
         </View>
         <View style={[lifePath.item, lifePath.currentYearVibration]}>
-          <Text>Año 1</Text>
+          <Text>Año {consultant.calcPersonalYear()}</Text>
         </View>
         <View style={[lifePath.circle, lifePath.currentYearVibration_1]}>
-          <Text>1</Text>
+          <Text>{consultant.calcPersonalYear()}</Text>
         </View>
         <View style={[lifePath.circle, lifePath.currentYearVibration_2]}>
-          <Text>1</Text>
+          <Text>{consultant.calcPersonalYear()}</Text>
         </View>
         <View style={[lifePath.circle, lifePath.currentYearVibration_3]}>
-          <Text>1</Text>
+          <Text>{consultant.calcPersonalYear()}</Text>
         </View>
         <View style={[lifePath.circle, lifePath.currentYearVibration_4]}>
-          <Text>1</Text>
+          <Text>{consultant.calcPersonalYear()}</Text>
         </View>
         <View style={[lifePath.phrase, lifePath.currentYearPhrase]}>
           <Text>Autonomía Independencia</Text>
@@ -49,7 +54,6 @@ export const LifePath9Years = ({ consultant }) => {
         <View style={[lifePath.phrase, lifePath.currentYearPhrase_4]}>
           <Text>Autonomía Independencia</Text>
         </View>
-        <Text>-</Text>
       </View>
     </View>
   )

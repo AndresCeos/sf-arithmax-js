@@ -1,68 +1,96 @@
 import { Text, View, StyleSheet } from "@react-pdf/renderer"
+import moment from 'moment/min/moment-with-locales'
+import { nowWeekNumber, capitalize } from '../../resources';
+moment.locale("es-mx")
 
 export const LifePathDialogs = ({ consultant }) => {
+  const now = moment()
+  const newDate = moment()
+  const now2 = moment()
+
   return (
-    <View style={lifePath.container}>
-      <View style={lifePath.wrap}>
-        <View style={[lifePath.item, lifePath.currentYear]}>
-          <Text>2022</Text>
+    <View style={lifePathDialogs.container}>
+      <View style={[lifePathDialogs.wrap]}>
+        <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
+          <Text>{consultant.getSumHierarchy(consultant.getB(), consultant.getLifeStage(newDate.year()))}</Text>
         </View>
-        <View style={[lifePath.year, lifePath.currentYear_1]}>
-          <Text>2013</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
+          <Text>{consultant.getB()}</Text>
         </View>
-        <View style={[lifePath.year, lifePath.currentYear_2]}>
-          <Text>2022</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
+          <Text>{consultant.getLifeStage(newDate.year())}</Text>
         </View>
-        <View style={[lifePath.year, lifePath.currentYear_3]}>
-          <Text>2031</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
+          <Text>{consultant.getResHierarchy(consultant.getB(), consultant.getLifeStage(newDate.year()))}</Text>
         </View>
-        <View style={[lifePath.year, lifePath.currentYear_4]}>
-          <Text>2040</Text>
+      </View>
+      <View style={[lifePathDialogs.wrap, lifePathDialogs.wrap_2]}>
+        <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
+          <Text>{consultant.getSumHierarchy(consultant.getLifeStage(newDate.year()), consultant.calcPersonalYear(newDate.year()))}</Text>
         </View>
-        <View style={[lifePath.item, lifePath.currentYearVibration]}>
-          <Text>Año 1</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
+          <Text>{consultant.getLifeStage(newDate.year())}</Text>
         </View>
-        <View style={[lifePath.circle, lifePath.currentYearVibration_1]}>
-          <Text>1</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
+          <Text>{consultant.calcPersonalYear(newDate.year())}</Text>
         </View>
-        <View style={[lifePath.circle, lifePath.currentYearVibration_2]}>
-          <Text>1</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
+          <Text>{consultant.getResHierarchy(consultant.getLifeStage(newDate.year()), consultant.calcPersonalYear(newDate.year()))}</Text>
         </View>
-        <View style={[lifePath.circle, lifePath.currentYearVibration_3]}>
-          <Text>1</Text>
+      </View>
+      <View style={[lifePathDialogs.wrap, lifePathDialogs.wrap_3]}>
+        <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
+          <Text>{consultant.getSumHierarchy(consultant.calcPersonalYear(newDate.year()), consultant.calcCurrentQuater(newDate, newDate.year()))}</Text>
         </View>
-        <View style={[lifePath.circle, lifePath.currentYearVibration_4]}>
-          <Text>1</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
+          <Text>{consultant.calcPersonalYear(newDate.year())}</Text>
         </View>
-        <View style={[lifePath.phrase, lifePath.currentYearPhrase]}>
-          <Text>Autonomía Independencia</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
+          <Text>{consultant.calcCurrentQuater(newDate, newDate.year())}</Text>
         </View>
-        <View style={[lifePath.phrase, lifePath.currentYearPhrase_1]}>
-          <Text>Autonomía Independencia</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
+          <Text>{consultant.getResHierarchy(consultant.calcPersonalYear(newDate.year()), consultant.calcCurrentQuater(newDate, newDate.year()))}</Text>
         </View>
-        <View style={[lifePath.phrase, lifePath.currentYearPhrase_2]}>
-          <Text>Autonomía Independencia</Text>
+      </View>
+      <View style={[lifePathDialogs.wrap, lifePathDialogs.wrap_4]}>
+        <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
+          <Text>{consultant.getSumHierarchy(consultant.calcCurrentQuater(newDate, newDate.year()), consultant.getLifeStage(newDate.year()))}</Text>
         </View>
-        <View style={[lifePath.phrase, lifePath.currentYearPhrase_3]}>
-          <Text>Autonomía Independencia</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
+          <Text>{consultant.calcCurrentQuater(newDate, newDate.year)}</Text>
         </View>
-        <View style={[lifePath.phrase, lifePath.currentYearPhrase_4]}>
-          <Text>Autonomía Independencia</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
+          <Text>{consultant.calcPersonalMonth(newDate.month() + 1, newDate.year())}</Text>
         </View>
-        <Text>-</Text>
+        <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
+          <Text>{consultant.getResHierarchy(consultant.calcCurrentQuater(newDate, newDate.year()), consultant.calcPersonalMonth(newDate.month() + 1, newDate.year()))}</Text>
+        </View>
+      </View>
+      <View style={[lifePathDialogs.wrap, lifePathDialogs.wrap_5]}>
+        <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
+          <Text>{consultant.getSumHierarchy(consultant.calcPersonalMonth(newDate.month() + 1, newDate.year()), consultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year()))}</Text>
+        </View>
+        <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
+          <Text>{consultant.calcPersonalMonth(newDate.month() + 1, newDate.year())}</Text>
+        </View>
+        <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
+          <Text>{consultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year())}</Text>
+        </View>
+        <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
+          <Text>{consultant.getResHierarchy(consultant.calcPersonalMonth(newDate.month() + 1, newDate.year()), consultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year()))}</Text>
+        </View>
       </View>
     </View>
   )
 }
 
-export const lifePath = StyleSheet.create({
+export const lifePathDialogs = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: '24px',
-    left: '710px',
+    top: '576px',
+    left: '11px',
     fontSize: '7px',
-    width: '533px',
-    height: '20px',
+    width: '531px',
     backgroundColor: 'red'
   },
   wrap: {
@@ -74,104 +102,36 @@ export const lifePath = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  year: {
-    position: 'absolute',
-    // backgroundColor: 'red',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  circle: {
-    position: 'absolute',
-    // backgroundColor: 'red',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     width: '20px',
     height: '20px',
-    fontSize: '12px',
+    fontSize: '11px'
   },
-  phrase: {
-    position: 'absolute',
-    // backgroundColor: 'red',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    fontSize: '8px',
+  top: {
+    top: '25px',
+    left: '37px'
   },
-  currentYear: {
-    left: '25px',
-    top: '23px',
-    width: '50px',
+  left: {
+    top: '46px',
+    left: '14px'
   },
-  currentYear_1: {
-    top: '31px',
-    left: '116px',
-    width: '22px',
+  right: {
+    top: '46px',
+    left: '58px'
   },
-  currentYear_2: {
-    top: '31px',
-    left: '217px',
-    width: '22px',
+  bottom: {
+    top: '70px',
+    left: '37px'
   },
-  currentYear_3: {
-    top: '31px',
-    left: '317px',
-    width: '22px',
+  wrap_2: {
+    left: '104px',
   },
-  currentYear_4: {
-    top: '31px',
-    left: '415px',
-    width: '22px',
+  wrap_3: {
+    left: '218px',
   },
-  currentYearVibration: {
-    left: '21px',
-    top: '43px',
-    width: '50px',
-    height: '19px',
-    fontSize: '12px'
-  },
-  currentYearVibration_1: {
-    top: '41px',
-    left: '116px',
-  },
-  currentYearVibration_2: {
-    top: '41px',
-    left: '217px',
-  },
-  currentYearVibration_3: {
-    top: '41px',
+  wrap_4: {
     left: '317px',
   },
-  currentYearVibration_4: {
-    top: '41px',
-    left: '415px',
-  },
-  currentYearPhrase: {
-    top: '85px',
-    left: '21px',
-    width: '50px',
-  },
-  currentYearPhrase_1: {
-    top: '101px',
-    left: '102px',
-    width: '50px',
-  },
-  currentYearPhrase_2: {
-    top: '85px',
-    left: '203px',
-    width: '50px',
-  },
-  currentYearPhrase_3: {
-    top: '101px',
-    left: '303px',
-    width: '50px',
-  },
-  currentYearPhrase_4: {
-    top: '85px',
-    left: '401px',
-    width: '50px',
+  wrap_5: {
+    left: '423px',
   },
 })

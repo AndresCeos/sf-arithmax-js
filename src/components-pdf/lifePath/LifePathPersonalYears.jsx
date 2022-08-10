@@ -1,90 +1,68 @@
 import { Text, View, StyleSheet } from "@react-pdf/renderer"
+import moment from 'moment/min/moment-with-locales'
+moment.locale("es-mx")
 
 export const LifePathPersonalYears = ({ consultant }) => {
+  const newDate = moment()
+  const cicle = [
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() - 4),
+      year: newDate.year() - 4
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() - 3),
+      year: newDate.year() - 3
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() - 2),
+      year: newDate.year() - 2
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() - 1),
+      year: newDate.year() - 1
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year()),
+      year: newDate.year()
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() + 1),
+      year: newDate.year() + 1
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() + 2),
+      year: newDate.year() + 2
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() + 3),
+      year: newDate.year() + 3
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() + 4),
+      year: newDate.year() + 4
+    },
+    {
+      vibration: consultant.calcPersonalYear(newDate.year() + 5),
+      year: newDate.year() + 5
+    },
+  ]
+
   return (
     <View style={lifePath.container}>
       <View style={lifePath.wrap}>
         <View style={lifePath.personalYears}>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
-          <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>-</Text>
-            </View>
-            <View style={lifePath.year}>
-              <Text>-</Text>
-            </View>
-          </View>
+          {cicle.map((cicle, i) =>
+            <>
+              <View style={lifePath.itemWrap}>
+                <View style={lifePath.item}>
+                  <Text>{cicle.vibration}{consultant.calcPersonalYearISK(cicle.year)}</Text>
+                </View>
+                <View style={lifePath.year}>
+                  <Text>{cicle.year}</Text>
+                </View>
+              </View>
+            </>
+          )}
         </View>
       </View>
     </View>
@@ -123,6 +101,7 @@ export const lifePath = StyleSheet.create({
     alignItems: 'center',
     fontSize: '12px',
     backgroundColor: '#D7BFD5',
+    borderRadius: '4px'
   },
   year: {
     width: '20px',

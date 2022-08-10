@@ -6,25 +6,25 @@ export const LifePathLearningStage = ({ consultant }) => {
       <View style={lifePath.wrap}>
         <View style={lifePath.lifeStage}>
           <View style={lifePath.lifeStageItem}>
-            <Text>1</Text>
+            <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
           </View>
           <View style={lifePath.lifeStageItem}>
-            <Text>1</Text>
+            <Text>{consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}</Text>
           </View>
           <View style={lifePath.lifeStageItem}>
-            <Text>1</Text>
+            <Text>{consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}</Text>
           </View>
           <View style={lifePath.lifeStageItem}>
-            <Text>1</Text>
+            <Text>{consultant.calcLifeStage(4)}{consultant.calcLifeStageISK(4)}</Text>
           </View>
           <View style={lifePath.lifeStageItem}>
-            <Text>1</Text>
+            <Text>{consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}</Text>
           </View>
           <View style={lifePath.lifeStageItem}>
-            <Text>1</Text>
+            <Text>{consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}</Text>
           </View>
           <View style={lifePath.lifeStageItem}>
-            <Text>1</Text>
+            <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
           </View>
         </View>
       </View>
