@@ -35,7 +35,8 @@ export const PreviewPDF = () => {
   const Template = ({ children }) => (
     <Document >
       <Page size={[612, 795]} style={configReport.page}  >
-        <Image src={lifePathImage} style={configReport.pageBackground}></Image>
+        <Image src={pinnacleImage} style={configReport.pageBackground}></Image>
+        {/* <Image src={lifePathImage} style={configReport.pageBackground}></Image> */}
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
