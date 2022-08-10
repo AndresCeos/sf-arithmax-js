@@ -18,3 +18,4 @@ export * from './VibrationTimeQuarterY'
 
 export * from './name/NameValues';
 export * from './name/NamePotential';
+export * from './name/NameTable';
