@@ -2350,11 +2350,13 @@ export class Person{
       break;
     }
   }
-  getAllDaysInMonth(month, year){
+  getAllDaysInMonth(month, year = null){
+    year = year || this.NOW.year()
     return  Array.from(Array(moment(`${year}-${month}`).daysInMonth()), (_, i) => i + 1)
   }
 
-  getDaysOfWeekCustom(month, year){
+  getDaysOfWeekCustom(month, year = null){
+    year = year || this.NOW.year()
     String.prototype.capitalize = function() {
       return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
     }

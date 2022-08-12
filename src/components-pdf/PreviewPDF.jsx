@@ -16,7 +16,9 @@ import {
   LifePathQuarters,
   LifePathPersonalMonths,
   LifePathPersonalWeeks,
-  LifePathDialogs
+  LifePathDialogs,
+  CalendarHead,
+  CalendarMonths
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -29,14 +31,17 @@ moment.locale("es-mx")
 
 import pinnacleImage from './assets/pinnacle.jpg'
 import lifePathImage from './assets/life-Path.jpg'
+import calendar_1 from './assets/calendar.jpg'
+import calendar_2 from './assets/calendar-02.jpg'
 
 export const PreviewPDF = () => {
 
   const Template = ({ children }) => (
     <Document >
       <Page size={[612, 795]} style={configReport.page}  >
-        <Image src={pinnacleImage} style={configReport.pageBackground}></Image>
+        {/*<Image src={pinnacleImage} style={configReport.pageBackground}></Image>*/}
         {/* <Image src={lifePathImage} style={configReport.pageBackground}></Image> */}
+        <Image src={calendar_1} style={configReport.pageBackground}></Image> 
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -94,13 +99,13 @@ export const PreviewPDF = () => {
           <AnnualReturns consultant={consultant} />
           <PinnacleTimeCurve consultant={consultant} /> */}
 
-          <LifePath9Years consultant={consultant} />
+          {/*<LifePath9Years consultant={consultant} />
           <LifePathLearningStage consultant={consultant} />
           <LifePathPersonalYears consultant={consultant} />
           <LifePathQuarters consultant={consultant} />
           <LifePathPersonalMonths consultant={consultant} />
           <LifePathPersonalWeeks consultant={consultant} />
-          <LifePathDialogs consultant={consultant} />
+          <LifePathDialogs consultant={consultant} />*/}
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
@@ -108,6 +113,9 @@ export const PreviewPDF = () => {
           <VibrationTimeCycle consultant={consultant} newDate={newDate}></VibrationTimeCycle>
           <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY>
           */}
+
+          <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
+          <CalendarMonths consultant={consultant} newDate={newDate}></CalendarMonths>
         </Template>
       </PDFViewer>
     </>

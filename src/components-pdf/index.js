@@ -15,3 +15,6 @@ export * from './VibrationTimeStages'
 export * from './VibrationTimeQuarterM'
 export * from './VibrationTimeCycle'
 export * from './VibrationTimeQuarterY'
+
+export * from './calendar/CalendarHead'
+export * from './calendar/CalendarMonths'
