@@ -9,6 +9,7 @@ import {
   VibrationTimeStage,
   VibrationTimeQuarterM,
   VibrationTimeCycle,
+  VibrationTimeQuarterY,
   PinnacleTimeCurve,
   LifePathLearningStage,
   LifePath9Years,
@@ -47,8 +48,8 @@ export const PreviewPDF = () => {
         <Image src={pinnacleImage} style={configReport.pageBackground}></Image>
         <Image src={lifePathImage} style={configReport.pageBackground}></Image>
         <Image src={nameImage} style={configReport.pageBackground}></Image>
-        <Image src={calendar_1} style={configReport.pageBackground}></Image>
-        {/* <Image src={calendar_2} style={configReport.pageBackground}></Image> */}
+        {/* <Image src={calendar_1} style={configReport.pageBackground}></Image>
+        <Image src={calendar_2} style={configReport.pageBackground}></Image> */}
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -112,17 +113,20 @@ export const PreviewPDF = () => {
           <LifePathQuarters consultant={consultant} />
           <LifePathPersonalMonths consultant={consultant} />
           <LifePathPersonalWeeks consultant={consultant} />
-          <LifePathDialogs consultant={consultant} />
+          <LifePathDialogs consultant={consultant} /> */}
 
-          {/*
-          <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
+          <NameValues consultant={consultant} />
+          <NamePotential consultant={consultant} />
+          <NameTable consultant={consultant} />
+          <NameActive consultant={consultant} />
+
+          {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
           <VibrationTimeCycle consultant={consultant} newDate={newDate}></VibrationTimeCycle>
-          <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY>
-          */}
+          <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY> */}
 
-          <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
-          <CalendarMonths consultant={consultant} newDate={newDate}></CalendarMonths>
+          {/* <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
+          <CalendarMonths consultant={consultant} newDate={newDate}></CalendarMonths> */}
         </Template>
       </PDFViewer>
     </>
