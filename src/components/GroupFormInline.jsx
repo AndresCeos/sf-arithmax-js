@@ -80,7 +80,7 @@ export const GroupFormInline = ({ hasPartner = false, group, isAddFormActive = f
           <img src={add_user_main} className="mb-3 opacity-0" alt='add_user_main'/>
 
           <label className='font-bold mb-1 mr-2 text-13 flex'>
-            <MdEdit className='text-xl text-gray-400'/> Fecha de integración:
+            <MdEdit className='text-xl text-gray-400'/> Última Fecha de integración:
           </label>
           <input
             value={ groupDateEmpty }

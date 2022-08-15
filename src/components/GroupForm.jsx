@@ -188,7 +188,7 @@ if(userActive.dateGroup !== null){
     <div className="flex w-full mt-3">
       <div className="form-group w-1/3">
         <label className='font-bold mb-1'>
-          Fecha de Integración
+          Última Fecha de Integración
           <span className='text-red-800'>*</span>
         </label>
         <input
