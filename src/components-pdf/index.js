@@ -27,3 +27,4 @@ export * from './calendar/CalendarMonths'
 
 export * from './createName/CreateName'
 export * from './createName/CreateNumeric'
+export * from './createName/CreateTable'
