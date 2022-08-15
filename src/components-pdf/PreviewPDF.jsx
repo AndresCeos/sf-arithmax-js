@@ -22,6 +22,7 @@ import {
   NamePotential,
   NameTable,
   NameActive,
+  NameInhabitants,
   CalendarHead,
   CalendarMonths
 } from '../components-pdf/';
@@ -119,6 +120,7 @@ export const PreviewPDF = () => {
           <NamePotential consultant={consultant} />
           <NameTable consultant={consultant} />
           <NameActive consultant={consultant} />
+          <NameInhabitants consultant={consultant} />
 
           {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
