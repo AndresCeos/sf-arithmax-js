@@ -161,7 +161,7 @@ const GroupVibrationTimePage = () =>{
             Curva del tiempo
           </div>
           <div className='pinnacle-wrap px-8 py-8'>
-            <TimeCurve consultant={groupConsult} isPartner={false} />
+            <TimeCurve consultant={groupConsult} isPartner />
           </div>
           </div>
         </>

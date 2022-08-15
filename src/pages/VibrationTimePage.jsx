@@ -151,7 +151,7 @@ const VibrationTimePage = () =>{
             <div className='col-start-1 border-r border-gray-500 px-4 py-8'>
               <AnnualReturn annualReturn={annualReturnLastYear} />
             </div>
-            <div className='col-start-2 px-4 py-8 bg-gray-300'>
+            <div className='col-start-2 px-4 py-8 bg-active-radial'>
               <AnnualReturn annualReturn={annualReturnCurrent} current months  />
             </div>
             <div className='col-start-3 border-l border-gray-500 px-4 py-8'>

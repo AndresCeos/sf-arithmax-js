@@ -20,7 +20,9 @@ import {
   NameValues,
   NamePotential,
   NameTable,
-  NameActive
+  NameActive,
+  CalendarHead,
+  CalendarMonths
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -34,6 +36,8 @@ moment.locale("es-mx")
 import pinnacleImage from './assets/pinnacle.jpg'
 import lifePathImage from './assets/life-Path.jpg'
 import nameImage from './assets/name.jpg'
+import calendar_1 from './assets/calendar.jpg'
+import calendar_2 from './assets/calendar-02.jpg'
 
 export const PreviewPDF = () => {
 
@@ -42,7 +46,6 @@ export const PreviewPDF = () => {
       <Page size={[612, 795]} style={configReport.page}  >
         <Image src={pinnacleImage} style={configReport.pageBackground}></Image>
         <Image src={lifePathImage} style={configReport.pageBackground}></Image>
-        <Image src={nameImage} style={configReport.pageBackground}></Image>
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -106,12 +109,7 @@ export const PreviewPDF = () => {
           <LifePathQuarters consultant={consultant} />
           <LifePathPersonalMonths consultant={consultant} />
           <LifePathPersonalWeeks consultant={consultant} />
-          <LifePathDialogs consultant={consultant} /> */}
-
-          <NameValues consultant={consultant} />
-          <NamePotential consultant={consultant} />
-          <NameTable consultant={consultant} />
-          <NameActive consultant={consultant} />
+          <LifePathDialogs consultant={consultant} />
 
           {/*
           <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
@@ -119,6 +117,9 @@ export const PreviewPDF = () => {
           <VibrationTimeCycle consultant={consultant} newDate={newDate}></VibrationTimeCycle>
           <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY>
           */}
+
+          <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
+          <CalendarMonths consultant={consultant} newDate={newDate}></CalendarMonths>
         </Template>
       </PDFViewer>
     </>

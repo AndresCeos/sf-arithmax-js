@@ -14,9 +14,9 @@ export const QuaterPerYear = ({consultant, isGroup}) =>{
       if(isGroup){
         return(
           <>
-            <div className='col-start-7 row-span-4 row-start-8 bg-gray-200'></div>
-            <div className='col-start-7 row-span-3 row-start-12 bg-gray-200'></div>
-            <div className='col-start-7 row-span-5 row-start-3 bg-gray-200'></div>
+            <div className='col-start-7 row-span-4 row-start-8 bg-active-radial'></div>
+            <div className='col-start-7 row-span-3 row-start-12 bg-active-radial'></div>
+            <div className='col-start-7 row-span-5 row-start-3 bg-active-radial'></div>
             {nineYearCycle.map((d,i)=>
               <div  key={i} className={`row-start-3 col-start-${i+3} flex justify-center text-gray-500`}>{d}</div>
             )}
@@ -25,12 +25,12 @@ export const QuaterPerYear = ({consultant, isGroup}) =>{
       }else{
         return(
           <>
-            <div className='col-start-7 row-span-4 row-start-8 bg-gray-200'></div>
-            <div className='col-start-7 row-span-3 row-start-12 bg-gray-200'></div>
-            <div className='col-start-7 row-span-5 row-start-3 bg-gray-200'></div>
+            <div className='col-start-7 row-span-4 row-start-8 bg-active-radial'></div>
+            <div className='col-start-7 row-span-3 row-start-12 bg-active-radial'></div>
+            <div className='col-start-7 row-span-5 row-start-3 bg-active-radial'></div>
             {(consultant.birthDate.date()>1?
-              <div className='col-start-6 row-span-1 row-start-15 bg-gray-200'></div>:
-              <div className='col-start-7 row-span-1 row-start-15 bg-gray-200'></div>
+              <div className='col-start-6 row-span-1 row-start-15 bg-active-radial'></div>:
+              <div className='col-start-7 row-span-1 row-start-15 bg-active-radial'></div>
             )}
             {nineYearCycle.map((d,i)=>
               <div  key={i} className={`row-start-3 col-start-${i+3} flex justify-center text-gray-500`}>{d}</div>
@@ -43,10 +43,10 @@ export const QuaterPerYear = ({consultant, isGroup}) =>{
     if(indexOfMonth!==0&&indexOfMonth<5){
       return(
         <>
-          <div className={`col-start-6 row-span-${5-indexOfMonth} row-start-${3+indexOfMonth} bg-gray-200`}></div>
-          <div className={`col-start-7 row-span-${indexOfMonth} row-start-3 bg-gray-200`}></div>
-          <div className='col-start-6 row-span-4 row-start-8 bg-gray-200'></div>
-          <div className='col-start-6 row-span-4 row-start-12 bg-gray-200'></div>
+          <div className={`col-start-6 row-span-${5-indexOfMonth} row-start-${3+indexOfMonth} bg-active-radial`}></div>
+          <div className={`col-start-7 row-span-${indexOfMonth} row-start-3 bg-active-radial`}></div>
+          <div className='col-start-6 row-span-4 row-start-8 bg-active-radial'></div>
+          <div className='col-start-6 row-span-4 row-start-12 bg-active-radial'></div>
           {nineYearCycle.map((data,i)=>
             <>
               <div className={`row-start-3 col-start-${i+3} flex justify-center text-gray-500`}>{data}</div>
@@ -60,10 +60,10 @@ export const QuaterPerYear = ({consultant, isGroup}) =>{
     if(indexOfMonth>4&&indexOfMonth<9){
       return(
         <>
-          <div className={`col-start-6 row-span-${9-indexOfMonth} row-start-${3+indexOfMonth} bg-gray-200`}></div>
-          <div className={`${indexOfMonth===5?'': 'row-start-8' } col-start-7 row-span-${4-(9-indexOfMonth)} bg-gray-200`}></div>
-          <div className='col-start-7 row-span-5 row-start-3 bg-gray-200'></div>
-          <div className='col-start-6 row-span-4 row-start-12 bg-gray-200'></div>
+          <div className={`col-start-6 row-span-${9-indexOfMonth} row-start-${3+indexOfMonth} bg-active-radial`}></div>
+          <div className={`${indexOfMonth===5?'': 'row-start-8' } col-start-7 row-span-${4-(9-indexOfMonth)} bg-active-radial`}></div>
+          <div className='col-start-7 row-span-5 row-start-3 bg-active-radial'></div>
+          <div className='col-start-6 row-span-4 row-start-12 bg-active-radial'></div>
           {nineYearCycle.map((data,i)=>
             <>
               <div className={`row-start-8 col-start-${i+3} flex justify-center text-gray-500`}>{data}</div>
@@ -76,10 +76,10 @@ export const QuaterPerYear = ({consultant, isGroup}) =>{
     if(indexOfMonth>8&&indexOfMonth<12){
       return(
         <>
-          <div className={`col-start-6 row-span-${4-(9-indexOfMonth)} row-start-${3+indexOfMonth} bg-gray-200`}></div>
-          <div className={`${indexOfMonth===9?'':'row-start-12'} col-start-7 row-span-${4-(13-indexOfMonth)}  bg-gray-200`}></div>
-          <div className='col-start-7 row-span-5 row-start-3 bg-gray-200'></div>
-          <div className='col-start-7 row-span-4 row-start-8 bg-gray-200'></div>
+          <div className={`col-start-6 row-span-${4-(9-indexOfMonth)} row-start-${3+indexOfMonth} bg-active-radial`}></div>
+          <div className={`${indexOfMonth===9?'':'row-start-12'} col-start-7 row-span-${4-(13-indexOfMonth)}  bg-active-radial`}></div>
+          <div className='col-start-7 row-span-5 row-start-3 bg-active-radial'></div>
+          <div className='col-start-7 row-span-4 row-start-8 bg-active-radial'></div>
           {nineYearCycle.map((data,i)=>
             <>
               <div className={`row-start-12 col-start-${i+3} flex justify-center text-gray-500`}>{data}</div>
