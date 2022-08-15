@@ -974,4 +974,8 @@ export class Group {
     let intersection = base.filter(x => ! Object.keys(occurrences).includes(x));
     return intersection.toString()
   }
+  getDoubleLifeStageNumber(){}
+  hasDoubleStage(){
+    return false
+  }
 }

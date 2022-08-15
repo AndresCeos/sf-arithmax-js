@@ -983,7 +983,7 @@ calcDurationStage(stage){
 
   }
   reduceMonth(reduceSum){
-    if(reduceSum !== 11 || reduceSum !==12  ){
+    if(!(reduceSum === 11 || reduceSum ===12)  ){
       reduceSum = reduceSum.toString().split('').reduce((r,c)=>r += parseInt(c), 0);
     }
     return parseInt(reduceSum);
