@@ -24,7 +24,8 @@ import {
   NameActive,
   NameInhabitants,
   CalendarHead,
-  CalendarMonths
+  CalendarMonths,
+  CreateName
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -40,6 +41,7 @@ import lifePathImage from './assets/life-Path.jpg'
 import nameImage from './assets/name.jpg'
 import calendar_1 from './assets/calendar.jpg'
 import calendar_2 from './assets/calendar-02.jpg'
+import createName from './assets/create-name.jpg'
 
 export const PreviewPDF = () => {
 
@@ -49,8 +51,9 @@ export const PreviewPDF = () => {
         <Image src={pinnacleImage} style={configReport.pageBackground}></Image>
         <Image src={lifePathImage} style={configReport.pageBackground}></Image>
         <Image src={nameImage} style={configReport.pageBackground}></Image>
-        {/* <Image src={calendar_1} style={configReport.pageBackground}></Image>
-        <Image src={calendar_2} style={configReport.pageBackground}></Image> */}
+        <Image src={calendar_1} style={configReport.pageBackground}></Image>
+        <Image src={calendar_2} style={configReport.pageBackground}></Image>
+        <Image src={createName} style={configReport.pageBackground}></Image>
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -116,11 +119,13 @@ export const PreviewPDF = () => {
           <LifePathPersonalWeeks consultant={consultant} />
           <LifePathDialogs consultant={consultant} /> */}
 
-          <NameValues consultant={consultant} />
+          {/* <NameValues consultant={consultant} />
           <NamePotential consultant={consultant} />
           <NameTable consultant={consultant} />
           <NameActive consultant={consultant} />
-          <NameInhabitants consultant={consultant} />
+          <NameInhabitants consultant={consultant} /> */}
+
+          <CreateName consultant={consultant} />
 
           {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>

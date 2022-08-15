@@ -24,3 +24,5 @@ export * from './name/NameInhabitants'
 
 export * from './calendar/CalendarHead'
 export * from './calendar/CalendarMonths'
+
+export * from './createName/CreateName'

@@ -1,0 +1,53 @@
+import { Text, View } from "@react-pdf/renderer"
+import { StyleSheet } from '@react-pdf/renderer';
+
+export const CreateName = ({ consultant }) => {
+
+  const { name, lastName, scdLastName } = consultant
+
+
+  return (
+    <View style={pinnacleName.container}>
+      <View style={pinnacleName.wrap}>
+        <View style={[pinnacleName.circle, { left: 74, top: 42 }]}>
+          <Text>{consultant.fullName}</Text>
+        </View>
+        <View style={[pinnacleName.circle, { left: 135, top: 70, height: 13 }]}>
+          <Text>{consultant.getDayOfBirth()}</Text>
+        </View>
+        <View style={[pinnacleName.circle, { left: 202, top: 70, height: 13 }]}>
+          <Text>{consultant.getMonthOfBirth()}</Text>
+        </View>
+        <View style={[pinnacleName.circle, { left: 270, top: 70, height: 13 }]}>
+          <Text>{consultant.getYearOfBirth()}</Text>
+        </View>
+      </View>
+    </View>
+  )
+}
+
+export const pinnacleName = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: '0px',
+    left: '11px',
+    fontSize: '7px',
+    width: '271px',
+    // backgroundColor: 'red'
+  },
+  wrap: {
+    position: 'relative'
+  },
+  circle: {
+    // backgroundColor: '#00000090',
+    position: 'absolute',
+    // width: '20px',
+    height: '15px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#000',
+    fontSize: '7px',
+    top: '29px',
+  }
+})
