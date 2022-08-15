@@ -25,7 +25,8 @@ import {
   NameInhabitants,
   CalendarHead,
   CalendarMonths,
-  CreateName
+  CreateName,
+  CreateNumeric
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -126,6 +127,7 @@ export const PreviewPDF = () => {
           <NameInhabitants consultant={consultant} /> */}
 
           <CreateName consultant={consultant} />
+          <CreateNumeric consultant={consultant} />
 
           {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
