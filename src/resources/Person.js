@@ -2356,6 +2356,7 @@ export class Person{
   }
 
   getDaysOfWeekCustom(month, year = null){
+    console.log(month);
     year = year || this.NOW.year()
     String.prototype.capitalize = function() {
       return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
@@ -2363,7 +2364,7 @@ export class Person{
     const daysInMonth = this.getAllDaysInMonth(month, year)
     let daysCustom =[]
     const dayInWeek = this.getDaysOfWeek()
-    let firstDay = this.NOW.date(daysInMonth[0]).format('ddd')
+    let firstDay = this.NOW.month(month-1).date(daysInMonth[0]).format('ddd')
     firstDay = firstDay.replace(/\./g,'')
     let dayIndex = this.getDaysOfWeek().findIndex(i => i === firstDay.capitalize())
     for(let i= 0; i<7; i++){

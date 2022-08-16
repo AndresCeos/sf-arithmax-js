@@ -1,5 +1,7 @@
 import { Text, View } from '@react-pdf/renderer';
 import { StyleSheet } from '@react-pdf/renderer';
+import moment from 'moment/min/moment-with-locales'
+moment.locale("es-mx")
 
 export const CalendarMonths = ({consultant, newDate}) =>{
   const enero = consultant.getAllDaysInMonth(1)
@@ -14,20 +16,62 @@ export const CalendarMonths = ({consultant, newDate}) =>{
   const octubre = consultant.getAllDaysInMonth(10)
   const noviembre = consultant.getAllDaysInMonth(11)
   const diciembre = consultant.getAllDaysInMonth(12)
-  const daysCustom = consultant.getDaysOfWeekCustom(12,newDate.year())
-  console.log(daysCustom)
+  const daysCustom = consultant.getDaysOfWeekCustom(1)
+  console.log(daysCustom);
 
-  const monthsInDay = (month) =>{
 
+  const now = moment()
+
+  const MonthsInDay = ({month}) =>{
+    let mes = consultant.getAllDaysInMonth(month)
+    let sem1 = mes.slice(0,7)
+    let sem2 = mes.slice(7,14)
+    let sem3 = mes.slice(14,21)
+    let sem4 = mes.slice(21, 27)
+    let sem5 = mes.slice(27)
+    let daysOfWeek = consultant.getDaysOfWeekCustom(month)
     return(
-      <>{month.map((day, i)=>
-          <View>
-              <View>{day[0]}</View>
+      <>
+          <View style={calendar.daysRow}>
+            {sem1.map((day,index)=>
+              <View>
+                <Text style={calendar.days}>{day}</Text>
+              </View>
+              )}
           </View>
-        )}</>
+          <View style={calendar.daysRow}>
+            {sem2.map((day,index)=>
+              <View>
+                <Text style={calendar.days}>{day}</Text>
+              </View>
+              )}
+          </View>
+          <View style={calendar.daysRow}>
+          {sem3.map((day,index)=>
+          <View>
+            <Text style={calendar.days}>{day}</Text>
+          </View>
+          )}
+          </View>
+          <View style={calendar.daysRow}>
+          {sem4.map((day,index)=>
+          <View>
+            <Text style={calendar.days}>{day}</Text>
+          </View>
+          )}
+          </View>
+          <View style={calendar.daysRow}>
+          {sem5.map((day,index)=>
+          <View>
+            <Text style={calendar.days}>{day}</Text>
+          </View>
+          )}
+          </View>
+            
+      </>
     )
-  }
 
+  }
   const allMonths = consultant.getAllMonths()
 
 
@@ -62,6 +106,10 @@ export const CalendarMonths = ({consultant, newDate}) =>{
               <Text style={calendar.weektext}>4a Sem</Text>
               <Text style={[calendar.weektext, {fontWeight:'bold'}]}>{consultant.calcSelectPersonalWeek(1,4, newDate.year())}{consultant.calcSelectPersonalWeekISK(1,4, newDate.year())}/{consultant.calcUniversalWeek(1, 4, newDate.year())}{consultant.calcUniversalWeekISK(1,4, newDate.year())}</Text>
             </View>:''}
+            <View style={calendar.daysContainer}>
+            <MonthsInDay month={1}/>
+            </View>
+            
         </View>
 
         <View style={[calendar.wrap,calendar.wrap2 ]}>
@@ -223,6 +271,27 @@ export const CalendarMonths = ({consultant, newDate}) =>{
         <View style={[calendar.wrap,calendar.wrap8]}>
           <View style={calendar.head}><Text style={calendar.headMonth}>{allMonths[7]} {consultant.calcPersonalMonth(8, newDate.year())}{consultant.calcPersonalMonthISK(8, newDate.year())}/{consultant.calcUniversalMonth(8, newDate.year())}{consultant.calcUniversalMonthISK(8, newDate.year())}</Text></View>
           <View style={calendar.head}><Text style={calendar.headQuater}>Cuatrimestre: {consultant.getQuaterMonth(8, newDate.year())}{consultant.getQuaterMonthISK(8, newDate.year())}</Text></View>
+          <View style={calendar.week1}>
+            <Text style={calendar.weektext}>1a Sem</Text>
+            <Text style={[calendar.weektext, {fontWeight:'bold'}]}>{consultant.calcSelectPersonalWeek(8,1, newDate.year())}{consultant.calcSelectPersonalWeekISK(8,1, newDate.year())}/{consultant.calcUniversalWeek(8, 1, newDate.year())}{consultant.calcUniversalWeekISK(8,1, newDate.year())}</Text>
+          </View>
+          <View style={calendar.week2}>
+            <Text style={calendar.weektext}>2a Sem</Text>
+            <Text style={[calendar.weektext, {fontWeight:'bold'}]}>{consultant.calcSelectPersonalWeek(8,2, newDate.year())}{consultant.calcSelectPersonalWeekISK(8,2, newDate.year())}/{consultant.calcUniversalWeek(8, 2, newDate.year())}{consultant.calcUniversalWeekISK(8,2, newDate.year())}</Text>
+          </View>
+          <View style={calendar.week3}>
+            <Text style={calendar.weektext}>3a Sem</Text>
+            <Text style={[calendar.weektext, {fontWeight:'bold'}]}>{consultant.calcSelectPersonalWeek(8,3, newDate.year())}{consultant.calcSelectPersonalWeekISK(8,3, newDate.year())}/{consultant.calcUniversalWeek(8, 3, newDate.year())}{consultant.calcUniversalWeekISK(8,3, newDate.year())}</Text>
+          </View>
+          <View style={calendar.week4}>
+            <Text style={calendar.weektext}>4a Sem</Text>
+            <Text style={[calendar.weektext, {fontWeight:'bold'}]}>{consultant.calcSelectPersonalWeek(8,4, newDate.year())}{consultant.calcSelectPersonalWeekISK(8,4, newDate.year())}/{consultant.calcUniversalWeek(8, 4, newDate.year())}{consultant.calcUniversalWeekISK(8,4, newDate.year())}</Text>
+          </View>
+          {agosto.length>28?
+          <View style={calendar.week5}>
+            <Text style={calendar.weektext}>4a Sem</Text>
+            <Text style={[calendar.weektext, {fontWeight:'bold'}]}>{consultant.calcSelectPersonalWeek(8,4, newDate.year())}{consultant.calcSelectPersonalWeekISK(8,4, newDate.year())}/{consultant.calcUniversalWeek(8, 4, newDate.year())}{consultant.calcUniversalWeekISK(8,4, newDate.year())}</Text>
+          </View>:''}
         </View>
 
 
@@ -308,6 +377,21 @@ export const calendar = StyleSheet.create({
     display:'block',
     top:'181px',
     left:'28px',
+    position:'absolute'
+  },
+  days:{
+    fontSize:'6px'
+  },
+  daysRow:{
+    display:'flex',
+    flexDirection:'row'
+  },
+  daysContainer:{
+    width:'175px',
+    top:'112px',
+    display:'flex',
+    flexDirection:'column',
+    left:'60px',
     position:'absolute'
   },
   weektext:{
