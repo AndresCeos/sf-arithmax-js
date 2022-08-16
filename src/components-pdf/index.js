@@ -20,6 +20,13 @@ export * from './name/NameValues'
 export * from './name/NamePotential'
 export * from './name/NameTable'
 export * from './name/NameActive'
+export * from './name/NameInhabitants'
 
 export * from './calendar/CalendarHead'
 export * from './calendar/CalendarMonths'
+
+export * from './createName/CreateName'
+export * from './createName/CreateNumeric'
+export * from './createName/CreateTable'
+export * from './createName/CreatePinnacle'
+export * from './createName/CreateBreakdown'
