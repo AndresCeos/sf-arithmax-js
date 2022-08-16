@@ -28,7 +28,8 @@ import {
   CreateName,
   CreateNumeric,
   CreateTable,
-  CreatePinnacle
+  CreatePinnacle,
+  CreateBreakdown
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -132,6 +133,7 @@ export const PreviewPDF = () => {
           <CreateNumeric consultant={consultant} />
           <CreateTable consultant={consultant} />
           <CreatePinnacle consultant={consultant} />
+          <CreateBreakdown consultant={consultant} />
 
           {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
