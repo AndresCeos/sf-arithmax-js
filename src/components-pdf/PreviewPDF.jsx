@@ -25,6 +25,9 @@ import {
   NameInhabitants,
   CalendarHead,
   CalendarMonths,
+  CalendarMonths2,
+  CalendarHeadMonth,
+  CalendarMonth,
   CreateName,
   CreateNumeric,
   CreateTable,
@@ -46,6 +49,7 @@ import nameImage from './assets/name.jpg'
 import calendar_1 from './assets/calendar.jpg'
 import calendar_2 from './assets/calendar-02.jpg'
 import createName from './assets/create-name.jpg'
+import calendarMonth from './assets/calendar-month.jpg'
 
 export const PreviewPDF = () => {
 
@@ -58,6 +62,7 @@ export const PreviewPDF = () => {
         <Image src={calendar_1} style={configReport.pageBackground}></Image>
         <Image src={calendar_2} style={configReport.pageBackground}></Image>
         <Image src={createName} style={configReport.pageBackground}></Image>
+        <Image src={calendarMonth} style={configReport.pageBackground}></Image>
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -129,19 +134,23 @@ export const PreviewPDF = () => {
           <NameActive consultant={consultant} />
           <NameInhabitants consultant={consultant} /> */}
 
-          <CreateName consultant={consultant} />
+          {/*<CreateName consultant={consultant} />
           <CreateNumeric consultant={consultant} />
           <CreateTable consultant={consultant} />
           <CreatePinnacle consultant={consultant} />
-          <CreateBreakdown consultant={consultant} />
+          <CreateBreakdown consultant={consultant} />*/}
 
           {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
           <VibrationTimeCycle consultant={consultant} newDate={newDate}></VibrationTimeCycle>
           <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY> */}
 
-          {/* <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
-          <CalendarMonths consultant={consultant} newDate={newDate}></CalendarMonths> */}
+         {/* <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
+          <CalendarMonths consultant={consultant} newDate={newDate}></CalendarMonths>
+          <CalendarMonths2 consultant={consultant} newDate={newDate}></CalendarMonths2>*/}
+
+          <CalendarHeadMonth consultant={consultant} newDate={newDate} ></CalendarHeadMonth>
+          <CalendarMonth consultant={consultant} newDate={newDate} month={8}></CalendarMonth>
         </Template>
       </PDFViewer>
     </>

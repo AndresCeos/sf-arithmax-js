@@ -2359,6 +2359,7 @@ export class Person {
     }
   }
   getAllDaysInMonth(month, year = null) {
+    console.log('mes => '+month   );
     year = year || this.NOW.year()
     return Array.from(Array(moment(`${year}-${month}`).daysInMonth()), (_, i) => i + 1)
   }

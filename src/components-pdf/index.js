@@ -22,8 +22,12 @@ export * from './name/NameTable'
 export * from './name/NameActive'
 export * from './name/NameInhabitants'
 
-export * from './calendar/CalendarHead'
-export * from './calendar/CalendarMonths'
+export * from './calendarAnual/CalendarHead'
+export * from './calendarAnual/CalendarMonths'
+export * from './calendarAnual/CalendarMonths2'
+
+export * from './calendarMonth/CalendarHeadMonth'
+export * from './calendarMonth/CalendarMonth'
 
 export * from './createName/CreateName'
 export * from './createName/CreateNumeric'

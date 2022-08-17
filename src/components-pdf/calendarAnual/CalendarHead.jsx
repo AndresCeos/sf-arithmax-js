@@ -28,11 +28,15 @@ export const calendar = StyleSheet.create({
     left:'100px'
   },
   persYear:{
+    width:'30px',
     top:'45px',
-    left:'240px'
+    left:'240px',
+    fontSize:'12px'
   },
   univYear:{
+    width:'30px',
     top:'45px',
-    left:'300px'
+    left:'300px',
+    fontSize:'12px'
   }
 })
