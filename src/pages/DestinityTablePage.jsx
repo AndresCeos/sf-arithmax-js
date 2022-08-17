@@ -65,7 +65,7 @@ const DestinityTablePage = () => {
                 <strong className='text-13 text-gray-400 mb-2'>
                   Ciclos del Nombre:
                 </strong>
-                <div className='h-10 text-2xl font-black text-black flex justify-center items-center bg-white border border-red inner-shadow px-4 rounded-md'>
+                <div className='h-10 text-2xl  text-black flex justify-center items-center bg-white border border-red inner-shadow px-4 rounded-md'>
                   {nameCycles.toString()}
                 </div>
               </div>
@@ -73,7 +73,7 @@ const DestinityTablePage = () => {
                 <strong className='text-13 text-gray-400 mb-2'>
                   Subciclos del Nombre:
                 </strong>
-                <div className='h-10 text-2xl font-black text-black flex justify-center items-center bg-white border border-green inner-shadow px-4 rounded-md'>
+                <div className='h-10 text-2xl  text-black flex justify-center items-center bg-white border border-green inner-shadow px-4 rounded-md'>
                   {nameSubCycles.slice(0, 10).toString()}
                 </div>
               </div>

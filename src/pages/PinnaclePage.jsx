@@ -164,11 +164,17 @@ const PinnaclePage = () => {
                     </div>
                   </div>
                   <div className='grid grid-cols-2 text-xs mt-5'>
-                    <div className='flex gap-1'>
+                    <div className='flex gap-1 col-start-1 row-start-1'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> 0 - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } años
                     </div>
-                    {(secondStage)?<div className='flex gap-1'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> 0 - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } años
+                    {(secondStage)?<div className='flex gap-1 col-start-1 row-start-2'>
+                      <FaArrowAltCircleUp color='#51A133' size={14} /> 0 - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } años
+                    </div>:''}
+                    <div className='flex gap-1 col-start-2 row-start-1'>
+                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(4) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(5) - consultant.birthDate.year() } años
+                    </div>
+                    {(secondStage)?<div className='flex gap-1 col-start-2 row-start-2'>
+                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year() } años
                     </div>:''}
                   </div>
                 </div>
@@ -196,11 +202,17 @@ const PinnaclePage = () => {
                     </div>
                   </div>
                   <div className='grid grid-cols-2 text-xs mt-5'>
-                    <div className='flex gap-1'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 } años
+                  <div className='flex gap-1 col-start-1 row-start-1'>
+                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(2) - consultant.birthDate.year() } años
                     </div>
-                    {(secondStage)?<div className='flex gap-1'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 9 } años
+                    {(secondStage)?<div className='flex gap-1 col-start-1 row-start-2'>
+                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year() } años
+                    </div>:''}
+                    <div className='flex gap-1 col-start-2 row-start-1'>
+                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(5) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(6) - consultant.birthDate.year() } años
+                    </div>
+                    {(secondStage)?<div className='flex gap-1 col-start-2 row-start-2'>
+                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year() } años
                     </div>:''}
                   </div>
                 </div>
@@ -228,11 +240,17 @@ const PinnaclePage = () => {
                     </div>
                   </div>
                   <div className='grid grid-cols-2 text-xs mt-5'>
-                    <div className='flex gap-1'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18 } años
+                  <div className='flex gap-1 col-start-1 row-start-1'>
+                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(2) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(3) - consultant.birthDate.year() } años
                     </div>
-                    {(secondStage)?<div className='flex gap-1'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 9 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 18 } años
+                    {(secondStage)?<div className='flex gap-1 col-start-1 row-start-2'>
+                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year() } años
+                    </div>:''}
+                    <div className='flex gap-1 col-start-2 row-start-1'>
+                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(6) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(7) - consultant.birthDate.year() } años
+                    </div>
+                    {(secondStage)?<div className='flex gap-1 col-start-2 row-start-2'>
+                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(7) - consultant.birthDate.year() } años
                     </div>:''}
                   </div>
                 </div>
@@ -260,11 +278,11 @@ const PinnaclePage = () => {
                     </div>
                   </div>
                   <div className='grid grid-cols-2 text-xs mt-5'>
-                    <div className='flex gap-1'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18 } - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27 } años
+                  <div className='flex gap-1 col-start-1 row-start-1'>
+                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(3) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(4) - consultant.birthDate.year() } años
                     </div>
-                    {(secondStage)?<div className='flex gap-1'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 18 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 27 } años
+                    {(secondStage)?<div className='flex gap-1 col-start-1 row-start-2'>
+                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year() } años
                     </div>:''}
                   </div>
                 </div>

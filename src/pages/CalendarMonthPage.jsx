@@ -43,7 +43,7 @@ const CalendarMonthPage = () =>{
               </div>
               <div className="text-black font-bold text-xl px-2"> / </div>
               <div className=" px-2">
-                <CircleNumber  size="sm" appearance="purple-30" border="main">
+                <CircleNumber  size="sm" appearance="main" border="main">
                   {consultant.calcUniversalYear(newDate.year())}
                   {consultant.calcUniversalYearISK(newDate.year())}
                 </CircleNumber>

@@ -5,15 +5,20 @@ const now = moment()
 export const clientConfig = {
   siteUrl: 'https://app.numerologia-cotidiana.com'
 }
+const getAllMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+const getAllMonthsEnglish = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
 
 export const formatDate = dateStr => {
   const date = moment( dateStr )
-  return `${date.date()} de ${date.format("MMMM")} ${date.year()}`
+  let index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
+  return `${date.date()} de ${getAllMonths[index]} ${date.year()}`
 }
 
 export const currentDate = (date = null) => {
   date = date || now
-  return `${date.date()} ${date.format("MMMM")} ${date.year()}`
+  let index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
+  return `${date.date()} ${getAllMonths[index]} ${date.year()}`
 }
 
 export const pageName = location => {

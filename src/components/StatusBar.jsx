@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { dateSelect } from '../hooks';
-
+import {currentDate } from '../resources';
 import { ConsultantPicker } from './';
 
 export const StatusBar = ({consultant}) => {
@@ -31,7 +31,7 @@ export const StatusBar = ({consultant}) => {
       </div>
       <div>
         Fecha de Consulta:
-        <strong className='ml-2'>{ newDate.date()+' '+newDate.format('MMMM')+' '+newDate.year() }</strong>
+        <strong className='ml-2'>{currentDate(newDate) }</strong>
       </div>
     </div>
   )

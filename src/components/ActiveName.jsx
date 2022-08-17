@@ -28,8 +28,8 @@ export const ActiveName = ({ table, start, consultant, nameCycles }) => {
         <div key={i} className='w-8'>
           <div className={`h-30 text-11 ${ bkConfig(i + start, 'bg-main-30' ) } flex items-center justify-center border-t border-gray-500 border-r w-8`}>{consultant.getYearOfBirth() + i + start} </div>
           <div className={`h-30 text-13 ${ bkConfig(i + start, 'bg-main-15' ) } flex items-center justify-center border-r border-t border-b border-gray-500`}>{i + start} </div>
-          <div className={`h-60 text-13 ${ bkConfig(i + start, 'bg-gray-300' ) } text-black border-r border-b border-gray-500 flex flex-col items-center justify-center`}>
-            <strong className='h-30 flex items-center justify-center border-b border-gray-500 w-full text-center'>{el.pmC}</strong>
+          <div className={`h-60 text-13 ${ bkConfig(i + start, '' ) } text-black border-r border-b border-gray-500 flex flex-col items-center justify-center`}>
+            <strong className='h-30 flex items-center justify-center border-b border-gray-500 w-full text-center bg-gray-300'>{el.pmC}</strong>
             <label  className={`h-30 text-xs flex items-center justify-center ${ ! isCycle ? 'bg-white' : '' } w-full text-center overflow-hidden`}>{el.pmN}/{el.pmD}</label>
           </div>
         </div>

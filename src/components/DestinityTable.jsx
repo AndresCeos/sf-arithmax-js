@@ -55,21 +55,21 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
       </div>
       { table.map( (el, i) =>
         <div key={i} className='nameBreakdown'>
-          <div className={`h-6 w-30 text-10 font-black ${bkConfig( i + start, 'bg-main-30')} text-center border-t border-gray-400 border-r`}>
+          <div className={`h-6 w-30 text-10  ${bkConfig( i + start, 'bg-main-30')} text-center border-t border-gray-400 border-r`}>
             {consultant.getYearOfBirth() + i + start}
           </div>
           <div className={`h-6 w-30 text-13 ${bkConfig( i + start, 'bg-black bg-opacity-10')} text-center border-b border-r border-gray-400`}>{i + start} </div>
           <div className={`h-12 w-30 text-13 ${bkConfig( i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
             <strong className='h-6 text-center border-b border-gray-400 w-full'>{el.pmC}</strong>
-            <label className='h-6 text-center'>{el.pmN}/{el.pmD}</label>
+            <label className='h-6 text-center text-10'>{el.pmN}/{el.pmD}</label>
           </div>
           <div className={`h-12 w-30 text-13 ${bkConfig( i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
             <strong className='h-6 text-center border-b border-gray-400 w-full'>{el.pMC}</strong>
-            <label className='h-6 text-center'>{el.pMN}/{el.pMD}</label>
+            <label className='h-6 text-center text-10'>{el.pMN}/{el.pMD}</label>
           </div>
           <div className={`h-12 w-30 text-13 ${bkConfig( i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
             <strong className='h-6 text-center border-b border-gray-400 w-full'>{el.pfC}</strong>
-            <label className='h-6 text-center'>{el.pfN}/{el.pfD}</label>
+            <label className='h-6 text-center text-10'>{el.pfN}/{el.pfD}</label>
           </div>
           <div className={`h-10 w-30 text-13 ${bkConfig( i + start, 'bg-pink')} border-b border-r border-gray-400 flex items-center justify-center`}>
             <strong>{consultant.reduceNumber( el.pmD + el.pMD + el.pfD)}</strong>
