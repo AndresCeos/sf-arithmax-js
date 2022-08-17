@@ -20,13 +20,10 @@ export const SingleMonth = ( {consultant, month, single})=>{
   const allMonths = consultant.getAllMonths()
   // console.log(newDate.year());
   // console.log('mes=> '+month);
-  let daysInMonthSingle
-  let daysCustomSingle
+  let daysInMonthSingle = consultant.getAllDaysInMonth(singleMonth, newDate.year() )
+  let daysCustomSingle = consultant.getDaysOfWeekCustom(singleMonth,newDate.year())
   // console.log("single month => "+singleMonth);
-  if(single){
-    daysInMonthSingle = consultant.getAllDaysInMonth(newDate.month()+1, newDate.year() )
-    daysCustomSingle = consultant.getDaysOfWeekCustom(newDate.month()+1,newDate.year())
-  }
+ 
 
   const currentMonthNumber =moment().month();
   let currentMonth = now.month(month-1).format('MMMM')
