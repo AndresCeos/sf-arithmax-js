@@ -1,6 +1,7 @@
 import pinnacle from '../assets/pinnacle.svg'
 
 export const Pinnacle = ({ consultant, size, checkP }) => {
+
   return(
     <div id="pinaculo" className={`relative ${size !== undefined ? size : ''}`}>
 

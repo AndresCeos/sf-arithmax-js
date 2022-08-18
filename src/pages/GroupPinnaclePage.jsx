@@ -30,10 +30,6 @@ const  GroupPinnaclePage = () =>{
   const isEmptyGroup = Object.keys(userActive.group).length === 0;
   const list = groupConsult.getGroup()
   const annualReturnGroup = groupConsult.annualReturn(newDate.year())
-console.log('ausensias => '+ groupConsult.getAbsences());
-let  abs= groupConsult.getAbsences()
-let arr =abs.split(',')
-console.log(arr);
 
   const nextPerson = () =>{
     if(index2 === list.length-1){

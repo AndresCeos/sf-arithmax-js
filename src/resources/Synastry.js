@@ -809,7 +809,9 @@ calcDurationStage(stage){
   getAllMonths(){
     return ['Enero', 'Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
   }
-
+  getAllMonthsEnglish() {
+    return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  }
   getCustomMonths(){
     let consultantBirthate = this.consultant.getBirthDate()
     let partnerBirthate = this.partner.getBirthDate()

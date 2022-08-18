@@ -6,13 +6,16 @@ export const PathMonth = ({consultant})=>{
   const {newDate} = dateSelect()
   const listOfMonths = consultant.getCustomMonths()
   const allMonths = consultant.getAllMonths()
+  const allMonthsEn = consultant.getAllMonthsEnglish()
   const index = listOfMonths.findIndex(i => i === 'Enero')
+  console.log(listOfMonths[index]);
   let quaterOne =[]
   let quaterTwo =[]
   let quaterThree =[]
   let quaterFour =[]
-
-  const actualMonth = newDate.format('MMMM');
+  let indexSp =allMonthsEn.findIndex(i => i ===newDate.format('MMMM') )
+  const actualMonth = allMonths[indexSp];
+  console.log(actualMonth)
   switch(index){
         case 0:
             quaterOne = [listOfMonths[0],listOfMonths[1],listOfMonths[2],listOfMonths[3], listOfMonths[4]]

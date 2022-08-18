@@ -23,13 +23,16 @@ export const QuaterPerMonth = ({consultant}) =>{
   const quater2KarmicoLast = consultant.getQuaterTwoISK(lastYear)
   const quater3KarmicoLast = consultant.getQuaterThreeISK(lastYear)
   const personalYearISK = consultant.calcPersonalYearISK(newDate.year())
-
+  const allMonths = consultant.getAllMonths()
+  const allMonthsEn = consultant.getAllMonthsEnglish()
   let m1, m2, m3, m4, cm1, cm2, cm3, cm4 = ''
   let ism1, ism2, ism3, ism4 = false
   const now2 = moment()
 
   const personalYear = consultant.calcPersonalYear(newDate.year())
-  const actualMonth = newDate.format('MMMM');
+  let indexSp =allMonthsEn.findIndex(i => i ===newDate.format('MMMM') )
+  const actualMonth = allMonths[indexSp];
+  console.log(actualMonth);
   const index = listOfMonths.findIndex(i => i === 'Enero')
   const currentMonth = listOfMonths.findIndex(i => i === capitalize(actualMonth))
   switch(index){
