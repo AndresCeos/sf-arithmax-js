@@ -816,6 +816,7 @@ svg {
     #pinaculo.small .pinncle-letter {
         font-size: 17px;
     }
+
     #pinaculo.small .pinncle-letter[data-letter="B"] {
         font-size: 27px;
     }
@@ -930,6 +931,7 @@ svg {
 #pinaculo.small .pinnacle-absents {
     font-size: 20px;
     line-height: 20px;
+    padding: 5px;
 }
 
 .box-pinnacle {
@@ -1559,7 +1561,7 @@ svg {
     height: 1px;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%) rotate( 90deg);
+    transform: translate(-50%, -50%) rotate(90deg);
     z-index: 0;
 }
 
@@ -2802,12 +2804,14 @@ top: 134px;
 }
 
 @media (max-width: 1440px) {
+
     .nameBreakdown,
     .destinity-table,
     .active-name {
         transform: scale(0.9);
         transform-origin: top;
     }
+
     .destinity-table .nameBreakdown {
         transform: scale(1);
         transform-origin: top;
@@ -2818,18 +2822,22 @@ top: 134px;
     #main-menu img {
         max-width: 25px;
     }
+
     #main-menu .px-3 {
         padding-left: 0.25rem;
         padding-right: 0.25rem;
     }
+
     #App-content>.grid {
         transform: scale(0.9);
         transform-origin: top;
     }
+
     #App-content>.mx-14 {
         margin-left: 0;
         margin-right: 0;
     }
+
     .nameBreakdown div {
         /* width: 30px; */
     }
@@ -2839,20 +2847,25 @@ top: 134px;
     body {
         /* width: 1260px; */
     }
+
     #App-content>.grid {
         transform: scale(0.88);
         transform-origin: top;
     }
+
     #main-menu img {
         max-width: 35px;
     }
+
     #main-menu .px-3 {
         font-size: 0;
         line-height: 0;
     }
+
     #main-menu .px-3 br {
         display: none;
     }
+
     .pinnacle-wrap {
         padding: 10px;
     }
