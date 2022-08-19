@@ -13,24 +13,24 @@ export const UsersForm = (props) => {
 
   const handleCancel = e => {
     e.preventDefault()
-    dispatch( setIsEditing(false) )
+    dispatch(setIsEditing(false))
   }
 
-  return(
+  return (
     <Formik
       enableReinitialize
-      initialValues={ isEditing ?
-        { names: dataUserEdit.names, date: dataUserEdit.date,lastName:dataUserEdit.lastName,scdLastName:dataUserEdit.scdLastName }
+      initialValues={isEditing ?
+        { names: dataUserEdit.names, date: dataUserEdit.date, lastName: dataUserEdit.lastName, scdLastName: dataUserEdit.scdLastName }
         :
-        { names: '', date: '',lastName:'',scdLastName:'',partner:[],group:[], dateGroup:null}
+        { names: '', date: '', lastName: '', scdLastName: '', partner: [], group: [], dateGroup: null }
       }
-      validate={ values => {
+      validate={values => {
         const errors = {};
-        const letters = /^[A-Za-z ]+$/
+        const letters = /^[a-z áéíóúñ]+$/i
         if (!values.names) {
           errors.names = 'Requerido';
         }
-        if (!values.names.match( letters )) {
+        if (!values.names.match(letters)) {
           errors.names = 'No valido';
         }
         if (!values.date) {
@@ -39,150 +39,152 @@ export const UsersForm = (props) => {
         if (!values.lastName) {
           errors.lastName = 'Requerido';
         }
-        if (!values.lastName.match( letters )) {
+        if (!values.lastName.match(letters)) {
           errors.lastName = 'No valido';
         }
         if (!values.scdLastName) {
           errors.scdLastName = 'Requerido';
         }
-        if (!values.scdLastName.match( letters )) {
+        if (!values.scdLastName.match(letters)) {
           errors.scdLastName = 'No valido';
         }
         return errors;
-      } }
-      onSubmit={ (user, { setSubmitting, resetForm } ) => {
+      }}
+      onSubmit={(user, { setSubmitting, resetForm }) => {
         if (isEditing) {
           user.id = dataUserEdit.id;
           user.partner = dataUserEdit.partner
           user.group = dataUserEdit.group
-          dispatch( editUser(user) )
+          dispatch(editUser(user))
           dispatch(showToast({
             message: 'Consultante actualizado',
             type: 'success',
-            show: true } ) )
+            show: true
+          }))
         } else {
-          dispatch(addUser( user ))
+          dispatch(addUser(user))
           dispatch(showToast({
             message: 'Consultante agregado',
             type: 'success',
-            show: true } ) )
+            show: true
+          }))
         }
         setSubmitting(false);
         resetForm({})
       }}
     >
-    {({
-      values,
-      errors,
-      touched,
-      handleChange,
-      handleBlur,
-      handleSubmit,
-      isSubmitting,
-      /* and other goodies */
-    }) => (
-      <form id='App-add-user-form' className="form-container block" onSubmit={handleSubmit}>
-        <div className="flex w-full">
-          <div className="form-group w-1/3">
-            <label className='font-bold mb-1'>
-              Nombre(s)
-              <span className='text-red-800'>*</span>
-            </label>
-            <input
-              type="text"
-              name="names"
-              className="rounded"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.names}
-            />
-            {errors.names && touched.names ? <span className="form-error">{errors.names}</span>  : null }
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+        /* and other goodies */
+      }) => (
+        <form id='App-add-user-form' className="form-container block" onSubmit={handleSubmit}>
+          <div className="flex w-full">
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>
+                Nombre(s)
+                <span className='text-red-800'>*</span>
+              </label>
+              <input
+                type="text"
+                name="names"
+                className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.names}
+              />
+              {errors.names && touched.names ? <span className="form-error">{errors.names}</span> : null}
+            </div>
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>
+                Apellido Paterno
+                <span className='text-red-800'>*</span>
+              </label>
+              <input
+                type="text"
+                name="lastName"
+                className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.lastName}
+              />
+              {errors.lastName && touched.lastName ? <span className="form-error">{errors.lastName}</span> : null}
+            </div>
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>
+                Apellido Materno
+                <span className='text-red-800'>*</span>
+              </label>
+              <input
+                type="text"
+                name="scdLastName"
+                className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.scdLastName}
+              />
+              {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span> : null}
+            </div>
           </div>
-          <div className="form-group w-1/3">
-            <label className='font-bold mb-1'>
-              Apellido Paterno
-              <span className='text-red-800'>*</span>
-            </label>
-            <input
-              type="text"
-              name="lastName"
-              className="rounded"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.lastName}
-            />
-            {errors.lastName && touched.lastName ? <span className="form-error">{errors.lastName}</span>  : null }
+          <div className="flex w-full mt-3">
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>
+                Fecha de Nacimiento
+                <span className='text-red-800'>*</span>
+              </label>
+              <input
+                type="date"
+                name="date"
+                className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.date}
+              />
+              {errors.date && touched.date ? <span className="form-error">{errors.date}</span> : null}
+            </div>
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>Nacionalidad</label>
+              <input
+                type="text"
+                name="nat"
+                className="rounded"
+              />
+            </div>
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>Sexo</label>
+              <input
+                type="text"
+                name="sex"
+                className="rounded"
+              />
+            </div>
           </div>
-          <div className="form-group w-1/3">
-            <label className='font-bold mb-1'>
-              Apellido Materno
-              <span className='text-red-800'>*</span>
-            </label>
-            <input
-              type="text"
-              name="scdLastName"
-              className="rounded"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.scdLastName}
-            />
-            {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span>  : null }
+          <div className="flex w-full gap-4 mt-3 items-center">
+            <div className='form-group w-2/3'>
+              <label className='font-bold mb-1'>Motivo de la Consulta</label>
+              <textarea className='rounded'></textarea>
+            </div>
+            <div className='w-1/3'>
+              {(!isEditing) ?
+                <div className='text-center flex justify-center items-center flex-col'>
+                  <img src={add_user_main} className="mb-3" alt='add_user_main' />
+                  <button type="submit" className="btn-save w-full" disabled={isSubmitting}>Guardar</button>
+                </div>
+                :
+                <div className='w-full flex flex-wrap'>
+                  <button className='w-full btn-conf mb-3' type="submit" disabled={isSubmitting}>Confirmar</button>
+                  <button className='w-full btn-cancel' type='button' onClick={handleCancel} >Cancelar</button>
+                </div>
+              }
+            </div>
           </div>
-        </div>
-        <div className="flex w-full mt-3">
-          <div className="form-group w-1/3">
-            <label className='font-bold mb-1'>
-              Fecha de Nacimiento
-              <span className='text-red-800'>*</span>
-            </label>
-            <input
-              type="date"
-              name="date"
-              className="rounded"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.date}
-            />
-            {errors.date && touched.date ? <span className="form-error">{errors.date}</span>  : null }
-          </div>
-          <div className="form-group w-1/3">
-            <label className='font-bold mb-1'>Nacionalidad</label>
-            <input
-              type="text"
-              name="nat"
-              className="rounded"
-            />
-          </div>
-          <div className="form-group w-1/3">
-            <label className='font-bold mb-1'>Sexo</label>
-            <input
-              type="text"
-              name="sex"
-              className="rounded"
-            />
-          </div>
-        </div>
-        <div className="flex w-full gap-4 mt-3 items-center">
-          <div className='form-group w-2/3'>
-            <label className='font-bold mb-1'>Motivo de la Consulta</label>
-            <textarea className='rounded'></textarea>
-          </div>
-          <div className='w-1/3'>
-            { (!isEditing) ?
-              <div className='text-center flex justify-center items-center flex-col'>
-                <img src={add_user_main} className="mb-3" alt='add_user_main'/>
-                <button type="submit" className="btn-save w-full" disabled={isSubmitting}>Guardar</button>
-              </div>
-              :
-              <div className='w-full flex flex-wrap'>
-                <button className='w-full btn-conf mb-3'  type="submit"  disabled={isSubmitting}>Confirmar</button>
-                <button className='w-full btn-cancel' type='button' onClick={ handleCancel } >Cancelar</button>
-              </div>
-            }
-          </div>
-        </div>
-      </form>
-    )}
+        </form>
+      )}
     </Formik>
   )
 }
