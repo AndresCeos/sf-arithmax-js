@@ -32,7 +32,8 @@ import {
   CreateNumeric,
   CreateTable,
   CreatePinnacle,
-  CreateBreakdown
+  CreateBreakdown,
+  AnnualReturns
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -40,7 +41,7 @@ import { useSelector } from 'react-redux';
 import { UnselectedConsultant } from '../components/UnselectedConsultant';
 import moment from 'moment/min/moment-with-locales'
 import { BridgeStage } from './BridgeStage';
-import { AnnualReturns } from './AnnualReturns';
+// import { AnnualReturns } from './AnnualReturns';
 moment.locale("es-mx")
 
 import pinnacleImage from './assets/pinnacle.jpg'
@@ -139,6 +140,7 @@ export const PreviewPDF = () => {
           <CreateTable consultant={consultant} />
           <CreatePinnacle consultant={consultant} />
           <CreateBreakdown consultant={consultant} />
+          <AnnualReturns consultant={consultant} />
 
           {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
