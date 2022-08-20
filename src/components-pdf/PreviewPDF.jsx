@@ -33,7 +33,7 @@ import {
   CreateTable,
   CreatePinnacle,
   CreateBreakdown,
-  AnnualReturns
+  // AnnualReturns
 } from '../components-pdf/';
 
 import { dateSelect, useConsultant } from '../hooks';
@@ -42,6 +42,8 @@ import { UnselectedConsultant } from '../components/UnselectedConsultant';
 import moment from 'moment/min/moment-with-locales'
 import { BridgeStage } from './BridgeStage';
 // import { AnnualReturns } from './AnnualReturns';
+import { AnnualReturns } from './annualReturns/AnnualReturns';
+import { TimeCicle } from './annualReturns/TimeCicle';
 moment.locale("es-mx")
 
 import pinnacleImage from './assets/pinnacle.jpg'
@@ -51,6 +53,7 @@ import calendar_1 from './assets/calendar.jpg'
 import calendar_2 from './assets/calendar-02.jpg'
 import createName from './assets/create-name.jpg'
 import calendarMonth from './assets/calendar-month.jpg'
+import annualReturns from './assets/annual-returns.jpg'
 
 export const PreviewPDF = () => {
 
@@ -63,7 +66,8 @@ export const PreviewPDF = () => {
         <Image src={calendar_1} style={configReport.pageBackground}></Image>
         <Image src={calendar_2} style={configReport.pageBackground}></Image>
         <Image src={createName} style={configReport.pageBackground}></Image>
-        {/* <Image src={calendarMonth} style={configReport.pageBackground}></Image> */}
+        <Image src={calendarMonth} style={configReport.pageBackground}></Image>
+        <Image src={annualReturns} style={configReport.pageBackground}></Image>
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -135,12 +139,12 @@ export const PreviewPDF = () => {
           <NameActive consultant={consultant} />
           <NameInhabitants consultant={consultant} /> */}
 
-          <CreateName consultant={consultant} />
+          {/* <CreateName consultant={consultant} />
           <CreateNumeric consultant={consultant} />
           <CreateTable consultant={consultant} />
           <CreatePinnacle consultant={consultant} />
           <CreateBreakdown consultant={consultant} />
-          <AnnualReturns consultant={consultant} />
+          <AnnualReturns consultant={consultant} /> */}
 
           {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
           <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
@@ -153,6 +157,9 @@ export const PreviewPDF = () => {
 
           {/* <CalendarHeadMonth consultant={consultant} newDate={newDate} ></CalendarHeadMonth>
           <CalendarMonth consultant={consultant} newDate={newDate} month={8}></CalendarMonth> */}
+
+          <AnnualReturns consultant={consultant} />
+          <TimeCicle consultant={consultant} newDate={newDate} />
 
         </Template>
       </PDFViewer>
