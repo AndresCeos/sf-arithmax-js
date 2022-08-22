@@ -112,14 +112,11 @@ return(
         <Text style={[calendar.weektext,{color:'#7E7E7E'}]}>4a Sem</Text>
         <Text style={[calendar.weektext, {fontWeight:'bold'}]}>{consultant.calcSelectPersonalWeek(month,4, newDate.year())}{consultant.calcSelectPersonalWeekISK(month,4, newDate.year())}/{consultant.calcUniversalWeek(month, 4, newDate.year())}{consultant.calcUniversalWeekISK(month,4, newDate.year())}</Text>
       </View>:''}
-     
-
 
         </View>
         <View style={[calendar.daysContainer]}>
           <MonthsInDay />
         </View>
-        
       </View>
     </View>
   </>
@@ -228,12 +225,16 @@ export const calendar = StyleSheet.create({
     left:'100px',
   },
   example:{
-    width:'57px',
+    width:'56.5px',
     height:'40px',
     display:'flex',
     textAlign:'center',
     flexDirection:'column',
     justifyContent:'center',
+    borderRight:1,
+    borderRightColor:'#7E7E7E',
+    borderBottom:1,
+    borderBottomColor:'#7E7E7E'
   },
   days:{
     fontSize:'14px',

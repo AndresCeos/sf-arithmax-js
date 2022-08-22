@@ -29,6 +29,8 @@ import {
   CalendarHeadMonth,
   CalendarMonth,
   CreateName,
+  Circle,
+  MonthCircle,
   CreateNumeric,
   CreateTable,
   CreatePinnacle,
@@ -50,6 +52,7 @@ import calendar_1 from './assets/calendar.jpg'
 import calendar_2 from './assets/calendar-02.jpg'
 import createName from './assets/create-name.jpg'
 import calendarMonth from './assets/calendar-month.jpg'
+import circleTime from'./assets/circle-time.jpeg'
 
 export const PreviewPDF = () => {
 
@@ -63,6 +66,7 @@ export const PreviewPDF = () => {
         <Image src={calendar_2} style={configReport.pageBackground}></Image>
         <Image src={createName} style={configReport.pageBackground}></Image>
         <Image src={calendarMonth} style={configReport.pageBackground}></Image>
+        <Image src={circleTime} style={configReport.pageBackground}></Image>
         <View style={configReport.header}>
 
           <View style={configReport.header_consultor_name}>
@@ -145,12 +149,15 @@ export const PreviewPDF = () => {
           <VibrationTimeCycle consultant={consultant} newDate={newDate}></VibrationTimeCycle>
           <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY> */}
 
-         {/* <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
+          {/* <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
           <CalendarMonths consultant={consultant} newDate={newDate}></CalendarMonths>
           <CalendarMonths2 consultant={consultant} newDate={newDate}></CalendarMonths2>*/}
 
-          <CalendarHeadMonth consultant={consultant} newDate={newDate} ></CalendarHeadMonth>
-          <CalendarMonth consultant={consultant} newDate={newDate} month={8}></CalendarMonth>
+          {/*<CalendarHeadMonth consultant={consultant} newDate={newDate} ></CalendarHeadMonth>
+          <CalendarMonth consultant={consultant} newDate={newDate} month={8}></CalendarMonth>*/}
+
+          <Circle consultant={consultant} newDate={newDate}></Circle>
+          <MonthCircle consultant={consultant} newDate={newDate}></MonthCircle>
         </Template>
       </PDFViewer>
     </>

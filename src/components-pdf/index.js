@@ -28,6 +28,8 @@ export * from './calendarAnual/CalendarMonths2'
 
 export * from './calendarMonth/CalendarHeadMonth'
 export * from './calendarMonth/CalendarMonth'
+export * from './circleTime/Circle'
+export * from './circleTime/MonthCircle'
 
 export * from './createName/CreateName'
 export * from './createName/CreateNumeric'
