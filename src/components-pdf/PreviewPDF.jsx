@@ -1,165 +1,51 @@
-import { Document, Page, Text, View, Image, PDFViewer } from '@react-pdf/renderer';
-import { configReport, ncReport } from './styles';
-
-import pdf_logo from '../assets/LOGO_PDF.png';
-import {
-  PinnacleName,
-  Pinnacle,
-  PinnaclePotential,
-  VibrationTimeStage,
-  VibrationTimeQuarterM,
-  VibrationTimeCycle,
-  VibrationTimeQuarterY,
-  PinnacleTimeCurve,
-  LifePathLearningStage,
-  LifePath9Years,
-  LifePathPersonalYears,
-  LifePathQuarters,
-  LifePathPersonalMonths,
-  LifePathPersonalWeeks,
-  LifePathDialogs,
-  NameValues,
-  NamePotential,
-  NameTable,
-  NameActive,
-  NameInhabitants,
-  CalendarHead,
-  CalendarMonths,
-  CalendarMonths2,
-  CalendarHeadMonth,
-  CalendarMonth,
-  CreateName,
-  Circle,
-  MonthCircle,
-  CreateNumeric,
-  CreateTable,
-  CreatePinnacle,
-  CreateBreakdown
-} from '../components-pdf/';
-
 import { dateSelect, useConsultant } from '../hooks';
 import { useSelector } from 'react-redux';
 import { UnselectedConsultant } from '../components/UnselectedConsultant';
-import moment from 'moment/min/moment-with-locales'
-import { BridgeStage } from './BridgeStage';
-import { AnnualReturns } from './AnnualReturns';
-moment.locale("es-mx")
 
-import pinnacleImage from './assets/pinnacle.jpg'
-import lifePathImage from './assets/life-Path.jpg'
-import nameImage from './assets/name.jpg'
-import calendar_1 from './assets/calendar.jpg'
-import calendar_2 from './assets/calendar-02.jpg'
-import createName from './assets/create-name.jpg'
-import calendarMonth from './assets/calendar-month.jpg'
-import circleTime from'./assets/circle-time.jpeg'
+import {
+  PDF,
+  PinnaclePDF,
+  LifePathPDF,
+  NamePDF,
+  CreateNamePDF,
+  TimeVibrationPDF,
+  CalendarPDF,
+  MonthPDF,
+  AnnualReturnsPDF,
+  CircleTimePDF
+} from './document';
 
 export const PreviewPDF = () => {
-
-  const Template = ({ children }) => (
-    <Document >
-      <Page size={[612, 795]} style={configReport.page}  >
-        <Image src={pinnacleImage} style={configReport.pageBackground}></Image>
-        <Image src={lifePathImage} style={configReport.pageBackground}></Image>
-        <Image src={nameImage} style={configReport.pageBackground}></Image>
-        <Image src={calendar_1} style={configReport.pageBackground}></Image>
-        <Image src={calendar_2} style={configReport.pageBackground}></Image>
-        <Image src={createName} style={configReport.pageBackground}></Image>
-        <Image src={calendarMonth} style={configReport.pageBackground}></Image>
-        <Image src={circleTime} style={configReport.pageBackground}></Image>
-        <View style={configReport.header}>
-
-          <View style={configReport.header_consultor_name}>
-            <Text>Laura Ludivina Rodriguez Martinez</Text>
-          </View>
-          <View style={configReport.header_consultant_name}>
-            <Text>{consultant.fullName}</Text>
-          </View>
-
-          <View style={configReport.header_date}>
-            <Text>-</Text>
-          </View>
-          <View style={configReport.header_birth_date}>
-            <Text>{consultant.getFormBirthDate()}</Text>
-          </View>
-          <View style={configReport.header_age}>
-            <Text>{consultant.getYearsOld()}</Text>
-          </View>
-        </View>
-
-        {/* <View style={ncReport.sidebar}>
-          <Text style={ncReport.page_number}>1</Text>
-          <Text style={ncReport.page_copy_1} >Copyright 2022, Laura L. Rodríguez. Prohibida su reproducción y distribución.</Text>
-          <Text style={ncReport.page_copy_2} >Este Software esta licenciado para uso exclusivo de: Laura Ludivina Rodríguez Martínez.</Text>
-          <Text style={ncReport.page_copy_3} >www.numerlogia-cotidiana.com</Text>
-          <Text style={ncReport.page_copy_4} >consulta@numerologia-cotidiana.com</Text>
-          <Text style={ncReport.page_copy_5} >Tels: (81) 2086-7071 / 2086-7072</Text>
-        </View> */}
-
-        <View style={ncReport.content}>
-          {children}
-        </View>
-      </Page>
-    </Document>
-  )
 
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
   const { newDate } = dateSelect()
-  const now = moment()
 
   if (isEmpty) {
     return <UnselectedConsultant />
   }
 
+  const config = [
+    MonthPDF(consultant, newDate, 8),
+    ...CalendarPDF(consultant, newDate),
+    // TimeCirlePDF(consultant),
+    AnnualReturnsPDF(consultant, newDate),
+    TimeVibrationPDF(consultant, newDate),
+    // ...DestinityPDF(consultant),
+    CreateNamePDF(consultant),
+    ...NamePDF(consultant),
+    LifePathPDF(consultant),
+    PinnaclePDF(consultant),
+    CircleTimePDF(consultant, newDate)
+  ]
+
   return (
     <>
-      <PDFViewer width='100%' height='100%'>
-        <Template consultant={consultant}>
-          {/* <PinnacleName consultant={consultant}></PinnacleName>
-          <PinnaclePotential consultant={consultant}></PinnaclePotential>
-          <Pinnacle consultant={consultant}></Pinnacle>
-          <BridgeStage consultant={consultant}></BridgeStage>
-          <AnnualReturns consultant={consultant} />
-          <PinnacleTimeCurve consultant={consultant} /> */}
-
-          {/* <LifePath9Years consultant={consultant} />
-          <LifePathLearningStage consultant={consultant} />
-          <LifePathPersonalYears consultant={consultant} />
-          <LifePathQuarters consultant={consultant} />
-          <LifePathPersonalMonths consultant={consultant} />
-          <LifePathPersonalWeeks consultant={consultant} />
-          <LifePathDialogs consultant={consultant} /> */}
-
-          {/* <NameValues consultant={consultant} />
-          <NamePotential consultant={consultant} />
-          <NameTable consultant={consultant} />
-          <NameActive consultant={consultant} />
-          <NameInhabitants consultant={consultant} /> */}
-
-          {/*<CreateName consultant={consultant} />
-          <CreateNumeric consultant={consultant} />
-          <CreateTable consultant={consultant} />
-          <CreatePinnacle consultant={consultant} />
-          <CreateBreakdown consultant={consultant} />*/}
-
-          {/* <VibrationTimeStage consultant={consultant} newDate={newDate}></VibrationTimeStage>
-          <VibrationTimeQuarterM consultant={consultant} newDate={newDate}></VibrationTimeQuarterM>
-          <VibrationTimeCycle consultant={consultant} newDate={newDate}></VibrationTimeCycle>
-          <VibrationTimeQuarterY consultant={consultant} newDate={newDate}></VibrationTimeQuarterY> */}
-
-          {/* <CalendarHead consultant={consultant} newDate={newDate}></CalendarHead>
-          <CalendarMonths consultant={consultant} newDate={newDate}></CalendarMonths>
-          <CalendarMonths2 consultant={consultant} newDate={newDate}></CalendarMonths2>*/}
-
-          {/*<CalendarHeadMonth consultant={consultant} newDate={newDate} ></CalendarHeadMonth>
-          <CalendarMonth consultant={consultant} newDate={newDate} month={8}></CalendarMonth>*/}
-
-          <Circle consultant={consultant} newDate={newDate}></Circle>
-          <MonthCircle consultant={consultant} newDate={newDate}></MonthCircle>
-        </Template>
-      </PDFViewer>
+      <div className='mx-10 my-16'>
+        Preview
+        <PDF consultant={consultant} config={config} />
+      </div>
     </>
   )
 }

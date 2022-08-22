@@ -120,6 +120,10 @@ export const configReport = StyleSheet.create({
     // backgroundColor: '#ff0000',
     width: '15px',
   },
+  content: {
+    marginLeft: '55px',
+    // height: '751.8px',
+  }
 })
 
 export const ncReport = StyleSheet.create({

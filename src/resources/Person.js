@@ -1,12 +1,17 @@
 import moment from 'moment/min/moment-with-locales'
+import { sanitize } from './Helper'
 moment.locale("es-mx")
 
 export class Person {
   constructor({ name = "", lastName = "", scdLastName = "", birthDate = null, yearMeet = "" }) {
-    this.name = name
-    this.lastName = lastName
-    this.scdLastName = scdLastName
+    this.name = sanitize(name)
+    this.lastName = sanitize(lastName)
+    this.scdLastName = sanitize(scdLastName)
+    this.nameView = name
+    this.lastNameView = lastName
+    this.scdLastNameView = scdLastName
     this.fullName = `${name} ${lastName} ${scdLastName}`
+    this.fullNameView = `${this.nameView} ${this.lastNameView} ${this.scdLastNameView}`
     this.birthDate = moment(birthDate)
     this.karmicos = [13, 14, 16, 19]
     this.NOW = moment()
@@ -2359,12 +2364,12 @@ export class Person {
     }
   }
   getAllDaysInMonth(month, year = null) {
-    console.log('mes => '+month   );
+    console.log('mes => ' + month);
     year = year || this.NOW.year()
     return Array.from(Array(moment(`${year}-${month}`).daysInMonth()), (_, i) => i + 1)
   }
 
-  getDaysOfWeekCustom(month, year = null){
+  getDaysOfWeekCustom(month, year = null) {
     console.log(month);
     year = year || this.NOW.year()
     String.prototype.capitalize = function () {
@@ -2373,8 +2378,8 @@ export class Person {
     const daysInMonth = this.getAllDaysInMonth(month, year)
     let daysCustom = []
     const dayInWeek = this.getDaysOfWeek()
-    let firstDay = this.NOW.month(month-1).date(daysInMonth[0]).format('ddd')
-    firstDay = firstDay.replace(/\./g,'')
+    let firstDay = this.NOW.month(month - 1).date(daysInMonth[0]).format('ddd')
+    firstDay = firstDay.replace(/\./g, '')
     let dayIndex = this.getDaysOfWeek().findIndex(i => i === firstDay.capitalize())
     for (let i = 0; i < 7; i++) {
       if (dayIndex > 6) {

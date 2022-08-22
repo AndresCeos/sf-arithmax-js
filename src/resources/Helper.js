@@ -10,10 +10,9 @@ const getAllMonthsEnglish = ['January', 'February', 'March', 'April', 'May', 'Ju
 
 
 export const formatDate = dateStr => {
-  const date = moment( dateStr )
-  let month =date.format('MMMM')
-  //let index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
-  return `${date.date()} de ${capitalize(month)} ${date.year()}`
+  const date = moment(dateStr)
+  let index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
+  return `${date.date()} de ${getAllMonths[index]} ${date.year()}`
 }
 
 export const currentDate = (date = null) => {
@@ -24,7 +23,7 @@ export const currentDate = (date = null) => {
 
 export const pageName = location => {
   location = location.replace('/', '')
-  switch( location ){
+  switch (location) {
     case 'pinaculo': return 'Pináculo'
     case 'nombre': return 'Análisis Numerológico del Nombre'
     case 'ajusteNombre': return 'Ajuste Numerológico del Nombre'
@@ -37,7 +36,7 @@ export const pageName = location => {
 }
 
 export const nowWeekNumber = (date = now) => {
-  const prefixes = [1,2,3,4,5];
+  const prefixes = [1, 2, 3, 4, 5];
   const week = prefixes[0 | moment(date).date() / 7]
   return week < 5 ? week : 4
 }
@@ -59,3 +58,15 @@ export const capitalize = (str = "") => {
   // console.log( str )
   return str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 }
+
+export const sanitize = (text) => {
+  return text
+    .toString()
+    .normalize('NFD')  // split an accented letter in the base letter and the acent
+    .replace(/[\u0300-\u036f]/g, '')  // remove all previously split accents
+    .toLowerCase()
+    .trim()
+    // .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+  // .replace(/\-\-+/g, '-');
+};
