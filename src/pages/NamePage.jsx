@@ -15,9 +15,10 @@ const NamePage = () => {
     return <UnselectedConsultant />
   }
 
-  const { name, lastName, scdLastName } = consultant
+  const { name, lastName, scdLastName, nameView } = consultant
 
-  const names = name.split(' ')
+  const names = nameView.toLocaleLowerCase().split(' ')
+  console.log(names)
   const ungroupNames = names.map( el =>  {
     return {
       name: consultant.getUngroupName( el ),

@@ -97,7 +97,12 @@ const PathPage = () => {
   // String.prototype.capitalize = function() {
   //   return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
   // }
-  const actualMonth = newDate.format('MMMM');
+  const allMonth = consultant.getAllMonths()
+  const allMonthE = consultant.getAllMonthsEnglish()
+
+  let monthIndex = allMonthE.findIndex(i => i === newDate.format('MMMM'))
+  const actualMonth = allMonth[monthIndex]
+
 
   const currentMonth = listOfMonths.findIndex(i => i === capitalize( actualMonth ) )
   const listOfMonths3 = listOfMonths.map( e =>  e.substring(0, 3) )

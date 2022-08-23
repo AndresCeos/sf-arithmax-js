@@ -95,7 +95,7 @@ export const HierarchyLine = ({consultant}) =>{
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
             <CircleNumber size="sm" appearance="green" border="green" >
-              {consultant.getSumHierarchy(consultant.calcCurrentQuater(newDate,newDate.year()),consultant.getLifeStage(newDate.year()))}
+              {consultant.getSumHierarchy(consultant.calcCurrentQuater(newDate,newDate.year()), consultant.calcPersonalMonth(newDate.month()+1,newDate.year()))}
             </CircleNumber>
           </div>
           <div className="col-start-1 row-start-2 lines">

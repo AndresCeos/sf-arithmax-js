@@ -14,43 +14,43 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 				<div id="lifePath" className="grid grid-cols-19 w-full border-l border-b border-gray-400 relative">
 						<div
 								className={`
-										col-start-1 col-end-7 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+										col-start-1 col-end-7 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 										${activeStage === 1? 'bg-active' : null }
 								`
 						}></div>
 						<div
 								className={`
-										col-start-7 col-end-9 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+										col-start-7 col-end-9 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 										${activeStage === 2? 'bg-active' : null }
 								`
 						}></div>
 						<div
 								className={`
-										col-start-9 col-end-11 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+										col-start-9 col-end-11 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 										${activeStage === 3 ? 'bg-active' : null }
 								`
 						}></div>
 						<div
 								className={`
-										col-start-11 col-end-13 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+										col-start-11 col-end-13 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 										${activeStage === 4 ? 'bg-active' : null }
 								`
 						}></div>
 						<div
 								className={`
-										col-start-13 col-end-15 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+										col-start-13 col-end-15 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 										${activeStage === 5? 'bg-active' : null }
 								`
 						}></div>
 						<div
 								className={`
-										col-start-15 col-end-17 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+										col-start-15 col-end-17 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 										${activeStage === 6 ? 'bg-active' : null }
 								`
 						}></div>
 						<div
 								className={`
-										col-start-17 col-end-21 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+										col-start-17 col-end-21 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 										${activeStage === 7? 'bg-active' : null }
 								`
 						}></div>
@@ -58,43 +58,43 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 								<>
 										<div
 										className={`
-												col-start-1 col-end-7 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+												col-start-1 col-end-7 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 												${activeSecondStage === 1? 'bg-active' : null }
 										`
 								}></div>
 								<div
 										className={`
-												col-start-7 col-end-9 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+												col-start-7 col-end-9 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 												${activeSecondStage === 2? 'bg-active' : null }
 										`
 								}></div>
 								<div
 										className={`
-												col-start-9 col-end-11 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+												col-start-9 col-end-11 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 												${activeSecondStage === 3  ? 'bg-active' : null }
 										`
 								}></div>
 								<div
 										className={`
-												col-start-11 col-end-13 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+												col-start-11 col-end-13 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 												${activeSecondStage === 4 ? 'bg-active' : null }
 										`
 								}></div>
 								<div
 										className={`
-												col-start-13 col-end-15 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+												col-start-13 col-end-15 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 												${activeSecondStage === 5? 'bg-active' : null }
 										`
 								}></div>
 								<div
 										className={`
-												col-start-15 col-end-17 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+												col-start-15 col-end-17 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 												${activeSecondStage === 6 ? 'bg-active' : null }
 										`
 								}></div>
 								<div
 										className={`
-												col-start-17 col-end-21 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400
+												col-start-17 col-end-21 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
 												${activeSecondStage === 7? 'bg-active' : null }
 										`
 								}></div>
@@ -119,7 +119,7 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 										</div>
 								</div>
 						</div>
-						<div className='col-start-1 col-end-7 row-start-12 m-auto'>{consultant.getK()}</div>
+						<div className='col-start-1 col-end-7 row-start-13 m-auto'>{consultant.getK()}</div>
 
 						<div className='col-start-7 col-end-9 row-start-5 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
 								{(!isPartner)?`${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 }`:''}
@@ -242,7 +242,7 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 										</div>
 								</div>
 						</div>
-						<div className='col-start-17 col-end-21 row-start-12 m-auto'>{consultant.getK()}</div>
+						<div className='col-start-17 col-end-21 row-start-13 m-auto'>{consultant.getK()}</div>
 
 						<img src={time_curve} className="absolute bottom-0 left-0 w-full" />
 						<div className='col-start-1 col-end-7 row-start-5 h-6'></div>

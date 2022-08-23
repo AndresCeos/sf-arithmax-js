@@ -79,17 +79,38 @@ export class Person {
     return this.reduceNumber(nameValues + namev)
   }
   getSoulCheck() {
-    const names = this.fullName.toString().toLowerCase().split(' ')
+    const names = this.nameView.toLowerCase().split(' ')
+    const lastName = this.lastName.split('')
+    const scdLastName = this.scdLastName.split('')
+    let n = 0
+    let ln=0
+    let sln=0
     let nameValues = 0
-    names.map(el => {
+    names.map((el, index) => {
       const vowels = el.split('')
       let val = 0
       vowels.map(element => {
         val += this.vowelsValues(element)
       })
-      nameValues += val
+      n += val
     })
-    return this.reduceNumber(nameValues)
+    lastName.map(el => {
+      const vowels = el.split('')
+      let val = 0
+      vowels.map(element => {
+        val += this.vowelsValues(element)
+      })
+      ln += val
+    })
+    scdLastName.map(el => {
+      const vowels = el.split('')
+      let val = 0
+      vowels.map(element => {
+        val += this.vowelsValues(element)
+      })
+      sln += val
+    })
+    return this.reduceNumber(n+ln+sln)
   }
   getExpressionSoulCheck() {
     const names = this.fullName.toString().toLowerCase().split(' ')
@@ -197,7 +218,7 @@ export class Person {
 
   calcSoulNumberFull() {
     let nameValues = 0
-    const names = this.name.toString().toLowerCase().toLowerCase().split(' ')
+    const names = this.nameView.toString().toLowerCase().toLowerCase().split(' ')
     names.map(el => {
       const vowels = el.split('')
       let val = 0
@@ -607,9 +628,10 @@ export class Person {
 
   }
   getHCheck() {
-    let monthReduce = this.birthDate.month() + 1
-    let yearReduce = this.birthDate.year()
+    let monthReduce = this.reduceNumber(this.birthDate.month() + 1)
+    let yearReduce = this.reduceNumber(this.birthDate.year())
     let sumReduce = this.reduceNumber(monthReduce + yearReduce)
+    
     return sumReduce
   }
 

@@ -528,31 +528,13 @@ export class Synastry {
     if (stage === 6) return `${stageFive + 9} a los ${stageFive + 18}`
     if (stage === 7) return `${stageFive + 18} a ...`
   }
-  calcDurationStage(stage) {
-    let stageOne = 9 - this.reduceNumberForSub(this.getA() + this.getB())
-    // let stageOneEnd =  stageOne
-    // if(stageOne === 0){
-    //   stageOneEnd = stageOneEnd +9
-    // }
-    if (stage === 1) return `De 0 a los ${stageOne}`
-    const stageTwo = stageOne + 9
-    if (stage === 2) return `${stageOne} a los ${stageTwo}`
-
-    const stageThr = stageTwo + 9
-    if (stage === 3) return `${stageTwo} a los ${stageThr}`
-
-    const stageFou = stageThr + 9
-    if (stage === 4) return `${stageThr} a los ${stageFou}`
-    const stageFive = stageFou + 9
-    if (stage === 5) return `${stageFou} a los ${stageFive}`
-    if (stage === 6) return `${stageFive + 9} a los ${stageFive + 18}`
-    if (stage === 7) return `${stageFive + 18} a ...`
-  }
 
 
   calcLifeStageDuration(stage = 1) {
     let start = this.yearMeet //.year()
-    let stageOne = 9 - this.calcPersonalYear(start)
+    let stageOne = 9 - this.reduceNumberForSub(
+      this.getA() +this.getB() + start)
+    console.log(stageOne)
     let stageOneEnd = start + stageOne
     if (stageOne === 0) {
       stageOneEnd = stageOneEnd + 9
@@ -592,7 +574,11 @@ export class Synastry {
   getLifeStage(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     let start = this.yearMeet //.year()
-    let duration = 9 - this.calcPersonalYear(start)
+    let duration = 9 - this.reduceNumberForSub(
+      this.getA() +
+      this.getB() +
+      start
+    )
     let stageOneEnd = start + duration
     if (duration === 0) {
       stageOneEnd = stageOneEnd + 9
@@ -633,7 +619,7 @@ export class Synastry {
   /** Life Stage Karmica */
   getLifeStageISK(yearToCalculate = null) {
     let start = this.yearMeet //.year()
-    let duration = 9 - this.calcPersonalYear(start)
+    let duration = 9 - this.reduceNumberForSub(this.getA()+this.getB()+start)
     let stageOneEnd = start + duration
     if (duration === 0) {
       stageOneEnd = stageOneEnd + 9
@@ -678,8 +664,14 @@ export class Synastry {
   getLifeStageNumber(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     const start = this.yearMeet //.year()
-    let duration = 9 - this.calcPersonalYear(yearToCalculate)
+    console.log('año del evento => '+start)
+    let duration = 9 - this.reduceNumberForSub(
+      this.getA() +
+      this.getB() +
+      start
+    )
     let stageOneEnd = start + duration
+    console.log('etapa final 1=> '+stageOneEnd)
     if (duration === 0) {
       stageOneEnd = stageOneEnd + 9
     }

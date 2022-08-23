@@ -132,14 +132,7 @@ const SinastyVibrationTimePage = () => {
                   <CircleNumber  size="sm" appearance={(year===currentYear)?'purple-30':'white'} border="main">
                     {synastry.calcPersonalYear(year)}{(synastry.calcPersonalYear(year)===2)?'/11':''}{(synastry.calcPersonalYear(year)===4)?'/22':''}{synastry.calcPersonalYearISK(year)}
                   </CircleNumber>
-                  <b className={`${(year===currentYear)?'text-black':'text-gray-300'}`}>{year}</b><br/>
-                  {synastry.getLifeStageNumber()===1?
-                    <>
-                    <b className={`${(year===currentYear)?'text-black':'text-gray-300'}`}>{year+9}</b><br/>
-                    <b className={`${(year===currentYear)?'text-black':'text-gray-300'}`}>{year+18}</b><br/>
-                    </>
-                  :''}
-
+                  <b className={`${(year===currentYear)?'text-black':'text-gray-300'}`}>{year}</b>
                 </div>
               )}
               <div className="col-start-4 border-r-2 row-start-1 border-green-700 h-4 mt-12"></div>
