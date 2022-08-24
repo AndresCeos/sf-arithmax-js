@@ -115,7 +115,7 @@ export const configReport = StyleSheet.create({
   },
   header_age: {
     position: 'absolute',
-    left: '462px',
+    left: '465px',
     top: '64px',
     // backgroundColor: '#ff0000',
     width: '15px',

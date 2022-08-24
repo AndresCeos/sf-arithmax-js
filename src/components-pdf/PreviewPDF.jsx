@@ -14,13 +14,16 @@ import {
   AnnualReturnsPDF,
   CircleTimePDF
 } from './document';
+import { Person } from '../resources';
 
 export const PreviewPDF = () => {
 
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
+  const { names, lastName, scdLastName, date } = useSelector(state => state.auth)
   const { newDate } = dateSelect()
+  const profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
 
   if (isEmpty) {
     return <UnselectedConsultant />
@@ -44,7 +47,7 @@ export const PreviewPDF = () => {
     <>
       <div className='mx-10 my-16'>
         Preview
-        <PDF consultant={consultant} config={config} />
+        <PDF consultant={consultant} config={config} profile={profile} date={newDate} />
       </div>
     </>
   )

@@ -1,7 +1,8 @@
 import { Document, Page, Text, View, Image, PDFViewer } from '@react-pdf/renderer';
 import { configReport } from '../styles';
+import { currentDate } from '../../resources';
 
-export const PDF = ({ consultant, config }) => {
+export const PDF = ({ consultant, config, profile, date }) => {
 
   return (
     <PDFViewer width='100%' height='100%' style={{ height: 800 }}>
@@ -12,16 +13,16 @@ export const PDF = ({ consultant, config }) => {
 
             <View style={configReport.header}>
               <View style={configReport.header_consultor_name}>
-                <Text>Laura Ludivina Rodriguez Martinez</Text>
+                <Text>{profile.fullName}</Text>
               </View>
               <View style={configReport.header_consultant_name}>
                 <Text>{consultant.fullName}</Text>
               </View>
               <View style={configReport.header_date}>
-                <Text>-</Text>
+                <Text>{currentDate(date)}</Text>
               </View>
               <View style={configReport.header_birth_date}>
-                <Text>{consultant.getFormBirthDate()}</Text>
+                <Text>{consultant.getFormattedBirthDate()}</Text>
               </View>
               <View style={configReport.header_age}>
                 <Text>{consultant.getYearsOld()}</Text>
