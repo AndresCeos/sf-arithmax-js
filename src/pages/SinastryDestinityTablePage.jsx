@@ -24,9 +24,17 @@ const SinastyDestinityTablePage = () => {
     birthDate: userPartnerActive.date,
     yearMeet :userPartnerActive.yearMeet
   })
+  console.log(isSelectPartner)
+  console.log(userPartnerActive)
 
   if( partner === undefined ){
     return<UnselectedConsultant />
+  }
+  const isEmptyGroup = Object.keys(userActive.partner).length === 0;
+  if( isEmptyGroup ){
+    return (
+      <div className='grid grid-cols-12 mx-14 gap-6 mt-8 pt-10'><UserPartnerSelect />
+      <div className="col-span-12 text-center"><strong>Agrega/Selecciona una pareja para ver esta información</strong></div></div>)
   }
 
   // console.log( moment(userPartnerActive.yearMeet).year() )
@@ -36,23 +44,33 @@ const SinastyDestinityTablePage = () => {
   const t = consultant.getDestinityTable()
   const table = t.slice(ageMeet)
   // console.log(table)
+
   const table1 = table.slice(0, 11);
   const table2 = table.slice(11, 22);
   const table3 = table.slice(22, 33);
   const table4 = table.slice(33, 44);
 
-  // console.log( moment(userPartnerActive.yearMeet).year() )
+   // console.log( moment(userPartnerActive.yearMeet).year() )
   // console.log( partner.birthDate.year() )
   // const ageMeetP = moment(userPartnerActive.yearMeet).year() - partner.birthDate.year()
   const ageMeetP = userPartnerActive.yearMeet - partner.birthDate.year()
-  const tP = partner.getDestinityTable()
-  const partnerTable = tP.slice(ageMeetP)
+  let tP
+  let partnerTable = []
+  let  partnerTable1 = []
+  let  partnerTable2 = []
+  let  partnerTable3 = []
+  let  partnerTable4 = []
+  if(isSelectPartner){
+    tP = partner.getDestinityTable()
+    partnerTable = tP.slice(ageMeetP)
+    partnerTable1 = partnerTable.slice(0, 11);
+    partnerTable2 = partnerTable.slice(11, 22);
+    partnerTable3 = partnerTable.slice(22, 33);
+    partnerTable4 = partnerTable.slice(33, 44);
+  }
   // console.log(partnerTable)
   // const partnerTable = partner.getDestinityTable()
-  const partnerTable1 = partnerTable.slice(0, 11);
-  const partnerTable2 = partnerTable.slice(11, 22);
-  const partnerTable3 = partnerTable.slice(22, 33);
-  const partnerTable4 = partnerTable.slice(33, 44);
+
 
   return(
     <div className='grid grid-cols-12 mx-14 gap-6 mt-8 pt-10'>

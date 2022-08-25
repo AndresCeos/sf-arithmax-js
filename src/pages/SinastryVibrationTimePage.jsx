@@ -23,6 +23,8 @@ const SinastyVibrationTimePage = () => {
     birthDate: userPartnerActive.date,
     yearMeet :userPartnerActive.yearMeet
   })
+  console.log(userPartnerActive)
+  console.log(isSelectPartner);
   const currentYear = newDate.year()
   const currentMonth = newDate.month()+1
   const currentDay = newDate.date()

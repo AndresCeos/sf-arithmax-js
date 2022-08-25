@@ -142,16 +142,7 @@ export const Navbar = () => {
                   Datos<br />de Grupo
                 </Link>
               </li>
-              <li className="flex items-center">
-                <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
-                  <img
-                    src={notes}
-                    className="mb-1"
-                    alt="notes"
-                  />
-                  Notas<br />de Consulta
-                </button>
-              </li>
+              
               <li className="flex items-center">
                 <PDFDownloadLink
                   document={<Mydoc/>}

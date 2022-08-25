@@ -12,6 +12,10 @@ import c_edit from '../assets/icons/c_edit.svg'
 import history from '../assets/icons/history.svg'
 import search from '../assets/icons/search.svg'
 import welcome from '../assets/welcome.png'
+import save_report from '../assets/icons/save_report.svg'
+import notes from '../assets/icons/notes.svg'
+import { TiPlus } from 'react-icons/ti';
+import { MdEdit } from 'react-icons/md';
 
 const ConsultantePage = () => {
   const { list: users, userActive } = useSelector(state => state.users);
@@ -19,6 +23,9 @@ const ConsultantePage = () => {
   const [userEdit, setUserEdit] = useState(userActive)
   const [userIndex, setUserIndex] = useState(null)
   const [searchUser, setSearchUser] = useState("")
+  const isEmpty = Object.keys(userActive).length === 0;
+
+  console.log(userEdit)
 
   useEffect( () => {
     dispatch(fetchAllUsers())
@@ -68,7 +75,7 @@ const ConsultantePage = () => {
         <img src={welcome} className="w-16" alt='welcome' />
         <h2 className='font-black mt-0 mb-2 text-main text-2xl'>¿A quién vas a consultar hoy?</h2>
       </div>
-      <div className='grid mt-9 ml-14 grid-cols-6 gap-16'>
+      <div className='grid mt-9 mx-14 grid-cols-6 gap-6'>
         <div className='col-span-4'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-12 h-12 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
@@ -81,22 +88,6 @@ const ConsultantePage = () => {
             Agregar consultante
           </div>
           <UsersForm dataUserEdit={userEdit} dataUserIndex={userIndex} />
-        </div>
-        <div className='col-span-2'>
-          {/* <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-yellow p-2'>
-              <TiPlus className='text-2xl'/>
-            </div>
-            Perfil del consultante
-          </div>
-          <div className='consultant-wrap'>
-            <div className='p-7 text-main text-2xl'>
-              <strong>John</strong> <br/>
-              Doe
-            </div>
-          </div> */}
-        </div>
-        <div className='col-span-4 mb-10'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-12 h-12 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
               <img
@@ -126,6 +117,49 @@ const ConsultantePage = () => {
               { userList() }
             </ul>
           </div>
+        </div>
+        <div className='col-span-2'>
+        {!isEmpty?
+          <>
+          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-yellow p-2'>
+              <TiPlus className='text-2xl'/>
+            </div>
+            Perfil del consultante
+          </div>
+          <div className='consultant-wrap'>
+            <div className='flex'>
+            <div className='p-7 text-main text-2xl'>
+              <strong>{userActive.names}</strong> <br/>
+              {userActive.lastName} {userActive.scdLastName}
+            </div>
+            </div>
+            <div className=' px-7 text-13 leading-7'>Fecha de nacimiento: <strong>{formatDate(userActive.date)}</strong></div>
+            <div className='flex px-7 justify-between mb-1'>
+              <div className='text-13 leading-7'>Nacionalidad: <strong>{userActive.nationality}</strong></div>
+              <div className='text-13 leading-7'>Sexo: <strong>{userActive.gender}</strong></div>
+            </div>
+            <div className='text-13 bg-gold-15 px-7 py-2'></div>
+            <div className='px-7 pt-3 pb-7'>
+              <div className='text-13 text-main font-bold py-2'><MdEdit className='text-xl text-gray-400'/>Datos Profesionales</div>
+              <div className='text-13'><li><strong>Empresa:</strong> {userActive.company}</li></div>
+            </div>
+            {/*<div className='px-7 pt-3 pb-7  border-t-2 border-t-gray-300'>
+              <div className='text-13 text-main font-bold py-2'><MdEdit className='text-xl text-gray-400'/>Datos Familiares</div>
+
+            </div>
+            <div className='flex px-7 py-3 border-t-2 border-t-gray-300'>
+              <button className='bg-main px-5 py-1 border-0 cursor-pointer mx-2 rounded-3xl text-white text-13 font-bold flex'><img className='mr-1' src={notes}/>Abrir Notas</button>
+              <button className='bg-main px-5 py-1 border-0 cursor-pointer mx-2 rounded-3xl text-white text-13 font-bold flex'><img  className='mr-1' src={save_report}/>Reportes Guardados</button>
+            </div>*/}
+            <div className='px-7 py-3 border-t-2 border-t-gray-300'>
+            <div className='text-13 text-main font-bold py-2'><MdEdit className='text-xl text-gray-400'/>Datos de Contacto</div>
+            <div className='text-13 leading-7'><strong>Teléfono:</strong> {userActive.phone}</div>
+            <div className='text-13 leading-7 '><strong>Correo Electrónico:</strong> {userActive.email}</div>
+            </div>
+          </div></>:''}
+        </div>
+        <div className='col-span-4 mb-10'>
         </div>
       </div>
     </>

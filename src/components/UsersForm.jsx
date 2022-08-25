@@ -20,9 +20,10 @@ export const UsersForm = (props) => {
     <Formik
       enableReinitialize
       initialValues={isEditing ?
-        { names: dataUserEdit.names, date: dataUserEdit.date, lastName: dataUserEdit.lastName, scdLastName: dataUserEdit.scdLastName }
+        { names: dataUserEdit.names, date: dataUserEdit.date, lastName: dataUserEdit.lastName, scdLastName: dataUserEdit.scdLastName,
+          nationality:dataUserEdit.nationality,phone:dataUserEdit.phone, email:dataUserEdit.email, company:dataUserEdit.company,gender:dataUserEdit.gender }
         :
-        { names: '', date: '', lastName: '', scdLastName: '', partner: [], group: [], dateGroup: null }
+        { names: '', date: '', lastName: '', scdLastName: '', partner: [], group: [], dateGroup: null,nationality:'',phone:'',email:'', company:'',gender:'' }
       }
       validate={values => {
         const errors = {};
@@ -47,6 +48,15 @@ export const UsersForm = (props) => {
         }
         if (!values.scdLastName.match(letters)) {
           errors.scdLastName = 'No valido';
+        }
+        if (!values.company) {
+          errors.company = 'Requerido';
+        }
+        if (!values.email) {
+          errors.email = 'Requerido';
+        }
+        if (!values.phone) {
+          errors.phone = 'Requerido';
         }
         return errors;
       }}
@@ -151,17 +161,70 @@ export const UsersForm = (props) => {
               <label className='font-bold mb-1'>Nacionalidad</label>
               <input
                 type="text"
-                name="nat"
+                name="nationality"
                 className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.nationality}
               />
             </div>
             <div className="form-group w-1/3">
               <label className='font-bold mb-1'>Sexo</label>
               <input
                 type="text"
-                name="sex"
+                name="gender"
                 className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.gender}
               />
+            </div>
+          </div>
+          <div className="flex w-full mt-3">
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>
+                Empresa
+                <span className='text-red-800'>*</span>
+              </label>
+              <input
+                type="text"
+                name="company"
+                className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.company}
+              />
+              {errors.company && touched.company ? <span className="form-error">{errors.company}</span> : null}
+            </div>
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>
+                  Teléfono
+                <span className='text-red-800'>*</span>
+              </label>
+              <input
+                type="number"
+                name="phone"
+                className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.phone}
+              />
+              {errors.phone && touched.phone ? <span className="form-error">{errors.phone}</span> : null}
+            </div>
+            <div className="form-group w-1/3">
+              <label className='font-bold mb-1'>
+                Correo electrónico
+                <span className='text-red-800'>*</span>
+              </label>
+              <input
+                type="text"
+                name="email"
+                className="rounded"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+              {errors.email && touched.email ? <span className="form-error">{errors.email}</span> : null}
             </div>
           </div>
           <div className="flex w-full gap-4 mt-3 items-center">

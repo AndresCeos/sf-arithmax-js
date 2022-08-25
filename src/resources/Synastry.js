@@ -44,8 +44,7 @@ export class Synastry {
   getC() {
     const birthDate = this.consultant.getBirthDate()
     const partnerBirthDate = this.partner.getBirthDate()
-    console.log(birthDate.year())
-    console.log(birthDate.year())
+
 
     return this.reduceNumber(birthDate.year() + partnerBirthDate.year());
   }
@@ -664,14 +663,12 @@ export class Synastry {
   getLifeStageNumber(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     const start = this.yearMeet //.year()
-    console.log('año del evento => '+start)
     let duration = 9 - this.reduceNumberForSub(
       this.getA() +
       this.getB() +
       start
     )
     let stageOneEnd = start + duration
-    console.log('etapa final 1=> '+stageOneEnd)
     if (duration === 0) {
       stageOneEnd = stageOneEnd + 9
     }

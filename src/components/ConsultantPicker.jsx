@@ -19,6 +19,7 @@ export const ConsultantPicker = () => {
   const handleChange = (e) => {
     dispatch( selectUserActive(e.value) )
     dispatch( setIsSelectPartner(false) )
+    dispatch(setUserPartnerActive({}))
   }
   const options = users.map( ({id, names, lastName, scdLastName}) =>({
     value: id,

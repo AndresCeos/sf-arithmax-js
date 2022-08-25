@@ -12,6 +12,11 @@ export const authSlice = createSlice({
     date: null,
     photoURL: null,
     errorMessage: null,
+    company:null,
+    phone:null,
+    address:null,
+    webSite:null,
+    logoURL:null
   },
   reducers: {
     updateUserInfo: ( state, { payload } ) => {
@@ -21,6 +26,11 @@ export const authSlice = createSlice({
       state.lastName = payload.lastName;
       state.scdLastName = payload.scdLastName;
       state.date = payload.date;
+      state.company = payload.company;
+      state.phone = payload.phone;
+      state.address = payload.address;
+      state.webSite = payload.webSite;
+      state.logoURL = payload.logoURL;
     },
     login: ( state, { payload } ) => {
       // console.log( payload )
@@ -31,6 +41,11 @@ export const authSlice = createSlice({
       state.lastName = payload.lastName;
       state.scdLastName = payload.scdLastName;
       state.date = payload.date;
+      state.company = payload.company;
+      state.phone = payload.phone;
+      state.address = payload.address;
+      state.webSite = payload.webSite;
+      state.logoURL = payload.logoURL;
       state.photoURL = payload.photoURL;
       state.errorMessage = null;
     },
@@ -44,6 +59,11 @@ export const authSlice = createSlice({
       state.scdLastName = null;
       state.date = null;
       state.photoURL = null;
+      state.company = null;
+      state.phone = null;
+      state.address = null;
+      state.webSite = null;
+      state.logoURL = null;
       state.errorMessage = payload.errorMessage;
     },
     checkingCredentials: (state, { payload = 'checking' }) => {

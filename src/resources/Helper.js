@@ -11,8 +11,9 @@ const getAllMonthsEnglish = ['January', 'February', 'March', 'April', 'May', 'Ju
 
 export const formatDate = dateStr => {
   const date = moment(dateStr)
+  console.log(date.format('MMMM'));
   let index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
-  return `${date.date()} de ${getAllMonths[index]} ${date.year()}`
+  return `${date.date()} de ${date.format('MMMM')} ${date.year()}`
 }
 
 export const currentDate = (date = null) => {
