@@ -47,7 +47,7 @@ console.log(synastry)
     TimeVibrationPDF(consultant, newDate),
     // ...DestinityPDF(consultant),
     CreateNamePDF(consultant),
-    ...NamePDF(consultant),
+    ...NamePDF(consultant, newDate),
     LifePathPDF(consultant),
     PinnaclePDF(consultant),
     CircleTimePDF(consultant, newDate),

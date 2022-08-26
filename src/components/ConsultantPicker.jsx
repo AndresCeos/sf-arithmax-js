@@ -12,22 +12,22 @@ export const ConsultantPicker = () => {
 
   const dispatch = useDispatch();
 
-  useEffect( () => {
+  useEffect(() => {
     dispatch(fetchAllUsers())
   }, [dispatch])
 
   const handleChange = (e) => {
-    dispatch( selectUserActive(e.value) )
-    dispatch( setIsSelectPartner(false) )
+    dispatch(selectUserActive(e.value))
+    dispatch(setIsSelectPartner(false))
     dispatch(setUserPartnerActive({}))
   }
-  const options = users.map( ({id, names, lastName, scdLastName}) =>({
+  const options = users.map(({ id, names, lastName, scdLastName }) => ({
     value: id,
     label: `${names} ${lastName} ${scdLastName}`
   }))
 
   const formatUserActive = () => {
-    if( userActive?.id ){
+    if (userActive?.id) {
       return {
         value: userActive.id,
         label: `${userActive.names} ${userActive.lastName} ${userActive.scdLastName}`
@@ -36,18 +36,18 @@ export const ConsultantPicker = () => {
     return null;
   }
 
-  return(
+  return (
     <div className='selectConsultant flex items-center'>
       <img src={ic_search} className="mx-2 drop-shadow-sm" alt='consultant search' />
       Consultante:
       <Select
         options={options}
         onChange={handleChange}
-        value={ formatUserActive() }
+        value={formatUserActive()}
         className='px-2 w-72'
         placeholder="Selecccionar"
         classNamePrefix="bg-transparent border-0 outline-none font-bold"
-        noOptionsMessage={ ({ inputValue: string }) => 'No hay coincidencias'}
+        noOptionsMessage={({ inputValue: string }) => 'No hay coincidencias'}
       />
     </div>
   )
