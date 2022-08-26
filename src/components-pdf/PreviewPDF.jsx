@@ -12,9 +12,10 @@ import {
   CalendarPDF,
   MonthPDF,
   AnnualReturnsPDF,
-  CircleTimePDF
+  CircleTimePDF,
+  SynastryVibrationTimePDF
 } from './document';
-import { Person } from '../resources';
+import { Person, Synastry } from '../resources';
 
 export const PreviewPDF = () => {
 
@@ -28,7 +29,16 @@ export const PreviewPDF = () => {
   if (isEmpty) {
     return <UnselectedConsultant />
   }
-
+  const partnerActive = userActive.partner[0]
+  const partner = new Person({
+    name: partnerActive.names,
+    lastName: partnerActive.lastName,
+    scdLastName: partnerActive.scdLastName,
+    birthDate: partnerActive.date,
+    yearMeet :partnerActive.yearMeet
+  })
+  const synastry = new Synastry(consultant, partner)
+console.log(synastry)
   const config = [
     MonthPDF(consultant, newDate, 8),
     ...CalendarPDF(consultant, newDate),
@@ -40,7 +50,8 @@ export const PreviewPDF = () => {
     ...NamePDF(consultant),
     LifePathPDF(consultant),
     PinnaclePDF(consultant),
-    CircleTimePDF(consultant, newDate)
+    CircleTimePDF(consultant, newDate),
+    ...SynastryVibrationTimePDF(synastry, newDate)
   ]
 
   return (

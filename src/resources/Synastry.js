@@ -877,8 +877,13 @@ export class Synastry {
       return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
     }
     const listOfMonths = this.getCustomMonths()
+    const listOfMonthsE = this.getAllMonthsEnglish()
     const actualMonth = monthToCalculate.format('MMMM');
-    const index = listOfMonths.findIndex(i => i === actualMonth.capitalize())
+    const allmonths = this.getAllMonths()
+    
+    const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize())
+    const index = listOfMonths.findIndex(i => i === allmonths[indexE])
+    console.log(allmonths[indexE])
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
     if (index < 5) { return this.getQuaterOne() }
     if (index > 4 && index < 9) {
@@ -1013,6 +1018,18 @@ export class Synastry {
     const base = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
     let intersection = base.filter(x => !Object.keys(occurrences).includes(x));
     return intersection.join(' ')
+  }
+
+  getSumHierarchy(a, b) {
+    return this.reduceNumber(a + b)
+  }
+  getResHierarchy(a, b) {
+    (a === 11) ? a = 2 : a = a;
+    (a === 22) ? a = 4 : a = a;
+    (b === 11) ? b = 2 : b = b;
+    (b === 22) ? b = 4 : b = b;
+    let res = this.reduceNumber(a - b)
+    return Math.abs(res)
   }
   /**
    * get nine year cycle

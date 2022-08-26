@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 
-import { fetchAllUsers, selectUserActive, setIsSelectPartner } from '../store/slices/users/users';
+import { fetchAllUsers, selectUserActive, setIsSelectPartner,setUserPartnerActive } from '../store/slices/users/users';
 
 import ic_search from '../assets/icons/sb_search.svg'
 
