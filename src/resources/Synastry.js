@@ -1031,6 +1031,33 @@ export class Synastry {
     let res = this.reduceNumber(a - b)
     return Math.abs(res)
   }
+
+  compatibilityObject() {
+    const table = {
+      1: { pn: [1, 5, 7, 11], pc: [2, 3, 9], pd: [4, 6, 22], pne: [8] },
+      2: { pn: [2, 4, 8, 22], pc: [1, 3, 6, 9], pd: [5, 7, 11], pne: [] },
+      3: { pn: [3, 6, 9], pc: [1, 2, 5], pd: [4, 7, 8, 11, 22], pne: [] },
+      4: { pn: [2, 4, 8, 22], pc: [6, 7, 11], pd: [1, 3, 5, 9], pne: [] },
+      5: { pn: [1, 5, 7, 11], pc: [3, 9], pd: [2, 4, 6, 22], pne: [8] },
+      6: { pn: [3, 6, 9], pc: [2, 4, 8, 22], pd: [1, 5, 7, 11], pne: [] },
+      7: { pn: [1, 5, 7, 11], pc: [4, 22], pd: [2, 3, 6, 8, 9], pne: [] },
+      8: { pn: [2, 4, 8, 22], pc: [6], pd: [3, 7, 9, 11], pne: [1, 5] },
+      9: { pn: [3, 6, 9], pc: [1, 2, 5], pd: [4, 7, 8, 11, 22], pne: [] },
+      11: { pn: [1, 5, 7, 11], pc: [4, 8, 22], pd: [2, 3, 6, 9], pne: [] },
+      22: { pn: [2, 4, 8, 22], pc: [6, 7, 11], pd: [1, 3, 5, 9], pne: [] }
+    }
+    return table;
+  }
+  getCompatibility(number, partnerN) {
+    const table = this.compatibilityObject()
+    const tableNumber = table[number]
+    for (const [k, v] of Object.entries(tableNumber)) {
+      if (v.includes(partnerN)) {
+        return k.toUpperCase();
+      }
+    }
+
+  }
   /**
    * get nine year cycle
    * @returns {Number} nineYearCycle

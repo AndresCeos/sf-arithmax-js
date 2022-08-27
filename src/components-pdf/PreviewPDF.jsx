@@ -13,7 +13,8 @@ import {
   MonthPDF,
   AnnualReturnsPDF,
   CircleTimePDF,
-  SynastryVibrationTimePDF
+  SynastryVibrationTimePDF,
+  CompatibilityTablePDF
 } from './document';
 import { Person, Synastry } from '../resources';
 
@@ -51,7 +52,8 @@ console.log(synastry)
     LifePathPDF(consultant),
     PinnaclePDF(consultant),
     CircleTimePDF(consultant, newDate),
-    ...SynastryVibrationTimePDF(synastry, newDate)
+  ...SynastryVibrationTimePDF(synastry, newDate),
+    CompatibilityTablePDF(synastry,newDate)
   ]
 
   return (

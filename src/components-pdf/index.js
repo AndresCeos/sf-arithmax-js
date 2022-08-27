@@ -48,3 +48,5 @@ export * from './synastryVibrationTime/SynastryNineCycle'
 export * from './synastryVibrationTime/SynastryVTQuaterY'
 export * from './synastryVibrationTime/SynastryTimeCurve'
 export * from './synastryVibrationTime/SynastryLine'
+
+export * from './compatibilityTable/CompatibilityValues'

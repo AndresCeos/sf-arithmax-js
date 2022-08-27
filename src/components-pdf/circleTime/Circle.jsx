@@ -74,21 +74,21 @@ return(
       <Text style={[circle.circleFont,{top:195,left:105}]}>{consultant.calcSelectPersonalWeek(12,3,currentYear)}{consultant.calcSelectPersonalWeekISK(12,3,currentYear)}</Text>
       <Text style={[circle.circleFont,{top:215,left:100}]}>{consultant.calcSelectPersonalWeek(12,4,currentYear)}{consultant.calcSelectPersonalWeekISK(12,4,currentYear)}</Text>
 
-      <Text style={[circle.circleFont,{top:250,left:150}]}>{consultant.calcPersonalMonth(1, currentYear)}{consultant.calcPersonalMonthISK(1, currentYear)} / {u.calcUniversalMonth(1,currentYear)}{u.calcUniversalMonthISK(1,currentYear)}</Text>
-      <Text style={[circle.circleFont,{top:300,left:175}]}>{consultant.calcPersonalMonth(2, currentYear)}{consultant.calcPersonalMonthISK(2, currentYear)} / {u.calcUniversalMonth(2,currentYear)}{u.calcUniversalMonthISK(2,currentYear)}</Text>
-      <Text style={[circle.circleFont,{top:330,left:220}]}>{consultant.calcPersonalMonth(3, currentYear)}{consultant.calcPersonalMonthISK(3, currentYear)} / {u.calcUniversalMonth(3,currentYear)}{u.calcUniversalMonthISK(3,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:250,left:150},circle.w30]}>{consultant.calcPersonalMonth(1, currentYear)}{consultant.calcPersonalMonthISK(1, currentYear)} / {u.calcUniversalMonth(1,currentYear)}{u.calcUniversalMonthISK(1,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:300,left:175},circle.w30]}>{consultant.calcPersonalMonth(2, currentYear)}{consultant.calcPersonalMonthISK(2, currentYear)} / {u.calcUniversalMonth(2,currentYear)}{u.calcUniversalMonthISK(2,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:330,left:220},circle.w30]}>{consultant.calcPersonalMonth(3, currentYear)}{consultant.calcPersonalMonthISK(3, currentYear)} / {u.calcUniversalMonth(3,currentYear)}{u.calcUniversalMonthISK(3,currentYear)}</Text>
 
-      <Text style={[circle.circleFont,{top:330,left:285}]}>{consultant.calcPersonalMonth(4, currentYear)}{consultant.calcPersonalMonthISK(4, currentYear)} / {u.calcUniversalMonth(4,currentYear)}{u.calcUniversalMonthISK(4,currentYear)}</Text>
-      <Text style={[circle.circleFont,{top:300,left:335}]}>{consultant.calcPersonalMonth(5, currentYear)}{consultant.calcPersonalMonthISK(5, currentYear)} / {u.calcUniversalMonth(5,currentYear)}{u.calcUniversalMonthISK(5,currentYear)}</Text>
-      <Text style={[circle.circleFont,{top:250,left:370}]}>{consultant.calcPersonalMonth(6, currentYear)}{consultant.calcPersonalMonthISK(6, currentYear)} / {u.calcUniversalMonth(6,currentYear)}{u.calcUniversalMonthISK(6,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:330,left:285},circle.w30]}>{consultant.calcPersonalMonth(4, currentYear)}{consultant.calcPersonalMonthISK(4, currentYear)} / {u.calcUniversalMonth(4,currentYear)}{u.calcUniversalMonthISK(4,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:300,left:335},circle.w30]}>{consultant.calcPersonalMonth(5, currentYear)}{consultant.calcPersonalMonthISK(5, currentYear)} / {u.calcUniversalMonth(5,currentYear)}{u.calcUniversalMonthISK(5,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:250,left:370},circle.w30]}>{consultant.calcPersonalMonth(6, currentYear)}{consultant.calcPersonalMonthISK(6, currentYear)} / {u.calcUniversalMonth(6,currentYear)}{u.calcUniversalMonthISK(6,currentYear)}</Text>
 
-      <Text style={[circle.circleFont,{top:195,left:370}]}>{consultant.calcPersonalMonth(7, currentYear)}{consultant.calcPersonalMonthISK(7, currentYear)} / {u.calcUniversalMonth(7,currentYear)}{u.calcUniversalMonthISK(7,currentYear)}</Text>
-      <Text style={[circle.circleFont,{top:140,left:335}]}>{consultant.calcPersonalMonth(8, currentYear)}{consultant.calcPersonalMonthISK(8, currentYear)} / {u.calcUniversalMonth(8,currentYear)}{u.calcUniversalMonthISK(8,currentYear)}</Text>
-      <Text style={[circle.circleFont,{top:105,left:290}]}>{consultant.calcPersonalMonth(9, currentYear)}{consultant.calcPersonalMonthISK(9, currentYear)} / {u.calcUniversalMonth(9,currentYear)}{u.calcUniversalMonthISK(9,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:195,left:370},circle.w30]}>{consultant.calcPersonalMonth(7, currentYear)}{consultant.calcPersonalMonthISK(7, currentYear)} / {u.calcUniversalMonth(7,currentYear)}{u.calcUniversalMonthISK(7,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:140,left:335},circle.w30]}>{consultant.calcPersonalMonth(8, currentYear)}{consultant.calcPersonalMonthISK(8, currentYear)} / {u.calcUniversalMonth(8,currentYear)}{u.calcUniversalMonthISK(8,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:105,left:290},circle.w30]}>{consultant.calcPersonalMonth(9, currentYear)}{consultant.calcPersonalMonthISK(9, currentYear)} / {u.calcUniversalMonth(9,currentYear)}{u.calcUniversalMonthISK(9,currentYear)}</Text>
 
-      <Text style={[circle.circleFont,{top:105,left:230}]}>{consultant.calcPersonalMonth(10, currentYear)}{consultant.calcPersonalMonthISK(12, currentYear)} / {u.calcUniversalMonth(12,currentYear)}{u.calcUniversalMonthISK(12,currentYear)}</Text>
-      <Text style={[circle.circleFont,{top:140,left:170}]}>{consultant.calcPersonalMonth(11, currentYear)}{consultant.calcPersonalMonthISK(11, currentYear)} / {u.calcUniversalMonth(11,currentYear)}{u.calcUniversalMonthISK(11,currentYear)}</Text>
-      <Text style={[circle.circleFont,{top:195,left:150}]}>{consultant.calcPersonalMonth(12, currentYear)}{consultant.calcPersonalMonthISK(10, currentYear)} / {u.calcUniversalMonth(10,currentYear)}{u.calcUniversalMonthISK(10,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:105,left:230},circle.w30]}>{consultant.calcPersonalMonth(10, currentYear)}{consultant.calcPersonalMonthISK(12, currentYear)} / {u.calcUniversalMonth(12,currentYear)}{u.calcUniversalMonthISK(12,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:140,left:170},circle.w30]}>{consultant.calcPersonalMonth(11, currentYear)}{consultant.calcPersonalMonthISK(11, currentYear)} / {u.calcUniversalMonth(11,currentYear)}{u.calcUniversalMonthISK(11,currentYear)}</Text>
+      <Text style={[circle.circleFont,{top:195,left:150},circle.w30]}>{consultant.calcPersonalMonth(12, currentYear)}{consultant.calcPersonalMonthISK(10, currentYear)} / {u.calcUniversalMonth(10,currentYear)}{u.calcUniversalMonthISK(10,currentYear)}</Text>
 
       <Text style={[circle.circleFont,{top:240,left:210}]}>{consultant.getQuaterMonth(1,currentYear)}{consultant.getQuaterMonthISK(1,currentYear)}</Text>
       <Text style={[circle.circleFont,{top:265,left:225}]}>{consultant.getQuaterMonth(2,currentYear)}{consultant.getQuaterMonthISK(2,currentYear)}</Text>
@@ -232,6 +232,9 @@ export const circle = StyleSheet.create({
     fontSize:'14px',
     position:'absolute'
   },
+  w30:{
+    width:'40px'
+  }
 
 
 
