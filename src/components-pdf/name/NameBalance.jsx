@@ -61,16 +61,16 @@ export const NameBalance = ({ consultant }) => {
 export const pinnacleName = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: '20px',
+    top: '16px',
     left: '35px',
     fontSize: '7px',
-    width: '349px',
+    width: '348px',
   },
   wrap: {
     position: 'relative'
   },
   table: {
-    // backgroundColor: 'red',
+    backgroundColor: '#ff000012',
     position: 'relative',
     transform: 'rotate(-90deg)',
   }

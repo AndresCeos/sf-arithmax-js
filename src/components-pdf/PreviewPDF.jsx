@@ -42,16 +42,16 @@ export const PreviewPDF = () => {
   const synastry = new Synastry(consultant, partner)
   console.log(synastry)
   const config = [
-    MonthPDF(consultant, newDate, 8),
-    ...CalendarPDF(consultant, newDate),
-    AnnualReturnsPDF(consultant, newDate),
-    TimeVibrationPDF(consultant, newDate),
-    ...DestinityPDF(consultant),
-    CreateNamePDF(consultant),
-    ...NamePDF(consultant, newDate),
-    LifePathPDF(consultant),
     PinnaclePDF(consultant),
+    LifePathPDF(consultant),
+    ...NamePDF(consultant, newDate),
+    CreateNamePDF(consultant),
+    ...DestinityPDF(consultant),
+    TimeVibrationPDF(consultant, newDate),
+    AnnualReturnsPDF(consultant, newDate),
     CircleTimePDF(consultant, newDate),
+    ...CalendarPDF(consultant, newDate),
+    MonthPDF(consultant, newDate, 8),
     ...SynastryVibrationTimePDF(synastry, newDate),
     CompatibilityTablePDF(synastry, newDate)
   ]

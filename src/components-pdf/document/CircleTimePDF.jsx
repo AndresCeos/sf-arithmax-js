@@ -1,7 +1,7 @@
 import { Circle } from '../circleTime/Circle'
 import { MonthCircle } from '../circleTime/MonthCircle'
 
-import circle from '../assets/circle-time.jpeg'
+import circle from '../assets/circle-time.jpg'
 
 export const CircleTimePDF = (consultant, newDate) => {
   return {
