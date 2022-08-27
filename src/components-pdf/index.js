@@ -50,3 +50,6 @@ export * from './synastryVibrationTime/SynastryTimeCurve'
 export * from './synastryVibrationTime/SynastryLine'
 
 export * from './compatibilityTable/CompatibilityValues'
+
+export * from './destinityTable/DestinityTable'
+export * from './destinityTable/DestinityNumericalValues'

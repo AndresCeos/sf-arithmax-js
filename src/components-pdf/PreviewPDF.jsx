@@ -14,7 +14,8 @@ import {
   AnnualReturnsPDF,
   CircleTimePDF,
   SynastryVibrationTimePDF,
-  CompatibilityTablePDF
+  CompatibilityTablePDF,
+  DestinityPDF
 } from './document';
 import { Person, Synastry } from '../resources';
 
@@ -36,24 +37,23 @@ export const PreviewPDF = () => {
     lastName: partnerActive.lastName,
     scdLastName: partnerActive.scdLastName,
     birthDate: partnerActive.date,
-    yearMeet :partnerActive.yearMeet
+    yearMeet: partnerActive.yearMeet
   })
   const synastry = new Synastry(consultant, partner)
-console.log(synastry)
+  console.log(synastry)
   const config = [
     MonthPDF(consultant, newDate, 8),
     ...CalendarPDF(consultant, newDate),
-    // TimeCirlePDF(consultant),
     AnnualReturnsPDF(consultant, newDate),
     TimeVibrationPDF(consultant, newDate),
-    // ...DestinityPDF(consultant),
+    ...DestinityPDF(consultant),
     CreateNamePDF(consultant),
     ...NamePDF(consultant, newDate),
     LifePathPDF(consultant),
     PinnaclePDF(consultant),
     CircleTimePDF(consultant, newDate),
-  ...SynastryVibrationTimePDF(synastry, newDate),
-    CompatibilityTablePDF(synastry,newDate)
+    ...SynastryVibrationTimePDF(synastry, newDate),
+    CompatibilityTablePDF(synastry, newDate)
   ]
 
   return (
