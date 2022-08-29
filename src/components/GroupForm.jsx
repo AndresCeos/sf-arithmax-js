@@ -1,35 +1,42 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik'
 
-import { editUser, generateUserId } from '../store/slices/users/users';
+import { editUser, generateUserId, setIsGroupEditing } from '../store/slices/users/users';
 
 import add_user_main from '../assets/icons/add_user_group.svg'
 import { useState } from 'react';
 
-export const GroupForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
+export const GroupForm = ( {dataPartner,userIndex, setIsAddFormActive,indexGroup} ) => {
   const dispatch = useDispatch();
-  const { isPartnerEditing, userActive } = useSelector(state => state.users);
+  const { isGroupEditing, userActive } = useSelector(state => state.users);
   let groupDateEmpty = true
-  const [groupDate, setGroupDate] = useState()
+  const gDate = userActive.dateGroup
+  const [groupDate, setGroupDate] = useState(isGroupEditing?gDate:null)
 if(userActive.dateGroup !== null){
   groupDateEmpty = false
 }
+let cap = userActive.group
+console.log(cap.length);
 
+
+const closeForm = () =>{
+  setIsAddFormActive(false)
+  dispatch(setIsGroupEditing(false))
+}
   return(
     <>
     <Formik
       enableReinitialize
-      initialValues={{names: '', date: '',lastName:'',scdLastName:'' }}
-      /*initialValues={ ( ! isPartnerEditing ) ?
+      initialValues={ ( ! isGroupEditing ) ?
         { names: '', date: '',lastName:'',scdLastName:'' }
         :
         {
-          names:userPartnerActive.names,
-          date:userPartnerActive.date,
-          lastName:userPartnerActive.lastName,
-          scdLastName:userPartnerActive.scdLastName
+          names:cap[indexGroup].names,
+          date:cap[indexGroup].date,
+          lastName:cap[indexGroup].lastName,
+          scdLastName:cap[indexGroup].scdLastName
         }
-      }*/
+      }
       validate={ values => {
         const errors = {};
         const letters = /^[A-Za-z ]+$/
@@ -60,8 +67,8 @@ if(userActive.dateGroup !== null){
         return errors;
       } }
       onSubmit={(user,  { setSubmitting, resetForm }) => {
-        if( ! isPartnerEditing ){
-          user.id = generateUserId()
+          if(!isGroupEditing){
+            user.id = generateUserId()
           const updatedUser = {
             ...dataPartner,
             group :[
@@ -70,32 +77,27 @@ if(userActive.dateGroup !== null){
             ],
             dateGroup:groupDate
           }
-          
+
           console.log( {updatedUser} )
           dispatch( editUser(updatedUser, userIndex) )
-        }
+          }
         /*
          * TODO: EDIT PARTNER
          */
 
-      // if(isPartnerEditing){
-      //   let arrayPartners =Object.assign({},dataPartner.partner,{})
-      //   arrayPartners[partnerIndex] = user
-      //   let userPartners = Object.assign({}, dataPartner,{
-      //     partner : Object.keys(arrayPartners).map(key => arrayPartners[key])
-      //   })
-      //   console.log(userPartners);
-      //   dispatch(editUser(userPartners, userIndex))
-      // } else {
-        // const newdata = Object.assign(dataPartner,{
-        //   partner:[...dataPartner.partner, user]
-        // })
-        // dispatch( editUser(newdata, userIndex) )
-      //   console.log({'add partner': newdata});
-      // }
-      // //window.location.reload(false);
+      if(isGroupEditing){
+         let arrayGroups =Object.assign({},dataPartner.group,{})
+         arrayGroups[indexGroup] = user
+         let userPartners = Object.assign({}, dataPartner,{
+           group : Object.keys(arrayGroups).map(key => arrayGroups[key])
+         })
+         userPartners.dateGroup = groupDate
+         console.log(userPartners);
+         dispatch(editUser(userPartners, userIndex))
+       }
       setIsAddFormActive(false)
       setSubmitting(false);
+      dispatch(setIsGroupEditing(false))
       resetForm({})
       }}
     >
@@ -180,12 +182,12 @@ if(userActive.dateGroup !== null){
         </div>
         <div className="flex w-full mt-3 justify-center">
           <button type="submit" className="btn-save w-32" disabled={isSubmitting}>Guardar</button>
-          {/* <button className='w-6/12 btn-cancel rounded' type='button' onClick={closeForm} >Cancelar</button> */}
+          {(isGroupEditing)?<button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm} >Cancelar</button> :''}
         </div>
       </form>
     )}
     </Formik>
-    <div className="flex w-full mt-3">
+<div className="flex w-full mt-3">
       <div className="form-group w-1/3">
         <label className='font-bold mb-1'>
           Última Fecha de Integración

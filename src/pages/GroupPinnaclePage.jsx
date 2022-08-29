@@ -49,7 +49,7 @@ const  GroupPinnaclePage = () =>{
   }
 return(
   <div className='grid grid-cols-12 mx-14 gap-6 mt-8 py-10 relative'>
-    <UserPartnerSelect isGroup />
+    <UserPartnerSelect isGroup={true} />
   {(!isEmptyGroup)?
   <>
   <button className=" absolute -left-10 top-1/2 z-20" onClick={prevPerson}><TiMediaPlayReverse className='text-4xl'/></button>

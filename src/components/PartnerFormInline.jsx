@@ -8,9 +8,10 @@ import { calcAge, formBirthDate } from '../resources/';
 import add_user_main from '../assets/icons/add_user_main.svg'
 import {  MdEdit } from 'react-icons/md';
 
-export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActive = false, setIsAddFormActive }) => {
+export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActive = false, setIsAddFormActive, editUserPartner }) => {
   const { list: users, userActive, isSelectPartner, userPartnerActive } = useSelector(state => state.users);
   const isEmpty = Object.keys( partners ).length === 0;
+  const isEmptyP = Object.keys(userPartnerActive).length === 0;
 
   const getIndex= (element) => element.id  === userActive.id;
 
@@ -28,7 +29,16 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
     // console.log( partners[index] )
     setPartner( partners[index] )
   }
-
+  const editPartner = ()=>{
+    if(!isEmptyP){
+      setIsAddFormActive(true)
+      editUserPartner()
+    }
+  }
+  console.log(partner)
+  console.log(partners)
+  console.log(isSelectPartner)
+  console.log(userPartnerActive);
   useEffect(() => {
     // console.log( {userPartnerActive} )
     // console.log( partner )
@@ -53,7 +63,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
           <MdEdit className='text-xl text-gray-400'/> Nombre
         </label>
         <select onChange={selectPartner}   className='border rounded w-full'>
-          <option value=""  >Seleciona una pareja</option>
+          <option value="" selected >Seleciona una pareja</option>
           {partners.map(({ id, names, lastName, scdLastName }, index)=>
             <option key={id} value={index} selected={ id === partner.id }>
               {names} {lastName} {scdLastName}
@@ -63,7 +73,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
       </div>
       <div className="form-group-inline col-span-4 items-center justify-center">
         <label className='font-bold mb-1 mr-2 text-13 w-full'>
-          <MdEdit className='text-xl text-gray-400'/> Fecha de Nacimiento
+          <button onClick={editPartner}><MdEdit className='text-xl text-gray-400' /></button> Fecha de Nacimiento
         </label>
         <input
           value={ partner.date !== undefined ? formBirthDate(partner.date) : '' }
@@ -92,7 +102,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
           <MdEdit className='text-xl text-gray-400'/> Se conocieron en el año:
         </label>
         <input
-          value={ partner.yearMeet }
+          value={ partner.yearMeet!== undefined?partner.yearMeet:'' }
           type="text"
           className="rounded w-20 text-center"
           disabled={ hasPartner }

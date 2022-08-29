@@ -22,6 +22,7 @@ const initialState = {
   userActive: {},
   isEditing:false,
   isPartnerEditing:false,
+  isGroupEditing:false,
   addPartner:false,
   hasPartner:false,
   hasGroup:false,
@@ -72,6 +73,9 @@ export const userSlice = createSlice({
     setIsPartnerEditing:(state,action) => {
       state.isPartnerEditing = action.payload
     },
+    setIsGroupEditing:(state,action) => {
+      state.isGroupEditing = action.payload
+    },
     setPartnerIndex:(state,action)=>{
       state.partnerIndex = action.payload
     },
@@ -107,6 +111,7 @@ export const {
   setUserPartnerActive,
   setIsSelectPartner,
   setIsPartnerEditing,
+  setIsGroupEditing,
   setPartnerIndex,
   setPartnerSelected,
   setDateSelected,

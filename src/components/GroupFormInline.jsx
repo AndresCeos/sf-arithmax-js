@@ -9,15 +9,16 @@ import add_user_main from '../assets/icons/add_user_group.svg'
 import {  MdEdit } from 'react-icons/md';
 import { GroupForm } from './GroupForm';
 
-export const GroupFormInline = ({ hasPartner = false, group, isAddFormActive = false, setIsAddFormActive }) => {
+export const GroupFormInline = ({ hasPartner = false, group, isAddFormActive = false, setIsAddFormActive, editUserGroup }) => {
   const { list: users, userActive, eventYear } = useSelector(state => state.users);
   const isEmpty = Object.keys( group ).length === 0;
+  const [index, setIndex] = useState(null)
+
 
   const getIndex= (element) => element.id  === userActive.id;
 
   const dispatch = useDispatch()
   const groupDateEmpty = userActive.dateGroup
-
 
   useEffect(() => {
     // console.log( {userPartnerActive} )
@@ -25,17 +26,24 @@ export const GroupFormInline = ({ hasPartner = false, group, isAddFormActive = f
 
   }, [])
 
+  const editGroup =(i)=>{
+    setIsAddFormActive(true)
+    editUserGroup()
+    setIndex(i)
+  }
+
   // console.log( partners )
+
 
   if( isEmpty || isAddFormActive ){
     return (
-      <GroupForm dataPartner={userActive} userIndex={users.findIndex(getIndex)} setIsAddFormActive={setIsAddFormActive} />
+      <GroupForm dataPartner={userActive} userIndex={users.findIndex(getIndex)} setIsAddFormActive={setIsAddFormActive} indexGroup={index} />
     )
   }
   return (
     <>
       {group.map((data,i)=>
-    <div className='grid grid-cols-12'>
+    <div className='grid grid-cols-12' key={i}>
       <div className="form-group-inline col-span-6 items-center justify-center">
 
         <img src={add_user_main} className="mb-3" alt='add_user_main'/>
@@ -51,7 +59,7 @@ export const GroupFormInline = ({ hasPartner = false, group, isAddFormActive = f
       </div>
       <div className="form-group-inline col-span-4 items-center justify-center">
         <label className='font-bold mb-1 mr-2 text-13 w-full'>
-          <MdEdit className='text-xl text-gray-400'/> Fecha de Nacimiento
+          <button onClick={()=>{editGroup(i)}} ><MdEdit className='text-xl text-gray-400'/></button> Fecha de Nacimiento
         </label>
         <input
           value={ data.date !== undefined ? formBirthDate(data.date) : '' }

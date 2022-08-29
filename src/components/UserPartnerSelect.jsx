@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useConsultant } from '../hooks/useConsultant';
 import { fetchAllUsers, setHasPartner, selectUserPartnerActive,
-  setAddPartner, setIsSelectPartner, setIsPartnerEditing, setPartnerIndex, setHasGroup } from '../store/slices/users/users';
+  setAddPartner, setIsSelectPartner, setIsPartnerEditing, setPartnerIndex, setHasGroup, setIsGroupEditing } from '../store/slices/users/users';
 import { PartnerForm, AssingPartner, UserFormInline, PartnerFormInline,GroupFormInline } from './';
 
 import { TiPlus } from 'react-icons/ti';
@@ -12,7 +12,7 @@ import {  MdEdit } from 'react-icons/md';
 export const UserPartnerSelect = ({isGroup}) => {
   const { consultant } = useConsultant()
   const { list: users, userActive, userPartnerActive,
-    hasPartner, hasGroup, addPartner, isSelectPartner, isPartnerEditing } = useSelector(state => state.users);
+    hasPartner, hasGroup, addPartner, isSelectPartner, isPartnerEditing, isGroupEditing } = useSelector(state => state.users);
   const [isAddFormActive, setIsAddFormActive] = useState( false )
 
   const dispatch = useDispatch();
@@ -69,9 +69,14 @@ export const UserPartnerSelect = ({isGroup}) => {
     setFullName(names+' '+lastname)
   }
   const editUserPartner = () =>{
-    dispatch( setIsPartnerEditing(true) )
-    dispatch( setAddPartner(true) )
+      dispatch( setIsPartnerEditing(true) )
+      dispatch( setAddPartner(true) )
   }
+  const editUserGroup= () =>{
+    dispatch( setIsGroupEditing(true) )
+}
+  console.log(userActive.group);
+
 
 
   return(
@@ -88,7 +93,8 @@ export const UserPartnerSelect = ({isGroup}) => {
             (listPartners.length > 0 || listGroup.length >0) ?
             <button
               onClick={ () => setIsAddFormActive( !isAddFormActive ) }
-              className={`float-right ${ isAddFormActive ? 'bg-red-500' : 'bg-gold' } px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl`}>
+              className={`float-right ${ isAddFormActive ? 'bg-red-500' : 'bg-gold' } px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl ${(isGroupEditing||isPartnerEditing)?'hidden':''}`}
+              disabled={(isGroup&&listGroup.length===8)}>
                 { isAddFormActive ? 'Cancelar' : (isGroup)?'Agregar al Grupo':'Agregar Pareja' }
             </button>
             : null
@@ -100,7 +106,8 @@ export const UserPartnerSelect = ({isGroup}) => {
           hasPartner={hasGroup}
           group={listGroup}
           isAddFormActive={isAddFormActive}
-          setIsAddFormActive={setIsAddFormActive} />
+          setIsAddFormActive={setIsAddFormActive}
+          editUserGroup={editUserGroup} />
           :
           <><UserFormInline
           name={consultant.fullName}
@@ -111,7 +118,8 @@ export const UserPartnerSelect = ({isGroup}) => {
             partners={listPartners}
             currentPartner={userPartnerActive}
             isAddFormActive={isAddFormActive}
-            setIsAddFormActive={setIsAddFormActive} />
+            setIsAddFormActive={setIsAddFormActive}
+            editUserPartner={editUserPartner} />
             </>}
         </div>
       </div>

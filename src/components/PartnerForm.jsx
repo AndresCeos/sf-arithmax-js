@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik'
 
-import { editUser, generateUserId } from '../store/slices/users/users';
+import { editUser, generateUserId, setAddPartner,setIsPartnerEditing } from '../store/slices/users/users';
 
 import add_user_main from '../assets/icons/add_user_main.svg'
 
@@ -9,10 +9,11 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
   const dispatch = useDispatch();
   const { isPartnerEditing, userPartnerActive } = useSelector(state => state.users);
 
-  // const closeForm = () =>{
-  //   dispatch(setAddPartner(false))
-  //   dispatch(setIsPartnerEditing(false))
-  // }
+  const closeForm = () =>{
+    setIsAddFormActive(false)
+    dispatch(setAddPartner(false))
+    dispatch(setIsPartnerEditing(false))
+  }
 
   return(
     <Formik
@@ -82,22 +83,17 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
          * TODO: EDIT PARTNER
          */
 
-      // if(isPartnerEditing){
-      //   let arrayPartners =Object.assign({},dataPartner.partner,{})
-      //   arrayPartners[partnerIndex] = user
-      //   let userPartners = Object.assign({}, dataPartner,{
-      //     partner : Object.keys(arrayPartners).map(key => arrayPartners[key])
-      //   })
-      //   console.log(userPartners);
-      //   dispatch(editUser(userPartners, userIndex))
-      // } else {
-        // const newdata = Object.assign(dataPartner,{
-        //   partner:[...dataPartner.partner, user]
-        // })
-        // dispatch( editUser(newdata, userIndex) )
-      //   console.log({'add partner': newdata});
-      // }
-      // //window.location.reload(false);
+        if(isPartnerEditing){
+          let partness = dataPartner.partner
+          let partnerIndex = partness.findIndex(i=>i.id === userPartnerActive.id)
+          let arrayPartners =Object.assign({},dataPartner.partner,{})
+          arrayPartners[partnerIndex] = user
+          let userPartners = Object.assign({}, dataPartner,{
+            partner : Object.keys(arrayPartners).map(key => arrayPartners[key])
+          })
+          console.log(userPartners);
+          dispatch(editUser(userPartners, userIndex))
+        }
       setIsAddFormActive(false)
       setSubmitting(false);
       resetForm({})
@@ -199,7 +195,7 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
         </div>
         <div className="flex w-full mt-3 justify-center">
           <button type="submit" className="btn-save w-32" disabled={isSubmitting}>Guardar</button>
-          {/* <button className='w-6/12 btn-cancel rounded' type='button' onClick={closeForm} >Cancelar</button> */}
+          {(isPartnerEditing)?<button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm} >Cancelar</button>:''}
         </div>
       </form>
     )}
