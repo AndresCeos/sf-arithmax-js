@@ -1,4 +1,4 @@
-import {SynastryVTQuaterM} from '../synastryVibrationTime/SynastryVTQuaterM';
+import { SynastryVTQuaterM } from '../synastryVibrationTime/SynastryVTQuaterM';
 import { SynastryData } from '../synastryVibrationTime/SynastryData';
 import { SynastryEnergy } from '../synastryVibrationTime/SynastryEnergy';
 import { SynastryNineCycle } from '../synastryVibrationTime/SynastryNineCycle';
@@ -6,8 +6,8 @@ import { SynastryVTQuarterY } from '../synastryVibrationTime/SynastryVTQuaterY';
 import { SynastryLine } from '../synastryVibrationTime/SynastryLine';
 import { SynastryTimeCurve } from '../synastryVibrationTime/SynastryTimeCurve';
 
-import synastry1 from '../assets/Synastryvt-1.jpeg'
-import synastry2 from '../assets/Synastryvt-2.jpeg'
+import synastry1 from '../assets/s-time-vibration.jpg'
+import synastry2 from '../assets/s-time-vibration2.jpg'
 
 
 
@@ -27,9 +27,9 @@ export const SynastryVibrationTimePDF = (synastry, newDate) => {
   }, {
     bg: synastry2,
     children: <>
-    <SynastryData synastry={synastry} newDate={newDate} />
-    <SynastryTimeCurve synastry={synastry} newDate={newDate} />
-    <SynastryLine synastry={synastry} newDate={newDate} />
+      <SynastryData synastry={synastry} newDate={newDate} />
+      <SynastryTimeCurve synastry={synastry} newDate={newDate} />
+      <SynastryLine synastry={synastry} newDate={newDate} />
     </>
 
   }]
