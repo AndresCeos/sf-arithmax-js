@@ -18,7 +18,10 @@ import {
   DestinityPDF,
   SynastryPinnaclePDF,
   SynastryAnnualReturnsPDF,
-  SynastryDestinityPDF
+  SynastryDestinityPDF,
+  GroupPinnaclePDF,
+  GroupVibrationTimePDF,
+  GroupAnnualReturnsPDF
 } from './document';
 import { Person, Synastry } from '../resources';
 import { PDFViewer } from '@react-pdf/renderer';
@@ -56,11 +59,16 @@ export const PreviewPDF = () => {
     // CircleTimePDF(consultant, newDate),
     // ...CalendarPDF(consultant, newDate),
     // MonthPDF(consultant, newDate, 8),
-    SynastryPinnaclePDF(synastry),
-    ...SynastryVibrationTimePDF(synastry, newDate),
-    CompatibilityTablePDF(synastry, newDate),
-    SynastryAnnualReturnsPDF(synastry, newDate),
-    SynastryDestinityPDF(synastry, newDate)
+    // SYNASTRY
+    // SynastryPinnaclePDF(synastry),
+    // ...SynastryVibrationTimePDF(synastry, newDate),
+    // CompatibilityTablePDF(synastry, newDate),
+    // SynastryAnnualReturnsPDF(synastry, newDate),
+    // SynastryDestinityPDF(synastry, newDate),
+    // GROUP
+    ...GroupPinnaclePDF(),
+    ...GroupVibrationTimePDF(),
+    GroupAnnualReturnsPDF(),
   ]
 
   return (
