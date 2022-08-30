@@ -65,28 +65,41 @@ export const Navbar = () => {
 
   const location = useLocation()
 
-  const reports = {
-    'pinaculo': PinnaclePDF(consultant),
-    'camino': LifePathPDF(consultant),
-    'nombre': NamePDF(consultant, newDate),
-    'crear_nombre': CreateNamePDF(consultant),
-    'destino': DestinityPDF(consultant, newDate),
-    'tiempo': TimeVibrationPDF(consultant, newDate),
-    'retornos': AnnualReturnsPDF(consultant, newDate),
-    'circulo_tiempo': CircleTimePDF(consultant, newDate),
-    'calendario': CalendarPDF(consultant, newDate),
-    'calendarioMensual': MonthPDF(consultant, newDate, 8),
-  }
+
+  const reportList = [
+    'pinaculo',
+    'camino',
+    'nombre',
+    'crear_nombre',
+    'destino',
+    'tiempo',
+    'retornos',
+    'circulo_tiempo',
+    'calendario',
+    'calendarioMensual',
+  ]
 
   const path = location?.pathname.split('/')[1]
   const existDownloadPDF = () => {
-    return reports.hasOwnProperty(path)
+    return reportList.includes(path)
   }
 
   const isDownloadPDFEnabled = existDownloadPDF() && !isEmpty
   let config, docName, profile, MyPDF;
-  console.log(isDownloadPDFEnabled)
   if (isDownloadPDFEnabled) {
+
+    const reports = {
+      'pinaculo': PinnaclePDF(consultant),
+      'camino': LifePathPDF(consultant),
+      'nombre': NamePDF(consultant, newDate),
+      'crear_nombre': CreateNamePDF(consultant),
+      'destino': DestinityPDF(consultant, newDate),
+      'tiempo': TimeVibrationPDF(consultant, newDate),
+      'retornos': AnnualReturnsPDF(consultant, newDate),
+      'circulo_tiempo': CircleTimePDF(consultant, newDate),
+      'calendario': CalendarPDF(consultant, newDate),
+      'calendarioMensual': MonthPDF(consultant, newDate, 8),
+    }
     docName = sanitize(`${path} ${consultant.fullName}`)
     config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
     profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
