@@ -33,7 +33,7 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
       }
       validate={ values => {
         const errors = {};
-        const letters = /^[A-Za-z ]+$/
+        const letters = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g
         if (!values.names) {
           errors.names = 'Requerido';
         }

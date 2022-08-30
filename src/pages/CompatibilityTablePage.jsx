@@ -181,28 +181,28 @@ const CompatibilityTablePage = ()=>{
             </div>
 
             <div className=' col-start-10 row-start-2 col-span-3 flex justify-center'>
-                <img src={pn} alt="" />
+                <img src={pn} alt="pn" className='w-24 h-12 object-contain' />
             </div>
             <div className=' col-start-10 row-start-3 col-span-3 flex justify-center'>
                 <b>PN</b> =  Pareja Natural
             </div>
             <div className=' col-start-10 row-start-4 col-span-3 flex justify-center'>
-                <img src={pc} alt="" />
+                <img src={pc} alt="pc" className='w-24 h-12 object-contain' />
             </div>
             <div className=' col-start-10 row-start-5 col-span-3 flex justify-center'>
-                <b>PN</b> =  Pareja Compatible
+                <b>PC</b> =  Pareja Compatible
             </div>
             <div className=' col-start-10 row-start-6 col-span-3 flex justify-center'>
-                <img src={pd} alt="" />
+                <img src={pd} alt="pd" className='w-24 h-12 object-contain' />
             </div>
             <div className=' col-start-10 row-start-7 col-span-3 flex justify-center'>
-                <b>PN</b> =  Pareja Desafío
+                <b>PD</b> =  Pareja Desafío
             </div>
             <div className=' col-start-10 row-start-8 col-span-3 flex justify-center'>
-                <img src={pne} alt="" />
+                <img src={pne} alt="pne" className='w-24 h-12 object-contain' />
             </div>
             <div className=' col-start-10 row-start-9 col-span-3 flex justify-center'>
-                <b>PN</b> =  Pareja Neutral
+                <b>PNe</b> =  Pareja Neutral
             </div>
           </div>
         </div>
