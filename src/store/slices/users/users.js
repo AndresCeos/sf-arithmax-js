@@ -185,6 +185,63 @@ export const removeUser = id => async dispatch => {
     }
   })
 }
+export const removeGroupUser = (data, i) => async dispatch =>{
+  const users = await localForage.getItem('users')
+  Swal.fire({
+    title: '¿Estas seguro?',
+    text: "La persona se borrara permanentemente",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, Borrar',
+    cancelButtonText: 'Cancelar'
+  }).then( result=> {
+    if (result.isConfirmed) {
+      const usertoedit = users.filter(e =>e.id === data.id)
+      let group = data.group
+      const groupwithout = group.filter((e,index) =>group[index] !== group[i])
+      let userPartners = Object.assign({}, data,{
+        group : Object.keys(groupwithout).map(key => groupwithout[key])
+      })
+      dispatch(editUser(userPartners))
+      Swal.fire(
+        'Borrado!',
+        'La persona ha sido borrada',
+        'success'
+      )
+    }
+  })
+}
+
+export const removePartnerUser = (data, i) => async dispatch =>{
+  const users = await localForage.getItem('users')
+  Swal.fire({
+    title: '¿Estas seguro?',
+    text: "La persona se borrara permanentemente",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, Borrar',
+    cancelButtonText: 'Cancelar'
+  }).then( result=> {
+    if (result.isConfirmed) {
+      const usertoedit = users.filter(e =>e.id === data.id)
+      let group = data.partner
+      const groupwithout = group.filter((e,index) =>group[index] !== group[i])
+      let userPartners = Object.assign({}, data,{
+        partner : Object.keys(groupwithout).map(key => groupwithout[key])
+      })
+      dispatch(editUser(userPartners))
+      Swal.fire(
+        'Borrado!',
+        'La persona ha sido borrada',
+        'success'
+      )
+    }
+  })
+}
 
 export const editUser = user => async dispatch => {
   const users = await localForage.getItem('users')

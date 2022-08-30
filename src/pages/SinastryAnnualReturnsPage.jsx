@@ -1,19 +1,26 @@
-import {  useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 
 import { AnnualReturn, UnselectedConsultant, UserPartnerSelect } from '../components/';
 import { useConsultant, dateSelect } from '../hooks';
 import { Person, Synastry} from '../resources/'
 
 import { TiPlus } from 'react-icons/ti';
+import { setIsSelectPartner } from '../store/slices/users/users';
 
 const SinastyAnnualReturnsPage = () => {
   const { userActive,userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
+
   const { consultant } = useConsultant()
   const {newDate} = dateSelect()
+  const dispatch = useDispatch()
 
   if( isEmpty ){
     return<UnselectedConsultant />
+  }
+  const isEmptyP = Object.keys(userActive.partner).length === 0;
+  if(isEmptyP){
+    dispatch( setIsSelectPartner(false))
   }
 
   const partner = new Person({

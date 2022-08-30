@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { StatusBar,
   QuaterPerYear,
@@ -11,11 +11,13 @@ import { useConsultant, dateSelect } from '../hooks';
 import { Person, Synastry }from '../resources'
 
 import { TiPlus } from "react-icons/ti";
+import { setIsSelectPartner } from '../store/slices/users/users';
 
 const SinastyVibrationTimePage = () => {
   const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const { consultant } = useConsultant()
   const {newDate} = dateSelect()
+  const dispatch = useDispatch()
   const partner = new Person({
     name: userPartnerActive.names,
     lastName: userPartnerActive.lastName,
@@ -35,6 +37,10 @@ const SinastyVibrationTimePage = () => {
 
   if( isEmpty ){
     return<UnselectedConsultant />
+  }
+  const isEmptyP = Object.keys(userActive.partner).length === 0;
+  if(isEmptyP){
+    dispatch( setIsSelectPartner(false))
   }
 
   if( partner === undefined ){

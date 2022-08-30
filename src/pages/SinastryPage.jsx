@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Pinnacle, AnnualReturn, UnselectedConsultant,
   UserPartnerSelect, CircleNumber } from '../components/';
-import { fetchAllUsers } from '../store/slices/users/users';
+import { fetchAllUsers, setIsSelectPartner } from '../store/slices/users/users';
 import { useConsultant, dateSelect } from '../hooks';
 import { Synastry, Person } from '../resources/'
 
@@ -12,7 +12,6 @@ import { TiPlus } from 'react-icons/ti';
 const SinastryPage = () => {
   const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
-
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -24,6 +23,10 @@ const SinastryPage = () => {
 
   if( isEmpty ){
     return<UnselectedConsultant />
+  }
+  const isEmptyP = Object.keys(userActive.partner).length === 0;
+  if(isEmptyP){
+    dispatch( setIsSelectPartner(false))
   }
 
   const partner = new Person({

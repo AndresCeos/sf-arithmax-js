@@ -7,13 +7,15 @@ import add_user_main from '../assets/icons/add_user_main.svg'
 
 export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
   const dispatch = useDispatch();
-  const { isPartnerEditing, userPartnerActive } = useSelector(state => state.users);
+  const { isPartnerEditing, userPartnerActive, userActive } = useSelector(state => state.users);
 
   const closeForm = () =>{
     setIsAddFormActive(false)
     dispatch(setAddPartner(false))
     dispatch(setIsPartnerEditing(false))
   }
+  console.log(userActive.partner);
+
 
   return(
     <Formik
@@ -196,6 +198,7 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
         <div className="flex w-full mt-3 justify-center">
           <button type="submit" className="btn-save w-32" disabled={isSubmitting}>Guardar</button>
           {(isPartnerEditing)?<button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm} >Cancelar</button>:''}
+          
         </div>
       </form>
     )}

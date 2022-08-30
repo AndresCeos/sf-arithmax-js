@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { CircleNumber, UnselectedConsultant, UserPartnerSelect } from '../components/';
 
@@ -11,14 +11,21 @@ import pne from '../assets/PNe.png'
 import pd from '../assets/PD.png'
 import pc from '../assets/PC.png'
 import { useConsultant } from '../hooks';
+import { setIsSelectPartner } from '../store/slices/users/users';
 
 const CompatibilityTablePage = ()=>{
   const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const { consultant } = useConsultant()
   const isEmpty = Object.keys(userActive).length === 0;
+  const dispatch = useDispatch()
+
 
   if( isEmpty ){
     return<UnselectedConsultant />
+  }
+  const isEmptyP = Object.keys(userActive.partner).length === 0;
+  if(isEmptyP){
+    dispatch( setIsSelectPartner(false))
   }
 
   const partner = new Person({

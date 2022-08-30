@@ -4,7 +4,7 @@ import add_user_main from '../assets/icons/add_user_main.svg'
 export const UserFormInline = ( {name, birthDate, age }) => {
   return (
     <div className='grid grid-cols-12'>
-      <div className="form-group-inline col-span-6 items-center justify-center">
+      <div className="form-group-inline col-span-5 items-center justify-center">
 
         <img src={add_user_main} className="mb-3" alt='add_user_main'/>
 

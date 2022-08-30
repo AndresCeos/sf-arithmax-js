@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { PartnerForm } from './';
-import { selectUserPartnerActive, setIsSelectPartner, setPartnerIndex } from '../store/slices/users/users';
+import { removePartnerUser, selectUserPartnerActive, setIsSelectPartner, setPartnerIndex } from '../store/slices/users/users';
 import { calcAge, formBirthDate } from '../resources/';
 
 import add_user_main from '../assets/icons/add_user_main.svg'
 import {  MdEdit } from 'react-icons/md';
+import c_delete from '../assets/icons/c_delete.svg'
 
 export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActive = false, setIsAddFormActive, editUserPartner }) => {
   const { list: users, userActive, isSelectPartner, userPartnerActive } = useSelector(state => state.users);
@@ -18,6 +19,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
   const dispatch = useDispatch()
 
   const [partner, setPartner] = useState(isSelectPartner ? userPartnerActive : {})
+  const [indexP, setIndexP] = useState(null)
 
   const selectPartner = e => {
     let index = e.target.value
@@ -28,12 +30,17 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
     // let lastname = partners[index].lastName+' '+partners[index].scdLastName
     // console.log( partners[index] )
     setPartner( partners[index] )
+    setIndexP(index)
   }
   const editPartner = ()=>{
     if(!isEmptyP){
       setIsAddFormActive(true)
       editUserPartner()
     }
+  }
+  const removeUser = ()=>{
+    console.log(indexP)
+    dispatch(removePartnerUser(userActive, indexP))
   }
   console.log(partner)
   console.log(partners)
@@ -42,6 +49,9 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
   useEffect(() => {
     // console.log( {userPartnerActive} )
     // console.log( partner )
+    if(isEmptyP){
+      dispatch( setIsSelectPartner(false))
+    }
     setPartner( userPartnerActive )
   }, [userPartnerActive])
 
@@ -50,22 +60,22 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
 
   if( isEmpty || isAddFormActive ){
     return (
-      <PartnerForm dataPartner={userActive} userIndex={users.findIndex(getIndex)} setIsAddFormActive={setIsAddFormActive} />
+      <PartnerForm dataPartner={userActive} userIndex={users.findIndex(getIndex)} setIsAddFormActive={setIsAddFormActive} removeUser={removeUser} />
     )
   }
   return (
     <div className='grid grid-cols-12'>
-      <div className="form-group-inline col-span-6 items-center justify-center">
+      <div className="form-group-inline col-span-5 items-center justify-center">
 
         <img src={add_user_main} className="mb-3" alt='add_user_main'/>
 
         <label className='font-bold mb-1 mr-2 text-13 flex'>
-          <MdEdit className='text-xl text-gray-400'/> Nombre
+        <button onClick={editPartner}><MdEdit className='text-xl text-gray-400' /></button> Nombre
         </label>
         <select onChange={selectPartner}   className='border rounded w-full'>
           <option value="" selected >Seleciona una pareja</option>
           {partners.map(({ id, names, lastName, scdLastName }, index)=>
-            <option key={id} value={index} selected={ id === partner.id }>
+            <option key={id} value={index} >
               {names} {lastName} {scdLastName}
             </option>
           )}
@@ -84,7 +94,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
       </div>
       <div className="form-group-inline col-span-2 items-center justify-center">
         <label className='font-bold mb-1 mr-2 text-13'>
-          <MdEdit className='text-xl text-gray-400'/> Edad
+        <button onClick={editPartner}><MdEdit className='text-xl text-gray-400' /></button>  Edad
         </label>
         <input
           value={ partner.date !== undefined ? calcAge(partner.date) : '' }
@@ -92,6 +102,9 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
           className="rounded w-10"
           disabled={ hasPartner }
         />
+      </div>
+      <div className='form-group-inline col-span-1 items-center justify-center'>
+        <button onClick={removeUser} className="ml-6"><img src={c_delete} alt="delete" /></button>
       </div>
       <hr className='col-span-12 my-3' />
       <div className="form-group-inline col-span-6 items-center justify-start">
