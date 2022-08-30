@@ -18,6 +18,7 @@ import {
   DestinityPDF
 } from './document';
 import { Person, Synastry } from '../resources';
+import { PDFViewer } from '@react-pdf/renderer';
 
 export const PreviewPDF = () => {
 
@@ -60,7 +61,9 @@ export const PreviewPDF = () => {
     <>
       <div className='mx-10 my-16'>
         Preview
-        <PDF consultant={consultant} config={config} profile={profile} date={newDate} />
+        <PDFViewer width='100%' height='100%' style={{ height: 800 }}>
+          <PDF consultant={consultant} config={config} profile={profile} date={newDate} />
+        </PDFViewer>
       </div>
     </>
   )

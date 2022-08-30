@@ -1,8 +1,8 @@
 import React from "react";
-import { useDispatch,useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { dateSelect } from "../hooks";
-import { setDate,setIsEditing } from '../store/slices/users/users';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { dateSelect, useConsultant } from "../hooks";
+import { setDate, setIsEditing } from '../store/slices/users/users';
 
 import Logo from '../assets/logo.png'
 import add_user from '../assets/icons/add_user.svg'
@@ -18,18 +18,24 @@ import bell from '../assets/icons/bell.svg'
 import Swal from "sweetalert2";
 
 import moment from 'moment/min/moment-with-locales'
-import  { Document, Page, Text, View, PDFDownloadLink, Image } from '@react-pdf/renderer';
+import { Document, Page, Text, View, PDFDownloadLink, Image } from '@react-pdf/renderer';
 import { exampleRreport } from "../components-pdf/styles";
+import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CreateNamePDF, DestinityPDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, TimeVibrationPDF } from "../components-pdf/document";
+import { Person, sanitize } from "../resources";
 
 export const Navbar = () => {
-  const {newDate} = dateSelect()
-  const { names } = useSelector(state => state.auth);
-  const now =  moment()
+  const { newDate } = dateSelect()
+  const { names: userNames } = useSelector(state => state.auth);
+  const { consultant } = useConsultant()
+  const now = moment()
+  const { userActive } = useSelector(state => state.users);
+  const isEmpty = Object.keys(userActive).length === 0;
+  const { names, lastName, scdLastName, date } = useSelector(state => state.auth)
 
   const dispatch = useDispatch();
-  const changeDate = () =>{
+  const changeDate = () => {
     Swal.fire({
-      title:'Seleccione la fecha que quieras consultar',
+      title: 'Seleccione la fecha que quieras consultar',
       icon: 'info',
       html:
         `<input  type="date" id="newDate" class="border-1 border-black p-1" value="${newDate.format('YYYY-MM-DD')}"   />`,
@@ -38,34 +44,57 @@ export const Navbar = () => {
       showDenyButton: true,
       denyButtonText: 'Seleccionar',
       focusConfirm: false,
-      confirmButtonText:'Hoy',
-      cancelButtonText:'Cancelar',
-      confirmButtonColor:'#693061',
-      denyButtonColor:'#9F5D9B',
-      cancelButtonColor:'#ff0000'
-    }).then((result)=>{
-      if(result.isConfirmed){
+      confirmButtonText: 'Hoy',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#693061',
+      denyButtonColor: '#9F5D9B',
+      cancelButtonColor: '#ff0000'
+    }).then((result) => {
+      if (result.isConfirmed) {
         dispatch(setDate(now))
       }
-      if(result.isDenied){
+      if (result.isDenied) {
         let date = document.getElementById('newDate').value
         dispatch(setDate(date))
       }
     })
   }
-  const handlerEdit = () =>{
+  const handlerEdit = () => {
     dispatch(setIsEditing(true))
   }
 
-  const Mydoc = () =>(
-    <Document >
-        <Page size="A4" style={exampleRreport.page}  >
-            <View  style={exampleRreport.section}>
-              <Text style={exampleRreport.text}>hoa perrilo</Text>
-            </View>
-        </Page>
-    </Document>
-  )
+  const location = useLocation()
+
+  const reports = {
+    'pinaculo': PinnaclePDF(consultant),
+    'camino': LifePathPDF(consultant),
+    'nombre': NamePDF(consultant, newDate),
+    'crear_nombre': CreateNamePDF(consultant),
+    'destino': DestinityPDF(consultant, newDate),
+    'tiempo': TimeVibrationPDF(consultant, newDate),
+    'retornos': AnnualReturnsPDF(consultant, newDate),
+    'circulo_tiempo': CircleTimePDF(consultant, newDate),
+    'calendario': CalendarPDF(consultant, newDate),
+    'calendarioMensual': MonthPDF(consultant, newDate, 8),
+  }
+
+  const path = location?.pathname.split('/')[1]
+  const existDownloadPDF = () => {
+    return reports.hasOwnProperty(path)
+  }
+
+  const isDownloadPDFEnabled = existDownloadPDF() && !isEmpty
+  let config, docName, profile, MyPDF;
+  console.log(isDownloadPDFEnabled)
+  if (isDownloadPDFEnabled) {
+    docName = sanitize(`${path} ${consultant.fullName}`)
+    config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
+    profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
+    MyPDF = () => (
+      <PDF consultant={consultant} config={config} profile={profile} date={newDate} />
+    )
+  }
+
 
   return (
     <>
@@ -98,7 +127,7 @@ export const Navbar = () => {
               </li>
               <li className="flex items-center">
                 <Link className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
-                to="consultante" onClick={handlerEdit}>
+                  to="consultante" onClick={handlerEdit}>
                   <img
                     src={update_user}
                     className="mb-1"
@@ -109,7 +138,7 @@ export const Navbar = () => {
               </li>
               <li className="flex items-center">
                 <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
-                onClick={changeDate}>
+                  onClick={changeDate}>
                   <img
                     src={change_date}
                     className="mb-1"
@@ -133,7 +162,7 @@ export const Navbar = () => {
               </li>
               <li className="flex items-center">
                 <Link className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
-                to="/group_pinnacle">
+                  to="/group_pinnacle">
                   <img
                     src={group_data}
                     className="mb-1"
@@ -142,19 +171,29 @@ export const Navbar = () => {
                   Datos<br />de Grupo
                 </Link>
               </li>
-              
+
               <li className="flex items-center">
-                <PDFDownloadLink
-                  document={<Mydoc/>}
-                  fileName='example.pdf'
-                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
-                  <img
-                    src={save_report}
-                    className="mb-1"
-                    alt="save_report"
-                  />
-                  Guardar<br />reporte
-                </PDFDownloadLink>
+                {isDownloadPDFEnabled ?
+                  <PDFDownloadLink
+                    document={<MyPDF />}
+                    fileName={docName}
+                    className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
+                    <img
+                      src={save_report}
+                      className="mb-1"
+                      alt="save_report"
+                    />
+                    Guardar<br />reporte
+                  </PDFDownloadLink> :
+                  <button className="flex flex-col justify-center text-center items-center text-white h-full px-3 opacity-30 cursor-auto">
+                    <img
+                      src={save_report}
+                      className="mb-1"
+                      alt="save_report"
+                    />
+                    Guardar<br />reporte
+                  </button>
+                }
               </li>
               <li className="flex items-center">
                 <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
@@ -187,7 +226,7 @@ export const Navbar = () => {
               </li>
               <li className="flex items-center mx-4 text-white">|</li>
               <li className="flex items-center text-sm text-white">
-                Hola! <strong className="ml-2">{names}</strong>
+                Hola! <strong className="ml-2">{userNames}</strong>
               </li>
             </ul>
           </div>

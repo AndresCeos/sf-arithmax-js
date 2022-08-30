@@ -67,7 +67,7 @@ export const sanitize = (text) => {
     .replace(/[\u0300-\u036f]/g, '')  // remove all previously split accents
     .toLowerCase()
     .trim()
-    // .replace(/\s+/g, '-')
+    .replace(/\s+/g, '-')
     .replace(/[^\w\-]+/g, '')
-  // .replace(/\-\-+/g, '-');
+    .replace(/\-\-+/g, '-');
 };
