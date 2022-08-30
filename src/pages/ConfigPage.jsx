@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import { updateUserInfo } from '../store/slices/auth';
 
 import add_user from '../assets/icons/add_user.svg'
+import { TiPlus } from 'react-icons/ti';
 
 const ConfigPage = () => {
   const { names, lastName, scdLastName, date,email, company,address, phone, logoURL,webSite } = useSelector( state => state.auth )
@@ -11,7 +12,7 @@ const ConfigPage = () => {
   const dispatch = useDispatch();
 
   return(
-    <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pt-10'>
+    <div className='grid grid-cols-12 mt-8 mx-14 gap-6 py-10'>
         <div className='col-span-12'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-12 h-12 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
@@ -24,7 +25,6 @@ const ConfigPage = () => {
             Datos generales
           </div>
           <div className='w-full flex' id='App-add-user-form'>
-            
             <Formik
             enableReinitialize
             initialValues={ {
@@ -67,11 +67,10 @@ const ConfigPage = () => {
             isSubmitting,
             /* and other goodies */
           }) => (
-            <form  className="form-container block" onSubmit={handleSubmit}>
-              <h2 className='text-sm font-extrabold text-gray-400 mb-5'>Datos Profesionales</h2>
-              <h2 className='text-sm font-extrabold text-gray-400 mb-5'>Datos Personales</h2>
+            <form  className="form-container block w-full" onSubmit={handleSubmit}>
               <div className='flex w-full'>
               <div className='w-3/5'>
+              <h2 className='text-sm font-extrabold text-gray-400 mb-5'>Datos Personales</h2>
               <div className="flex w-full gap-4">
                 <div className="form-group w-1/3">
                   <label className='font-bold mb-1 text-13'>
@@ -170,9 +169,10 @@ const ConfigPage = () => {
                 </div>
               </div>
               </div>
-              <div className='w-2/5'>
+              <div className='w-2/5 border-l-2 border-gray-600 px-6'>
+              <h2 className='text-sm font-extrabold text-gray-400 mb-5'>Datos Profesionales</h2>
               <div className="flex w-full">
-                <div className="form-group w-2/3">
+                <div className="form-group w-full">
                   <label className='font-bold mb-1 text-13'>
                     Empresa*
                   </label>
@@ -187,8 +187,8 @@ const ConfigPage = () => {
                   {errors.company && touched.company ? <span className="form-error">{errors.company}</span>  : null }
                 </div>
               </div>
-              <div className='flex w-full gap-4 mt-6'>
-              <div className="form-group w-1/5">
+              <div className='flex w-full mt-6'>
+              <div className="form-group w-1/2">
                   <label className='font-bold mb-1 text-13'>
                     Dirección*
                   </label>
@@ -202,7 +202,7 @@ const ConfigPage = () => {
                   />
                   {errors.address && touched.address ? <span className="form-error">{errors.address}</span>  : null }
                 </div>
-                <div className="form-group w-1/5">
+                <div className="form-group w-1/2">
                   <label className='font-bold mb-1 text-13'>
                     Teléfono*
                   </label>
@@ -217,8 +217,8 @@ const ConfigPage = () => {
                   {errors.phone && touched.phone ? <span className="form-error">{errors.phone}</span>  : null }
                 </div>
               </div>
-              <div className="flex w-full gap-4 mt-6">
-                <div className="form-group w-1/5">
+              <div className="flex w-full mt-6">
+                <div className="form-group w-1/2">
                   <label className='font-bold mb-1 text-13'>
                     Página Web*
                   </label>
@@ -232,7 +232,7 @@ const ConfigPage = () => {
                   />
                   {errors.webSite && touched.webSite ? <span className="form-error">{errors.webSite}</span>  : null }
                 </div>
-                <div className="form-group w-1/5">
+                <div className="form-group w-1/2">
                   <label className='font-bold mb-1 text-13'>Adjuntar Logo</label>
                   <input
                     type="file"
@@ -246,8 +246,6 @@ const ConfigPage = () => {
               </div>
               </div>
               </div>
-             
-              
               <div className="flex w-full gap-4 mt-6 items-center">
                 <div className='w-full text-center flex justify-center items-center flex-col'>
                   <button type="submit" className="btn-save w-3/12" disabled={isSubmitting}>Guardar</button>
@@ -258,6 +256,20 @@ const ConfigPage = () => {
           </Formik>
 
           </div>
+        </div>
+        <div className='col-span-4'>
+        <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+        <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-secondary p-2'>
+          <TiPlus className='text-2xl'/>
+        </div>
+            Mi cuenta
+        </div>
+        <div className='pinnacle-wrap px-5 py-4 bg-gray-300'>
+          <div className='text-13 text-gray-500 pt-2' ><strong>Versión de Software:</strong></div>
+          <div className='text-13 text-gray-500 pt-2' ><strong>Número de Licencia:</strong></div>
+          <div className='text-13 text-gray-500 pt-2' ><strong>Vencimiento:</strong></div>
+        </div>
+
         </div>
     </div>
   )

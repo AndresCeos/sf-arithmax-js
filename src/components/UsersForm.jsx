@@ -228,10 +228,10 @@ export const UsersForm = (props) => {
             </div>
           </div>
           <div className="flex w-full gap-4 mt-3 items-center">
-            <div className='form-group w-2/3'>
+            {/* <div className='form-group w-2/3'>
               <label className='font-bold mb-1'>Motivo de la Consulta</label>
               <textarea className='rounded'></textarea>
-            </div>
+              </div>*/}
             <div className='w-1/3'>
               {(!isEditing) ?
                 <div className='text-center flex justify-center items-center flex-col'>

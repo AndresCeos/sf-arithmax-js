@@ -1408,6 +1408,11 @@ export class Person {
       case 'i': return 9;
       case 'o': return 6;
       case 'u': return 3;
+      case 'á': return 1;
+      case 'é': return 5;
+      case 'í': return 9;
+      case 'ó': return 6;
+      case 'ú': return 3;
       case 'b': return 2;
       case 'c': return 3;
       case 'd': return 4;
@@ -1437,6 +1442,7 @@ export class Person {
   inclusionValue($x) {
     switch ($x) {
       case 'a': return 1;
+      case 'á': return 1;
       case 'j': return 1;
       case 's': return 1;
       case 'b': return 2;
@@ -1445,15 +1451,18 @@ export class Person {
       case 'c': return 3;
       case 'l': return 3;
       case 'u': return 3;
+      case 'ú': return 3;
       case 'd': return 4;
       case 'm': return 4;
       case 'v': return 22;
       case 'e': return 5;
+      case 'é': return 5;
       case 'n': return 5;
       case 'ñ': return 5;
       case 'w': return 5;
       case 'f': return 6;
       case 'o': return 6;
+      case 'ó': return 6;
       case 'x': return 6;
       case 'g': return 7;
       case 'p': return 7;
@@ -1463,6 +1472,7 @@ export class Person {
       case 'z': return 8;
       case 'r': return 9;
       case 'i': return 9;
+      case 'í': return 9;
       default: return 0;
     }
   }
