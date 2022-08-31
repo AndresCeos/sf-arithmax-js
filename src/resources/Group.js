@@ -659,6 +659,7 @@ export class Group {
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
     if(index<5){return this.getQuaterOne()}
     if (index>4&&index<9) {
+      if(indexEnero === 0){ return this.getQuaterTwo(yearToCalculate)}
       if(index >indexEnero){
         return this.getQuaterTwo(yearToCalculate-1)
       }else{
@@ -666,6 +667,7 @@ export class Group {
       }
     }
     if(index>8){
+      if(indexEnero === 0){ return this.getQuaterThree(yearToCalculate)}
       if(index >indexEnero){
         return this.getQuaterThree(yearToCalculate-1)
       }else{
@@ -736,8 +738,10 @@ export class Group {
     yearToCalculate = yearToCalculate|| this.NOW.year()
     const start = this.groupDate
     console.log(start+ 'sadasdsadsa');
-    let duration = 9 - this.calcPersonalYear(yearToCalculate)
+    let duration = 9 - this.reduceNumberForSub(
+      this.getA() + this.getB() +start)
     let stageOneEnd = start + duration
+    console.log(stageOneEnd +'stage-1');
     if(duration === 0){
       stageOneEnd = stageOneEnd +9
     }
@@ -821,7 +825,9 @@ export class Group {
 
   calcLifeStageDuration( stage = 1){
     let start = this.groupDate
-    let stageOne = 9 - this.calcPersonalYear(start)
+    let stageOne = 9 - this.reduceNumberForSub(
+      this.getA() + this.getB() + start )
+      console.log(stageOne);
     let stageOneEnd = start + stageOne
     if(stageOne === 0){
       stageOneEnd = stageOneEnd +9
