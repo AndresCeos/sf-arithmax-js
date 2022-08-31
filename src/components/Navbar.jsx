@@ -90,7 +90,7 @@ export const Navbar = () => {
 
     const reports = {
       'pinaculo': PinnaclePDF(consultant),
-      'camino': LifePathPDF(consultant),
+      'camino': LifePathPDF(consultant, newDate),
       'nombre': NamePDF(consultant, newDate),
       'crear_nombre': CreateNamePDF(consultant),
       'destino': DestinityPDF(consultant, newDate),
