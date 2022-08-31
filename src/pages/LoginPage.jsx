@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { startLogin } from '../store/slices/auth/thunks';
 
@@ -14,20 +14,24 @@ const Login = () => {
   const [email, setEmail] = useState()
   const [pass, setPass] = useState()
 
-  const { status, errorMessage } = useSelector( state => state.auth)
-  const isAuthenticating = useMemo( ()=> status === 'checking', [status] )
+  const { status, errorMessage } = useSelector(state => state.auth)
+  const isAuthenticating = useMemo(() => status === 'checking', [status])
 
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate()
+
+  const m = searchParams.get('m')
 
   const handleOnSubmit = (e) => {
     const userData = {
       username: email,
       password: pass
     }
-    dispatch( startLogin( userData ) )
+    dispatch(startLogin(userData))
     e.preventDefault();
   }
-  return(
+  return (
     <>
       <nav className="bg-white border-gray-200">
         <div className="flex flex-wrap justify-between items-center mx-auto">
@@ -45,10 +49,10 @@ const Login = () => {
           </div>
         </div>
       </nav>
-      <div className="bg-cover" style={{ backgroundImage: `url("${bk}")`  }}>
+      <div className="bg-cover" style={{ backgroundImage: `url("${bk}")` }}>
         <div className="Page-Home grid grid-cols-14 h-full">
-          <div className="col-span-9 grid grid-cols-9 bg-no-repeat bg-cover" style={{ backgroundImage: `url("${bk_numbers}")`  }}>
-            <div className="col-start-2 col-span-3 bg-contain bg-repeat-y" style={{ backgroundImage: `url("${shape}")`  }}>
+          <div className="col-span-9 grid grid-cols-9 bg-no-repeat bg-cover" style={{ backgroundImage: `url("${bk_numbers}")` }}>
+            <div className="col-start-2 col-span-3 bg-contain bg-repeat-y" style={{ backgroundImage: `url("${shape}")` }}>
             </div>
             <div className="col-span-4 flex flex-col justify-center items-start">
               <h2 className="text-4xl font-bold text-main-900 mb-7">“Si quieres entender el Universo, piensa en energía, frecuencia y vibración”.</h2>
@@ -59,7 +63,10 @@ const Login = () => {
             <div className="w-full flex flex-col items-center justify-center">
               <img src={welcome} className="w-32" alt="welcome" />
               <h2>Iniciar Sesión</h2>
-              <form onSubmit={ handleOnSubmit } className="w-full m-5 flex flex-col items-center">
+              {m === null && (<>
+                <label className="text-red-500 my-5 text-center font-bold p-4 bg-white border border-red-600">Algo ocurrio intenta más tarde</label>
+              </>)}
+              <form onSubmit={handleOnSubmit} className="w-full m-5 flex flex-col items-center">
                 <input
                   type="email"
                   placeholder="Correo electrónico"
@@ -76,26 +83,28 @@ const Login = () => {
                 />
                 {
                   isAuthenticating ?
-                  <button
-                    type="button"
-                    className="bg-yellow h-9 w-5/12 rounded-full text-base text-white font-bold cursor-progress"
-                    disabled
-                  >
-                    <svg className="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Procesando
-                  </button>
-                  :
-                  <>
-                    <input
-                      type="submit"
-                      className="bg-yellow h-9 w-5/12 rounded-full text-base text-white font-bold outline-none cursor-pointer"
-                      value="Entrar"
-                    />
-                    <span className="text-red-500 mt-5 w-10/12 text-center italic">{ errorMessage }</span>
-                  </>
+                    <button
+                      type="button"
+                      className="bg-yellow h-9 w-5/12 rounded-full text-base text-white font-bold cursor-progress"
+                      disabled
+                    >
+                      <svg className="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Procesando
+                    </button>
+                    :
+                    <>
+                      {m !== null && (
+                        <input
+                          type="submit"
+                          className="bg-yellow h-9 w-5/12 rounded-full text-base text-white font-bold outline-none cursor-pointer"
+                          value="Entrar"
+                        />
+                      )}
+                      <span className="text-red-500 mt-5 w-10/12 text-center italic">{errorMessage}</span>
+                    </>
                 }
               </form>
               {/* <a>Olvide mi Contraseña</a> */}
