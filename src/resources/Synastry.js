@@ -1,4 +1,5 @@
 import moment from 'moment/min/moment-with-locales'
+import { capitalize } from './Helper'
 moment.locale("es-mx")
 
 export class Synastry {
@@ -570,8 +571,17 @@ export class Synastry {
    * calculate current satge number
    * @returns {Number} stage
    */
-  getLifeStage(yearToCalculate = null) {
+  getLifeStage(yearToCalculate = null , newDate=null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
+    newDate = newDate || this.NOW
+    const monthCut = this.getCustomMonths()
+		const actualMonth = newDate.format('MMMM')
+		const listOfMonths = this.getAllMonths()
+		const listOfMonthsE = this.getAllMonthsEnglish()
+		const indexE = listOfMonthsE.findIndex(i=>i === actualMonth.capitalize)
+		const indexEnero = monthCut.findIndex(i=>i === 'Enero')
+		const index = monthCut.findIndex(i=>i=== listOfMonths[indexE] )
+
     let start = this.yearMeet //.year()
     let duration = 9 - this.reduceNumberForSub(
       this.getA() +
@@ -583,33 +593,56 @@ export class Synastry {
       stageOneEnd = stageOneEnd + 9
     }
     let stageOne = this.getE()
-    if (start <= yearToCalculate && yearToCalculate <= stageOneEnd) {
-      return stageOne;
-    }
-
     let stageTwo = this.getF()
     let stageTwoEnd = stageOneEnd + 9
-    if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
-      return stageTwo;
-    }
-
     let stageThr = this.getG()
     let stageThrEnd = stageTwoEnd + 9
-    if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
-      return stageThr;
-    }
-
     let stageFou = this.getH()
     let stageFouEnd = stageThrEnd + 9
+    if (start <= yearToCalculate && yearToCalculate <= stageOneEnd) {
+      if(indexEnero>index&&yearToCalculate===stageOneEnd){
+        return stageTwo;
+      }else{
+        return stageOne;
+      }
+    }
+    if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
+      if(indexEnero>index&&yearToCalculate===stageTwoEnd){
+        return stageThr;
+      }else{
+        return stageTwo;
+      }
+    }
+
+    if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
+      if(indexEnero>index&&yearToCalculate===stageThrEnd){
+        return stageFou;
+      }else{
+        return stageThr;
+      }
+    }
+
     if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
-      return stageFou;
+      if(indexEnero>index&&yearToCalculate===stageFouEnd){
+        return stageThr;
+      }else{
+        return stageFou;
+      }
     }
 
     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9)) {
-      return stageThr;
+      if(indexEnero>index&&yearToCalculate===stageFouEnd+9){
+        return stageTwo;
+      }else{
+        return stageThr;
+      }
     }
     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18)) {
-      return stageTwo;
+      if(indexEnero>index&&yearToCalculate===stageFouEnd+18){
+        return stageOne;
+      }else{
+        return stageTwo;
+      }
     }
     if ((stageFouEnd + 18) <= yearToCalculate) {
       return stageOne;
@@ -660,8 +693,16 @@ export class Synastry {
    * calculate current satge number
    * @returns {Number} stage
    */
-  getLifeStageNumber(yearToCalculate = null) {
+  getLifeStageNumber(yearToCalculate = null, newDate=null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
+    newDate = newDate || this.NOW
+    const monthCut = this.getCustomMonths()
+		const actualMonth = newDate.format('MMMM')
+		const listOfMonths = this.getAllMonths()
+		const listOfMonthsE = this.getAllMonthsEnglish()
+		const indexE = listOfMonthsE.findIndex(i=>i === actualMonth.capitalize)
+		const indexEnero = monthCut.findIndex(i=>i === 'Enero')
+		const index = monthCut.findIndex(i=>i=== listOfMonths[indexE] )
     const start = this.yearMeet //.year()
     let duration = 9 - this.reduceNumberForSub(
       this.getA() +
@@ -672,34 +713,55 @@ export class Synastry {
     if (duration === 0) {
       stageOneEnd = stageOneEnd + 9
     }
+    let stageTwoEnd = stageOneEnd + 9
+    let stageThrEnd = stageTwoEnd + 9
+    let stageFouEnd = stageThrEnd + 9
     // let stageOne = this.getE()
     if (start <= yearToCalculate && yearToCalculate <= stageOneEnd) {
-      return 1;
+       if(indexEnero>index&&yearToCalculate===stageOneEnd){
+        return 2;
+      }else{
+        return 1;
+      }
     }
 
     // let stageTwo = this.getF()
-    let stageTwoEnd = stageOneEnd + 9
     if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
-      return 2;
+       if(indexEnero>index&&yearToCalculate===stageTwoEnd){
+        return 3;
+      }else{
+        return 2;
+      }
     }
-
     // let stageThr = this.getG()
-    let stageThrEnd = stageTwoEnd + 9
     if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
-      return 3;
+       if(indexEnero>index&&yearToCalculate===stageThrEnd){
+        return 4;
+      }else{
+        return 3;
+      }
     }
-
     // const stageFou = this.getH()
-    let stageFouEnd = stageThrEnd + 9
     if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
-      return 4;
+       if(indexEnero>index&&yearToCalculate===stageFouEnd){
+        return 5;
+      }else{
+        return 4;
+      }
     }
-
     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9)) {
-      return 5;
+       if(indexEnero>index&&yearToCalculate===stageFouEnd+9){
+        return 6;
+      }else{
+        return 5;
+      }
     }
     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18)) {
-      return 6;
+       if(indexEnero>index&&yearToCalculate===stageFouEnd+18){
+        return 7;
+      }else{
+        return 6;
+      }
     }
     if ((stageFouEnd + 18) <= yearToCalculate) {
       return 7;
@@ -880,7 +942,6 @@ export class Synastry {
     const listOfMonthsE = this.getAllMonthsEnglish()
     const actualMonth = monthToCalculate.format('MMMM');
     const allmonths = this.getAllMonths()
-    
     const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize())
     const index = listOfMonths.findIndex(i => i === allmonths[indexE])
     console.log(allmonths[indexE])
