@@ -651,8 +651,11 @@ export class Group {
       return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
     }
     const listOfMonths = this.getCustomMonths()
+    const listOfMonthE = this.getAllMonthsEnglish()
+    const allMonths = this.getAllMonths()
     const actualMonth = monthToCalculate.format('MMMM');
-    const index = listOfMonths.findIndex(i => i === actualMonth.capitalize())
+    const indexE = listOfMonthE.findIndex(i => i === actualMonth.capitalize())
+    const index = listOfMonths.findIndex(i => i === allMonths[indexE])
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
     if(index<5){return this.getQuaterOne()}
     if (index>4&&index<9) {
@@ -732,6 +735,7 @@ export class Group {
    getLifeStageNumber(yearToCalculate= null){
     yearToCalculate = yearToCalculate|| this.NOW.year()
     const start = this.groupDate
+    console.log(start+ 'sadasdsadsa');
     let duration = 9 - this.calcPersonalYear(yearToCalculate)
     let stageOneEnd = start + duration
     if(duration === 0){

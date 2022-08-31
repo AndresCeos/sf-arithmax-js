@@ -100,7 +100,7 @@ export const HierarchyLine = ({consultant}) =>{
           </div>
           <div className="col-start-1 row-start-2 lines">
             <CircleNumber size="sm" appearance="white" border="main" radiant="inner-shadow-gold">
-              {consultant.calcCurrentQuater(newDate,newDate.year)}
+              {consultant.calcCurrentQuater(newDate,newDate.year())}
             </CircleNumber>
           </div>
           <div className="col-start-3 row-start-2 triangle">

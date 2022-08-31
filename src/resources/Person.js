@@ -1758,9 +1758,13 @@ export class Person {
       return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
     }
     const listOfMonths = this.getCustomMonths()
+    const listOfMonthE = this.getAllMonthsEnglish()
+    const allMonths = this.getAllMonths()
     const actualMonth = monthToCalculate.format('MMMM');
     const birthDateMonth = this.birthDate.format('MMMM')
-    const index = listOfMonths.findIndex(i => i === actualMonth.capitalize())
+    const indexE = listOfMonthE.findIndex(i => i === actualMonth.capitalize())
+    const index = listOfMonths.findIndex(i => i === allMonths[indexE])
+    console.log(index);
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
@@ -1792,9 +1796,13 @@ export class Person {
       return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
     }
     const listOfMonths = this.getCustomMonths()
+    const listOfMonthE = this.getAllMonthsEnglish()
+    const allMonths = this.getAllMonths()
     const actualMonth = monthToCalculate.format('MMMM');
     const birthDateMonth = this.birthDate.format('MMMM')
-    const index = listOfMonths.findIndex(i => i === actualMonth.capitalize())
+    const indexE = listOfMonthE.findIndex(i => i === actualMonth.capitalize())
+    const index = listOfMonths.findIndex(i => i === allMonths[indexE])
+    console.log(index);
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
