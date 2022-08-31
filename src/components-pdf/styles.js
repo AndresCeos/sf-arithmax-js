@@ -122,124 +122,13 @@ export const configReport = StyleSheet.create({
   },
   content: {
     marginLeft: '55px',
-    // height: '751.8px',
-  }
-})
-
-export const ncReport = StyleSheet.create({
-  page: {
-    backgroundColor: '#fff',
-    width: '1000%'
-  },
-  pageBackground: {
-    position: "absolute",
-    minWidth: "100%",
-    minHeight: "100%",
-    display: "block",
-    height: "100%",
-    width: "100%",
-  },
-  header: {
-    // backgroundColor: '#D8C7EB',
-    color: '#000000',
-    fontSize: '12px',
-    fontFamily: 'Open Sans',
-    width: '1000px',
-    height: '90px',
-    position: 'relative'
-  },
-  header_logo: {
-    position: 'absolute',
-    top: '10px',
-    left: '0px',
-  },
-  pdf_logo_description: {
-    fontSize: '7px',
-    paddingTop: '10px',
-    paddingBottom: '15px',
-    paddingLeft: '10px',
-    fontStyle: 'italic',
-    color: '#663366'
-  },
-  pdf_logo_description_bold: {
-    fontWeight: 'bold',
-    paddingLeft: '12px'
-  },
-  pdf_logo: {
-    width: '120px',
-    height: '50px',
-    objectFit: 'cover',
-  },
-  header_consultor: {
-    left: '145px',
-    top: '20px',
-    fontSize: '7px',
-    fontWeight: 'bold',
-  },
-  header_input: {
-    backgroundColor: '#fff',
-    marginTop: '3px',
-    marginBottom: '6px',
-    padding: '2px 8px',
-    borderRadius: '15px',
-    border: '1px solid #7E7E7E',
-    fontWeight: '400',
-    width: '165px'
-  },
-  header_date: {
-    position: 'absolute',
-    left: '320px',
-    top: '20px',
-    fontSize: '7px',
-    fontWeight: 'bold',
-  },
-  header_input_date: {
-    backgroundColor: '#fff',
-    marginTop: '3px',
-    marginBottom: '6px',
-    padding: '2px 8px',
-    borderRadius: '15px',
-    border: '1px solid #7E7E7E',
-    fontWeight: '400',
-    width: '130px'
-  },
-  header_age: {
-    position: 'absolute',
-    left: '460px',
-    top: '55px',
-    fontSize: '7px',
-    fontWeight: 'bold',
-  },
-  header_input_age: {
-    backgroundColor: '#fff',
-    marginTop: '3px',
-    marginBottom: '6px',
-    padding: '2px 8px',
-    borderRadius: '15px',
-    border: '1px solid #7E7E7E',
-    fontWeight: '400',
-    width: '22px'
-  },
-  header_custom_logo: {
-    backgroundColor: '#fff',
-    width: '90px',
-    height: '57px',
-    position: 'absolute',
-    left: '495px',
-    top: '25px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '7px',
-    textAlign: 'center',
   },
   sidebar: {
     position: 'absolute',
-    backgroundColor: '#663357',
     width: '55px',
     top: '90px',
     left: 0,
-    height: '751.8px',
+    height: '705px',
     display: 'block',
     fontWeight: 'bold',
     color: '#fff',
@@ -298,8 +187,4 @@ export const ncReport = StyleSheet.create({
     transform: 'rotate(-90deg)',
     fontSize: '7px',
   },
-  content: {
-    marginLeft: '55px',
-    // height: '751.8px',
-  }
-});
+})

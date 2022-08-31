@@ -6,7 +6,7 @@ export const PDF = ({ consultant, config, profile, date }) => {
 
   return (
     <Document >
-      {config.map((e) =>
+      {config.map((e, i) =>
         <Page size={[612, 795]} style={configReport.page}>
           {e.bg && <Image src={e.bg} style={configReport.pageBackground}></Image>}
 
@@ -26,6 +26,14 @@ export const PDF = ({ consultant, config, profile, date }) => {
             <View style={configReport.header_age}>
               <Text>{consultant.getYearsOld()}</Text>
             </View>
+          </View>
+          <View style={configReport.sidebar}>
+            <Text style={configReport.page_number}>{i + 1}</Text>
+            <Text style={configReport.page_copy_1} >Copyright 2022, Laura L. Rodríguez. Prohibida su reproducción y distribución.</Text>
+            <Text style={configReport.page_copy_2} >Este Software esta licenciado para uso exclusivo de: Laura Ludivina Rodríguez Martínez.</Text>
+            <Text style={configReport.page_copy_3} >www.numerlogia-cotidiana.com</Text>
+            <Text style={configReport.page_copy_4} >consulta@numerologia-cotidiana.com</Text>
+            <Text style={configReport.page_copy_5} >Tels: (81) 2086-7071 / 2086-7072</Text>
           </View>
           <View style={configReport.content}>
             {e.children}

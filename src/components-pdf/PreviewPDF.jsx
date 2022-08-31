@@ -60,15 +60,15 @@ export const PreviewPDF = () => {
     // ...CalendarPDF(consultant, newDate),
     // MonthPDF(consultant, newDate, 8),
     // SYNASTRY
-    // SynastryPinnaclePDF(synastry),
-    // ...SynastryVibrationTimePDF(synastry, newDate),
-    // CompatibilityTablePDF(synastry, newDate),
-    // SynastryAnnualReturnsPDF(synastry, newDate),
-    // SynastryDestinityPDF(synastry, newDate),
+    SynastryPinnaclePDF(synastry),
+    ...SynastryVibrationTimePDF(synastry, newDate),
+    CompatibilityTablePDF(synastry, newDate),
+    SynastryAnnualReturnsPDF(synastry, newDate),
+    SynastryDestinityPDF(synastry, newDate),
     // GROUP
-    ...GroupPinnaclePDF(),
-    ...GroupVibrationTimePDF(),
-    GroupAnnualReturnsPDF(),
+    // ...GroupPinnaclePDF(),
+    // ...GroupVibrationTimePDF(),
+    // GroupAnnualReturnsPDF(),
   ]
 
   return (
