@@ -1,10 +1,12 @@
 import { Text, View, StyleSheet } from "@react-pdf/renderer"
 import moment from 'moment/min/moment-with-locales'
+import { ciclePhrases } from "../../resources"
 moment.locale("es-mx")
 
-export const LifePath9Years = ({ consultant }) => {
+export const LifePath9Years = ({ consultant, now }) => {
 
-  const now = moment()
+  const personalYear = consultant.calcPersonalYear(now.year())
+  const yearOfBirth = consultant.getYearOfBirth();
 
   return (
     <View style={lifePath.container}>
@@ -12,47 +14,59 @@ export const LifePath9Years = ({ consultant }) => {
         <View style={[lifePath.item, lifePath.currentYear]}>
           <Text>{now.year()}</Text>
         </View>
-        <View style={[lifePath.year, lifePath.currentYear_1]}>
-          <Text>{now.year() - 9}</Text>
-        </View>
-        <View style={[lifePath.year, lifePath.currentYear_2]}>
-          <Text>{now.year()}</Text>
-        </View>
-        <View style={[lifePath.year, lifePath.currentYear_3]}>
-          <Text>{now.year() + 9}</Text>
-        </View>
-        <View style={[lifePath.year, lifePath.currentYear_4]}>
-          <Text>{now.year() + 19}</Text>
-        </View>
         <View style={[lifePath.item, lifePath.currentYearVibration]}>
-          <Text>Año {consultant.calcPersonalYear()}</Text>
-        </View>
-        <View style={[lifePath.circle, lifePath.currentYearVibration_1]}>
-          <Text>{consultant.calcPersonalYear()}</Text>
-        </View>
-        <View style={[lifePath.circle, lifePath.currentYearVibration_2]}>
-          <Text>{consultant.calcPersonalYear()}</Text>
-        </View>
-        <View style={[lifePath.circle, lifePath.currentYearVibration_3]}>
-          <Text>{consultant.calcPersonalYear()}</Text>
-        </View>
-        <View style={[lifePath.circle, lifePath.currentYearVibration_4]}>
-          <Text>{consultant.calcPersonalYear()}</Text>
+          <Text>Año {personalYear}</Text>
         </View>
         <View style={[lifePath.phrase, lifePath.currentYearPhrase]}>
-          <Text>Autonomía Independencia</Text>
+          <Text>{ciclePhrases[personalYear][3]}</Text>
         </View>
-        <View style={[lifePath.phrase, lifePath.currentYearPhrase_1]}>
-          <Text>Autonomía Independencia</Text>
+        {(now.year() - 27 > yearOfBirth) &&
+          <>
+            <View style={[lifePath.year, lifePath.currentYear_1]}>
+              <Text>{now.year() - 27}</Text>
+            </View>
+            <View style={[lifePath.circle, lifePath.currentYearVibration_1]}>
+              <Text>{personalYear}</Text>
+            </View>
+            <View style={[lifePath.phrase, lifePath.currentYearPhrase_1]}>
+              <Text>{ciclePhrases[personalYear][0]}</Text>
+            </View>
+          </>
+        }
+        {(now.year() - 18 > yearOfBirth) &&
+          <>
+            <View style={[lifePath.year, lifePath.currentYear_2]}>
+              <Text>{now.year() - 18}</Text>
+            </View>
+            <View style={[lifePath.circle, lifePath.currentYearVibration_2]}>
+              <Text>{personalYear}</Text>
+            </View>
+            <View style={[lifePath.phrase, lifePath.currentYearPhrase_2]}>
+              <Text>{ciclePhrases[personalYear][1]}</Text>
+            </View>
+          </>
+        }
+        {(now.year() - 9 > yearOfBirth) &&
+          <>
+            <View style={[lifePath.year, lifePath.currentYear_3]}>
+              <Text>{now.year() - 9}</Text>
+            </View>
+            <View style={[lifePath.circle, lifePath.currentYearVibration_3]}>
+              <Text>{personalYear}</Text>
+            </View>
+            <View style={[lifePath.phrase, lifePath.currentYearPhrase_3]}>
+              <Text>{ciclePhrases[personalYear][2]}</Text>
+            </View>
+          </>
+        }
+        <View style={[lifePath.year, lifePath.currentYear_4]}>
+          <Text>{now.year()}</Text>
         </View>
-        <View style={[lifePath.phrase, lifePath.currentYearPhrase_2]}>
-          <Text>Autonomía Independencia</Text>
-        </View>
-        <View style={[lifePath.phrase, lifePath.currentYearPhrase_3]}>
-          <Text>Autonomía Independencia</Text>
+        <View style={[lifePath.circle, lifePath.currentYearVibration_4]}>
+          <Text>{personalYear}</Text>
         </View>
         <View style={[lifePath.phrase, lifePath.currentYearPhrase_4]}>
-          <Text>Autonomía Independencia</Text>
+          <Text>{ciclePhrases[personalYear][3]}</Text>
         </View>
       </View>
     </View>
@@ -102,7 +116,7 @@ export const lifePath = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    fontSize: '8px',
+    fontSize: '7px',
   },
   currentYear: {
     left: '25px',
@@ -154,27 +168,27 @@ export const lifePath = StyleSheet.create({
   },
   currentYearPhrase: {
     top: '85px',
-    left: '21px',
-    width: '50px',
+    left: '10px',
+    width: '70px',
   },
   currentYearPhrase_1: {
     top: '101px',
-    left: '102px',
-    width: '50px',
+    left: '90px',
+    width: '70px',
   },
   currentYearPhrase_2: {
     top: '85px',
-    left: '203px',
-    width: '50px',
+    left: '190px',
+    width: '70px',
   },
   currentYearPhrase_3: {
     top: '101px',
-    left: '303px',
-    width: '50px',
+    left: '290px',
+    width: '70px',
   },
   currentYearPhrase_4: {
     top: '85px',
-    left: '401px',
-    width: '50px',
+    left: '390px',
+    width: '70px',
   },
 })

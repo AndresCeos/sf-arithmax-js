@@ -50,7 +50,7 @@ export const PreviewPDF = () => {
   console.log(synastry)
   const config = [
     // PinnaclePDF(consultant),
-    // LifePathPDF(consultant),
+    LifePathPDF(consultant, newDate),
     // ...NamePDF(consultant, newDate),
     // CreateNamePDF(consultant),
     // ...DestinityPDF(consultant),
@@ -60,11 +60,11 @@ export const PreviewPDF = () => {
     // ...CalendarPDF(consultant, newDate),
     // MonthPDF(consultant, newDate, 8),
     // SYNASTRY
-    SynastryPinnaclePDF(synastry),
-    ...SynastryVibrationTimePDF(synastry, newDate),
-    CompatibilityTablePDF(synastry, newDate),
-    SynastryAnnualReturnsPDF(synastry, newDate),
-    SynastryDestinityPDF(synastry, newDate),
+    // SynastryPinnaclePDF(synastry),
+    // ...SynastryVibrationTimePDF(synastry, newDate),
+    // CompatibilityTablePDF(synastry, newDate),
+    // SynastryAnnualReturnsPDF(synastry, newDate),
+    // SynastryDestinityPDF(synastry, newDate),
     // GROUP
     // ...GroupPinnaclePDF(),
     // ...GroupVibrationTimePDF(),

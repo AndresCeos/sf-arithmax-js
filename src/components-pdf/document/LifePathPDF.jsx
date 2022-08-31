@@ -10,17 +10,17 @@ import {
 
 import lifePathImage from '../assets/life-Path.jpg'
 
-export const LifePathPDF = (consultant) => {
+export const LifePathPDF = (consultant, now) => {
   return {
     bg: lifePathImage,
     children: <>
-      <LifePath9Years consultant={consultant} />
-      <LifePathLearningStage consultant={consultant} />
-      <LifePathPersonalYears consultant={consultant} />
-      <LifePathQuarters consultant={consultant} />
-      <LifePathPersonalMonths consultant={consultant} />
-      <LifePathPersonalWeeks consultant={consultant} />
-      <LifePathDialogs consultant={consultant} />
+      <LifePath9Years consultant={consultant} now={now} />
+      <LifePathLearningStage consultant={consultant} now={now} />
+      <LifePathPersonalYears consultant={consultant} now={now} />
+      <LifePathQuarters consultant={consultant} now={now} />
+      <LifePathPersonalMonths consultant={consultant} now={now} />
+      <LifePathPersonalWeeks consultant={consultant} now={now} />
+      <LifePathDialogs consultant={consultant} now={now} />
     </>
   }
 }
