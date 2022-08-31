@@ -19,6 +19,16 @@ const  GroupPinnaclePage = () =>{
     setGroupList(userActive.dateGroup)
     }
   }, [])
+  const colors = [
+    'bg-lime-600',
+    'bg-cyan-600',
+    'bg-purple-600',
+    'bg-pink-600',
+    'bg-green-600',
+    ' bg-red-600',
+    'bg-sky-600',
+    'bg-amber-600'
+  ]
 
 
   if( isEmpty ){
@@ -94,12 +104,12 @@ return(
     </div>
     {list.map((person, i) =>
   <div className={`${(index1 === i|| index2 === i)? 'block':'hidden'} col-span-4 mb-1 z-10`} key={i} >
-  <div className='bg-black text-white text-base font-bold h-8 flex items-center justify-between rounded-tl-2xl rounded-tr-2xl'>
+  <div className={` ${colors[i]} text-white text-base font-bold h-8 flex items-center justify-between rounded-tl-2xl rounded-tr-2xl`}>
     <div className='flex items-center'>
       <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-group p-2'>
         <TiPlus className='text-2xl'/>
       </div>
-      Nombre: {person.name}
+      Nombre: {person.nameView}
     </div>
   </div>
   <div className='pinnacle-wrap px-5 py-4  shadow-sm'>
@@ -148,12 +158,12 @@ return(
     </div>
     {list.map((person, i)=>
       <div className={`${(index1 === i|| index2 === i)? 'block':'hidden'} col-span-4 mb-1`}>
-      <div className='bg-black text-white text-base font-bold h-8 flex items-center justify-between rounded-tl-2xl rounded-tr-2xl'>
+      <div className={`${colors[i]}  text-white text-base font-bold h-8 flex items-center justify-between rounded-tl-2xl rounded-tr-2xl`}>
         <div className='flex items-center'>
           <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-group p-2'>
             <TiPlus className='text-2xl'/>
           </div>
-          Pináculo: {person.name}
+          Pináculo: {person.nameView}
         </div>
       </div>
       <div className='pinnacle-wrap px-5 py-4 shadow-sm'>
@@ -179,12 +189,12 @@ return(
       let annualReturn = person.annualReturn(newDate.year())
       return(
         <div className={`${(index1 === i|| index2 === i)? 'block':'hidden'} col-span-4 mb-1`}>
-          <div className='bg-black text-white text-base font-bold h-8 flex items-center justify-between rounded-tl-2xl rounded-tr-2xl'>
+          <div className={`${colors[i]}  text-white text-base font-bold h-8 flex items-center justify-between rounded-tl-2xl rounded-tr-2xl`}>
             <div className='flex items-center '>
               <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-group p-2'>
                   <TiPlus className='text-2xl'/>
                 </div>
-              Retorno: {person.name}
+              Retorno: {person.nameView}
             </div>
           </div>
           <div className='pinnacle-wrap px-5 py-4 shadow-sm'>

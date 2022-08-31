@@ -97,7 +97,7 @@ const SinastryPage = () => {
               <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
                 <TiPlus className='text-2xl'/>
               </div>
-              Nombre: {consultant.name}
+              Nombre: {consultant.nameView}
             </div>
           </div>
 
@@ -137,7 +137,7 @@ const SinastryPage = () => {
               <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
                 <TiPlus className='text-2xl'/>
               </div>
-              Nombre: {partner.name}
+              Nombre: {partner.nameView}
             </div>
           </div>
           <div className='pinnacle-wrap px-5 py-4'>
@@ -187,7 +187,7 @@ const SinastryPage = () => {
               <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
                 <TiPlus className='text-2xl'/>
               </div>
-              Pináculo: {consultant.name}
+              Pináculo: {consultant.nameView}
             </div>
           </div>
           <div className='pinnacle-wrap px-5 py-4 shadow-sm'>
@@ -201,7 +201,7 @@ const SinastryPage = () => {
               <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
                 <TiPlus className='text-2xl'/>
               </div>
-              Pináculo: {partner.name}
+              Pináculo: {partner.nameView}
             </div>
           </div>
           <div className='pinnacle-wrap px-5 py-4 shadow-sm'>
@@ -226,7 +226,7 @@ const SinastryPage = () => {
               <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
                 <TiPlus className='text-2xl'/>
               </div>
-              Pináculo: {consultant.name}
+              Pináculo: {consultant.nameView}
             </div>
           </div>
           <div className='pinnacle-wrap px-5 py-4'>
@@ -240,7 +240,7 @@ const SinastryPage = () => {
               <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
                 <TiPlus className='text-2xl'/>
               </div>
-              Pináculo: {partner.name}
+              Pináculo: {partner.nameView}
             </div>
           </div>
           <div className='pinnacle-wrap px-5 py-4'>
