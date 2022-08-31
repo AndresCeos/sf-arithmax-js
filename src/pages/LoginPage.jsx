@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import { startLogin } from '../store/slices/auth/thunks';
 
@@ -9,19 +9,28 @@ import bk from '../assets/bk.jpg'
 import bk_numbers from '../assets/login-numbers.jpg'
 import shape from '../assets/login-shape.png'
 import welcome from '../assets/welcome.png'
+import { useEffect } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState()
   const [pass, setPass] = useState()
+  const [m, setM] = useState(null)
 
   const { status, errorMessage } = useSelector(state => state.auth)
   const isAuthenticating = useMemo(() => status === 'checking', [status])
 
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate()
 
-  const m = searchParams.get('m')
+  useEffect(() => {
+    if (localStorage.getItem('m') === null) {
+      const mParams = searchParams.get('m')
+      localStorage.setItem('m', mParams)
+      setM(mParams)
+    } else {
+      setM(localStorage.getItem('m'))
+    }
+  }, [])
 
   const handleOnSubmit = (e) => {
     const userData = {
