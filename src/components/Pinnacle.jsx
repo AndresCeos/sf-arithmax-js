@@ -11,7 +11,7 @@ export const Pinnacle = ({ consultant, size, checkP }) => {
         <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="A">{consultant.getA()}</div>
         <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="B">{consultant.getB()}{consultant.getBISK()}</div>
         <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="C">{consultant.getC()}{consultant.getCISK()}</div>
-        <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="D">{(!checkP)?`${consultant.getDCheck()}${consultant.getDISK()}`:`${consultant.getD()}${consultant.getDISK()}`}</div>
+        <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="D">{(!checkP)?`${consultant.getD()}${consultant.getDISK()}`:`${consultant.getDCheck()}${consultant.getDISK()}`}</div>
 
         <div className="pinncle-letter" border="green" appearance="green" data-letter="E">{consultant.getE()}{consultant.getEISK()}</div>
         <div className="pinncle-letter" border="green" appearance="green" data-letter="F">{consultant.getF()}{consultant.getFISK()}</div>
