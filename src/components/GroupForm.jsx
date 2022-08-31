@@ -12,6 +12,7 @@ export const GroupForm = ( {dataPartner,userIndex, setIsAddFormActive,indexGroup
   let groupDateEmpty = true
   const gDate = userActive.dateGroup
   const [groupDate, setGroupDate] = useState(isGroupEditing?gDate:null)
+  const [bool,setBool] = useState(false)
 if(userActive.dateGroup !== null){
   groupDateEmpty = false
 }
@@ -23,18 +24,25 @@ const closeForm = () =>{
   setIsAddFormActive(false)
   dispatch(setIsGroupEditing(false))
 }
+const validateDate = () =>{
+  if(groupDate===null){
+    setBool(true)
+  }
+}
   return(
     <>
     <Formik
       enableReinitialize
       initialValues={ ( ! isGroupEditing ) ?
-        { names: '', date: '',lastName:'',scdLastName:'' }
+        { names: '', date: '',lastName:'',scdLastName:'' ,dateInit:''}
         :
         {
           names:cap[indexGroup].names,
           date:cap[indexGroup].date,
           lastName:cap[indexGroup].lastName,
-          scdLastName:cap[indexGroup].scdLastName
+          scdLastName:cap[indexGroup].scdLastName,
+          dateInit:groupDate
+
         }
       }
       validate={ values => {
@@ -64,41 +72,37 @@ const closeForm = () =>{
         if (!values.scdLastName.match( letters )) {
           errors.scdLastName = 'No valido';
         }
+        if (!values.dateInit) {
+          errors.dateInit = 'Requerido';
+        }
         return errors;
       } }
       onSubmit={(user,  { setSubmitting, resetForm }) => {
           if(!isGroupEditing){
-            user.id = generateUserId()
-          const updatedUser = {
-            ...dataPartner,
-            group :[
-              ...dataPartner.group,
-              user,
-            ],
-            dateGroup:groupDate
+            const updatedUser = {
+              ...dataPartner,
+              group :[
+                ...dataPartner.group,
+                user,
+              ],
+              dateGroup:user.dateInit
+            }
+            dispatch( editUser(updatedUser, userIndex) )
           }
-
-          console.log( {updatedUser} )
-          dispatch( editUser(updatedUser, userIndex) )
+          if(isGroupEditing){
+            let arrayGroups =Object.assign({},dataPartner.group,{})
+            arrayGroups[indexGroup] = user
+            let userPartners = Object.assign({}, dataPartner,{
+              group : Object.keys(arrayGroups).map(key => arrayGroups[key]),
+            })
+            userPartners.dateGroup = user.dateInit
+            console.log(userPartners);
+            dispatch(editUser(userPartners, userIndex))
           }
-        /*
-         * TODO: EDIT PARTNER
-         */
-
-      if(isGroupEditing){
-         let arrayGroups =Object.assign({},dataPartner.group,{})
-         arrayGroups[indexGroup] = user
-         let userPartners = Object.assign({}, dataPartner,{
-           group : Object.keys(arrayGroups).map(key => arrayGroups[key])
-         })
-         userPartners.dateGroup = groupDate
-         console.log(userPartners);
-         dispatch(editUser(userPartners, userIndex))
-       }
-      setIsAddFormActive(false)
-      setSubmitting(false);
-      dispatch(setIsGroupEditing(false))
-      resetForm({})
+          setIsAddFormActive(false)
+          setSubmitting(false);
+          dispatch(setIsGroupEditing(false))
+          resetForm({})
       }}
     >
     {({
@@ -179,16 +183,7 @@ const closeForm = () =>{
             />
             {errors.date && touched.date ? <span className="form-error">{errors.date}</span>  : null }
           </div>
-        </div>
-        <div className="flex w-full mt-3 justify-center">
-          <button type="submit" className="btn-save w-32" disabled={isSubmitting}>Guardar</button>
-          {(isGroupEditing)?<button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm} >Cancelar</button> :''}
-        </div>
-      </form>
-    )}
-    </Formik>
-<div className="flex w-full mt-3">
-      <div className="form-group w-1/3">
+          <div className="form-group w-1/3">
         <label className='font-bold mb-1'>
           Última Fecha de Integración
           <span className='text-red-800'>*</span>
@@ -197,10 +192,22 @@ const closeForm = () =>{
           type="number"
           name="dateInit"
           className="rounded"
-          value={groupDate}
-          onChange={(e)=>{setGroupDate(e.target.value)}}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.dateInit}
         />
+        {errors.dateInit && touched.dateInit ? <span className="form-error">{errors.dateInit}</span>  : null }
       </div>
+        </div>
+        <div className="flex w-full mt-3 justify-center">
+          <button type="submit" className="btn-save w-32" disabled={isSubmitting} onClick={validateDate}>Guardar</button>
+          {(isGroupEditing)?<button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm} >Cancelar</button> :''}
+        </div>
+      </form>
+    )}
+    </Formik>
+<div className="flex w-full mt-3">
+
     </div>
     </>
   )

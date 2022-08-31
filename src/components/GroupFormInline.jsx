@@ -38,7 +38,7 @@ export const GroupFormInline = ({ hasPartner = false, group, isAddFormActive = f
 
 
 
-  // console.log( partners )
+  console.log( userActive )
 
 
   if( isEmpty || isAddFormActive ){
@@ -102,12 +102,7 @@ export const GroupFormInline = ({ hasPartner = false, group, isAddFormActive = f
           <label className='font-bold mb-1 mr-2 text-13 flex'>
             <MdEdit className='text-xl text-gray-400'/> Última Fecha de integración:
           </label>
-          <input
-            value={ groupDateEmpty }
-            type="number"
-            className="rounded w-20 text-center"
-            disabled
-          />
+          <label className='w-20 text-center'>{groupDateEmpty}</label>
         </div>
     </div>
     </>
