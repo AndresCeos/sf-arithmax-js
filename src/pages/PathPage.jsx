@@ -4,7 +4,7 @@ import moment from 'moment/min/moment-with-locales'
 moment.locale("es-mx")
 
 import { useConsultant, dateSelect } from '../hooks';
-import {  nowWeekNumber, capitalize } from '../resources/';
+import { nowWeekNumber, capitalize } from '../resources/';
 import { TiPlus } from "react-icons/ti";
 
 import green_arrow from '../assets/icons/green-arrow.svg'
@@ -12,61 +12,118 @@ import arrow_bk from '../assets/arrow_bk.svg'
 
 const PathPage = () => {
   const { userActive } = useSelector(state => state.users);
-  const {newDate} = dateSelect()
+  const { newDate } = dateSelect()
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
 
-  if( isEmpty ){
+  if (isEmpty) {
     return <UnselectedConsultant />
   }
 
   const now = moment()
 
+  const ciclePhrases = {
+    1: [
+      'Dejando atrás al niño modelo, para saber ¿Quién soy?.',
+      'Creando a un nuevo "YO" más independiente y seguro.',
+      'Autoafirmando mi liderazgo e individualidad en el mundo.',
+      'Liberaciones y búsqueda de mi propio emprendimiento.',
+    ],
+    11: [
+      'Obligado a madurar y asumir la responsabilidad de mi vida.',
+      'Aprendiendo a construir una mejor versión de mi mismo.',
+      'Salgo de mis fronteras, cambiando mi mentalidad y visión de vida. ',
+      'Apertura de consciencia y conexión con algo más elevado.',
+    ],
+    3: [
+      'Enamorándome de mi vida y apresurándome a experimentar.',
+      'Saliendo de todo lo que me somete, para aprender a elegir ¿Qué quiero?',
+      'Expreso mis deseos, sin importar el que dirán. Aprendo a decir "NO".',
+      'Me Aperturo a pararme sobre el escenario y tomar el micrófono.',
+    ],
+    4: [
+      'Saliendo de estructuras rígidas, opresivas o desordenadas en la vida.',
+      'Reordenando mi vida y construyendo una nueva estructura',
+      'Confronto mis limitaciones, me activo y derrumbo los muros que me contienen.',
+      'Construyo un nuevo orden en mi vida, con estructuras mas sanas y equilibradas.',
+    ],
+    5: [
+      'Me aventuro a ir tras mi pasión y luchar por lo que quiero.',
+      'Cambios sorpresivos que me mueven a una nueva realidad.',
+      'Necesidad de sentirme vivo e ir en busca de una nueva pasión.',
+      'Redireccionando hacia una realidad más libre y auténtica.',
+    ],
+    6: [
+      'Aprendo a construir relaciones emocionales, solidarias, profundas y productivas.',
+      'Conecto con mi amor propio y me permito poner mi semilla en el mundo. Soy fértil.',
+      'Aprendo a atender mis necesidades,  antes que las de los demás. Me valoro.',
+      'Momento de crear y conectar con mi tribu, permitiéndome nutrirlos y ser nutrido.',
+    ],
+    7: [
+      'Asumo responsabilidades y compromisos de vida.',
+      'Me perfecciono, aprendo y/o enseño profundizando mi sabiduría.',
+      'Me especializo y comprometo en elevar y trasmitir mi conocimiento.',
+      'Suelto responsabilidades para comprometerme con mi proyecto de vida.',
+    ],
+    8: [
+      'Desarrollo autoridad y liderazgo en base a mi disciplina, enfoque y determinación. ',
+      'Salgo del control, domino y opresión de una autoridad y tomo el liderazgo de mi vida.',
+      'Me empodero y construyo mi propio esenario de abundancia y seguridad.',
+      'Materializo mi potencial y talento, construyendo un proyecto propio más ambicioso.',
+    ],
+    9: [
+      'Fin de un camino. Crecimiento obligado, sales al mundo por ti mismo.',
+      'Asumo mi madurez para ir en busca de autonomía e independencia del clan.',
+      'Me identifico con un ideal más grande que "YO". Reconocimiento y notoriedad por lo que hago.',
+      'Conecto con mi lado humanista, en busca de una vida con sentido y propósito.',
+    ]
+  }
+
   const cicle = [
     {
-      vibration: consultant.calcPersonalYear( newDate.year()-4 ),
-      year: newDate.year()-4
+      vibration: consultant.calcPersonalYear(newDate.year() - 4),
+      year: newDate.year() - 4
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year()-3 ),
-      year: newDate.year()-3
+      vibration: consultant.calcPersonalYear(newDate.year() - 3),
+      year: newDate.year() - 3
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year()-2 ),
-      year: newDate.year()-2
+      vibration: consultant.calcPersonalYear(newDate.year() - 2),
+      year: newDate.year() - 2
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year()-1 ),
-      year: newDate.year()-1
+      vibration: consultant.calcPersonalYear(newDate.year() - 1),
+      year: newDate.year() - 1
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year() ),
+      vibration: consultant.calcPersonalYear(newDate.year()),
       year: newDate.year()
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year()+1 ),
-      year: newDate.year()+1
+      vibration: consultant.calcPersonalYear(newDate.year() + 1),
+      year: newDate.year() + 1
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year()+2 ),
-      year: newDate.year()+2
+      vibration: consultant.calcPersonalYear(newDate.year() + 2),
+      year: newDate.year() + 2
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year()+3 ),
-      year: newDate.year()+3
+      vibration: consultant.calcPersonalYear(newDate.year() + 3),
+      year: newDate.year() + 3
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year()+4 ),
-      year: newDate.year()+4
+      vibration: consultant.calcPersonalYear(newDate.year() + 4),
+      year: newDate.year() + 4
     },
     {
-      vibration: consultant.calcPersonalYear( newDate.year()+5 ),
-      year: newDate.year()+5
+      vibration: consultant.calcPersonalYear(newDate.year() + 5),
+      year: newDate.year() + 5
     },
   ]
 
   let m1, m2, m3, m4, cm1, cm2, cm3, cm4 = ''
-  let start, end =''
+  let start, end = ''
   const listOfMonths = consultant.getCustomMonths()
   const index = listOfMonths.findIndex(i => i === 'Enero')
 
@@ -74,7 +131,7 @@ const PathPage = () => {
   const quater2 = consultant.getQuaterTwo(newDate.year())
   const quater3 = consultant.getQuaterThree(newDate.year())
 
-  const lastYear = newDate.year()-1
+  const lastYear = newDate.year() - 1
 
   const quater1LastYear = consultant.getQuaterOne()
   const quater2LastYear = consultant.getQuaterTwo(lastYear)
@@ -104,164 +161,164 @@ const PathPage = () => {
   const actualMonth = allMonth[monthIndex]
 
 
-  const currentMonth = listOfMonths.findIndex(i => i === capitalize( actualMonth ) )
-  const listOfMonths3 = listOfMonths.map( e =>  e.substring(0, 3) )
+  const currentMonth = listOfMonths.findIndex(i => i === capitalize(actualMonth))
+  const listOfMonths3 = listOfMonths.map(e => e.substring(0, 3))
   // console.log(actualMonth);
   // console.log(currentMonth);
   const currentMonthName = capitalize(listOfMonths[currentMonth])
 
-  switch(index){
+  switch (index) {
     case 0:
-      m1 = listOfMonths3[index]+ ' - '+ listOfMonths3[4]
-      m2= listOfMonths3[5]+ ' - '+ listOfMonths3[8]
-      m3= listOfMonths3[9]+ ' - '+ listOfMonths3[11]
-      cm1 = quater1+quater1Karmico
-      cm2 = quater2+quater2Karmico
-      cm3 = quater3+quater3Karmico
-      if(currentMonth>=0&&currentMonth<=4){ism1=true}
-      if(currentMonth>=5&&currentMonth<=8){ism2=true}
-      if(currentMonth>=9&&currentMonth<=11){ism3=true}
-    break;
+      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
+      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      cm1 = quater1 + quater1Karmico
+      cm2 = quater2 + quater2Karmico
+      cm3 = quater3 + quater3Karmico
+      if (currentMonth >= 0 && currentMonth <= 4) { ism1 = true }
+      if (currentMonth >= 5 && currentMonth <= 8) { ism2 = true }
+      if (currentMonth >= 9 && currentMonth <= 11) { ism3 = true }
+      break;
     case 1:
-      m1 = listOfMonths3[index]+ ' - '+ listOfMonths3[4]
-      m2= listOfMonths3[5]+ ' - '+ listOfMonths3[8]
-      m3= listOfMonths3[9]+ ' - '+ listOfMonths3[11]
-      m4= listOfMonths3[index-1]
-      cm1 = quater1LastYear+quater1Karmico
-      cm2 = quater2LastYear+quater2KarmicoLast
-      cm3 = quater3LastYear+quater3KarmicoLast
-      cm4 = quater1+quater1Karmico
+      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
+      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m4 = listOfMonths3[index - 1]
+      cm1 = quater1LastYear + quater1Karmico
+      cm2 = quater2LastYear + quater2KarmicoLast
+      cm3 = quater3LastYear + quater3KarmicoLast
+      cm4 = quater1 + quater1Karmico
       start = listOfMonths3[index]
       end = listOfMonths3[4]
-      if(currentMonth>=1&&currentMonth<=4){ism1=true}
-      if(currentMonth>=5&&currentMonth<=8){ism2=true}
-      if(currentMonth>=9&&currentMonth<=11){ism3=true}
-      if(currentMonth===0){ism4=true}
-    break;
+      if (currentMonth >= 1 && currentMonth <= 4) { ism1 = true }
+      if (currentMonth >= 5 && currentMonth <= 8) { ism2 = true }
+      if (currentMonth >= 9 && currentMonth <= 11) { ism3 = true }
+      if (currentMonth === 0) { ism4 = true }
+      break;
     case 2:
     case 3:
-      m1 = listOfMonths3[index]+ ' - '+ listOfMonths3[4]
-      m2= listOfMonths3[5]+ ' - '+ listOfMonths3[8]
-      m3= listOfMonths3[9]+ ' - '+ listOfMonths3[11]
-      m4= listOfMonths3[0]+ ' - '+ listOfMonths3[index-1]
-      cm1 = quater1LastYear+quater1Karmico
-      cm2 = quater2LastYear+quater2KarmicoLast
-      cm3 = quater3LastYear+quater3KarmicoLast
-      cm4 = quater1+quater1Karmico
-      if(currentMonth>=3&&currentMonth<=4){ism1=true}
-      if(currentMonth>=5&&currentMonth<=8){ism2=true}
-      if(currentMonth>=9&&currentMonth<=11){ism3=true}
-      if(currentMonth>=0&&currentMonth<=2){ism4=true}
-    break;
+      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
+      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m4 = listOfMonths3[0] + ' - ' + listOfMonths3[index - 1]
+      cm1 = quater1LastYear + quater1Karmico
+      cm2 = quater2LastYear + quater2KarmicoLast
+      cm3 = quater3LastYear + quater3KarmicoLast
+      cm4 = quater1 + quater1Karmico
+      if (currentMonth >= 3 && currentMonth <= 4) { ism1 = true }
+      if (currentMonth >= 5 && currentMonth <= 8) { ism2 = true }
+      if (currentMonth >= 9 && currentMonth <= 11) { ism3 = true }
+      if (currentMonth >= 0 && currentMonth <= 2) { ism4 = true }
+      break;
     case 4:
       m1 = listOfMonths3[index]
-      m2= listOfMonths3[5]+ ' - '+ listOfMonths3[8]
-      m3= listOfMonths3[9]+ ' - '+ listOfMonths3[11]
-      m4= listOfMonths3[0]+ ' - '+ listOfMonths3[index-1]
-      cm1 = quater1LastYear+quater1Karmico
-      cm2 = quater2LastYear+quater2KarmicoLast
-      cm3 = quater3LastYear+quater3KarmicoLast
-      cm4 = quater1+quater1Karmico
-      if(currentMonth===4){ism1=true}
-      if(currentMonth>=5&&currentMonth<=8){ism2=true}
-      if(currentMonth>=9&&currentMonth<=11){ism3=true}
-      if(currentMonth>=0&&currentMonth<=7){ism4=true}
-    break;
+      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m4 = listOfMonths3[0] + ' - ' + listOfMonths3[index - 1]
+      cm1 = quater1LastYear + quater1Karmico
+      cm2 = quater2LastYear + quater2KarmicoLast
+      cm3 = quater3LastYear + quater3KarmicoLast
+      cm4 = quater1 + quater1Karmico
+      if (currentMonth === 4) { ism1 = true }
+      if (currentMonth >= 5 && currentMonth <= 8) { ism2 = true }
+      if (currentMonth >= 9 && currentMonth <= 11) { ism3 = true }
+      if (currentMonth >= 0 && currentMonth <= 7) { ism4 = true }
+      break;
     case 5:
-      m1 = listOfMonths3[index] +' - ' + listOfMonths3[8]
-      m2= listOfMonths3[9]+ ' - '+ listOfMonths3[11]
-      m3= listOfMonths3[12]+ ' - '+ listOfMonths3[4]
-      cm1 = quater2LastYear+quater2KarmicoLast
-      cm2 = quater3LastYear+quater3KarmicoLast
-      cm3 = quater1+quater1Karmico
-      if(currentMonth>=5&&currentMonth<=8){ism1=true}
-      if(currentMonth>=9&&currentMonth<=11){ism2=true}
-      if(currentMonth>=0&&currentMonth<=4){ism3=true}
+      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
+      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
+      cm1 = quater2LastYear + quater2KarmicoLast
+      cm2 = quater3LastYear + quater3KarmicoLast
+      cm3 = quater1 + quater1Karmico
+      if (currentMonth >= 5 && currentMonth <= 8) { ism1 = true }
+      if (currentMonth >= 9 && currentMonth <= 11) { ism2 = true }
+      if (currentMonth >= 0 && currentMonth <= 4) { ism3 = true }
 
-    break;
+      break;
     case 6:
-      m1 = listOfMonths3[index] +' - ' + listOfMonths3[8]
-      m2= listOfMonths3[9]+ ' - '+ listOfMonths3[11]
-      m3= listOfMonths3[12]+ ' - '+ listOfMonths3[4]
-      m4=  listOfMonths3[index-1]
-      cm1 = quater2LastYear+quater2KarmicoLast
-      cm2 = quater3LastYear+quater3KarmicoLast
-      cm3 = quater1+quater1Karmico
-      cm4 = quater2+quater2Karmico
-      if(currentMonth>=6&&currentMonth<=8){ism1=true}
-      if(currentMonth>=9&&currentMonth<=11){ism2=true}
-      if(currentMonth>=0&&currentMonth<=4){ism3=true}
-      if(currentMonth===5){ism4=true}
-    break;
+      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
+      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
+      m4 = listOfMonths3[index - 1]
+      cm1 = quater2LastYear + quater2KarmicoLast
+      cm2 = quater3LastYear + quater3KarmicoLast
+      cm3 = quater1 + quater1Karmico
+      cm4 = quater2 + quater2Karmico
+      if (currentMonth >= 6 && currentMonth <= 8) { ism1 = true }
+      if (currentMonth >= 9 && currentMonth <= 11) { ism2 = true }
+      if (currentMonth >= 0 && currentMonth <= 4) { ism3 = true }
+      if (currentMonth === 5) { ism4 = true }
+      break;
     case 7:
-      m1 = listOfMonths3[index] +' - ' + listOfMonths3[8]
-      m2= listOfMonths3[9]+ ' - '+ listOfMonths3[11]
-      m3= listOfMonths3[12]+ ' - '+ listOfMonths3[4]
-      m4= listOfMonths3[5]+ ' - '+ listOfMonths3[index-1]
-      cm1 = quater2LastYear+quater2KarmicoLast
-      cm2 = quater3LastYear+quater3KarmicoLast
-      cm3 = quater1+quater1Karmico
-      cm4=quater2+quater2Karmico
-      if(currentMonth>=7&&currentMonth<=8){ism1=true}
-      if(currentMonth>=9&&currentMonth<=11){ism2=true}
-      if(currentMonth>=0&&currentMonth<=4){ism3=true}
-      if(currentMonth>=5&&currentMonth<=index-1){ism4=true}
-    break;
+      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
+      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
+      m4 = listOfMonths3[5] + ' - ' + listOfMonths3[index - 1]
+      cm1 = quater2LastYear + quater2KarmicoLast
+      cm2 = quater3LastYear + quater3KarmicoLast
+      cm3 = quater1 + quater1Karmico
+      cm4 = quater2 + quater2Karmico
+      if (currentMonth >= 7 && currentMonth <= 8) { ism1 = true }
+      if (currentMonth >= 9 && currentMonth <= 11) { ism2 = true }
+      if (currentMonth >= 0 && currentMonth <= 4) { ism3 = true }
+      if (currentMonth >= 5 && currentMonth <= index - 1) { ism4 = true }
+      break;
     case 8:
       m1 = listOfMonths3[index]
-      m2= listOfMonths3[9]+ ' - '+ listOfMonths3[11]
-      m3= listOfMonths3[12]+ ' - '+ listOfMonths3[4]
-      m4= listOfMonths3[5]+ ' - '+ listOfMonths3[index-1]
+      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
+      m4 = listOfMonths3[5] + ' - ' + listOfMonths3[index - 1]
 
-      cm1 = quater2LastYear+quater2KarmicoLast
-      cm2 = quater3LastYear+quater3KarmicoLast
-      cm3 = quater1+quater1Karmico
-      cm4 = quater2+quater2Karmico
-      if(currentMonth===8){ism1=true}
-      if(currentMonth>=9&&currentMonth<=11){ism2=true}
-      if(currentMonth>=0&&currentMonth<=4){ism3=true}
-      if(currentMonth>=5&&currentMonth<=7){ism4=true}
-    break;
+      cm1 = quater2LastYear + quater2KarmicoLast
+      cm2 = quater3LastYear + quater3KarmicoLast
+      cm3 = quater1 + quater1Karmico
+      cm4 = quater2 + quater2Karmico
+      if (currentMonth === 8) { ism1 = true }
+      if (currentMonth >= 9 && currentMonth <= 11) { ism2 = true }
+      if (currentMonth >= 0 && currentMonth <= 4) { ism3 = true }
+      if (currentMonth >= 5 && currentMonth <= 7) { ism4 = true }
+      break;
     case 9:
-      m1 = listOfMonths3[index] +' - ' + listOfMonths3[11]
-      m2= listOfMonths3[0]+ ' - '+ listOfMonths3[4]
-      m3= listOfMonths3[5]+ ' - '+ listOfMonths3[8]
-      cm1 = quater3LastYear+quater3KarmicoLast
-      cm2 = quater1+quater1Karmico
-      cm3 = quater2+quater2Karmico
-      if(currentMonth>=index&&currentMonth<=11){ism1=true}
-      if(currentMonth>=0&&currentMonth<=4){ism2=true}
-      if(currentMonth>=5&&currentMonth<=8){ism3=true}
+      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[11]
+      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
+      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      cm1 = quater3LastYear + quater3KarmicoLast
+      cm2 = quater1 + quater1Karmico
+      cm3 = quater2 + quater2Karmico
+      if (currentMonth >= index && currentMonth <= 11) { ism1 = true }
+      if (currentMonth >= 0 && currentMonth <= 4) { ism2 = true }
+      if (currentMonth >= 5 && currentMonth <= 8) { ism3 = true }
 
-    break;
+      break;
     case 10:
-      m1 = listOfMonths3[index] +' - ' + listOfMonths3[11]
-      m2= listOfMonths3[0]+ ' - '+ listOfMonths3[4]
-      m3= listOfMonths3[5]+ ' - '+ listOfMonths3[8]
-      m4=  listOfMonths3[index-1]
-      cm1 = quater3LastYear+quater3KarmicoLast
-      cm2 = quater1+quater1Karmico
-      cm3 = quater2+quater2Karmico
-      cm4=quater3+quater3Karmico
-      if(currentMonth>=index&&currentMonth<=11){ism1=true}
-      if(currentMonth>=0&&currentMonth<=4){ism2=true}
-      if(currentMonth>=5&&currentMonth<=8){ism3=true}
-      if(currentMonth===index-1){ism4=true}
-    break;
+      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[11]
+      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
+      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m4 = listOfMonths3[index - 1]
+      cm1 = quater3LastYear + quater3KarmicoLast
+      cm2 = quater1 + quater1Karmico
+      cm3 = quater2 + quater2Karmico
+      cm4 = quater3 + quater3Karmico
+      if (currentMonth >= index && currentMonth <= 11) { ism1 = true }
+      if (currentMonth >= 0 && currentMonth <= 4) { ism2 = true }
+      if (currentMonth >= 5 && currentMonth <= 8) { ism3 = true }
+      if (currentMonth === index - 1) { ism4 = true }
+      break;
     case 11:
       m1 = listOfMonths3[index]
-      m2= listOfMonths3[0]+ ' - '+ listOfMonths3[4]
-      m3= listOfMonths3[5]+ ' - '+ listOfMonths3[8]
-      m4= listOfMonths3[9]+ ' - '+ listOfMonths3[index-1]
-      cm1 = quater3LastYear+quater3KarmicoLast
-      cm2 = quater1+quater1Karmico
-      cm3 = quater2+quater2Karmico
-      cm4=quater3+quater3Karmico
-      if(currentMonth===index){ism1=true}
-      if(currentMonth>=0&&currentMonth<=4){ism2=true}
-      if(currentMonth>=5&&currentMonth<=8){ism3=true}
-      if(currentMonth>=9&&currentMonth<=index-1){ism4=true}
-    break;
+      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
+      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m4 = listOfMonths3[9] + ' - ' + listOfMonths3[index - 1]
+      cm1 = quater3LastYear + quater3KarmicoLast
+      cm2 = quater1 + quater1Karmico
+      cm3 = quater2 + quater2Karmico
+      cm4 = quater3 + quater3Karmico
+      if (currentMonth === index) { ism1 = true }
+      if (currentMonth >= 0 && currentMonth <= 4) { ism2 = true }
+      if (currentMonth >= 5 && currentMonth <= 8) { ism3 = true }
+      if (currentMonth >= 9 && currentMonth <= index - 1) { ism4 = true }
+      break;
 
   }
 
@@ -272,14 +329,14 @@ const PathPage = () => {
 
   const currentWeek = nowWeekNumber(newDate)
 
-  return(
+  return (
     <>
       <div className='grid grid-cols-24 mt-8 mx-14 gap-6 pt-10'>
 
         <div className='col-span-24 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Ciclo de 9 años
           </div>
@@ -290,92 +347,101 @@ const PathPage = () => {
                   <img src={arrow_bk} alt='arrow_bk' />
                 </div>
               </div>
-              <div className='col-start-1 col-span-2 row-start-2'>{ now.year() }</div>
+              <div className='col-start-1 col-span-2 row-start-2'>{newDate.year()}</div>
               <div className='col-start-1 col-span-2 row-start-3 h-10 bg-red flex justify-center items-center text-black text-xl font-bold rounded-md border-4 border-red'>
-                Año {consultant.calcPersonalYear()}
+                Año {consultant.calcPersonalYear(newDate.year())}
               </div>
               <div className='col-start-1 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
               <div className='col-start-1 col-span-2 row-start-6 text-13 font-bold'>
                 Autonomía Independencia
               </div>
 
-              <div className='col-start-4 col-span-2 row-start-2 text-13 font-bold'>{now.year() - 9}</div>
-              <div className='col-start-4 col-span-2 row-start-3 relative'>
-                <div className='absolute z-10 centered-axis-x'>
-                  <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
-                    {consultant.calcPersonalYear()}
+              {(newDate.year() - 27 > consultant.getYearOfBirth()) &&
+                <>
+                  <div className='col-start-4 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 27}</div>
+                  <div className='col-start-4 col-span-2 row-start-3 relative'>
+                    <div className='absolute z-10 centered-axis-x'>
+                      <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
+                        {consultant.calcPersonalYear(newDate.year())}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className='col-start-4 col-span-2 row-start-5 h-9 arrow-down-line'></div>
-              <div className='col-start-4 col-span-2 row-start-6 h-9 arrow-down-cicle'></div>
-              <div className='col-start-4 col-span-2 row-start-7 text-13 font-bold'>
-                Graduación<br/>
-                Empiezo a trabajar
-              </div>
-
-              <div className='col-start-6 row-start-1 text-13 font-medium'>
-                + 9 años
-              </div>
-              <div className='col-start-6 row-start-2 flex items-center justify-center'>
-                <img src={green_arrow} alt="green arrow" />
-              </div>
-
-              <div className='col-start-7 col-span-2 row-start-2 text-13 font-bold'>{now.year()}</div>
-              <div className='col-start-7 col-span-2 row-start-3 relative'>
-                <div className='absolute z-10 centered-axis-x'>
-                  <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
-                    {consultant.calcPersonalYear()}
+                  <div className='col-start-4 col-span-2 row-start-5 h-9 arrow-down-line'></div>
+                  <div className='col-start-4 col-span-2 row-start-6 h-9 arrow-down-cicle'></div>
+                  <div className='col-start-4 col-span-2 row-start-7 text-13 font-bold'>
+                    <div className='col-start-7 col-span-2 row-start-6 text-13 font-bold'>
+                      {ciclePhrases[consultant.calcPersonalYear(newDate.year())][0]}
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className='col-start-7 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
-              <div className='col-start-7 col-span-2 row-start-6 text-13 font-bold'>
-                Me independizo<br/>
-                y emprendo
-              </div>
-
-              <div className='col-start-9 row-start-1 text-13 font-medium'>
-                + 9 años
-              </div>
-              <div className='col-start-9 row-start-2 flex items-center justify-center'>
-                <img src={green_arrow} alt="green arrow" />
-              </div>
-
-              <div className='col-start-10 col-span-2 row-start-2 text-13 font-bold'>{now.year() + 9}</div>
-              <div className='col-start-10 col-span-2 row-start-3 relative'>
-                <div className='absolute z-10 centered-axis-x'>
-                  <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
-                    {consultant.calcPersonalYear()}
+                  <div className='col-start-6 row-start-1 text-13 font-medium'>
+                    + 9 años
                   </div>
-                </div>
-              </div>
-              <div className='col-start-10 col-span-2 row-start-5 h-9 arrow-down-line'></div>
-              <div className='col-start-10 col-span-2 row-start-6 h-9 arrow-down-cicle'></div>
-              <div className='col-start-10 col-span-2 row-start-7 text-13 font-bold'>
-                Creo mi propia<br/>
-                marca
-              </div>
+                  <div className='col-start-6 row-start-2 flex items-center justify-center'>
+                    <img src={green_arrow} alt="green arrow" />
+                  </div>
+                </>
+              }
 
-              <div className='col-start-12 row-start-1 text-13 font-medium'>
-                + 9 años
-              </div>
-              <div className='col-start-12 row-start-2 flex items-center justify-center'>
-                <img src={green_arrow} alt="green arrow" />
-              </div>
 
-              <div className='col-start-13 col-span-2 row-start-2 text-13 font-bold'>{now.year() + 18}</div>
+              {(newDate.year() - 18 > consultant.getYearOfBirth()) &&
+                <>
+                  <div className='col-start-7 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 18}</div>
+                  <div className='col-start-7 col-span-2 row-start-3 relative'>
+                    <div className='absolute z-10 centered-axis-x'>
+                      <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
+                        {consultant.calcPersonalYear(newDate.year())}
+                      </div>
+                    </div>
+                  </div>
+                  <div className='col-start-7 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
+                  <div className='col-start-7 col-span-2 row-start-6 text-13 font-bold'>
+                    {ciclePhrases[consultant.calcPersonalYear(newDate.year())][1]}
+                  </div>
+                  <div className='col-start-9 row-start-1 text-13 font-medium'>
+                    + 9 años
+                  </div>
+                  <div className='col-start-9 row-start-2 flex items-center justify-center'>
+                    <img src={green_arrow} alt="green arrow" />
+                  </div>
+                </>
+              }
+
+              {(newDate.year() - 9 > consultant.getYearOfBirth()) &&
+                <>
+                  <div className='col-start-10 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 9}</div>
+                  <div className='col-start-10 col-span-2 row-start-3 relative'>
+                    <div className='absolute z-10 centered-axis-x'>
+                      <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
+                        {consultant.calcPersonalYear(newDate.year())}
+                      </div>
+                    </div>
+                  </div>
+                  <div className='col-start-10 col-span-2 row-start-5 h-9 arrow-down-line'></div>
+                  <div className='col-start-10 col-span-2 row-start-6 h-9 arrow-down-cicle'></div>
+                  <div className='col-start-10 col-span-2 row-start-7 text-13 font-bold'>
+                    {ciclePhrases[consultant.calcPersonalYear(newDate.year())][2]}
+                  </div>
+                  <div className='col-start-12 row-start-1 text-13 font-medium'>
+                    + 9 años
+                  </div>
+                  <div className='col-start-12 row-start-2 flex items-center justify-center'>
+                    <img src={green_arrow} alt="green arrow" />
+                  </div>
+                </>
+              }
+
+
+              <div className='col-start-13 col-span-2 row-start-2 text-13 font-bold z-10'>{newDate.year()}</div>
               <div className='col-start-13 col-span-2 row-start-3 relative'>
                 <div className='absolute z-10 centered-axis-x'>
                   <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
-                    {consultant.calcPersonalYear()}
+                    {consultant.calcPersonalYear(newDate.year())}
                   </div>
                 </div>
               </div>
               <div className='col-start-13 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
               <div className='col-start-13 col-span-2 row-start-6 text-13 font-bold'>
-                Me independizo<br/>
-                del negocio
+                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][3]}
               </div>
 
             </div>
@@ -385,7 +451,7 @@ const PathPage = () => {
         <div className='col-span-24 mb-10'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Etapa de Aprendizaje
           </div>
@@ -398,7 +464,7 @@ const PathPage = () => {
                 <div
                   className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
-                    ${activeStage === 1 ? 'bg-green path-stage-active' : 'bg-white' }
+                    ${activeStage === 1 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
                 >
                   {consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}
@@ -406,7 +472,7 @@ const PathPage = () => {
                 <div
                   className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
-                    ${activeStage === 2 ? 'bg-green path-stage-active' : 'bg-white' }
+                    ${activeStage === 2 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
                 >
                   {consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}
@@ -414,7 +480,7 @@ const PathPage = () => {
                 <div
                   className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
-                    ${activeStage === 3 ? 'bg-green path-stage-active' : 'bg-white' }
+                    ${activeStage === 3 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
                 >
                   {consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}
@@ -422,7 +488,7 @@ const PathPage = () => {
                 <div
                   className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
-                    ${activeStage === 4 ? 'bg-green path-stage-active' : 'bg-white' }
+                    ${activeStage === 4 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
                 >
                   {consultant.calcLifeStage(4)}{consultant.calcLifeStageISK(4)}
@@ -430,7 +496,7 @@ const PathPage = () => {
                 <div
                   className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
-                    ${activeStage === 5 ? 'bg-green path-stage-active' : 'bg-white' }
+                    ${activeStage === 5 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
                 >
                   {consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}
@@ -438,7 +504,7 @@ const PathPage = () => {
                 <div
                   className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
-                    ${activeStage === 6 ? 'bg-green path-stage-active' : 'bg-white' }
+                    ${activeStage === 6 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
                 >
                   {consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}
@@ -446,7 +512,7 @@ const PathPage = () => {
                 <div
                   className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
-                    ${activeStage === 7 ? 'bg-green path-stage-active' : 'bg-white' }
+                    ${activeStage === 7 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
                 >
                   {consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}
@@ -462,12 +528,12 @@ const PathPage = () => {
                   CICLO DE 9 AÑOS
                 </div>
 
-                { cicle.map( ( cicle, i ) =>
+                {cicle.map((cicle, i) =>
                   <>
                     <div
                       className={`
                         row-start-2 text-xl font-bold flex items-center justify-center rounded-md h-10 relative mt-6
-                        ${(cicle.vibration === 22 || cicle.vibration === 44) ? 'col-span-2' : '' }
+                        ${(cicle.vibration === 22 || cicle.vibration === 44) ? 'col-span-2' : ''}
                         ${newDate.year() === cicle.year ? 'bg-secondary path-personal-vibration-active' : 'bg-purple-30'}
                       `}
                     >
@@ -491,54 +557,54 @@ const PathPage = () => {
               </div>
               <div className='col-span-7 border-4 border-b-0 border-green'>
                 <div className='bg-green-30 text-13 font-bold flex items-center justify-center h-7'>
-                CUATRIMESTRES
+                  CUATRIMESTRES
                 </div>
 
                 <div className="flex justify-between mt-5">
                   <div
                     className={
                       `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
-                      ${ism1 ? 'quater-active': ''}`
+                      ${ism1 ? 'quater-active' : ''}`
                     }
                   >
                     {cm1}
                     <div
-                      className={`path-quarter-des ${ism1 ? 'path-quater-active': ''}`}
+                      className={`path-quarter-des ${ism1 ? 'path-quater-active' : ''}`}
                     >{m1.toUpperCase()}</div>
                   </div>
                   <div
                     className={
                       `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
-                      ${ism2 ? 'quater-active': ''}`
+                      ${ism2 ? 'quater-active' : ''}`
                     }
                   >
                     {cm2}
                     <div
-                      className={`path-quarter-des ${ism2 ? 'path-quater-active': ''}`}
+                      className={`path-quarter-des ${ism2 ? 'path-quater-active' : ''}`}
                     >{m2.toUpperCase()}</div>
                   </div>
                   <div
                     className={
                       `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
-                      ${ism3 ? 'quater-active': ''}`
+                      ${ism3 ? 'quater-active' : ''}`
                     }
                   >
                     {cm3}
                     <div
-                      className={`path-quarter-des ${ism3 ? 'path-quater-active': ''}`}
+                      className={`path-quarter-des ${ism3 ? 'path-quater-active' : ''}`}
                     >{m3.toUpperCase()}</div>
                   </div>
-                  {(m4 !==undefined)?<div
+                  {(m4 !== undefined) ? <div
                     className={
                       `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
-                      ${ism4 ? 'quater-active': ''}`
+                      ${ism4 ? 'quater-active' : ''}`
                     }
                   >
                     {cm4}
                     <div
-                      className={`path-quarter-des ${ism4 ? 'path-quater-active': ''}`}
+                      className={`path-quarter-des ${ism4 ? 'path-quater-active' : ''}`}
                     >{m4.toUpperCase()}</div>
-                  </div>:''}
+                  </div> : ''}
                 </div>
               </div>
             </div>
@@ -548,9 +614,9 @@ const PathPage = () => {
               </div>
               <div className='col-span-7 border-4 border-b-0 border-gold'>
                 <div className='bg-gold-30 text-13 font-bold flex items-center justify-center h-7'>
-                MESES PERSONALES
+                  MESES PERSONALES
                 </div>
-                <PathMonth consultant={consultant}/>
+                <PathMonth consultant={consultant} />
               </div>
             </div>
             <div className='grid grid-cols-10 mb-3 pt-3 pb-12'>
@@ -559,7 +625,7 @@ const PathPage = () => {
               </div>
               <div className='col-span-7 border-4 border-b-0 border-blue-week'>
                 <div className='bg-blue-week text-13 font-bold flex items-center justify-center h-7'>
-                SEMANAS PERSONALES {currentWeek}
+                  SEMANAS PERSONALES {currentWeek}
                 </div>
 
                 <div className="flex justify-between mt-5">
@@ -569,10 +635,10 @@ const PathPage = () => {
                       ${currentWeek === 1 ? 'week-active' : ''}
                     `}
                   >
-                    {consultant.calcSelectPersonalWeek(newDate.month()+1,1,newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month()+1,1,newDate.year())}
+                    {consultant.calcSelectPersonalWeek(newDate.month() + 1, 1, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 1, newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 1 ? 'path-week-active' : ''}`}
-                    >1-7 { currentMonthName }</div>
+                    >1-7 {currentMonthName}</div>
                   </div>
                   <div
                     className={`
@@ -580,10 +646,10 @@ const PathPage = () => {
                       ${currentWeek === 2 ? 'week-active' : ''}
                     `}
                   >
-                    {consultant.calcSelectPersonalWeek(newDate.month()+1,2,newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month()+1,2,newDate.year())}
+                    {consultant.calcSelectPersonalWeek(newDate.month() + 1, 2, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 2, newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 2 ? 'path-week-active' : ''}`}
-                    >8-14 { currentMonthName }</div>
+                    >8-14 {currentMonthName}</div>
                   </div>
                   <div
                     className={`
@@ -591,10 +657,10 @@ const PathPage = () => {
                       ${currentWeek === 3 ? 'week-active' : ''}
                     `}
                   >
-                    {consultant.calcSelectPersonalWeek(newDate.month()+1,3,newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month()+1,3,newDate.year())}
+                    {consultant.calcSelectPersonalWeek(newDate.month() + 1, 3, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 3, newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 3 ? 'path-week-active' : ''}`}
-                    >15-21 { currentMonthName }</div>
+                    >15-21 {currentMonthName}</div>
                   </div>
                   <div
                     className={`
@@ -602,10 +668,10 @@ const PathPage = () => {
                       ${currentWeek === 4 ? 'week-active' : ''}
                     `}
                   >
-                    {consultant.calcSelectPersonalWeek(newDate.month()+1,4,newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month()+1,4,newDate.year())}
+                    {consultant.calcSelectPersonalWeek(newDate.month() + 1, 4, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 4, newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 4 ? 'path-week-active' : ''}`}
-                    >22-{moment(now2).endOf('month').format('DD') } { currentMonthName }</div>
+                    >22-{moment(now2).endOf('month').format('DD')} {currentMonthName}</div>
                   </div>
                 </div>
               </div>
@@ -615,12 +681,12 @@ const PathPage = () => {
         <div className='col-span-24 mb-10'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Línea de Jerarquía del Diálogo Energético
           </div>
           <div className='pinnacle-wrap px-8'>
-            <HierarchyLine consultant={consultant}/>
+            <HierarchyLine consultant={consultant} />
           </div>
         </div>
       </div>
