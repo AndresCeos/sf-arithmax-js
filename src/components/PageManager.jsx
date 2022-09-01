@@ -30,7 +30,8 @@ import { PreviewPDF } from '../components-pdf/PreviewPDF'
 import { fetchStatus } from '../store/slices/auth/thunks'; import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import SupportPage from "../pages/SupportPage";
-;
+import ManualPage from "../pages/ManualPage";
+import PoliticasPage from "./PoliticasPage";
 
 
 export const PageManager = () => {
@@ -73,7 +74,9 @@ export const PageManager = () => {
         <Route path="/config" element={<ConfigPage />} />
 
         <Route path="/pdf" element={<PreviewPDF />} />
-        <Route path="/soporte" element={< SupportPage/>} />
+        <Route path="/soporte" element={<SupportPage />} />
+        <Route path="/manual" element={<ManualPage />} />
+        <Route path="/politicas" element={<PoliticasPage />} />
 
       </Routes>
     </section>

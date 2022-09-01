@@ -369,7 +369,7 @@ export const Sidebar = () => {
                 <label className='ml-2'>Soporte</label>
               </NavLink>
             </li>
-            <li className='config-menu'>
+            {/* <li className='config-menu'>
               <NavLink
                 // exact
                 end
@@ -383,7 +383,7 @@ export const Sidebar = () => {
                 </svg>
                 <label className='ml-2'>Tienda</label>
               </NavLink>
-            </li>
+            </li> */}
             <li className='config-menu'>
               <a
                 onClick={() => logoutHandle()}
@@ -419,7 +419,7 @@ export const Sidebar = () => {
             <NavLink
               // exact
               end
-              to="/manual-usuario" className="sidebar-link text-13"
+              to="/manual" className="sidebar-link text-13"
               aria-current="page">
               Manual de Usuario
             </NavLink>
@@ -434,13 +434,12 @@ export const Sidebar = () => {
             </NavLink>
           </li>
           <li className="my-1">
-            <NavLink
-              // exact
-              end
-              to="/contacto" className="sidebar-link text-13"
+            <a href='https://app.numerologia-cotidiana.com/formulario-de-soporte-arithmax/'
+              target="_blank"
+              className="sidebar-link text-13"
               aria-current="page">
               Contacto
-            </NavLink>
+            </a>
           </li>
         </ul>
       </div>
