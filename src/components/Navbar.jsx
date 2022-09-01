@@ -100,9 +100,9 @@ export const Navbar = () => {
     // 'sinastria_destino',
     'sinastria_compatibilidad',
     'sinastria_vibracion',
-    'group_pinnacle',
-    'group_vibracion',
-    'group_retornos'
+    // 'group_pinnacle',
+    // 'group_vibracion',
+    // 'group_retornos'
   ]
 
   const path = location?.pathname.split('/')[1]
@@ -140,9 +140,9 @@ export const Navbar = () => {
       // 'sinastria_destino': SynastryDestinityPDF, //(synastry, newDate),
       'sinastria_compatibilidad': CompatibilityTablePDF, //(synastry, newDate),
       'sinastria_vibracion': SynastryVibrationTimePDF, //(synastry, newDate),
-      'group_pinnacle': GroupPinnaclePDF, //(groupConsult, newDate),
-      'group_vibracion': GroupVibrationTimePDF, //(groupConsult, newDate),
-      'group_retornos': GroupAnnualReturnsPDF, //(groupConsult, newDate)
+      // 'group_pinnacle': GroupPinnaclePDF, //(groupConsult, newDate),
+      // 'group_vibracion': GroupVibrationTimePDF, //(groupConsult, newDate),
+      // 'group_retornos': GroupAnnualReturnsPDF, //(groupConsult, newDate)
     }
     docName = sanitize(`${path} ${consultant.fullName}`)
     config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
