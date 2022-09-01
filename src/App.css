@@ -2882,3 +2882,19 @@ top: 134px;
 .selectConsultant .px-2.w-72>span+div.border-0:hover {
     border-width: 0px;
 }
+
+.swal2-radio {
+    display: grid !important;
+}
+
+.fromReport {
+    position: absolute;
+    background: white;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    right: 10px;
+    z-index: 999999999;
+    padding: 10px;
+}

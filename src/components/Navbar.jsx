@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { dateSelect, useConsultant, useGroup } from "../hooks";
@@ -20,8 +20,9 @@ import Swal from "sweetalert2";
 import moment from 'moment/min/moment-with-locales'
 import { Document, Page, Text, View, PDFDownloadLink, Image } from '@react-pdf/renderer';
 import { exampleRreport } from "../components-pdf/styles";
-import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from "../components-pdf/document";
+import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryDestinityPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from "../components-pdf/document";
 import { Person, sanitize, Group, Synastry } from "../resources";
+
 
 
 export const Navbar = () => {
@@ -31,6 +32,7 @@ export const Navbar = () => {
   const now = moment()
   const { userActive,userPartnerActive,isSelectPartner } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
+  const [modal,setModal] = useState(false)
 
   const { names, lastName, scdLastName, date, email, webSite, phone } = useSelector(state => state.auth)
   const sidebar = { email, webSite, phone }
@@ -98,12 +100,14 @@ export const Navbar = () => {
     'calendarioMensual',
     'sinastria',
     'sinastria_retornos',
+    'sinastria_destino',
     'sinastria_compatibilidad',
     'sinastria_vibracion',
     'group_pinnacle',
     'group_vibracion',
     'group_retornos'
   ]
+
 
   const path = location?.pathname.split('/')[1]
   const existDownloadPDF = () => {
@@ -112,21 +116,17 @@ export const Navbar = () => {
   let isDownloadPDFEnabled = existDownloadPDF() && !isEmpty
 
   if(location.pathname.includes('group')&&!isEmpty){
-    console.log('estoy en los grupos')
     const isEmptyG = Object.keys(userActive.group).length === 0;
     isDownloadPDFEnabled = existDownloadPDF() && !isEmptyG
   }
   if(location.pathname.includes('sinastria')&&!isEmpty){
-    console.log('estoy en las parejas')
+
     const isEmptyP = Object.keys(userActive.partner).length === 0;
     isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyP&&isSelectPartner)
   }
-  let config, docName, profile, MyPDF;
-  console.log(isDownloadPDFEnabled);
+  let config, docName, profile, MyPDF, AllPDF, configAll;
+  
   if (isDownloadPDFEnabled) {
-
-
-
     const reports = {
       'pinaculo': PinnaclePDF(consultant),
       'camino': LifePathPDF(consultant, newDate),
@@ -140,18 +140,58 @@ export const Navbar = () => {
       'calendarioMensual': MonthPDF(consultant, newDate, newDate.month()+1),
       'sinastria': SynastryPinnaclePDF(synastry, newDate),
       'sinastria_retornos': SynastryAnnualReturnsPDF(synastry, newDate),
+      'sinastria_destino':SynastryDestinityPDF(synastry,newDate),
       'sinastria_compatibilidad': CompatibilityTablePDF(synastry,newDate),
       'sinastria_vibracion': SynastryVibrationTimePDF(synastry, newDate),
       'group_pinnacle': GroupPinnaclePDF(groupConsult, newDate),
       'group_vibracion':GroupVibrationTimePDF(groupConsult, newDate),
       'group_retornos':GroupAnnualReturnsPDF(groupConsult, newDate)
     }
+
     docName = sanitize(`${path} ${consultant.fullName}`)
     config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
     profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
+
     MyPDF = () => (
       <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} />
     )
+    AllPDF = () =>(
+      <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} />
+      )
+  }
+  let arrayReport = []
+  const addToArray =(event)=>{
+    let reports = {
+      'pinaculo': PinnaclePDF(consultant),
+      'camino': LifePathPDF(consultant, newDate),
+      'nombre': NamePDF(consultant, newDate),
+      'crear_nombre': CreateNamePDF(consultant),
+      'destino': DestinityPDF(consultant, newDate),
+      'tiempo': TimeVibrationPDF(consultant, newDate),
+      'retornos': AnnualReturnsPDF(consultant, newDate),
+      'circulo_tiempo': CircleTimePDF(consultant, newDate),
+      'calendario': CalendarPDF(consultant, newDate),
+      'calendarioMensual': MonthPDF(consultant, newDate, newDate.month()+1),
+      'sinastria': SynastryPinnaclePDF(synastry, newDate),
+      'sinastria_retornos': SynastryAnnualReturnsPDF(synastry, newDate),
+      'sinastria_destino':SynastryDestinityPDF(synastry,newDate),
+      'sinastria_compatibilidad': CompatibilityTablePDF(synastry,newDate),
+      'sinastria_vibracion': SynastryVibrationTimePDF(synastry, newDate),
+      'group_pinnacle': GroupPinnaclePDF(groupConsult, newDate),
+      'group_vibracion':GroupVibrationTimePDF(groupConsult, newDate),
+      'group_retornos':GroupAnnualReturnsPDF(groupConsult, newDate)
+    }
+    let report = event.target
+    if(report.checked ===true){
+      arrayReport.push(Array.isArray(reports[report.name]) ? [...reports[report.name]] : [reports[report.name]])
+    }
+    console.log(arrayReport);
+  }
+  const openModal = () => {
+    setModal(true)
+  }
+  const closeModal = () => {
+    setModal(false)
   }
 
 
@@ -255,14 +295,25 @@ export const Navbar = () => {
                 }
               </li>
               <li className="flex items-center">
-                <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
+              {isDownloadPDFEnabled ?
+              <button
+              onClick={openModal}
+              className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
+              <img
+                src={print_reports}
+                className="mb-1"
+                alt="print_reports"
+              />
+              Guardar<br />reporte
+            </button> :
+                <button className="flex flex-col justify-center text-center items-center text-white opacity-30 cursor-auto h-full px-3">
                   <img
                     src={print_reports}
                     className="mb-1"
                     alt="print_reports"
                   />
                   Imprimir<br />Reportes
-                </button>
+                </button>}
               </li>
               <li className="flex items-center ml-20">
                 <img
@@ -291,6 +342,19 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
+      {(modal)?<form className="fromReport ">
+        <h4>Selecciona los reportes </h4><span><a onClick={closeModal}>X</a></span>
+        <div className="flex items-center"> <input name="pinaculo"  onChange={(e)=>{addToArray(e)}} type="checkbox"  /> pinaculo</div>
+        <div className="flex items-center"> <input name="camino" onChange={(e)=>{addToArray(e)}} type="checkbox" /> camino</div>
+        <div className="flex items-center"><input name="nombre" onChange={(e)=>{addToArray(e)}} type="checkbox" />nombre</div>
+        <div className="flex items-center"><input name="crear_nombre" onChange={(e)=>{addToArray(e)}} type="checkbox" />crear_nombre</div>
+        <div className="flex items-center"><input name="destino" onChange={(e)=>{addToArray(e)}} type="checkbox" />destino</div>
+        <div className="flex items-center"><input name="tiempo" onChange={(e)=>{addToArray(e)}} type="checkbox" />tiempo</div>
+        <div className="flex items-center"><input name="retornos" onChange={(e)=>{addToArray(e)}} type="checkbox" />retornos</div>
+        <div className="flex items-center"><input name="circulo_tiempo" onChange={(e)=>{addToArray(e)}} type="checkbox" />circulo_tiempo</div>
+        <div className="flex items-center"><input name="calendario" onChange={(e)=>{addToArray(e)}} type="checkbox" />calendario</div>
+        <div className="flex items-center"><input name="calendarioMensual" onChange={(e)=>{addToArray(e)}} type="checkbox" />calendarioMensual</div>
+      </form>:null}
     </>
   );
 };

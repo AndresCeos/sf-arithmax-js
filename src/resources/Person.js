@@ -472,11 +472,14 @@ export class Person {
     yearToCalculate = yearToCalculate || this.NOW.year()
     let weekOne = monthToCalculate + this.calcUniversalYear(yearToCalculate)
     if (weekToCalculate === 1) { return this.reduceNumber(weekOne) }
-    let weekTwo = this.calcUniversalYear(yearToCalculate) + weekOne
+    let weekTwo = this.calcUniversalYear(yearToCalculate) + this.reduceNumber(weekOne)
     if (weekToCalculate === 2) { return this.reduceNumber(weekTwo) }
-    let weekThr = weekOne + weekTwo
+    let weekThr = this.reduceNumber(weekOne) + this.reduceNumber(weekTwo)
     if (weekToCalculate === 3) { return this.reduceNumber(weekThr) }
-    let weekFou = monthToCalculate + weekOne
+    let weekFou = monthToCalculate + this.reduceNumber(weekOne)
+    console.log(this.calcUniversalYear(yearToCalculate))
+    console.log(monthToCalculate);
+    console.log(weekOne);
     if (weekToCalculate === 4) { return this.reduceNumber(weekFou) }
   }
   /* Universal Week Karmico*/
