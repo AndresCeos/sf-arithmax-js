@@ -99,7 +99,7 @@ export const Navbar = () => {
     'sinastria_retornos',
     // 'sinastria_destino',
     'sinastria_compatibilidad',
-    // 'sinastria_vibracion',
+    'sinastria_vibracion',
     'group_pinnacle',
     'group_vibracion',
     'group_retornos'
