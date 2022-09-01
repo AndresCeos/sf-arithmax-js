@@ -2,7 +2,7 @@ import { Document, Page, Text, View, Image, PDFViewer } from '@react-pdf/rendere
 import { configReport } from '../styles';
 import { currentDate } from '../../resources';
 
-export const PDF = ({ consultant, config, profile, date }) => {
+export const PDF = ({ consultant, config, profile, date, sidebar }) => {
 
   return (
     <Document >
@@ -29,11 +29,11 @@ export const PDF = ({ consultant, config, profile, date }) => {
           </View>
           <View style={configReport.sidebar}>
             <Text style={configReport.page_number}>{i + 1}</Text>
-            <Text style={configReport.page_copy_1} >Copyright 2022, Laura L. Rodríguez. Prohibida su reproducción y distribución.</Text>
-            <Text style={configReport.page_copy_2} >Este Software esta licenciado para uso exclusivo de: Laura Ludivina Rodríguez Martínez.</Text>
-            <Text style={configReport.page_copy_3} >www.numerlogia-cotidiana.com</Text>
-            <Text style={configReport.page_copy_4} >consulta@numerologia-cotidiana.com</Text>
-            <Text style={configReport.page_copy_5} >Tels: (81) 2086-7071 / 2086-7072</Text>
+            <Text style={configReport.page_copy_1}>Copyright 2022, Laura L. Rodríguez. Prohibida su reproducción y distribución.</Text>
+            <Text style={configReport.page_copy_2}>Este Software esta licenciado para uso exclusivo de: {profile.fullName}.</Text>
+            <Text style={configReport.page_copy_3}>{sidebar.webSite}</Text>
+            <Text style={configReport.page_copy_4}>{sidebar.email}</Text>
+            <Text style={configReport.page_copy_5}>Tels: {sidebar.phone}</Text>
           </View>
           <View style={configReport.content}>
             {e.children}

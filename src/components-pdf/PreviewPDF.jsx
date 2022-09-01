@@ -33,14 +33,16 @@ export const PreviewPDF = () => {
   const { consultant } = useConsultant()
   const { group } = useGroup()
 
-  const { names, lastName, scdLastName, date } = useSelector(state => state.auth)
+  const { names, lastName, scdLastName, date,
+    email, webSite, phone } = useSelector(state => state.auth)
   const { newDate } = dateSelect()
   const profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
+  const sidebar = { email, webSite, phone }
   if (isEmpty) {
     return <UnselectedConsultant />
   }
   const groupDate = userActive.dateGroup
-  const groupConsult = new Group(group,groupDate )
+  const groupConsult = new Group(group, groupDate)
 
   const partnerActive = userActive.partner[0]
   const partner = new Person({
@@ -54,7 +56,7 @@ export const PreviewPDF = () => {
   console.log(synastry)
   const config = [
     // PinnaclePDF(consultant),
-    LifePathPDF(consultant, newDate),
+    // LifePathPDF(consultant, newDate),
     // ...NamePDF(consultant, newDate),
     // CreateNamePDF(consultant),
     // ...DestinityPDF(consultant),
@@ -64,13 +66,13 @@ export const PreviewPDF = () => {
     // ...CalendarPDF(consultant, newDate),
     // MonthPDF(consultant, newDate, 8),
     // SYNASTRY
-    // SynastryPinnaclePDF(synastry, newDate),
+    SynastryPinnaclePDF(synastry, newDate),
     // ...SynastryVibrationTimePDF(synastry, newDate),
     // CompatibilityTablePDF(synastry, newDate),
-    SynastryAnnualReturnsPDF(synastry, newDate),
+    // SynastryAnnualReturnsPDF(synastry, newDate),
     // SynastryDestinityPDF(synastry, newDate),
     // GROUP
-    ...GroupPinnaclePDF(groupConsult, newDate),
+    // ...GroupPinnaclePDF(groupConsult, newDate),
     // ...GroupVibrationTimePDF(),
     // GroupAnnualReturnsPDF(),
   ]
@@ -80,7 +82,7 @@ export const PreviewPDF = () => {
       <div className='mx-10 my-16'>
         Preview
         <PDFViewer width='100%' height='100%' style={{ height: 800 }}>
-          <PDF consultant={consultant} config={config} profile={profile} date={newDate} />
+          <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} />
         </PDFViewer>
       </div>
     </>

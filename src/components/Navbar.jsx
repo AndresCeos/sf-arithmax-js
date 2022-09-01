@@ -30,7 +30,8 @@ export const Navbar = () => {
   const now = moment()
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
-  const { names, lastName, scdLastName, date } = useSelector(state => state.auth)
+  const { names, lastName, scdLastName, date, email, webSite, phone } = useSelector(state => state.auth)
+  const sidebar = { email, webSite, phone }
 
   const dispatch = useDispatch();
   const changeDate = () => {
@@ -104,7 +105,7 @@ export const Navbar = () => {
     config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
     profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
     MyPDF = () => (
-      <PDF consultant={consultant} config={config} profile={profile} date={newDate} />
+      <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} />
     )
   }
 
