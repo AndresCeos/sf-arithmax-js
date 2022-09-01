@@ -53,3 +53,8 @@ export * from './compatibilityTable/CompatibilityValues'
 
 export * from './destinityTable/DestinityTable'
 export * from './destinityTable/DestinityNumericalValues'
+
+export * from './groupPinnacle/GroupData'
+export * from './groupPinnacle/GroupPinacle1'
+export * from './groupPinnacle/GroupPinacle2'
+export * from './groupPinnacle/GroupPinacle3'
