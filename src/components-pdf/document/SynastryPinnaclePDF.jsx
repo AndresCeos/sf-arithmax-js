@@ -1,5 +1,7 @@
 import { SynastryNames } from '../synastryPinnacle/SynastryNames';
 import { SynastryData } from '../synastryVibrationTime/SynastryData';
+import { SynastryPinnacles } from '../synastryPinnacle/SynastryPinnacles';
+import { SynastryAnnualReturns } from '../synastryPinnacle/SynastryAnnualReturns';
 
 import sPinnacle from '../assets/s-pinnacle.jpg'
 export const SynastryPinnaclePDF = (synastry, newDate) => {
@@ -8,6 +10,8 @@ export const SynastryPinnaclePDF = (synastry, newDate) => {
     children: <>
       <SynastryData synastry={synastry} newDate={newDate} />
       <SynastryNames synastry={synastry} newDate={newDate} />
+      <SynastryPinnacles synastry={synastry} newDate={newDate} />
+      <SynastryAnnualReturns synastry={synastry} newDate={newDate} />
     </>
   }
 }
