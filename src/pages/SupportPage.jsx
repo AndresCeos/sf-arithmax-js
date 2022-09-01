@@ -25,6 +25,9 @@ const SupportPage = () => {
             </div>
           </div>
       </div>
+      <div className="row-start-3 w-80 col-start-9">
+        <img className="w-80" src={bg} alt="" />
+      </div>
 
     </div>
 
