@@ -1,4 +1,4 @@
-import { dateSelect, useConsultant } from '../hooks';
+import { dateSelect, useConsultant, useGroup } from '../hooks';
 import { useSelector } from 'react-redux';
 import { UnselectedConsultant } from '../components/UnselectedConsultant';
 
@@ -23,7 +23,7 @@ import {
   GroupVibrationTimePDF,
   GroupAnnualReturnsPDF
 } from './document';
-import { Person, Synastry } from '../resources';
+import { Group, Person, Synastry } from '../resources';
 import { PDFViewer } from '@react-pdf/renderer';
 
 export const PreviewPDF = () => {
@@ -31,13 +31,17 @@ export const PreviewPDF = () => {
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
+  const { group } = useGroup()
+
   const { names, lastName, scdLastName, date } = useSelector(state => state.auth)
   const { newDate } = dateSelect()
   const profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
-
   if (isEmpty) {
     return <UnselectedConsultant />
   }
+  const groupDate = userActive.dateGroup
+  const groupConsult = new Group(group,groupDate )
+
   const partnerActive = userActive.partner[0]
   const partner = new Person({
     name: partnerActive.names,
@@ -50,7 +54,7 @@ export const PreviewPDF = () => {
   console.log(synastry)
   const config = [
     // PinnaclePDF(consultant),
-    LifePathPDF(consultant, newDate),
+    //LifePathPDF(consultant, newDate),
     // ...NamePDF(consultant, newDate),
     // CreateNamePDF(consultant),
     // ...DestinityPDF(consultant),
@@ -66,7 +70,7 @@ export const PreviewPDF = () => {
     // SynastryAnnualReturnsPDF(synastry, newDate),
     // SynastryDestinityPDF(synastry, newDate),
     // GROUP
-    // ...GroupPinnaclePDF(),
+    ...GroupPinnaclePDF(groupConsult, newDate),
     // ...GroupVibrationTimePDF(),
     // GroupAnnualReturnsPDF(),
   ]
