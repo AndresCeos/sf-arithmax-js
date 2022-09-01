@@ -9,9 +9,9 @@ const cap = groupConsultant.group
       <>
       {cap.map((data, i)=>
       <View style={style.row}>
-          <Text style={[style.text,style.name,{top:0 +(20*i)}]}>{data.fullName}</Text>
-          <Text style={[style.text,style.birthday,{top:0 +(20*i)}]}>{data.getFormBirthDate()}</Text>
-          <Text style={[style.text,style.age,{top:0 +(20*i)}]}>{data.getYearsOld()}</Text>
+          <Text style={[style.text,style.name,{top:0 +(21*i)}]}>{data.fullName}</Text>
+          <Text style={[style.text,style.birthday,{top:0 +(21*i)}]}>{data.getFormBirthDate()}</Text>
+          <Text style={[style.text,style.age,{top:0 +(21*i)}]}>{data.getYearsOld()}</Text>
       </View>
       )}
       </>
@@ -65,6 +65,6 @@ export const style = StyleSheet.create({
   date:{
     width:'100px',
     left:'130px',
-    top:'185px'
+    top:'190px'
   }
 })

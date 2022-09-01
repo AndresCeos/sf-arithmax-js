@@ -71,3 +71,5 @@ export * from './groupVibrationTime/GroupQuaterM'
 export * from './groupVibrationTime/GroupLine'
 export * from './groupVibrationTime/GroupQuaterY'
 export * from './groupVibrationTime/GroupTimeCurve'
+
+export * from './groupAnnualReturns/GroupAnnualReturns'

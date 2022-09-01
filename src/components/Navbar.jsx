@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { dateSelect, useConsultant } from "../hooks";
+import { dateSelect, useConsultant, useGroup } from "../hooks";
 import { setDate, setIsEditing } from '../store/slices/users/users';
 
 import Logo from '../assets/logo.png'
@@ -20,18 +20,36 @@ import Swal from "sweetalert2";
 import moment from 'moment/min/moment-with-locales'
 import { Document, Page, Text, View, PDFDownloadLink, Image } from '@react-pdf/renderer';
 import { exampleRreport } from "../components-pdf/styles";
-import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CreateNamePDF, DestinityPDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, TimeVibrationPDF } from "../components-pdf/document";
-import { Person, sanitize } from "../resources";
+import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from "../components-pdf/document";
+import { Person, sanitize, Group, Synastry } from "../resources";
+
 
 export const Navbar = () => {
   const { newDate } = dateSelect()
   const { names: userNames } = useSelector(state => state.auth);
   const { consultant } = useConsultant()
   const now = moment()
-  const { userActive } = useSelector(state => state.users);
+  const { userActive,userPartnerActive,isSelectPartner } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
+
   const { names, lastName, scdLastName, date, email, webSite, phone } = useSelector(state => state.auth)
   const sidebar = { email, webSite, phone }
+  const {group} = useGroup()
+  const groupDate = userActive.dateGroup
+  const groupConsult = new Group(group,groupDate )
+
+  console.log(isSelectPartner)
+
+  const partner = new Person({
+    name: userPartnerActive.names,
+    lastName:userPartnerActive.lastName,
+    scdLastName: userPartnerActive.scdLastName,
+    birthDate: userPartnerActive.date,
+    yearMeet :userPartnerActive.yearMeet
+  })
+
+  const synastry = new Synastry(consultant, partner)
+
 
   const dispatch = useDispatch();
   const changeDate = () => {
@@ -78,16 +96,36 @@ export const Navbar = () => {
     'circulo_tiempo',
     'calendario',
     'calendarioMensual',
+    'sinastria',
+    'sinastria_retornos',
+    'sinastria_compatibilidad',
+    'sinastria_vibracion',
+    'group_pinnacle',
+    'group_vibracion',
+    'group_retornos'
   ]
 
   const path = location?.pathname.split('/')[1]
   const existDownloadPDF = () => {
     return reportList.includes(path)
   }
+  let isDownloadPDFEnabled = existDownloadPDF() && !isEmpty
 
-  const isDownloadPDFEnabled = existDownloadPDF() && !isEmpty
+  if(location.pathname.includes('group')&&!isEmpty){
+    console.log('estoy en los grupos')
+    const isEmptyG = Object.keys(userActive.group).length === 0;
+    isDownloadPDFEnabled = existDownloadPDF() && !isEmptyG
+  }
+  if(location.pathname.includes('sinastria')&&!isEmpty){
+    console.log('estoy en las parejas')
+    const isEmptyP = Object.keys(userActive.partner).length === 0;
+    isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyP&&isSelectPartner)
+  }
   let config, docName, profile, MyPDF;
+  console.log(isDownloadPDFEnabled);
   if (isDownloadPDFEnabled) {
+
+
 
     const reports = {
       'pinaculo': PinnaclePDF(consultant),
@@ -99,7 +137,14 @@ export const Navbar = () => {
       'retornos': AnnualReturnsPDF(consultant, newDate),
       'circulo_tiempo': CircleTimePDF(consultant, newDate),
       'calendario': CalendarPDF(consultant, newDate),
-      'calendarioMensual': MonthPDF(consultant, newDate, 8),
+      'calendarioMensual': MonthPDF(consultant, newDate, newDate.month()+1),
+      'sinastria': SynastryPinnaclePDF(synastry, newDate),
+      'sinastria_retornos': SynastryAnnualReturnsPDF(synastry, newDate),
+      'sinastria_compatibilidad': CompatibilityTablePDF(synastry,newDate),
+      'sinastria_vibracion': SynastryVibrationTimePDF(synastry, newDate),
+      'group_pinnacle': GroupPinnaclePDF(groupConsult, newDate),
+      'group_vibracion':GroupVibrationTimePDF(groupConsult, newDate),
+      'group_retornos':GroupAnnualReturnsPDF(groupConsult, newDate)
     }
     docName = sanitize(`${path} ${consultant.fullName}`)
     config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]

@@ -73,8 +73,8 @@ export const PreviewPDF = () => {
     // SynastryDestinityPDF(synastry, newDate),
     // GROUP
     // ...GroupPinnaclePDF(groupConsult, newDate),
-     ...GroupVibrationTimePDF(groupConsult,newDate),
-    // GroupAnnualReturnsPDF(),
+    // ...GroupVibrationTimePDF(groupConsult,newDate),
+    GroupAnnualReturnsPDF(groupConsult,newDate),
   ]
 
   return (
