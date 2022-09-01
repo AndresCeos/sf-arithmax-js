@@ -20,10 +20,12 @@ export const UsersForm = (props) => {
     <Formik
       enableReinitialize
       initialValues={isEditing ?
-        { names: dataUserEdit.names, date: dataUserEdit.date, lastName: dataUserEdit.lastName, scdLastName: dataUserEdit.scdLastName,
-          nationality:dataUserEdit.nationality,phone:dataUserEdit.phone, email:dataUserEdit.email, company:dataUserEdit.company,gender:dataUserEdit.gender }
+        {
+          names: dataUserEdit.names, date: dataUserEdit.date, lastName: dataUserEdit.lastName, scdLastName: dataUserEdit.scdLastName,
+          nationality: dataUserEdit.nationality, phone: dataUserEdit.phone, email: dataUserEdit.email, company: dataUserEdit.company, gender: dataUserEdit.gender
+        }
         :
-        { names: '', date: '', lastName: '', scdLastName: '', partner: [], group: [], dateGroup: null,nationality:'',phone:'',email:'', company:'',gender:'' }
+        { names: '', date: '', lastName: '', scdLastName: '', partner: [], group: [], dateGroup: null, nationality: '', phone: '', email: '', company: '', gender: '' }
       }
       validate={values => {
         const errors = {};
@@ -48,15 +50,6 @@ export const UsersForm = (props) => {
         }
         if (!values.scdLastName.match(letters)) {
           errors.scdLastName = 'No valido';
-        }
-        if (!values.company) {
-          errors.company = 'Requerido';
-        }
-        if (!values.email) {
-          errors.email = 'Requerido';
-        }
-        if (!values.phone) {
-          errors.phone = 'Requerido';
         }
         return errors;
       }}
@@ -198,7 +191,7 @@ export const UsersForm = (props) => {
             </div>
             <div className="form-group w-1/3">
               <label className='font-bold mb-1'>
-                  Teléfono
+                Teléfono
                 <span className='text-red-800'>*</span>
               </label>
               <input
