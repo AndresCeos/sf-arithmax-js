@@ -40,46 +40,42 @@ export const SynastryAnnualReturn = ({ annualReturn, top, left, personalYear, ye
 
   return (
     <>
-      <View style={[aReturn.circle, { top: 67 + top, left: 116 + left }]}>
+      <View style={[aReturn.circle, { top: 36 + top, left: 103 + left }]}>
         <Text>{annualReturn.F}</Text>
       </View>
-      <View style={[aReturn.circle, { top: 67 + top, left: 116 + left }]}>
-        <Text>{annualReturn.F}</Text>
-      </View>
-      <View style={[aReturn.circle, { top: 89 + top, left: 92 + left }]}>
+      <View style={[aReturn.circle, { top: 59 + top, left: 79 + left }]}>
         <Text>{annualReturn.D}</Text>
       </View>
-      <View style={[aReturn.circle, { top: 89 + top, left: 116 + left }]}>
+      <View style={[aReturn.circle, { top: 59 + top, left: 103 + left }]}>
         <Text>{annualReturn.G}</Text>
       </View>
-      <View style={[aReturn.circle, { top: 89 + top, left: 140 + left }]}>
+      <View style={[aReturn.circle, { top: 59 + top, left: 127 + left }]}>
         <Text>{annualReturn.E}</Text>
       </View>
-      <View style={[aReturn.circle, { top: 112 + top, left: 70 + left }]}>
+      <View style={[aReturn.circle, { top: 82 + top, left: 57 + left }]}>
         <Text>{annualReturn.A}</Text>
       </View>
-      <View style={[aReturn.circle, { top: 112 + top, left: 116 + left }]}>
+      <View style={[aReturn.circle, { top: 82 + top, left: 103 + left }]}>
         <Text>{annualReturn.B}</Text>
       </View>
-      <View style={[aReturn.circle, { top: 111 + top, left: 162 + left }]}>
+      <View style={[aReturn.circle, { top: 82 + top, left: 149 + left }]}>
         <Text>{annualReturn.C}</Text>
       </View>
-      <View style={[aReturn.circle, { top: 135 + top, left: 116 + left }]}>
+      <View style={[aReturn.circle, { top: 105 + top, left: 103 + left }]}>
         <Text>{annualReturn.H}</Text>
       </View>
-      <View style={[aReturn.personalYear, { top: 38 + top, left: 85 + left }]}>
-        <Text>Año Personal</Text>
-        <Text>{personalYear}</Text>
+      <View style={[aReturn.personalYear, { top: 5 + top, left: 75 + left }]}>
+        <Text>Año Personal {personalYear}</Text>
       </View>
       <View style={[aReturn.table]}>
-        <Text style={[aReturn.tableTitle, { top: 43 + top, left: 22 + left }]}>Año</Text>
-        <Text style={[aReturn.tableTitle, { top: 43 + top, left: 22 + left + 22 }]}>Edad</Text>
+        <Text style={[aReturn.tableTitle, { top: 13 + top, left: 9 + left }]}>Año</Text>
+        <Text style={[aReturn.tableTitle, { top: 13 + top, left: 9 + left + 22 }]}>Edad</Text>
       </View>
       {
         caclAge(yearsOld, year).map((e, i) =>
           <View style={[aReturn.table]}>
-            <Text style={[aReturn.tableItem, { top: 53 + top + (i * 11.5), left: 22 + left }]}>{e[1][1]}</Text>
-            <Text style={[aReturn.tableItem, { top: 53 + top + (i * 11.5), left: 30 + left + 20 }]}>{e[1][0]}</Text>
+            <Text style={[aReturn.tableItem, { top: 23 + top + (i * 11.5), left: 9 + left }]}>{e[1][1]}</Text>
+            <Text style={[aReturn.tableItem, { top: 23 + top + (i * 11.5), left: 9 + left + 22 }]}>{e[1][0]}</Text>
           </View>
         )
       }
@@ -116,7 +112,7 @@ export const aReturn = StyleSheet.create({
     // backgroundColor: '#00000050',
   },
   circle: {
-    // backgroundColor: '#00000050',
+    backgroundColor: '#00000050',
     position: 'absolute',
     width: '20px',
     height: '20px',

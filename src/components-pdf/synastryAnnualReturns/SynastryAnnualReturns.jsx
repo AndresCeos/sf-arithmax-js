@@ -64,6 +64,78 @@ export const SynastryAnnualReturns = ({ synastry, newDate }) => {
             top={0}
             left={0} />
         </View>
+        <View style={[data.return, data.return_2]}>
+          <SynastryAnnualReturn
+            annualReturn={annualReturnCurrent}
+            personalYear={personalYearY2}
+            yearsOld={yearsOldY2}
+            year={y2}
+            top={0}
+            left={177} />
+        </View>
+        <View style={[data.return, data.return_1]}>
+          <SynastryAnnualReturn
+            annualReturn={annualReturnCurrent}
+            personalYear={personalYearY1}
+            yearsOld={yearsOldY1}
+            year={y1}
+            top={0}
+            left={353} />
+        </View>
+        <View style={[data.return, data.return_1]}>
+          <SynastryAnnualReturn
+            annualReturn={annualReturnCurrent}
+            personalYear={personalYearY1}
+            yearsOld={yearsOldY1}
+            year={y1}
+            top={138}
+            left={0} />
+        </View>
+        <View style={[data.return, data.return_1]}>
+          <SynastryAnnualReturn
+            annualReturn={annualReturnCurrent}
+            personalYear={personalYearY1}
+            yearsOld={yearsOldY1}
+            year={y1}
+            top={138}
+            left={177} />
+        </View>
+        <View style={[data.return, data.return_1]}>
+          <SynastryAnnualReturn
+            annualReturn={annualReturnCurrent}
+            personalYear={personalYearY1}
+            yearsOld={yearsOldY1}
+            year={y1}
+            top={138}
+            left={353} />
+        </View>
+        <View style={[data.return, data.return_1]}>
+          <SynastryAnnualReturn
+            annualReturn={annualReturnCurrent}
+            personalYear={personalYearY1}
+            yearsOld={yearsOldY1}
+            year={y1}
+            top={275}
+            left={0} />
+        </View>
+        <View style={[data.return, data.return_1]}>
+          <SynastryAnnualReturn
+            annualReturn={annualReturnCurrent}
+            personalYear={personalYearY1}
+            yearsOld={yearsOldY1}
+            year={y1}
+            top={275}
+            left={177} />
+        </View>
+        <View style={[data.return, data.return_1]}>
+          <SynastryAnnualReturn
+            annualReturn={annualReturnCurrent}
+            personalYear={personalYearY1}
+            yearsOld={yearsOldY1}
+            year={y1}
+            top={275}
+            left={353} />
+        </View>
       </View>
     </View>
   )
