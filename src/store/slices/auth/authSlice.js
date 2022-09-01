@@ -12,27 +12,15 @@ export const authSlice = createSlice({
     date: null,
     photoURL: null,
     errorMessage: null,
-    company:null,
-    phone:null,
-    address:null,
-    webSite:null,
-    logoURL:null
+    tel: null,
+    company: null,
+    phone: null,
+    address: null,
+    webSite: null,
+    logoURL: null
   },
   reducers: {
-    updateUserInfo: ( state, { payload } ) => {
-      // console.log( payload )
-      state.email = payload.email;
-      state.names = payload.names;
-      state.lastName = payload.lastName;
-      state.scdLastName = payload.scdLastName;
-      state.date = payload.date;
-      state.company = payload.company;
-      state.phone = payload.phone;
-      state.address = payload.address;
-      state.webSite = payload.webSite;
-      state.logoURL = payload.logoURL;
-    },
-    login: ( state, { payload } ) => {
+    login: (state, { payload }) => {
       // console.log( payload )
       state.status = 'authenticated';
       state.token = payload.token;
@@ -43,13 +31,30 @@ export const authSlice = createSlice({
       state.date = payload.date;
       state.company = payload.company;
       state.phone = payload.phone;
+      state.tel = payload.tel;
       state.address = payload.address;
       state.webSite = payload.webSite;
       state.logoURL = payload.logoURL;
       state.photoURL = payload.photoURL;
       state.errorMessage = null;
     },
-    logout: ( state, { payload } ) => {
+    updateUserInfo: (state, { payload }) => {
+      console.log({ payload })
+      state.email = payload.email;
+      state.names = payload.names;
+      state.lastName = payload.lastName;
+      state.scdLastName = payload.scdLastName;
+      state.date = payload.date;
+      state.company = payload.company;
+      state.phone = payload.phone;
+      state.tel = payload.tel;
+      state.address = payload.address;
+      state.webSite = payload.webSite;
+      state.logoURL = payload.logoURL;
+      state.photoURL = payload.photoURL;
+      console.log(state.names)
+    },
+    logout: (state, { payload }) => {
       // console.log( payload )
       state.status = 'not-authenticated';
       state.token = null;
