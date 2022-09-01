@@ -166,6 +166,21 @@ svg {
     background-color: var(--yellow);
 }
 
+.btn-yellow {
+    border: solid 2px #E28A05;
+    color: #E28A05
+}
+
+.btn-blue {
+    border: solid 2px #5DC4FE;
+    color: #5DC4FE
+}
+
+.btn-green {
+    border: solid 2px #51A133;
+    color: #51A133
+}
+
 .bg-gold {
     background-color: #e0ba80;
 }
