@@ -97,9 +97,9 @@ export const Navbar = () => {
     'calendarioMensual',
     'sinastria',
     'sinastria_retornos',
-    'sinastria_destino',
+    // 'sinastria_destino',
     'sinastria_compatibilidad',
-    'sinastria_vibracion',
+    // 'sinastria_vibracion',
     'group_pinnacle',
     'group_vibracion',
     'group_retornos'
@@ -125,29 +125,40 @@ export const Navbar = () => {
 
   if (isDownloadPDFEnabled) {
     const reports = {
-      'pinaculo': PinnaclePDF(consultant),
-      'camino': LifePathPDF(consultant, newDate),
-      'nombre': NamePDF(consultant, newDate),
-      'crear_nombre': CreateNamePDF(consultant),
-      'destino': DestinityPDF(consultant, newDate),
-      'tiempo': TimeVibrationPDF(consultant, newDate),
-      'retornos': AnnualReturnsPDF(consultant, newDate),
-      'circulo_tiempo': CircleTimePDF(consultant, newDate),
-      'calendario': CalendarPDF(consultant, newDate),
-      'calendarioMensual': MonthPDF(consultant, newDate, newDate.month() + 1),
-      'sinastria': SynastryPinnaclePDF(synastry, newDate),
-      'sinastria_retornos': SynastryAnnualReturnsPDF(synastry, newDate),
-      'sinastria_compatibilidad': CompatibilityTablePDF(synastry, newDate),
-      'sinastria_vibracion': SynastryVibrationTimePDF(synastry, newDate),
-      'group_pinnacle': GroupPinnaclePDF(groupConsult, newDate),
-      'group_vibracion': GroupVibrationTimePDF(groupConsult, newDate),
-      'group_retornos': GroupAnnualReturnsPDF(groupConsult, newDate)
+      'pinaculo': PinnaclePDF, //(consultant),
+      'camino': LifePathPDF, //(consultant, newDate),
+      'nombre': NamePDF, //(consultant, newDate),
+      'crear_nombre': CreateNamePDF, //(consultant),
+      'destino': DestinityPDF, //(consultant, newDate),
+      'tiempo': TimeVibrationPDF, //(consultant, newDate),
+      'retornos': AnnualReturnsPDF, //(consultant, newDate),
+      'circulo_tiempo': CircleTimePDF, //(consultant, newDate),
+      'calendario': CalendarPDF, //(consultant, newDate),
+      'calendarioMensual': MonthPDF, //(consultant, newDate, newDate.month, //() + 1),
+      'sinastria': SynastryPinnaclePDF, //(synastry, newDate),
+      'sinastria_retornos': SynastryAnnualReturnsPDF, //(synastry, newDate),
+      // 'sinastria_destino': SynastryDestinityPDF, //(synastry, newDate),
+      'sinastria_compatibilidad': CompatibilityTablePDF, //(synastry, newDate),
+      'sinastria_vibracion': SynastryVibrationTimePDF, //(synastry, newDate),
+      'group_pinnacle': GroupPinnaclePDF, //(groupConsult, newDate),
+      'group_vibracion': GroupVibrationTimePDF, //(groupConsult, newDate),
+      'group_retornos': GroupAnnualReturnsPDF, //(groupConsult, newDate)
     }
     docName = sanitize(`${path} ${consultant.fullName}`)
     config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
     profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
     MyPDF = () => (
-      <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} />
+      <PDF
+        consultant={consultant}
+        config={config}
+        profile={profile}
+        date={newDate}
+        sidebar={sidebar}
+        synastry={synastry}
+        groupConsult={groupConsult}
+        newDate={newDate}
+        month={newDate.month() + 1}
+      />
     )
     AllPDF = () => (
       <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} />

@@ -9,7 +9,7 @@ import {
 import timeImage from '../assets/time-vibration.jpg'
 
 
-export const TimeVibrationPDF = (consultant, newDate) => {
+export const TimeVibrationPDF = ({ consultant, newDate }) => {
   return {
     bg: timeImage,
     children: <>

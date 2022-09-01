@@ -3,7 +3,7 @@ import { MonthCircle } from '../circleTime/MonthCircle'
 
 import circle from '../assets/circle-time.jpg'
 
-export const CircleTimePDF = (consultant, newDate) => {
+export const CircleTimePDF = ({ consultant, newDate }) => {
   return {
     bg: circle,
     children: <>

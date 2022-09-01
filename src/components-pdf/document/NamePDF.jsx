@@ -12,7 +12,7 @@ import {
 import nameImage from '../assets/name.jpg'
 import nameImage2 from '../assets/name2.jpg'
 
-export const NamePDF = (consultant, date) => {
+export const NamePDF = ({ consultant, newDate }) => {
   return [
     {
       bg: nameImage,
@@ -27,7 +27,7 @@ export const NamePDF = (consultant, date) => {
     {
       bg: nameImage2,
       children: <>
-        <NameCycle consultant={consultant} date={date} />
+        <NameCycle consultant={consultant} date={newDate} />
         <NameBalance consultant={consultant} />
         <NameFrequencyPotential consultant={consultant} />
       </>

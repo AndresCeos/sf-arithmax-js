@@ -3,7 +3,7 @@ import { TimeCicle } from '../annualReturns/TimeCicle'
 
 import annualImage from '../assets/annual-returns.jpg'
 
-export const AnnualReturnsPDF = (consultant, newDate) => {
+export const AnnualReturnsPDF = ({ consultant, newDate }) => {
   return {
     bg: annualImage,
     children: <>

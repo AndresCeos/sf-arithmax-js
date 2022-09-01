@@ -2,11 +2,23 @@ import { Document, Page, Text, View, Image, PDFViewer } from '@react-pdf/rendere
 import { configReport } from '../styles';
 import { currentDate } from '../../resources';
 
-export const PDF = ({ consultant, config, profile, date, sidebar }) => {
+export const PDF = ({ consultant, config, profile, date, sidebar, synastry, groupConsult, newDate, month }) => {
 
+  console.log({ config })
+
+  const listOfPDF = config.map(i => {
+    if (!Array.isArray(i)) {
+      console.log('single')
+      return i({ consultant, newDate, synastry, groupConsult, newDate, month })
+    }
+    console.log('array')
+    return i.map(x => x({ consultant, newDate, synastry, groupConsult, newDate, month }))
+  }).flat()
+
+  console.log({ listOfPDF })
   return (
     <Document >
-      {config.map((e, i) =>
+      {listOfPDF.map((e, i) =>
         <Page size={[612, 795]} style={configReport.page}>
           {e.bg && <Image src={e.bg} style={configReport.pageBackground}></Image>}
 

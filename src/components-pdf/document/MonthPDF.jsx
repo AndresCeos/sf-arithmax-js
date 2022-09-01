@@ -3,7 +3,7 @@ import { CalendarMonth } from '../calendarMonth/CalendarMonth'
 
 import calendar from '../assets/calendar-month.jpg'
 
-export const MonthPDF = (consultant, newDate, month) => {
+export const MonthPDF = ({ consultant, newDate, month }) => {
   return {
     bg: calendar,
     children: <>

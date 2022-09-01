@@ -7,7 +7,7 @@ import {
 import calendar from '../assets/calendar.jpg'
 import calendar2 from '../assets/calendar-02.jpg'
 
-export const CalendarPDF = (consultant, newDate) => {
+export const CalendarPDF = ({ consultant, newDate }) => {
   return [{
     bg: calendar,
     children: <>

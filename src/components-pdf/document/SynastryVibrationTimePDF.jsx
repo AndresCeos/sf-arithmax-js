@@ -13,7 +13,7 @@ import synastry2 from '../assets/s-time-vibration2.jpg'
 
 
 
-export const SynastryVibrationTimePDF = (synastry, newDate) => {
+export const SynastryVibrationTimePDF = ({ synastry, newDate }) => {
   return [{
     bg: synastry1,
     children: <>

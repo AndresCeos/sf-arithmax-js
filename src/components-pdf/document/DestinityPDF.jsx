@@ -6,7 +6,7 @@ import {
 import nameImage from '../assets/destinity-table.jpg'
 import nameImage2 from '../assets/destinity-table2.jpg'
 
-export const DestinityPDF = (consultant, date) => {
+export const DestinityPDF = ({ consultant, newDate }) => {
 
 
   const table = consultant.getDestinityTable()
@@ -18,15 +18,15 @@ export const DestinityPDF = (consultant, date) => {
     {
       bg: nameImage,
       children: <>
-        <DestinityTable consultant={consultant} date={date} table={table1} slice={0} start={0} />
-        <DestinityTable consultant={consultant} date={date} table={table2} slice={1} start={30} />
+        <DestinityTable consultant={consultant} date={newDate} table={table1} slice={0} start={0} />
+        <DestinityTable consultant={consultant} date={newDate} table={table2} slice={1} start={30} />
       </>
     },
     {
       bg: nameImage2,
       children: <>
-        <DestinityTable consultant={consultant} date={date} table={table1} slice={0} start={60} />
-        <DestinityNumericalValues consultant={consultant} date={date} />
+        <DestinityTable consultant={consultant} date={newDate} table={table1} slice={0} start={60} />
+        <DestinityNumericalValues consultant={consultant} date={newDate} />
 
       </>
     }

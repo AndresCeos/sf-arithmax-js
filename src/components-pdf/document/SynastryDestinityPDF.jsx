@@ -3,7 +3,7 @@ import nameImage from '../assets/s-destinity-table.jpg'
 import { SynastryDestinityTable } from '../synastryDestinyTable/SynastryDestinyTable'
 import { SynastryData } from '../synastryVibrationTime/SynastryData'
 
-export const SynastryDestinityPDF = (synastry, newDate) => {
+export const SynastryDestinityPDF = ({ synastry, newDate }) => {
 
   const ageMeet = synastry.partner.yearMeet - synastry.consultant.birthDate.year()
   const t = synastry.consultant.getDestinityTable()

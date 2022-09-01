@@ -9,7 +9,7 @@ import { AnnualReturns } from '../AnnualReturns';
 
 import pinnacleImage from '../assets/pinnacle.jpg'
 
-export const PinnaclePDF = (consultant) => {
+export const PinnaclePDF = ({ consultant }) => {
   return {
     bg: pinnacleImage,
     children: <>

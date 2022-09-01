@@ -4,7 +4,7 @@ import { SynastryPinnacles } from '../synastryPinnacle/SynastryPinnacles';
 import { SynastryAnnualReturns } from '../synastryPinnacle/SynastryAnnualReturns';
 
 import sPinnacle from '../assets/s-pinnacle.jpg'
-export const SynastryPinnaclePDF = (synastry, newDate) => {
+export const SynastryPinnaclePDF = ({ synastry, newDate }) => {
   return {
     bg: sPinnacle,
     children: <>

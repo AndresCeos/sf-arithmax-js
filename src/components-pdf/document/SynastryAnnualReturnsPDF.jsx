@@ -4,7 +4,7 @@ import { SynastryData } from '../synastryVibrationTime/SynastryData'
 
 import annualImage from '../assets/s-annual-returns.jpg'
 
-export const SynastryAnnualReturnsPDF = (synastry, newDate) => {
+export const SynastryAnnualReturnsPDF = ({ synastry, newDate }) => {
   return {
     bg: annualImage,
     children: <>

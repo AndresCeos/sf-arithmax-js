@@ -9,7 +9,7 @@ import {
 
 import createName from '../assets/create-name.jpg'
 
-export const CreateNamePDF = (consultant) => {
+export const CreateNamePDF = ({ consultant }) => {
   return {
     bg: createName,
     children: <>
