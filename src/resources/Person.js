@@ -566,6 +566,10 @@ export class Person {
     return this.reduceNumber(this.birthDate.month() + 1);
   }
   getA() { return this.calcKarma() }
+  getAISK(){
+    const A = this.reduceNumberISK(this.birthDate.month() +1);
+    return this.karmicos.includes(A) ? '*':''
+  }
 
   /**
    * calculate personal number
