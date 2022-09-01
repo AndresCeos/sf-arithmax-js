@@ -35,6 +35,8 @@ export const startLogin = (userData) => {
             'webSite': res.data.company_website,
             'logoURL': res.data.company_logo,
             phone: res.data.company_phone,
+            appVersion: res.data.app_version,
+            licence: res.data.licence_id,
           }
           dispatch(login(user))
           if (res.data?.user_consultants.length > 0) {

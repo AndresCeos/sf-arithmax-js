@@ -24,7 +24,7 @@ import ic_compatibility_table from '../assets/icons/s_compatibility_table.svg'
 
 export const Sidebar = () => {
   const [itemActive, setItemActive] = useState('')
-  const { names, photoURL } = useSelector(state => state.auth);
+  const { names, photoURL, licence } = useSelector(state => state.auth);
 
   const dispatch = useDispatch()
 
@@ -41,7 +41,7 @@ export const Sidebar = () => {
             <label className='font-bold text-main'>{names}</label>
             <label className='suscription-details text-green-600 text-sm'>
               <VscCircleFilled size={24} className="-ml-2" />
-              Licencia 007
+              Licencia {licence}
             </label>
           </div>
         </div>

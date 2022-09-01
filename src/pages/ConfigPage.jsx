@@ -7,7 +7,7 @@ import add_user from '../assets/icons/add_user.svg'
 import { TiPlus } from 'react-icons/ti';
 
 const ConfigPage = () => {
-  const { names, lastName, scdLastName, date, company, address, email, tel, phone, logoURL, webSite } = useSelector(state => state.auth)
+  const { names, lastName, scdLastName, date, company, address, email, tel, phone, logoURL, webSite, appVersion, licence } = useSelector(state => state.auth)
 
   const dispatch = useDispatch();
 
@@ -274,8 +274,8 @@ const ConfigPage = () => {
           Mi cuenta
         </div>
         <div className='pinnacle-wrap px-5 py-4 bg-gray-300'>
-          <div className='text-13 text-gray-500 pt-2' ><strong>Versión de Software:</strong></div>
-          <div className='text-13 text-gray-500 pt-2' ><strong>Número de Licencia:</strong></div>
+          <div className='text-13 text-gray-500 pt-2' ><strong>Versión de Software:</strong> {appVersion}</div>
+          <div className='text-13 text-gray-500 pt-2' ><strong>Número de Licencia:</strong> {licence}</div>
         </div>
 
       </div>
