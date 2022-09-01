@@ -112,7 +112,7 @@ export const aReturn = StyleSheet.create({
     // backgroundColor: '#00000050',
   },
   circle: {
-    backgroundColor: '#00000050',
+    // backgroundColor: '#00000050',
     position: 'absolute',
     width: '20px',
     height: '20px',

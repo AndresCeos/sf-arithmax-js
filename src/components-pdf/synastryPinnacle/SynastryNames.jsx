@@ -79,7 +79,7 @@ export const data = StyleSheet.create({
     width: 24,
     height: 24,
     fontSize: 14,
-    backgroundColor: '#ff000023',
+    // backgroundColor: '#ff000023',
     position: 'absolute',
     display: 'flex',
     justifyContent: 'center',
