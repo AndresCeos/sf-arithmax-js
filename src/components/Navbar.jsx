@@ -125,7 +125,7 @@ export const Navbar = () => {
     isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyP&&isSelectPartner)
   }
   let config, docName, profile, MyPDF, AllPDF, configAll;
-  
+
   if (isDownloadPDFEnabled) {
     const reports = {
       'pinaculo': PinnaclePDF(consultant),
