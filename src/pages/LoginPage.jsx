@@ -74,7 +74,7 @@ const Login = () => {
           <div className="col-span-5 h-full flex flex-col items-center justify-center bg-white bg-opacity-50">
             <div className="w-full flex flex-col items-center justify-center">
               <img src={welcome} className="w-32" alt="welcome" />
-              <h2>Iniciar Sesión {m}</h2>
+              <h2>Iniciar Sesión</h2>
               {(m === null && m === 'null') && (<>
                 <label className="text-red-500 my-5 text-center font-bold p-4 bg-white border border-red-600">Algo no anda bien..</label>
               </>)}
