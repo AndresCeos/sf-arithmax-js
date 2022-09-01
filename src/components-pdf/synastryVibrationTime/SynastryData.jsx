@@ -1,24 +1,25 @@
 import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import { capitalize } from '../../resources';
 
-export const SynastryData = ({ synastry, newDate }) => {
+export const SynastryData = ({ synastry, newDate, horizontal = false }) => {
   const consultant = synastry.consultant
   const partner = synastry.partner
   return (
-    <View style={data.container}>
+    <View style={[data.container, horizontal && { transform: 'rotate(-90deg)', width: 660, top: 320, left: -310 }]}>
       <View style={data.partners}>
-        <Text style={[data.textName, { top: 18 }]}>{consultant.fullNameView}</Text>
-        <Text style={[data.textBirth, { top: 18 }]}>{consultant.getFormBirthDate()}</Text>
-        <Text style={[data.textAge, { top: 18 }]}>{consultant.getYearsOld(newDate.year())}</Text>
+        <Text style={[data.textName, { top: 18 }, horizontal && { left: 50 }]}>{consultant.fullNameView}</Text>
+        <Text style={[data.textBirth, { top: 18 }, horizontal && { right: 220 }]}>{consultant.getFormBirthDate()}</Text>
+        <Text style={[data.textAge, { top: 18 }, horizontal && { right: 175 }]}>{consultant.getYearsOld(newDate.year())}</Text>
       </View>
       <View style={data.partners}>
-        <Text style={[data.textName, { top: 45 }]}>{partner.fullNameView}</Text>
-        <Text style={[data.textBirth, { top: 45 }]}>{partner.getFormBirthDate()}</Text>
-        <Text style={[data.textAge, { top: 45 }]}>{partner.getYearsOld(newDate.year())}</Text>
+        <Text style={[data.textName, { top: 45 }, horizontal && { left: 50 }]}>{partner.fullNameView}</Text>
+        <Text style={[data.textBirth, { top: 45 }, horizontal && { right: 220 }]}>{partner.getFormBirthDate()}</Text>
+        <Text style={[data.textAge, { top: 45 }, horizontal && { right: 175 }]}>{partner.getYearsOld(newDate.year())}</Text>
       </View>
       <View>
-        <Text style={[data.textYear]}>{partner.yearMeet}</Text>
+        <Text style={[data.textYear, horizontal && { top: 45, left: 525 }]}>{partner.yearMeet}</Text>
       </View>
+      {/* <Text>-</Text> */}
     </View>
   )
 }
@@ -27,7 +28,8 @@ export const data = StyleSheet.create({
     position: 'absolute',
     top: '30px',
     left: '15px',
-    width: '533px'
+    width: '533px',
+    // backgroundColor: 'red'
   },
   textName: {
     fontSize: '7px',
@@ -48,7 +50,7 @@ export const data = StyleSheet.create({
     color: '#7E7E7E',
     position: 'absolute',
     width: '20px',
-    right: '10px'
+    right: '10px',
   },
   partners: {
     display: 'flex',
@@ -58,7 +60,7 @@ export const data = StyleSheet.create({
     fontSize: '7px',
     color: '#7E7E7E',
     position: 'absolute',
-    left: '140px',
-    top: 75
+    left: '300px',
+    top: 75,
   }
 })

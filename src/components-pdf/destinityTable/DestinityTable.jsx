@@ -108,7 +108,7 @@ export const DestinityTable = ({ consultant, date, table, slice = 0, start = 0 }
           )}
         </View>
       </View>
-    </View >
+    </View>
   )
 }
 
