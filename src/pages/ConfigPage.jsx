@@ -276,7 +276,6 @@ const ConfigPage = () => {
         <div className='pinnacle-wrap px-5 py-4 bg-gray-300'>
           <div className='text-13 text-gray-500 pt-2' ><strong>Versión de Software:</strong></div>
           <div className='text-13 text-gray-500 pt-2' ><strong>Número de Licencia:</strong></div>
-          <div className='text-13 text-gray-500 pt-2' ><strong>Vencimiento:</strong></div>
         </div>
 
       </div>

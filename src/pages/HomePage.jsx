@@ -11,20 +11,20 @@ import personal from '../assets/icons/e_personal.svg'
 import personal_disabled from '../assets/icons/e_personal_disabled.svg'
 
 const HomePage = () => {
-  const { names, lastName, scdLastName, date } = useSelector( state => state.auth )
-  const {newDate} = dateSelect()
+  const { names, lastName, scdLastName, date } = useSelector(state => state.auth)
+  const { newDate } = dateSelect()
 
 
   const displayname = `${names} ${lastName}`
-  const profile = new Person({name: names, lastName, scdLastName, birthDate: date})
+  const profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
 
   const u = new Universal()
 
-  const currentDay =  newDate.date()
-  const currentMonth = newDate.month() +1
+  const currentDay = newDate.date()
+  const currentMonth = newDate.month() + 1
   const currentYear = newDate.year()
 
-  return(
+  return (
     <>
       <div className='grid grid-cols-2'>
         <div className='mt-20 pl-14 pt-11 pb-7 bg-white bg-opacity-50 w-full relative rounded-tr-3xl rounded-br-3xl'>
@@ -34,7 +34,7 @@ const HomePage = () => {
         </div>
 
         <div className='row-span-2 flex justify-center items-center'>
-          { profile.birthDate.isValid() ? <CircleTime consultant={profile} /> : null }
+          {profile.birthDate.isValid() ? <CircleTime consultant={profile} /> : null}
         </div>
 
         <div className='grid grid-cols-4 mt-24'>
@@ -43,11 +43,11 @@ const HomePage = () => {
               <img src={universal} alt="universal" />
             </li>
             <li className='text-center text-main'>
-              ENERGÍA<br/>
+              ENERGÍA<br />
               <div className='font-black'>UNIVERSAL</div>
             </li>
-            <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6'>
-              { currentDate(newDate) }
+            <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6 font-black text-13 text-center'>
+              {currentDate(newDate)}
             </li>
             <li
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'
@@ -65,7 +65,7 @@ const HomePage = () => {
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'
               data-name='MES'
             >
-              {u.calcUniversalMonth(currentMonth,currentYear)}{u.calcUniversalMonthISK(currentMonth, currentYear)}
+              {u.calcUniversalMonth(currentMonth, currentYear)}{u.calcUniversalMonthISK(currentMonth, currentYear)}
             </li>
             <li
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'
@@ -79,23 +79,23 @@ const HomePage = () => {
               <img src={personal} alt="personal" />
             </li>
             <li className='text-center text-black'>
-              ENERGÍA<br/>
+              ENERGÍA<br />
               <div className='font-black'>PERSONAL</div>
             </li>
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6 font-black text-13 text-center'>
-              { profile.displayname ?? displayname }
+              {profile.displayname ?? displayname}
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
-              { profile.birthDate.isValid() ? profile.calcPersonalDay(currentDay, currentMonth, currentYear) : '-' }
+              {profile.birthDate.isValid() ? profile.calcPersonalDay(currentDay, currentMonth, currentYear) : '-'}
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
-              { profile.birthDate.isValid() ? profile.calcPersonalWeek(currentDay, currentMonth, currentYear) : '-' }
+              {profile.birthDate.isValid() ? profile.calcPersonalWeek(currentDay, currentMonth, currentYear) : '-'}
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
-              { profile.birthDate.isValid() ? profile.calcPersonalMonth(currentMonth, currentYear) : '-' }
+              {profile.birthDate.isValid() ? profile.calcPersonalMonth(currentMonth, currentYear) : '-'}
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
-              { profile.birthDate.isValid() ? profile.calcPersonalYear(currentYear) : '-' }
+              {profile.birthDate.isValid() ? profile.calcPersonalYear(currentYear) : '-'}
             </li>
           </ul>
           <ul className='flex flex-col items-center'>
@@ -103,11 +103,11 @@ const HomePage = () => {
               <img src={personal_disabled} alt="personal_disabled" />
             </li>
             <li className='text-center text-main opacity-25'>
-              ENERGÍA<br/>
+              ENERGÍA<br />
               <div className='font-black'>PERSONAL</div>
             </li>
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6 font-black opacity-25'>
-              <TiPlus/>
+              <TiPlus />
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
 
@@ -127,11 +127,11 @@ const HomePage = () => {
               <img src={personal_disabled} alt="personal_disabled" />
             </li>
             <li className='text-center text-main opacity-25'>
-              ENERGÍA<br/>
+              ENERGÍA<br />
               <div className='font-black'>PERSONAL</div>
             </li>
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6 font-black opacity-25'>
-              <TiPlus/>
+              <TiPlus />
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
 
