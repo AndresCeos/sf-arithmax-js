@@ -17,7 +17,9 @@ export const authSlice = createSlice({
     phone: null,
     address: null,
     webSite: null,
-    logoURL: null
+    logoURL: null,
+    appVersion: null,
+    licence: null
   },
   reducers: {
     login: (state, { payload }) => {
@@ -35,6 +37,8 @@ export const authSlice = createSlice({
       state.address = payload.address;
       state.webSite = payload.webSite;
       state.logoURL = payload.logoURL;
+      state.licence = payload.licence;
+      state.appVersion = payload.appVersion;
       state.photoURL = payload.photoURL;
       state.errorMessage = null;
     },
@@ -51,6 +55,8 @@ export const authSlice = createSlice({
       state.address = payload.address;
       state.webSite = payload.webSite;
       state.logoURL = payload.logoURL;
+      state.licence = payload.licence;
+      state.appVersion = payload.appVersion;
       state.photoURL = payload.photoURL;
       console.log(state.names)
     },
@@ -69,6 +75,8 @@ export const authSlice = createSlice({
       state.address = null;
       state.webSite = null;
       state.logoURL = null;
+      state.licence = null;
+      state.appVersion = null;
       state.errorMessage = payload.errorMessage;
     },
     checkingCredentials: (state, { payload = 'checking' }) => {
