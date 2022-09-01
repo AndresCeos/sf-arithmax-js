@@ -23,12 +23,15 @@ const Login = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (localStorage.getItem('m') === null) {
-      const mParams = searchParams.get('m')
+    const mLocal = localStorage.getItem('m');
+    const mParams = searchParams.get('m');
+    if (mParams !== null) {
       localStorage.setItem('m', mParams)
       setM(mParams)
-    } else {
-      setM(localStorage.getItem('m'))
+    }
+    if (mLocal !== null) {
+      localStorage.setItem('m', mLocal)
+      setM(mLocal)
     }
   }, [])
 
@@ -73,7 +76,7 @@ const Login = () => {
               <img src={welcome} className="w-32" alt="welcome" />
               <h2>Iniciar Sesión</h2>
               {m === null && (<>
-                <label className="text-red-500 my-5 text-center font-bold p-4 bg-white border border-red-600">Algo ocurrio intenta más tarde</label>
+                <label className="text-red-500 my-5 text-center font-bold p-4 bg-white border border-red-600">Algo no anda bien..</label>
               </>)}
               <form onSubmit={handleOnSubmit} className="w-full m-5 flex flex-col items-center">
                 <input

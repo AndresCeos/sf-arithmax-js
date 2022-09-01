@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer"
 
-export const SynastryLine =({synastry, newDate})=>{
+export const SynastryLine = ({ synastry, newDate }) => {
 
   return (
     <View style={lifePathDialogs.container}>
@@ -87,11 +87,12 @@ export const lifePathDialogs = StyleSheet.create({
     backgroundColor: 'red'
   },
   wrap: {
-    position: 'relative'
+    position: 'relative',
+    backgroundColor: 'red',
+    width: 106
   },
   item: {
     position: 'absolute',
-    // backgroundColor: 'red',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -101,30 +102,30 @@ export const lifePathDialogs = StyleSheet.create({
   },
   top: {
     top: '25px',
-    left: '37px'
+    left: '43px'
   },
   left: {
     top: '46px',
-    left: '14px'
+    left: '20px'
   },
   right: {
     top: '46px',
-    left: '58px'
+    left: '65px'
   },
   bottom: {
     top: '70px',
-    left: '37px'
+    left: '43px'
   },
   wrap_2: {
-    left: '104px',
+    left: '106px',
   },
   wrap_3: {
-    left: '218px',
+    left: '212px',
   },
   wrap_4: {
-    left: '317px',
+    left: '318px',
   },
   wrap_5: {
-    left: '423px',
+    left: '424px',
   },
 })

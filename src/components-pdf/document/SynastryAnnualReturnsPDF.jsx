@@ -1,14 +1,13 @@
-import { AnnualReturns } from '../annualReturns/AnnualReturns'
-import { TimeCicle } from '../annualReturns/TimeCicle'
+import { SynastryAnnualReturns } from '../synastryAnnualReturns/SynastryAnnualReturns'
 
 import annualImage from '../assets/s-annual-returns.jpg'
 
-export const SynastryAnnualReturnsPDF = (consultant, newDate) => {
+export const SynastryAnnualReturnsPDF = (synastry, newDate) => {
   return {
     bg: annualImage,
     children: <>
-      {/* <AnnualReturns consultant={consultant} />
-      <TimeCicle consultant={consultant} newDate={newDate} /> */}
+      <SynastryAnnualReturns synastry={synastry} newDate={newDate} />
+      {/* <TimeCicle consultant={consultant} newDate={newDate} /> */}
     </>
   }
 }
