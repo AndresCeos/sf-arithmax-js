@@ -13,7 +13,7 @@ export const SynastryTimeCicle = ({ synastry, newDate }) => {
     <View style={cycle.container}>
       <View style={cycle.wrap}>
         <View style={cycle.item_1}>
-          <Text style={[cycle.title, { position: 'absolute', left: 200, width: 40, top: 40, fontWeight: 'bold' }]}>Etapa {synastry.getLifeStageNumber(newDate.year())}</Text>
+          <Text style={[cycle.title, { position: 'absolute', left: 200, width: 40, top: 50, fontWeight: 'bold' }]}>Etapa {synastry.getLifeStageNumber(newDate.year())}</Text>
           <Text style={cycle.circle}>{synastry.getLifeStage(newDate.year())}{synastry.getLifeStageISK(newDate.year())}</Text>
         </View>
         <View style={cycle.item}>
@@ -35,8 +35,8 @@ export const SynastryTimeCicle = ({ synastry, newDate }) => {
 const cycle = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: '475px',
-    left: '12px',
+    top: '550px',
+    left: '15px',
     fontSize: '7px',
     width: '531px'
   },
@@ -69,7 +69,7 @@ const cycle = StyleSheet.create({
     // backgroundColor: '#A2CA94',
     // borderColor: '#51A133',
     fontWeight: 'bold',
-    top: '23px'
+    top: '38px'
   },
   item: {
     position: 'absolute',
