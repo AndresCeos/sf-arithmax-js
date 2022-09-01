@@ -219,30 +219,30 @@ const ManualPage = () => {
 
         <p>-Vibración del Tiempo: Se encuentra la información correspondiente a Energías Activas, Cuatrimestres por meses, Ciclo de 9 años, Cuatrimestres por Año y Análisis del Tiempo. </p>
         <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/<VIBRACION1.jpg" />
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/VIBRACION2.jpg" />
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/VIBRACION3.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/VIBRACION2.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/VIBRACION3.jpg" />
         <p>*Puede cambiar la fecha para consultar otros resultados. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
 
         <p>-Retornos Anuales: Se encuentra la información correspondiente a Curva del Tiempo. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/RETORNOS1.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/RETORNOS1.jpg" />
         <p>*Puede cambiar la fecha para consultar otros resultados. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
 
         <p>-Círculo del Tiempo: Se encuentra la información correspondiente a Circulo del Tiempo. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CIRCULO1.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CIRCULO1.jpg" />
         <p>*Puede cambiar la fecha para consultar otros resultados. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
 
         <p>-Calendario Anual: Podrá consultar el calendario anual numerológico de la fecha en consulta. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/ANUAL1.png" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/ANUAL1.png" />
         <p>*Puede cambiar la fecha para consultar otros resultados. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
 
         <p>-Calendario Mensual: Podrá consultar el calendario mensual numerológico de la fecha en consulta. Cambia el mes en el menú desplegable. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/MENSUAL1.png" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/MENSUAL1.png" />
         <p>*Puede modificar la fecha para consultar otros resultados. </p>
-        <img src="<https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
+        <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CAMBIOFECHA.jpg" />
 
 
 
