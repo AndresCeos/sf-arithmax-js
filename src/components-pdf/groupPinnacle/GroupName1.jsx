@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer";
 
-export const GroupName1 = ({groupConsultant}) =>{
-  const cap = groupConsultant.group
+export const GroupName1 = ({groupConsult}) =>{
+  const cap = groupConsult.group
   console.log(cap[1])
   console.log( cap);
   let p1;
@@ -16,16 +16,16 @@ export const GroupName1 = ({groupConsultant}) =>{
     <View style={style.container}>
       <View style={[style.wrap,style.wrap1]}>
         <View style={[style.letter, style.A]}>
-          <Text>{groupConsultant.calcName()}{groupConsultant.calcNameISK()}</Text>
+          <Text>{groupConsult.calcName()}{groupConsult.calcNameISK()}</Text>
         </View>
         <View style={[style.letter, style.B]}>
-          <Text>{groupConsultant.calcSoulNumber()}{groupConsultant.calcSoulNumberISK()}</Text>
+          <Text>{groupConsult.calcSoulNumber()}{groupConsult.calcSoulNumberISK()}</Text>
         </View>
         <View style={[style.letter, style.C]}>
-          <Text>{groupConsultant.calcSoulExpresion()}{groupConsultant.calcSoulExpresionISK()}</Text>
+          <Text>{groupConsult.calcSoulExpresion()}{groupConsult.calcSoulExpresionISK()}</Text>
         </View>
         <View style={[style.letter, style.D]}>
-          <Text>{groupConsultant.calcMaturity()}{groupConsultant.calcMaturityISK()}</Text>
+          <Text>{groupConsult.calcMaturity()}{groupConsult.calcMaturityISK()}</Text>
         </View>
       </View>
       {(cap[0]!==undefined)?<View style={[style.wrap,style.wrap2]}>

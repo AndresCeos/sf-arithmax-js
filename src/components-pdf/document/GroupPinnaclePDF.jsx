@@ -12,32 +12,32 @@ import { GroupRetornos1 } from '../groupPinnacle/GroupRetornos1'
 import { GroupRetornos2 } from '../groupPinnacle/GroupRetornos2'
 import { GroupRetornos3 } from '../groupPinnacle/GroupRetornos3'
 
-export const GroupPinnaclePDF = ({ groupConsultant, newDate }) => {
-  const cap = groupConsultant.group
-  console.log(cap.length)
+export const GroupPinnaclePDF = ({ groupConsult, newDate }) => {
+  const cap = groupConsult
+  //console.log(cap.length)
   return [{
     bg: gPinnacle,
     children: <>
-      <GroupData groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupName1 groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupPinacle1 groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupRetornos1 groupConsultant={groupConsultant} newDate={newDate} />
+      <GroupData groupConsult={groupConsult} newDate={newDate} />
+      <GroupName1 groupConsult={groupConsult} newDate={newDate} />
+      <GroupPinacle1 groupConsult={groupConsult} newDate={newDate} />
+      <GroupRetornos1 groupConsult={groupConsult} newDate={newDate} />
     </>
   }, {
     bg: gPinnacle2,
     children: <>
-      <GroupData groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupName2 groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupPinacle2 groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupRetornos2 groupConsultant={groupConsultant} newDate={newDate} />
+      <GroupData groupConsult={groupConsult} newDate={newDate} />
+      <GroupName2 groupConsult={groupConsult} newDate={newDate} />
+      <GroupPinacle2 groupConsult={groupConsult} newDate={newDate} />
+      <GroupRetornos2 groupConsult={groupConsult} newDate={newDate} />
     </>
   }, {
     bg: gPinnacle2,
     children: <>
-      <GroupData groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupName3 groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupPinacle3 groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupRetornos3 groupConsultant={groupConsultant} newDate={newDate} />
+      <GroupData groupConsult={groupConsult} newDate={newDate} />
+      <GroupName3 groupConsult={groupConsult} newDate={newDate} />
+      <GroupPinacle3 groupConsult={groupConsult} newDate={newDate} />
+      <GroupRetornos3 groupConsult={groupConsult} newDate={newDate} />
 
     </>
   }]

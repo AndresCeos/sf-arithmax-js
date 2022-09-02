@@ -1,14 +1,14 @@
 import  { Text, View, StyleSheet } from '@react-pdf/renderer';
 
-export const GroupCycle = ({groupConsultant, newDate})=>{
+export const GroupCycle = ({groupConsult, newDate})=>{
 const currentYear = newDate.year()
-  const niceCycle = groupConsultant.getNineYearCycleStage(currentYear)
+  const niceCycle = groupConsult.getNineYearCycleStage(currentYear)
 const Cycle = () =>{
   return(
     <>
     {niceCycle.map((year, index)=>
     <View >
-      <View style={[cycle.circle,{top:51, left:14+(14*index),backgroundColor:`${(year === currentYear)?'#D6C5E9':''}`}]}><Text style={[cycle.number]}>{groupConsultant.calcPersonalYear(year)}</Text></View>
+      <View style={[cycle.circle,{top:51, left:14+(14*index),backgroundColor:`${(year === currentYear)?'#D6C5E9':''}`}]}><Text style={[cycle.number]}>{groupConsult.calcPersonalYear(year)}</Text></View>
       <Text style={[cycle.text,{top:80, left:14+(14*index),color:`${(year=== currentYear)?'#000':'#7E7E7E'}`}]}>{year}</Text>
     </View>
     )}
@@ -19,8 +19,8 @@ const Cycle = () =>{
 return(
   <View style={cycle.container}>
     <View style={[cycle.cyleMap,{width:'80px'}]}>
-      <Text style={[cycle.text,{top:25,left:130,width:'50px'}]}>Etapa: {groupConsultant.getLifeStageNumber(currentYear)}:  </Text>
-      <Text style={[cycle.number,{top:23,left:173,width:'30px'}]}>{groupConsultant.getLifeStage(currentYear)}{groupConsultant.getLifeStageISK(currentYear)}</Text>
+      <Text style={[cycle.text,{top:25,left:130,width:'50px'}]}>Etapa: {groupConsult.getLifeStageNumber(currentYear)}:  </Text>
+      <Text style={[cycle.number,{top:23,left:173,width:'30px'}]}>{groupConsult.getLifeStage(currentYear)}{groupConsult.getLifeStageISK(currentYear)}</Text>
     </View>
     <View style={cycle.cyleMap}>
       <Cycle/>

@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer";
-import { AnnualReturn } from "../createName/AnnualReturn";
-export const GroupRetornos1 = ({groupConsultant, newDate}) =>{
+import { AnnualReturn } from "./AnnualReturn";
+export const GroupRetornos1 = ({groupConsult, newDate}) =>{
 
-  const cap = groupConsultant.group
+  const cap = groupConsult.group
   console.log(cap[1])
   console.log( cap);
-  let annualReturnCurrent = groupConsultant.annualReturn(newDate.year())
+  let annualReturnCurrent = groupConsult.annualReturn(newDate.year())
   let p1;
   let p2;
   let annualReturnLastYear;

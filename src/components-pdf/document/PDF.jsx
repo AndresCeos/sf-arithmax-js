@@ -5,6 +5,7 @@ import { currentDate } from '../../resources';
 export const PDF = ({ consultant, config, profile, date, sidebar, synastry, groupConsult, newDate, month }) => {
 
   console.log({ config })
+  console.log(groupConsult)
 
   const listOfPDF = config.map(i => {
     if (!Array.isArray(i)) {

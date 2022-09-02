@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer";
 
-export const GroupName2 = ({groupConsultant}) =>{
-  const cap = groupConsultant.group
+export const GroupName2 = ({groupConsult}) =>{
+  const cap = groupConsult.group
   let p3;
   let p4;
   let p5

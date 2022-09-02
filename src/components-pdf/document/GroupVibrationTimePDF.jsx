@@ -11,22 +11,22 @@ import { GroupTimeCurve } from '../groupVibrationTime/GroupTimeCurve'
 
 
 
-export const GroupVibrationTimePDF = ({ groupConsultant, newDate }) => {
+export const GroupVibrationTimePDF = ({ groupConsult, newDate }) => {
   return [{
     bg: gVibration,
     children: <>
-      <GroupData groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupEnergy groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupCycle groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupQuaterM groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupLine groupConsultant={groupConsultant} newDate={newDate} />
+      <GroupData groupConsult={groupConsult} newDate={newDate} />
+      <GroupEnergy groupConsult={groupConsult} newDate={newDate} />
+      <GroupCycle groupConsult={groupConsult} newDate={newDate} />
+      <GroupQuaterM groupConsult={groupConsult} newDate={newDate} />
+      <GroupLine groupConsult={groupConsult} newDate={newDate} />
     </>
   }, {
     bg: gVibration2,
     children: <>
-      <GroupData groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupQuaterY groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupTimeCurve groupConsultant={groupConsultant} newDate={newDate} />
+      <GroupData groupConsult={groupConsult} newDate={newDate} />
+      <GroupQuaterY groupConsult={groupConsult} newDate={newDate} />
+      <GroupTimeCurve groupConsult={groupConsult} newDate={newDate} />
     </>
   }]
 }

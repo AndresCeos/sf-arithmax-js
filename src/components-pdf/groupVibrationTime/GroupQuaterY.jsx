@@ -1,9 +1,9 @@
 import  {Text, View, StyleSheet } from '@react-pdf/renderer';
 import React from 'react';
 
-export const GroupQuaterY = ({groupConsultant, newDate}) =>{
-  const cycleNineY = groupConsultant.getNineYearCycle(newDate.year())
-  const listOfMonths = groupConsultant.getCustomMonths()
+export const GroupQuaterY = ({groupConsult, newDate}) =>{
+  const cycleNineY = groupConsult.getNineYearCycle(newDate.year())
+  const listOfMonths = groupConsult.getCustomMonths()
   const indexOfMonth = listOfMonths.findIndex(i => i === 'Enero')
   let m1 = listOfMonths[0]
   let m2 = listOfMonths[1]
@@ -181,10 +181,10 @@ export const GroupQuaterY = ({groupConsultant, newDate}) =>{
         {cycleNineY.map(m =>
         <View>
             {(m === newDate.year())?<Text style={[quaterY.item, quaterY.bg_main_select]}>{m}</Text>:<Text style={[quaterY.item, quaterY.bg_main]}>{m}</Text>}
-            {(m === newDate.year())?<Text style={[quaterY.item, quaterY.bg_sec,{color:'#000'},{fontWeight:'bold'}]}>{groupConsultant.calcPersonalYear(m)}{groupConsultant.calcPersonalYearISK(m)}</Text>:<Text style={[quaterY.item, quaterY.bg_sec,{color:'#000'}]}>{groupConsultant.calcPersonalYear(m)}{groupConsultant.calcPersonalYearISK(m)}</Text>}
-            <Text style={quaterY.itemQ1}>{groupConsultant.getQuaterOne()}{groupConsultant.getQuaterOneISK()}</Text>
-            <Text style={quaterY.itemQ23}>{groupConsultant.getQuaterTwo(m)}{groupConsultant.getQuaterTwoISK(m)}</Text>
-            <Text style={quaterY.itemQ23}>{groupConsultant.getQuaterThree(m)}{groupConsultant.getQuaterThreeISK(m)}</Text>
+            {(m === newDate.year())?<Text style={[quaterY.item, quaterY.bg_sec,{color:'#000'},{fontWeight:'bold'}]}>{groupConsult.calcPersonalYear(m)}{groupConsult.calcPersonalYearISK(m)}</Text>:<Text style={[quaterY.item, quaterY.bg_sec,{color:'#000'}]}>{groupConsult.calcPersonalYear(m)}{groupConsult.calcPersonalYearISK(m)}</Text>}
+            <Text style={quaterY.itemQ1}>{groupConsult.getQuaterOne()}{groupConsult.getQuaterOneISK()}</Text>
+            <Text style={quaterY.itemQ23}>{groupConsult.getQuaterTwo(m)}{groupConsult.getQuaterTwoISK(m)}</Text>
+            <Text style={quaterY.itemQ23}>{groupConsult.getQuaterThree(m)}{groupConsult.getQuaterThreeISK(m)}</Text>
             {indexOfMonth >= 0 && indexOfMonth <5?<Text style={quaterY.datePos1Up}>{m}</Text>:''}
             {indexOfMonth !== 0 && indexOfMonth <5?<Text style={quaterY.datePos1Down}>{m+1}</Text>:''}
             {indexOfMonth > 4 && indexOfMonth <9?<Text style={quaterY.datePos2Up}>{m}</Text>:''}

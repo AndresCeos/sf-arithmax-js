@@ -3,12 +3,13 @@ import sPinnacle from '../assets/g-annual-returns.jpg'
 import { GroupAnnualReturns } from '../groupAnnualReturns/GroupAnnualReturns'
 import { GroupData } from '../groupPinnacle/GroupData'
 
-export const GroupAnnualReturnsPDF = ({ groupConsultant, newDate }) => {
+export const GroupAnnualReturnsPDF = ({ groupConsult, newDate }) => {
+  console.log(groupConsult);
   return {
     bg: sPinnacle,
     children: <>
-      <GroupAnnualReturns groupConsultant={groupConsultant} newDate={newDate} />
-      <GroupData groupConsultant={groupConsultant} newDate={newDate} />
+      <GroupAnnualReturns groupConsultant={groupConsult} newDate={newDate} />
+      <GroupData groupConsultant={groupConsult} newDate={newDate} />
     </>
   }
 }

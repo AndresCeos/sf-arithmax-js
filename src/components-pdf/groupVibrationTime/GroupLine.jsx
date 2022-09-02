@@ -1,77 +1,77 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer"
 
-export const GroupLine = ({ groupConsultant, newDate }) => {
+export const GroupLine = ({ groupConsult, newDate }) => {
 
   return (
     <View style={lifePathDialogs.container}>
       <View style={[lifePathDialogs.wrap]}>
         <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
-          <Text>{groupConsultant.getSumHierarchy(groupConsultant.getB(), groupConsultant.getLifeStage(newDate.year()))}</Text>
+          <Text>{groupConsult.getSumHierarchy(groupConsult.getB(), groupConsult.getLifeStage(newDate.year()))}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
-          <Text>{groupConsultant.getB()}</Text>
+          <Text>{groupConsult.getB()}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
-          <Text>{groupConsultant.getLifeStage(newDate.year())}</Text>
+          <Text>{groupConsult.getLifeStage(newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
-          <Text>{groupConsultant.getResHierarchy(groupConsultant.getB(), groupConsultant.getLifeStage(newDate.year()))}</Text>
+          <Text>{groupConsult.getResHierarchy(groupConsult.getB(), groupConsult.getLifeStage(newDate.year()))}</Text>
         </View>
       </View>
       <View style={[lifePathDialogs.wrap, lifePathDialogs.wrap_2]}>
         <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
-          <Text>{groupConsultant.getSumHierarchy(groupConsultant.getLifeStage(newDate.year()), groupConsultant.calcPersonalYear(newDate.year()))}</Text>
+          <Text>{groupConsult.getSumHierarchy(groupConsult.getLifeStage(newDate.year()), groupConsult.calcPersonalYear(newDate.year()))}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
-          <Text>{groupConsultant.getLifeStage(newDate.year())}</Text>
+          <Text>{groupConsult.getLifeStage(newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
-          <Text>{groupConsultant.calcPersonalYear(newDate.year())}</Text>
+          <Text>{groupConsult.calcPersonalYear(newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
-          <Text>{groupConsultant.getResHierarchy(groupConsultant.getLifeStage(newDate.year()), groupConsultant.calcPersonalYear(newDate.year()))}</Text>
+          <Text>{groupConsult.getResHierarchy(groupConsult.getLifeStage(newDate.year()), groupConsult.calcPersonalYear(newDate.year()))}</Text>
         </View>
       </View>
       <View style={[lifePathDialogs.wrap, lifePathDialogs.wrap_3]}>
         <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
-          <Text>{groupConsultant.getSumHierarchy(groupConsultant.calcPersonalYear(newDate.year()), groupConsultant.calcCurrentQuater(newDate, newDate.year()))}</Text>
+          <Text>{groupConsult.getSumHierarchy(groupConsult.calcPersonalYear(newDate.year()), groupConsult.calcCurrentQuater(newDate, newDate.year()))}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
-          <Text>{groupConsultant.calcPersonalYear(newDate.year())}</Text>
+          <Text>{groupConsult.calcPersonalYear(newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
-          <Text>{groupConsultant.calcCurrentQuater(newDate, newDate.year())}</Text>
+          <Text>{groupConsult.calcCurrentQuater(newDate, newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
-          <Text>{groupConsultant.getResHierarchy(groupConsultant.calcPersonalYear(newDate.year()), groupConsultant.calcCurrentQuater(newDate, newDate.year()))}</Text>
+          <Text>{groupConsult.getResHierarchy(groupConsult.calcPersonalYear(newDate.year()), groupConsult.calcCurrentQuater(newDate, newDate.year()))}</Text>
         </View>
       </View>
       <View style={[lifePathDialogs.wrap, lifePathDialogs.wrap_4]}>
         <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
-          <Text>{groupConsultant.getSumHierarchy(groupConsultant.calcCurrentQuater(newDate, newDate.year()), groupConsultant.calcPersonalMonth(newDate.month() + 1, newDate.year()))}</Text>
+          <Text>{groupConsult.getSumHierarchy(groupConsult.calcCurrentQuater(newDate, newDate.year()), groupConsult.calcPersonalMonth(newDate.month() + 1, newDate.year()))}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
-          <Text>{groupConsultant.calcCurrentQuater(newDate, newDate.year())}</Text>
+          <Text>{groupConsult.calcCurrentQuater(newDate, newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
-          <Text>{groupConsultant.calcPersonalMonth(newDate.month() + 1, newDate.year())}</Text>
+          <Text>{groupConsult.calcPersonalMonth(newDate.month() + 1, newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
-          <Text>{groupConsultant.getResHierarchy(groupConsultant.calcCurrentQuater(newDate, newDate.year()), groupConsultant.calcPersonalMonth(newDate.month() + 1, newDate.year()))}</Text>
+          <Text>{groupConsult.getResHierarchy(groupConsult.calcCurrentQuater(newDate, newDate.year()), groupConsult.calcPersonalMonth(newDate.month() + 1, newDate.year()))}</Text>
         </View>
       </View>
       <View style={[lifePathDialogs.wrap, lifePathDialogs.wrap_5]}>
         <View style={[lifePathDialogs.item, lifePathDialogs.top]}>
-          <Text>{groupConsultant.getSumHierarchy(groupConsultant.calcPersonalMonth(newDate.month() + 1, newDate.year()), groupConsultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year()))}</Text>
+          <Text>{groupConsult.getSumHierarchy(groupConsult.calcPersonalMonth(newDate.month() + 1, newDate.year()), groupConsult.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year()))}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.left]}>
-          <Text>{groupConsultant.calcPersonalMonth(newDate.month() + 1, newDate.year())}</Text>
+          <Text>{groupConsult.calcPersonalMonth(newDate.month() + 1, newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.right]}>
-          <Text>{groupConsultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year())}</Text>
+          <Text>{groupConsult.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year())}</Text>
         </View>
         <View style={[lifePathDialogs.item, lifePathDialogs.bottom]}>
-          <Text>{groupConsultant.getResHierarchy(groupConsultant.calcPersonalMonth(newDate.month() + 1, newDate.year()), groupConsultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year()))}</Text>
+          <Text>{groupConsult.getResHierarchy(groupConsult.calcPersonalMonth(newDate.month() + 1, newDate.year()), groupConsult.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year()))}</Text>
         </View>
       </View>
     </View>

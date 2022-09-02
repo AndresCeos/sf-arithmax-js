@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer";
 
-export const GroupPinacle1 = ({groupConsultant}) =>{
+export const GroupPinacle1 = ({groupConsult}) =>{
 
-  const cap = groupConsultant.group
+  const cap = groupConsult.group
   console.log(cap[1])
   console.log( cap);
   let p1;
@@ -19,76 +19,76 @@ return(
 
       <View style={[style.wrap, style.wrap1]}>
       <View style={[style.letter, style.A]}>
-          <Text>{groupConsultant.getA()}{groupConsultant.getAISK()}</Text>
+          <Text>{groupConsult.getA()}{groupConsult.getAISK()}</Text>
         </View>
         <View style={[style.letter_main, style.B]}>
-        <Text>{groupConsultant.getB()}{groupConsultant.getBISK()}</Text>
+        <Text>{groupConsult.getB()}{groupConsult.getBISK()}</Text>
         </View>
         <View style={[style.letter, style.C]}>
-        <Text>{groupConsultant.getC()}{groupConsultant.getCISK()}</Text>
+        <Text>{groupConsult.getC()}{groupConsult.getCISK()}</Text>
         </View>
         <View style={[style.letter, style.D]}>
-        <Text>{groupConsultant.getD()}{groupConsultant.getDISK()}</Text>
+        <Text>{groupConsult.getD()}{groupConsult.getDISK()}</Text>
         </View>
 
         <View style={[style.letter, style.E]}>
-        <Text>{groupConsultant.getE()}{groupConsultant.getEISK()}</Text>
+        <Text>{groupConsult.getE()}{groupConsult.getEISK()}</Text>
         </View>
         <View style={[style.letter, style.F]}>
-        <Text>{groupConsultant.getF()}{groupConsultant.getFISK()}</Text>
+        <Text>{groupConsult.getF()}{groupConsult.getFISK()}</Text>
         </View>
         <View style={[style.letter, style.I]}>
-        <Text>{groupConsultant.getI()}{groupConsultant.getIISK()}</Text>
+        <Text>{groupConsult.getI()}{groupConsult.getIISK()}</Text>
         </View>
 
         <View style={[style.letter, style.H]}>
-        <Text>{groupConsultant.getH()}{groupConsultant.getHISK()}</Text>
+        <Text>{groupConsult.getH()}{groupConsult.getHISK()}</Text>
         </View>
         <View style={[style.letter, style.G]}>
-        <Text>{groupConsultant.getG()}{groupConsultant.getGISK()}</Text>
+        <Text>{groupConsult.getG()}{groupConsult.getGISK()}</Text>
         </View>
 
         <View style={[style.letter, style.J]}>
-        <Text>{groupConsultant.getJ()}{groupConsultant.getJISK()}</Text>
+        <Text>{groupConsult.getJ()}{groupConsult.getJISK()}</Text>
         </View>
 
         <View style={[style.letter, style.K]}>
-        <Text>{groupConsultant.getK()}</Text>
+        <Text>{groupConsult.getK()}</Text>
         </View>
         <View style={[style.letter, style.O]}>
-        <Text>{groupConsultant.getO()}</Text>
+        <Text>{groupConsult.getO()}</Text>
         </View>
         <View style={[style.letter, style.L]}>
-        <Text>{groupConsultant.getL()}</Text>
+        <Text>{groupConsult.getL()}</Text>
         </View>
 
         <View style={[style.letter, style.M]}>
-        <Text>{groupConsultant.getM()}</Text>
+        <Text>{groupConsult.getM()}</Text>
         </View>
 
         <View style={[style.letter, style.P]}>
-        <Text>{groupConsultant.getP()}</Text>
+        <Text>{groupConsult.getP()}</Text>
         </View>
         <View style={[style.letter, style.N]}>
-        <Text>{groupConsultant.getN()}</Text>
+        <Text>{groupConsult.getN()}</Text>
         </View>
 
         <View style={[style.letter, style.R]}>
-        <Text>{groupConsultant.getR()}</Text>
+        <Text>{groupConsult.getR()}</Text>
         </View>
         <View style={[style.letter, style.Q]}>
-        <Text>{groupConsultant.getQ()}</Text>
+        <Text>{groupConsult.getQ()}</Text>
         </View>
         <View style={[style.letter, style.S]}>
-        <Text>{groupConsultant.getS()}</Text>
+        <Text>{groupConsult.getS()}</Text>
         </View>
 
 
         <View style={[style.letter, style.W]}>
-        <Text>{groupConsultant.getW()}</Text>
+        <Text>{groupConsult.getW()}</Text>
         </View>
         <View style={[style.abs, style.ausensia]}>
-        <Text>{groupConsultant.getAbsences()}</Text>
+        <Text>{groupConsult.getAbsences()}</Text>
         </View>
       </View>
       {cap[0] !== undefined?<View style={[style.wrap, style.wrap2]}>

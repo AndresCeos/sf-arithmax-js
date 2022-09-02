@@ -3,29 +3,29 @@ import { capitalize } from '../../resources';
 import moment from 'moment/min/moment-with-locales'
 moment.locale("es-mx")
 
-export const GroupQuaterM = ({groupConsultant, newDate}) =>{
-  const listOfMonths = groupConsultant.getCustomMonths()
-  const listOfMonthsE = groupConsultant.getAllMonthsEnglish()
-  const allMonths = groupConsultant.getAllMonths()
-  const quater1 = groupConsultant.getQuaterOne()
-  const quater2 = groupConsultant.getQuaterTwo(newDate.year())
-  const quater3 = groupConsultant.getQuaterThree(newDate.year())
+export const GroupQuaterM = ({groupConsult, newDate}) =>{
+  const listOfMonths = groupConsult.getCustomMonths()
+  const listOfMonthsE = groupConsult.getAllMonthsEnglish()
+  const allMonths = groupConsult.getAllMonths()
+  const quater1 = groupConsult.getQuaterOne()
+  const quater2 = groupConsult.getQuaterTwo(newDate.year())
+  const quater3 = groupConsult.getQuaterThree(newDate.year())
   const lastYear = newDate.year()-1
-  const quater1LastYear = groupConsultant.getQuaterOne()
-  const quater2LastYear = groupConsultant.getQuaterTwo(lastYear)
-  const quater3LastYear = groupConsultant.getQuaterThree(lastYear)
-  const quater1Karmico = groupConsultant.getQuaterOneISK()
-  const quater2Karmico = groupConsultant.getQuaterTwoISK(newDate.year())
-  const quater3Karmico = groupConsultant.getQuaterThreeISK(newDate.year())
-  const quater2KarmicoLast = groupConsultant.getQuaterTwoISK(lastYear)
-  const quater3KarmicoLast = groupConsultant.getQuaterThreeISK(lastYear)
-  const personalYearISK = groupConsultant.calcPersonalYearISK(newDate.year())
+  const quater1LastYear = groupConsult.getQuaterOne()
+  const quater2LastYear = groupConsult.getQuaterTwo(lastYear)
+  const quater3LastYear = groupConsult.getQuaterThree(lastYear)
+  const quater1Karmico = groupConsult.getQuaterOneISK()
+  const quater2Karmico = groupConsult.getQuaterTwoISK(newDate.year())
+  const quater3Karmico = groupConsult.getQuaterThreeISK(newDate.year())
+  const quater2KarmicoLast = groupConsult.getQuaterTwoISK(lastYear)
+  const quater3KarmicoLast = groupConsult.getQuaterThreeISK(lastYear)
+  const personalYearISK = groupConsult.calcPersonalYearISK(newDate.year())
   let m1, m2, m3, m4, cm1, cm2, cm3, cm4 = ''
   let ism1 = false
   let ism2 = false
   let ism3 = false
   let ism4 = false
-  const personalYear = groupConsultant.calcPersonalYear(newDate.year())
+  const personalYear = groupConsult.calcPersonalYear(newDate.year())
 
   const actualMonth = newDate.format('MMMM');
   console.log(actualMonth);

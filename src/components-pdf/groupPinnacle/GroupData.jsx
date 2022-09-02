@@ -1,9 +1,9 @@
 import { View,Text,StyleSheet} from "@react-pdf/renderer"
 
 
-export const GroupData = ({groupConsultant}) =>{
-  console.log(groupConsultant)
-const cap = groupConsultant.group
+export const GroupData = ({groupConsult}) =>{
+  console.log(groupConsult)
+    const cap = groupConsult.group
   const Group = ()=>{
     return(
       <>
@@ -24,7 +24,7 @@ const cap = groupConsultant.group
           <Group/>
       </View>
       <View style={style.date}>
-        <Text style={style.text}>{groupConsultant.groupDate}</Text>
+        <Text style={style.text}>{groupConsult.groupDate}</Text>
       </View>
     </View>
   )

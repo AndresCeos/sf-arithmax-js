@@ -2,55 +2,56 @@ import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import { capitalize } from '../../resources';
 import { GroupAnnualReturn } from './GroupAnnualReturn';
 
-export const GroupAnnualReturns = ({ groupConsultant, newDate }) => {
-  const annualReturnCurrent = groupConsultant.annualReturn(newDate.year())
-  const annualReturnLastYear = groupConsultant.annualReturn(newDate.year() - 1)
-  const annualReturnNextYear = groupConsultant.annualReturn(newDate.year() + 1)
+export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
+  console.log(groupConsult)
+  const annualReturnCurrent = groupConsult.annualReturn(newDate.year())
+  const annualReturnLastYear = groupConsult.annualReturn(newDate.year() - 1)
+  const annualReturnNextYear = groupConsult.annualReturn(newDate.year() + 1)
 
   const now = newDate.year()
-  const annualReturn = groupConsultant.annualReturn(now)
-  const personalYear = groupConsultant.calcPersonalYear(now)
-  const yearsOld = groupConsultant.getYearsOld(now)
+  const annualReturn = groupConsult.annualReturn(now)
+  const personalYear = groupConsult.calcPersonalYear(now)
+  const yearsOld = groupConsult.getYearsOld(now)
 
   const y1 = newDate.year() - 4
-  const annualReturnY1 = groupConsultant.annualReturn(y1)
-  const personalYearY1 = groupConsultant.calcPersonalYear(y1)
-  const yearsOldY1 = groupConsultant.getYearsOld(y1)
+  const annualReturnY1 = groupConsult.annualReturn(y1)
+  const personalYearY1 = groupConsult.calcPersonalYear(y1)
+  const yearsOldY1 = groupConsult.getYearsOld(y1)
 
   const y2 = newDate.year() - 3
-  const annualReturnY2 = groupConsultant.annualReturn(y2)
-  const personalYearY2 = groupConsultant.calcPersonalYear(y2)
-  const yearsOldY2 = groupConsultant.getYearsOld(y2)
+  const annualReturnY2 = groupConsult.annualReturn(y2)
+  const personalYearY2 = groupConsult.calcPersonalYear(y2)
+  const yearsOldY2 = groupConsult.getYearsOld(y2)
 
   const y3 = newDate.year() - 2
-  const annualReturnY3 = groupConsultant.annualReturn(y3)
-  const personalYearY3 = groupConsultant.calcPersonalYear(y3)
-  const yearsOldY3 = groupConsultant.getYearsOld(y3)
+  const annualReturnY3 = groupConsult.annualReturn(y3)
+  const personalYearY3 = groupConsult.calcPersonalYear(y3)
+  const yearsOldY3 = groupConsult.getYearsOld(y3)
 
   const y4 = newDate.year() - 1
-  const annualReturnY4 = groupConsultant.annualReturn(y4)
-  const personalYearY4 = groupConsultant.calcPersonalYear(y4)
-  const yearsOldY4 = groupConsultant.getYearsOld(y4)
+  const annualReturnY4 = groupConsult.annualReturn(y4)
+  const personalYearY4 = groupConsult.calcPersonalYear(y4)
+  const yearsOldY4 = groupConsult.getYearsOld(y4)
 
   const y6 = newDate.year() + 1
-  const annualReturnY6 = groupConsultant.annualReturn(y6)
-  const personalYearY6 = groupConsultant.calcPersonalYear(y6)
-  const yearsOldY6 = groupConsultant.getYearsOld(y6)
+  const annualReturnY6 = groupConsult.annualReturn(y6)
+  const personalYearY6 = groupConsult.calcPersonalYear(y6)
+  const yearsOldY6 = groupConsult.getYearsOld(y6)
 
   const y7 = newDate.year() + 2
-  const annualReturnY7 = groupConsultant.annualReturn(y7)
-  const personalYearY7 = groupConsultant.calcPersonalYear(y7)
-  const yearsOldY7 = groupConsultant.getYearsOld(y7)
+  const annualReturnY7 = groupConsult.annualReturn(y7)
+  const personalYearY7 = groupConsult.calcPersonalYear(y7)
+  const yearsOldY7 = groupConsult.getYearsOld(y7)
 
   const y8 = newDate.year() + 3
-  const annualReturnY8 = groupConsultant.annualReturn(y8)
-  const personalYearY8 = groupConsultant.calcPersonalYear(y8)
-  const yearsOldY8 = groupConsultant.getYearsOld(y8)
+  const annualReturnY8 = groupConsult.annualReturn(y8)
+  const personalYearY8 = groupConsult.calcPersonalYear(y8)
+  const yearsOldY8 = groupConsult.getYearsOld(y8)
 
   const y9 = newDate.year() + 4
-  const annualReturnY9 = groupConsultant.annualReturn(y9)
-  const personalYearY9 = groupConsultant.calcPersonalYear(y9)
-  const yearsOldY9 = groupConsultant.getYearsOld(y9)
+  const annualReturnY9 = groupConsult.annualReturn(y9)
+  const personalYearY9 = groupConsult.calcPersonalYear(y9)
+  const yearsOldY9 = groupConsult.getYearsOld(y9)
 
   return (
     <View style={data.container}>

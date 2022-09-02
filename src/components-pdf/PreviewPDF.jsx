@@ -70,9 +70,9 @@ export const PreviewPDF = () => {
     // ...SynastryVibrationTimePDF(synastry, newDate),
     // CompatibilityTablePDF(synastry, newDate),
     // SynastryAnnualReturnsPDF(synastry, newDate),
-    SynastryDestinityPDF(synastry, newDate),
+    //SynastryDestinityPDF(synastry, newDate),
     // GROUP
-    // ...GroupPinnaclePDF(groupConsult, newDate),
+    ...GroupPinnaclePDF(groupConsult, newDate),
     // ...GroupVibrationTimePDF(groupConsult,newDate),
     // GroupAnnualReturnsPDF(groupConsult,newDate),
   ]

@@ -100,9 +100,9 @@ export const Navbar = () => {
     // 'sinastria_destino',
     'sinastria_compatibilidad',
     'sinastria_vibracion',
-    // 'group_pinnacle',
-    // 'group_vibracion',
-    // 'group_retornos'
+    'group_pinnacle',
+    'group_vibracion',
+    'group_retornos'
   ]
 
   const path = location?.pathname.split('/')[1]
@@ -114,7 +114,8 @@ export const Navbar = () => {
   if (location.pathname.includes('group') && !isEmpty) {
     console.log('estoy en los grupos')
     const isEmptyG = Object.keys(userActive.group).length === 0;
-    isDownloadPDFEnabled = existDownloadPDF() && !isEmptyG
+    let groupCap = groupConsult.group
+    isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyG &&groupCap.length>=3)
   }
   if (location.pathname.includes('sinastria') && !isEmpty) {
     console.log('estoy en las parejas')
@@ -140,9 +141,9 @@ export const Navbar = () => {
       // 'sinastria_destino': SynastryDestinityPDF, //(synastry, newDate),
       'sinastria_compatibilidad': CompatibilityTablePDF, //(synastry, newDate),
       'sinastria_vibracion': SynastryVibrationTimePDF, //(synastry, newDate),
-      // 'group_pinnacle': GroupPinnaclePDF, //(groupConsult, newDate),
-      // 'group_vibracion': GroupVibrationTimePDF, //(groupConsult, newDate),
-      // 'group_retornos': GroupAnnualReturnsPDF, //(groupConsult, newDate)
+      'group_pinnacle': GroupPinnaclePDF, //(groupConsult, newDate),
+      'group_vibracion': GroupVibrationTimePDF, //(groupConsult, newDate),
+      'group_retornos': GroupAnnualReturnsPDF, //(groupConsult, newDate)
     }
     docName = sanitize(`${path} ${consultant.fullName}`)
     config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
