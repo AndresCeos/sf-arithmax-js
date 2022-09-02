@@ -167,14 +167,10 @@ const ConfigPage = () => {
                       <div className="form-group w-2/3">
                         <label className='font-bold mb-1 text-13'>Correo electrónico</label>
                         <label className='font-bold mb-1 text-13'>{email}</label>
-                        {/* <input
-                          type="text"
-                          name="email"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.email}
-                          className="rounded-md"
-                        /> */}
+                      </div>
+                      <div className="form-group w-2/3">
+                        <label className='font-bold mb-1 text-13'>Constraseña</label>
+                        <a href="https://app.numerologia-cotidiana.com/mi-cuenta/lost-password/" className='text-blue-600 underline' target="_blank">Cambiar mi Contraseña</a>
                       </div>
                     </div>
                   </div>
@@ -241,7 +237,7 @@ const ConfigPage = () => {
                         />
                         {errors.webSite && touched.webSite ? <span className="form-error">{errors.webSite}</span> : null}
                       </div>
-                      <div className="form-group w-1/2">
+                      {/* <div className="form-group w-1/2">
                         <label className='font-bold mb-1 text-13'>Adjuntar Logo</label>
                         <input
                           type="file"
@@ -251,7 +247,7 @@ const ConfigPage = () => {
                           onBlur={handleBlur}
                           className="rounded-md"
                         />
-                      </div>
+                    </div> */}
                     </div>
                   </div>
                 </div>

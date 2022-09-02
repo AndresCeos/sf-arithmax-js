@@ -119,7 +119,7 @@ const Login = () => {
                     </>
                 }
               </form>
-              {/* <a>Olvide mi Contraseña</a> */}
+              <a href="https://app.numerologia-cotidiana.com/mi-cuenta/lost-password/" target="_blank">Olvide mi Contraseña</a>
             </div>
           </div>
         </div>
