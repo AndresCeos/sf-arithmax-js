@@ -83,8 +83,8 @@ export class Person {
     const lastName = this.lastName.split('')
     const scdLastName = this.scdLastName.split('')
     let n = 0
-    let ln=0
-    let sln=0
+    let ln = 0
+    let sln = 0
     let nameValues = 0
     names.map((el, index) => {
       const vowels = el.split('')
@@ -110,7 +110,7 @@ export class Person {
       })
       sln += val
     })
-    return this.reduceNumber(n+ln+sln)
+    return this.reduceNumber(n + ln + sln)
   }
   getExpressionSoulCheck() {
     const names = this.fullName.toString().toLowerCase().split(' ')
@@ -569,9 +569,9 @@ export class Person {
     return this.reduceNumber(this.birthDate.month() + 1);
   }
   getA() { return this.calcKarma() }
-  getAISK(){
-    const A = this.reduceNumberISK(this.birthDate.month() +1);
-    return this.karmicos.includes(A) ? '*':''
+  getAISK() {
+    const A = this.reduceNumberISK(this.birthDate.month() + 1);
+    return this.karmicos.includes(A) ? '*' : ''
   }
 
   /**
@@ -638,7 +638,7 @@ export class Person {
     let monthReduce = this.reduceNumber(this.birthDate.month() + 1)
     let yearReduce = this.reduceNumber(this.birthDate.year())
     let sumReduce = this.reduceNumber(monthReduce + yearReduce)
-    
+
     return sumReduce
   }
 
@@ -1186,6 +1186,7 @@ export class Person {
       this.getC(),
       this.getD(),
       this.getE(),
+      this.getF(),
       this.getG(),
       this.getH(),
       this.getI(),
