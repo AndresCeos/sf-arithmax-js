@@ -8,8 +8,8 @@ export const GroupAnnualReturnsPDF = ({ groupConsult, newDate }) => {
   return {
     bg: sPinnacle,
     children: <>
-      <GroupAnnualReturns groupConsultant={groupConsult} newDate={newDate} />
-      <GroupData groupConsultant={groupConsult} newDate={newDate} />
+      <GroupAnnualReturns groupConsult={groupConsult} newDate={newDate} />
+      <GroupData groupConsult={groupConsult} newDate={newDate} />
     </>
   }
 }
