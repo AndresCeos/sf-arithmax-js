@@ -14,18 +14,18 @@ import { GroupRetornos3 } from '../groupPinnacle/GroupRetornos3'
 
 export const GroupPinnaclePDF = ({ groupConsult, newDate }) => {
   const cap = groupConsult.group
-  console.log(cap.length)
 
-  if(cap.length>5){
-    return [{
-      bg: gPinnacle,
-      children: <>
-        <GroupData groupConsult={groupConsult} newDate={newDate} />
-        <GroupName1 groupConsult={groupConsult} newDate={newDate} />
-        <GroupPinacle1 groupConsult={groupConsult} newDate={newDate} />
-        <GroupRetornos1 groupConsult={groupConsult} newDate={newDate} />
-      </>
-    }, {
+  let config = {
+    bg: gPinnacle,
+    children: <>
+      <GroupData groupConsult={groupConsult} newDate={newDate} />
+      <GroupName1 groupConsult={groupConsult} newDate={newDate} />
+      <GroupPinacle1 groupConsult={groupConsult} newDate={newDate} />
+      <GroupRetornos1 groupConsult={groupConsult} newDate={newDate} />
+    </>
+  };
+  if (cap.length > 2) {
+    config = [config, {
       bg: gPinnacle2,
       children: <>
         <GroupData groupConsult={groupConsult} newDate={newDate} />
@@ -33,46 +33,18 @@ export const GroupPinnaclePDF = ({ groupConsult, newDate }) => {
         <GroupPinacle2 groupConsult={groupConsult} newDate={newDate} />
         <GroupRetornos2 groupConsult={groupConsult} newDate={newDate} />
       </>
-    }, {
+    }]
+  }
+  if (cap.length > 5) {
+    config = [...config, {
       bg: gPinnacle2,
       children: <>
         <GroupData groupConsult={groupConsult} newDate={newDate} />
         <GroupName3 groupConsult={groupConsult} newDate={newDate} />
         <GroupPinacle3 groupConsult={groupConsult} newDate={newDate} />
         <GroupRetornos3 groupConsult={groupConsult} newDate={newDate} />
-  
       </>
     }]
   }
-  if(cap.length>2&&cap.length<=5){
-    return [{
-      bg: gPinnacle,
-      children: <>
-        <GroupData groupConsult={groupConsult} newDate={newDate} />
-        <GroupName1 groupConsult={groupConsult} newDate={newDate} />
-        <GroupPinacle1 groupConsult={groupConsult} newDate={newDate} />
-        <GroupRetornos1 groupConsult={groupConsult} newDate={newDate} />
-      </>
-    }, {
-      bg: gPinnacle2,
-      children: <>
-        <GroupData groupConsult={groupConsult} newDate={newDate} />
-        <GroupName2 groupConsult={groupConsult} newDate={newDate} />
-        <GroupPinacle2 groupConsult={groupConsult} newDate={newDate} />
-        <GroupRetornos2 groupConsult={groupConsult} newDate={newDate} />
-      </>
-    }]
-  }
-  if(cap.length<=2){
-    return [{
-      bg: gPinnacle,
-      children: <>
-        <GroupData groupConsult={groupConsult} newDate={newDate} />
-        <GroupName1 groupConsult={groupConsult} newDate={newDate} />
-        <GroupPinacle1 groupConsult={groupConsult} newDate={newDate} />
-        <GroupRetornos1 groupConsult={groupConsult} newDate={newDate} />
-      </>
-    }]
-  }
-
+  return config;
 }
