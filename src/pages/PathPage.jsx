@@ -296,7 +296,9 @@ const PathPage = () => {
               </div>
               <div className='col-start-1 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
               <div className='col-start-1 col-span-2 row-start-6 text-13 font-bold'>
-                Autonomía Independencia
+                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][0]} <br />
+                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][1]} <br />
+                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][2]}
               </div>
 
               {(newDate.year() - 27 > consultant.getYearOfBirth()) &&
@@ -313,7 +315,7 @@ const PathPage = () => {
                   <div className='col-start-4 col-span-2 row-start-6 h-9 arrow-down-cicle'></div>
                   <div className='col-start-4 col-span-2 row-start-7 text-13 font-bold'>
                     <div className='col-start-7 col-span-2 row-start-6 text-13 font-bold'>
-                      {ciclePhrases[consultant.calcPersonalYear(newDate.year())][0]}
+                      {ciclePhrases[consultant.calcPersonalYear(newDate.year())][3]}
                     </div>
                   </div>
                   <div className='col-start-6 row-start-1 text-13 font-medium'>
@@ -338,7 +340,7 @@ const PathPage = () => {
                   </div>
                   <div className='col-start-7 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
                   <div className='col-start-7 col-span-2 row-start-6 text-13 font-bold'>
-                    {ciclePhrases[consultant.calcPersonalYear(newDate.year())][1]}
+                    {ciclePhrases[consultant.calcPersonalYear(newDate.year())][4]}
                   </div>
                   <div className='col-start-9 row-start-1 text-13 font-medium'>
                     + 9 años
@@ -362,7 +364,7 @@ const PathPage = () => {
                   <div className='col-start-10 col-span-2 row-start-5 h-9 arrow-down-line'></div>
                   <div className='col-start-10 col-span-2 row-start-6 h-9 arrow-down-cicle'></div>
                   <div className='col-start-10 col-span-2 row-start-7 text-13 font-bold'>
-                    {ciclePhrases[consultant.calcPersonalYear(newDate.year())][2]}
+                    {ciclePhrases[consultant.calcPersonalYear(newDate.year())][5]}
                   </div>
                   <div className='col-start-12 row-start-1 text-13 font-medium'>
                     + 9 años
@@ -384,7 +386,7 @@ const PathPage = () => {
               </div>
               <div className='col-start-13 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
               <div className='col-start-13 col-span-2 row-start-6 text-13 font-bold'>
-                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][3]}
+                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][6]}
               </div>
 
             </div>

@@ -18,7 +18,9 @@ export const LifePath9Years = ({ consultant, now }) => {
           <Text>Año {personalYear}</Text>
         </View>
         <View style={[lifePath.phrase, lifePath.currentYearPhrase]}>
-          <Text>{ciclePhrases[personalYear][3]}</Text>
+          <Text>{ciclePhrases[personalYear][0]}</Text>
+          <Text>{ciclePhrases[personalYear][1]}</Text>
+          <Text>{ciclePhrases[personalYear][2]}</Text>
         </View>
         {(now.year() - 27 > yearOfBirth) &&
           <>
@@ -29,7 +31,7 @@ export const LifePath9Years = ({ consultant, now }) => {
               <Text>{personalYear}</Text>
             </View>
             <View style={[lifePath.phrase, lifePath.currentYearPhrase_1]}>
-              <Text>{ciclePhrases[personalYear][0]}</Text>
+              <Text>{ciclePhrases[personalYear][3]}</Text>
             </View>
           </>
         }
@@ -42,7 +44,7 @@ export const LifePath9Years = ({ consultant, now }) => {
               <Text>{personalYear}</Text>
             </View>
             <View style={[lifePath.phrase, lifePath.currentYearPhrase_2]}>
-              <Text>{ciclePhrases[personalYear][1]}</Text>
+              <Text>{ciclePhrases[personalYear][4]}</Text>
             </View>
           </>
         }
@@ -55,7 +57,7 @@ export const LifePath9Years = ({ consultant, now }) => {
               <Text>{personalYear}</Text>
             </View>
             <View style={[lifePath.phrase, lifePath.currentYearPhrase_3]}>
-              <Text>{ciclePhrases[personalYear][2]}</Text>
+              <Text>{ciclePhrases[personalYear][5]}</Text>
             </View>
           </>
         }
@@ -66,7 +68,7 @@ export const LifePath9Years = ({ consultant, now }) => {
           <Text>{personalYear}</Text>
         </View>
         <View style={[lifePath.phrase, lifePath.currentYearPhrase_4]}>
-          <Text>{ciclePhrases[personalYear][3]}</Text>
+          <Text>{ciclePhrases[personalYear][6]}</Text>
         </View>
       </View>
     </View>
