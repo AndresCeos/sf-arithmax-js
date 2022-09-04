@@ -1,0 +1,22 @@
+{
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  "eslint.run": "onSave",
+  "eslint.options": {
+    "overrideConfigFile": ".eslintrc.cjs"
+  },
+  "errorLens.onSave": true,
+  "terminal.integrated.scrollback": 20000,
+  "debug.javascript.terminalOptions": {
+    "skipFiles": [
+      "<node_internals>/**"
+    ]
+  }
+}
