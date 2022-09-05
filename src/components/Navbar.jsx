@@ -6,7 +6,6 @@ import { setDate, setIsEditing } from '../store/slices/users/users';
 
 import Swal from 'sweetalert2';
 import addUser from '../assets/icons/add_user.svg';
-import bell from '../assets/icons/bell.svg';
 import changeDateIcon from '../assets/icons/change_date.svg';
 import groupData from '../assets/icons/group_data.svg';
 import mail from '../assets/icons/mail.svg';
@@ -19,6 +18,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import moment from 'moment/min/moment-with-locales';
 import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from '../components-pdf/document';
 import { Group, Person, sanitize, Synastry } from '../resources';
+import { Notifications } from './Notifications';
 
 
 export const Navbar = () => {
@@ -345,10 +345,7 @@ export const Navbar = () => {
                 </a>
               </li>
               <li className="flex items-center ml-7">
-                <img
-                  src={bell}
-                  alt="notification"
-                />
+                <Notifications />
               </li>
               <li className="flex items-center ml-6">
                 <img

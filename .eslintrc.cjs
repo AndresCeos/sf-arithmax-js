@@ -21,7 +21,7 @@ module.exports = {
   "rules": {
     "max-len": "off",
     "import/prefer-default-export": "off",
-    "no-console": "off",
+    "no-console": "on",
     "semi": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "react/react-in-jsx-scope": "off",

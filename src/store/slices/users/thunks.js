@@ -19,6 +19,11 @@ export const checkAvailabilityDevices = async (dispatch) => {
           localStorage.setItem('app_version', res.data.app_version)
           localStorage.setItem('app_version_alert', true)
         }
+        if (res.data.notifications_version !== localStorage.getItem('notifications_version')) {
+          localStorage.setItem('notifications_alert', true)
+          localStorage.setItem('notifications_version', res.data.notifications_version)
+          localStorage.setItem('notifications', res.data.notifications)
+        }
         if (res.data.msg === 'full') {
           dispatch(logout({ errorMessage: 'límite de dispositivos alcanzado' }))
         }
