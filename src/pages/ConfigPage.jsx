@@ -1,15 +1,34 @@
+import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik } from 'formik'
-
 import { updateUserProfile } from '../store/slices/auth';
 
-import add_user from '../assets/icons/add_user.svg'
+import { useState } from 'react';
 import { TiPlus } from 'react-icons/ti';
+import add_user from '../assets/icons/add_user.svg';
 
 const ConfigPage = () => {
   const { names, lastName, scdLastName, date, company, address, email, tel, phone, logoURL, webSite, appVersion, licence } = useSelector(state => state.auth)
-
+const [base, setBase] = useState(logoURL !== null ? logoURL : '')
   const dispatch = useDispatch();
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+            resolve(fileReader.result);
+        };
+        fileReader.onerror = (error) => {
+            reject(error);
+        };
+    });
+  };
+  const uploadImage = async (event) => {
+    const file = event.target.files[0];
+    const base64 = await convertBase64(file);
+    console.log(base64);
+    setBase(base64)
+};
 
   return (
     <div className='grid grid-cols-12 mt-8 mx-14 gap-6 py-10'>
@@ -56,6 +75,9 @@ const ConfigPage = () => {
               return errors;
             }}
             onSubmit={(user, { setSubmitting, resetForm }) => {
+              user.logoURL = base
+              console.log(user)
+
               dispatch(updateUserProfile(user))
               // dispatch(updateUserInfo(user))
               setSubmitting(false);
@@ -170,7 +192,7 @@ const ConfigPage = () => {
                       </div>
                       <div className="form-group w-2/3">
                         <label className='font-bold mb-1 text-13'>Constraseña</label>
-                        <a href="https://app.numerologia-cotidiana.com/mi-cuenta/lost-password/" className='text-blue-600 underline' target="_blank">Cambiar mi Contraseña</a>
+                        <a href="https://app.numerologia-cotidiana.com/mi-cuenta/lost-password/" className='text-blue-600 underline' target="_blank" rel="noreferrer">Cambiar mi Contraseña</a>
                       </div>
                     </div>
                   </div>
@@ -237,17 +259,17 @@ const ConfigPage = () => {
                         />
                         {errors.webSite && touched.webSite ? <span className="form-error">{errors.webSite}</span> : null}
                       </div>
-                      {/* <div className="form-group w-1/2">
+                      <div className="form-group w-1/2">
                         <label className='font-bold mb-1 text-13'>Adjuntar Logo</label>
                         <input
                           type="file"
                           name="logoURL"
-                          value={values.logoURL}
-                          onChange={handleChange}
+                          onChange={(e) => { uploadImage(e) }}
                           onBlur={handleBlur}
                           className="rounded-md"
+                          accept="image/*"
                         />
-                    </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -270,8 +292,8 @@ const ConfigPage = () => {
           Mi cuenta
         </div>
         <div className='pinnacle-wrap px-5 py-4 bg-gray-300'>
-          <div className='text-13 text-gray-500 pt-2' ><strong>Versión de Software:</strong> {appVersion}</div>
-          <div className='text-13 text-gray-500 pt-2' ><strong>Número de Licencia:</strong> {licence}</div>
+          <div className='text-13 text-gray-500 pt-2'><strong>Versión de Software:</strong> {appVersion}</div>
+          <div className='text-13 text-gray-500 pt-2'><strong>Número de Licencia:</strong> {licence}</div>
         </div>
 
       </div>

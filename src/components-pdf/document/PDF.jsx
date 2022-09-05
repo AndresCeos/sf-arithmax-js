@@ -1,12 +1,11 @@
-import { Document, Page, Text, View, Image, PDFViewer } from '@react-pdf/renderer';
-import { configReport } from '../styles';
+import { Document, Image, Page, Text, View } from '@react-pdf/renderer';
 import { currentDate } from '../../resources';
+import { configReport } from '../styles';
 
-export const PDF = ({ consultant, config, profile, date, sidebar, synastry, groupConsult, newDate, month }) => {
-
+export const PDF = ({ consultant, config, profile, date, sidebar, synastry, groupConsult, newDate, month, logoURL }) => {
   console.log({ config })
   console.log(groupConsult)
-
+  console.log(profile.logoURL)
   const listOfPDF = config.map(i => {
     if (!Array.isArray(i)) {
       console.log('single')
@@ -16,12 +15,13 @@ export const PDF = ({ consultant, config, profile, date, sidebar, synastry, grou
     return i.map(x => x({ consultant, newDate, synastry, groupConsult, newDate, month }))
   }).flat()
 
+
   console.log({ listOfPDF })
   return (
-    <Document >
-      {listOfPDF.map((e, i) =>
+    <Document>
+      {listOfPDF.map((e, i) => (
         <Page size={[612, 795]} style={configReport.page}>
-          {e.bg && <Image src={e.bg} style={configReport.pageBackground}></Image>}
+          {e.bg && <Image src={e.bg} style={configReport.pageBackground} />}
 
           <View style={configReport.header}>
             <View style={configReport.header_consultor_name}>
@@ -39,6 +39,8 @@ export const PDF = ({ consultant, config, profile, date, sidebar, synastry, grou
             <View style={configReport.header_age}>
               <Text>{consultant.getYearsOld()}</Text>
             </View>
+            <View style={configReport.header_logo} />
+            <Image style={configReport.img_logo} src={logoURL} />
           </View>
           <View style={configReport.sidebar}>
             <Text style={configReport.page_number}>{i + 1}</Text>
@@ -52,7 +54,7 @@ export const PDF = ({ consultant, config, profile, date, sidebar, synastry, grou
             {e.children}
           </View>
         </Page>
-      )}
+      ))}
     </Document>
   )
 }

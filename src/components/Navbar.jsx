@@ -1,27 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { dateSelect, useConsultant, useGroup } from "../hooks";
 import { setDate, setIsEditing } from '../store/slices/users/users';
 
-import Logo from '../assets/logo.png'
-import add_user from '../assets/icons/add_user.svg'
-import update_user from '../assets/icons/update_user.svg'
-import change_date from '../assets/icons/change_date.svg'
-import partner_data from '../assets/icons/partner_data.svg'
-import group_data from '../assets/icons/group_data.svg'
-import notes from '../assets/icons/notes.svg'
-import save_report from '../assets/icons/save_report.svg'
-import print_reports from '../assets/icons/print_reports.svg'
-import mail from '../assets/icons/mail.svg'
-import bell from '../assets/icons/bell.svg'
 import Swal from "sweetalert2";
+import add_user from '../assets/icons/add_user.svg';
+import bell from '../assets/icons/bell.svg';
+import change_date from '../assets/icons/change_date.svg';
+import group_data from '../assets/icons/group_data.svg';
+import mail from '../assets/icons/mail.svg';
+import partner_data from '../assets/icons/partner_data.svg';
+import save_report from '../assets/icons/save_report.svg';
+import update_user from '../assets/icons/update_user.svg';
+import Logo from '../assets/logo.png';
 
-import moment from 'moment/min/moment-with-locales'
-import { Document, Page, Text, View, PDFDownloadLink, Image } from '@react-pdf/renderer';
-import { exampleRreport } from "../components-pdf/styles";
-import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryDestinityPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from "../components-pdf/document";
-import { Person, sanitize, Group, Synastry } from "../resources";
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import moment from 'moment/min/moment-with-locales';
+import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from "../components-pdf/document";
+import { Group, Person, sanitize, Synastry } from "../resources";
 
 
 export const Navbar = () => {
@@ -33,13 +30,11 @@ export const Navbar = () => {
   const isEmpty = Object.keys(userActive).length === 0;
   // const [modal, setModal] = useState(false)
 
-  const { names, lastName, scdLastName, date, email, webSite, phone } = useSelector(state => state.auth)
+  const { names, lastName, scdLastName, date, email, webSite, phone, logoURL } = useSelector(state => state.auth)
   const sidebar = { email, webSite, phone }
   const { group } = useGroup()
   const groupDate = userActive.dateGroup
   const groupConsult = new Group(group, groupDate)
-
-  console.log(isSelectPartner)
 
   const partner = new Person({
     name: userPartnerActive.names,
@@ -159,6 +154,7 @@ export const Navbar = () => {
         groupConsult={groupConsult}
         newDate={newDate}
         month={newDate.month() + 1}
+        logoURL={ logoURL}
       />
     )
     AllPDF = () => (

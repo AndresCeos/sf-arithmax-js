@@ -1,10 +1,9 @@
-import { StyleSheet, Font } from '@react-pdf/renderer';
-import OpenSans from '../assets/fonts/OpenSans/OpenSans-Regular.ttf'
-import OpenSansItalic from '../assets/fonts/OpenSans/OpenSans-Italic.ttf'
-import OpenSansBold from '../assets/fonts/OpenSans/OpenSans-Bold.ttf'
-import OpenSansBoldItalic from '../assets/fonts/OpenSans/OpenSans-BoldItalic.ttf'
+import { Font, StyleSheet } from '@react-pdf/renderer';
+import OpenSansBold from '../assets/fonts/OpenSans/OpenSans-Bold.ttf';
+import OpenSansBoldItalic from '../assets/fonts/OpenSans/OpenSans-BoldItalic.ttf';
+import OpenSansItalic from '../assets/fonts/OpenSans/OpenSans-Italic.ttf';
+import OpenSans from '../assets/fonts/OpenSans/OpenSans-Regular.ttf';
 
-import pinnacleReport from './assets/pinnacle.jpg'
 
 export const exampleRreport = StyleSheet.create({
   page: {
@@ -70,12 +69,12 @@ export const configReport = StyleSheet.create({
     width: '1000%'
   },
   pageBackground: {
-    position: "absolute",
-    minWidth: "100%",
-    minHeight: "100%",
-    display: "block",
-    height: "100%",
-    width: "100%",
+    position: 'absolute',
+    minWidth: '100%',
+    minHeight: '100%',
+    display: 'block',
+    height: '100%',
+    width: '100%',
   },
   header: {
     color: '#000000',
@@ -119,6 +118,26 @@ export const configReport = StyleSheet.create({
     top: '64px',
     // backgroundColor: '#ff0000',
     width: '15px',
+  },
+  header_logo: {
+    position: 'absolute',
+    left: '495px',
+    top: '17px',
+    width: '103px',
+    height: '58px',
+    // border: '2px solid #333',
+    backgroundColor: '#fff',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  img_logo: {
+    position: 'absolute',
+    left: '495px',
+    top: '17px',
+    width: '100px',
+    height: '55px',
+    objectFit: 'contain'
   },
   content: {
     marginLeft: '55px',

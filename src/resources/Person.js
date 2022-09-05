@@ -1,9 +1,9 @@
 import moment from 'moment/min/moment-with-locales'
 import { sanitize } from './Helper'
-moment.locale("es-mx")
+moment.locale('es-mx')
 
 export class Person {
-  constructor({ name = "", lastName = "", scdLastName = "", birthDate = null, yearMeet = "" }) {
+  constructor({ name = '', lastName = '', scdLastName = '', birthDate = null, yearMeet = '' }) {
     this.name = sanitize(name)
     this.lastName = sanitize(lastName)
     this.scdLastName = sanitize(scdLastName)
@@ -17,20 +17,21 @@ export class Person {
     this.NOW = moment()
     this.yearMeet = yearMeet
   }
+
   getYearTimeCurve() {
     return this.birthDate.year()
   }
 
   getInitials() {
     const names = this.name.split(' ')
-    let initials = names.map(el => el.toUpperCase().charAt(0) + ', ')
-    initials += this.lastName.toUpperCase().charAt(0) + ', '
+    let initials = names.map(el => `${el.toUpperCase().charAt(0)}, `)
+    initials += `${this.lastName.toUpperCase().charAt(0)}, `
     initials += this.scdLastName.toUpperCase().charAt(0)
-    return initials //.replaceAll(',', '')
+    return initials // .replaceAll(',', '')
   }
 
   getFormBirthDate() {
-    return `${this.birthDate.date()}/${this.birthDate.format("MM")}/${this.birthDate.year()}`
+    return `${this.birthDate.date()}/${this.birthDate.format('MM')}/${this.birthDate.year()}`
   }
 
   getBirthDate() {
@@ -50,7 +51,7 @@ export class Person {
   }
 
   getFormattedBirthDate() {
-    return `${this.birthDate.date()} de ${this.birthDate.format("MMMM")} ${this.birthDate.year()}`
+    return `${this.birthDate.date()} de ${this.birthDate.format('MMMM')} ${this.birthDate.year()}`
   }
 
   getYearsOld(yearToCalculate = null) {
@@ -59,6 +60,7 @@ export class Person {
     if (age < 1) { age = 0 }
     return age
   }
+
   getNameCheck() {
     const names = this.fullName.toString().toLowerCase().split(' ')
     let nameValues = 0
@@ -78,6 +80,7 @@ export class Person {
     })
     return this.reduceNumber(nameValues + namev)
   }
+
   getSoulCheck() {
     const names = this.nameView.toLowerCase().split(' ')
     const lastName = this.lastName.split('')
@@ -85,7 +88,7 @@ export class Person {
     let n = 0
     let ln = 0
     let sln = 0
-    let nameValues = 0
+    const nameValues = 0
     names.map((el, index) => {
       const vowels = el.split('')
       let val = 0
@@ -112,6 +115,7 @@ export class Person {
     })
     return this.reduceNumber(n + ln + sln)
   }
+
   getExpressionSoulCheck() {
     const names = this.fullName.toString().toLowerCase().split(' ')
     let nameValues = 0
@@ -133,10 +137,11 @@ export class Person {
   calcName() {
     return this.reduceNumber(this.calcNameFull())
   }
+
   calcNameFull() {
     const names = this.name.toString().toLowerCase().toLowerCase().split(' ')
-    let namesValues = []
-    let consultantValues = []
+    const namesValues = []
+    const consultantValues = []
     names.map(el => {
       const letters = el.split('')
       let vowels = 0
@@ -182,6 +187,7 @@ export class Person {
 
     return total
   }
+
   calcNameISK() {
     const nameLetters = this.name.toString().toLowerCase().toLowerCase().split('')
     let nameVowelsValues = 0
@@ -202,7 +208,8 @@ export class Person {
   }
 
   calcInitials() {
-    const nameLetters = this.getInitials().toString().toLowerCase().toLowerCase().split('')
+    const nameLetters = this.getInitials().toString().toLowerCase().toLowerCase()
+.split('')
     let nameVowelsValues = 0
     nameLetters.forEach(e => nameVowelsValues += this.vowelsValues(e))
     let nameConsonantsValue = 0
@@ -312,15 +319,15 @@ export class Person {
 
   calcMaturity() {
     return this.reduceNumber(
-      this.getD() +
-      this.calcName()
+      this.getD()
+      + this.calcName()
     )
   }
 
   calcMaturityISK() {
     const maturity = this.reduceNumberISK(
-      this.getD() +
-      this.calcName()
+      this.getD()
+      + this.calcName()
     )
     return this.karmicos.includes(maturity) ? '*' : ''
   }
@@ -336,7 +343,8 @@ export class Person {
     const personalYear = this.reduceNumber(yearToCalculate + this.birthDate.month() + 1 + this.birthDate.date())
     return personalYear
   }
-  /* Personal  Year Karmico*/
+
+  /* Personal  Year Karmico */
   calcPersonalYearISK(yearToCalculate = null) {
     const personalYear = this.reduceNumberISK(yearToCalculate + this.birthDate.month() + 1 + this.birthDate.date())
     return this.karmicos.includes(personalYear) ? '*' : '';
@@ -353,6 +361,7 @@ export class Person {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(this.calcPersonalYear(yearToCalculate) + monthToCalculate)
   }
+
   /* Personal Month Karmico */
   calcPersonalMonthISK(monthToCalculate = null, yearToCalculate = null) {
     const personalMonth = this.reduceNumberISK(this.calcPersonalYear(yearToCalculate) + monthToCalculate)
@@ -371,52 +380,53 @@ export class Person {
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
     yearToCalculate = yearToCalculate || this.NOW.year()
 
-    let personalYear = this.calcPersonalYear(yearToCalculate);
-    let sumPersonalWeekOne = this.reduceNumber(personalYear + monthToCalculate);
+    const personalYear = this.calcPersonalYear(yearToCalculate);
+    const sumPersonalWeekOne = this.reduceNumber(personalYear + monthToCalculate);
     if (dayToCalculate >= 1 && dayToCalculate <= 7) {
       return sumPersonalWeekOne;
     }
 
-    let sumPersonalWeekTwo = this.reduceNumber(personalYear + sumPersonalWeekOne);
+    const sumPersonalWeekTwo = this.reduceNumber(personalYear + sumPersonalWeekOne);
     if (dayToCalculate >= 8 && dayToCalculate <= 14) {
       return sumPersonalWeekTwo;
     }
 
-    let sumPersonalWeekThree = this.reduceNumber(sumPersonalWeekTwo + sumPersonalWeekOne);
+    const sumPersonalWeekThree = this.reduceNumber(sumPersonalWeekTwo + sumPersonalWeekOne);
     if (dayToCalculate >= 15 && dayToCalculate <= 21) {
       return sumPersonalWeekThree;
     }
 
-    let sumPersonalWeekFour = this.reduceNumber(monthToCalculate + sumPersonalWeekOne);
+    const sumPersonalWeekFour = this.reduceNumber(monthToCalculate + sumPersonalWeekOne);
     if (dayToCalculate >= 22) {
       return sumPersonalWeekFour;
     }
 
     return `${sumPersonalWeekOne} ${sumPersonalWeekTwo} ${sumPersonalWeekThree} ${sumPersonalWeekFour}`;
   }
-  /* Personal Week Karmico*/
+
+  /* Personal Week Karmico */
   calcPersonalWeekISK(dayToCalculate = null, monthToCalculate = null, yearToCalculate = null) {
     dayToCalculate = dayToCalculate || this.NOW.date()
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
     yearToCalculate = yearToCalculate || this.NOW.year()
 
-    let personalYear = this.calcPersonalYear(yearToCalculate);
-    let sumPersonalWeekOne = this.reduceNumberISK(personalYear + monthToCalculate);
+    const personalYear = this.calcPersonalYear(yearToCalculate);
+    const sumPersonalWeekOne = this.reduceNumberISK(personalYear + monthToCalculate);
     if (dayToCalculate >= 1 && dayToCalculate <= 7) {
       return this.karmicos.includes(sumPersonalWeekOne) ? '*' : '';
     }
 
-    let sumPersonalWeekTwo = this.reduceNumberISK(personalYear + sumPersonalWeekOne);
+    const sumPersonalWeekTwo = this.reduceNumberISK(personalYear + sumPersonalWeekOne);
     if (dayToCalculate >= 8 && dayToCalculate <= 14) {
       return this.karmicos.includes(sumPersonalWeekTwo) ? '*' : '';
     }
 
-    let sumPersonalWeekThree = this.reduceNumberISK(sumPersonalWeekTwo + sumPersonalWeekOne);
+    const sumPersonalWeekThree = this.reduceNumberISK(sumPersonalWeekTwo + sumPersonalWeekOne);
     if (dayToCalculate >= 15 && dayToCalculate <= 21) {
       return this.karmicos.includes(sumPersonalWeekThree) ? '*' : '';
     }
 
-    let sumPersonalWeekFour = this.reduceNumberISK(monthToCalculate + sumPersonalWeekOne);
+    const sumPersonalWeekFour = this.reduceNumberISK(monthToCalculate + sumPersonalWeekOne);
     if (dayToCalculate >= 22) {
       return this.karmicos.includes(sumPersonalWeekFour) ? '*' : '';
     }
@@ -437,7 +447,7 @@ export class Person {
     return this.reduceNumber(this.calcPersonalYear(yearToCalculate) + dayToCalculate + monthToCalculate)
   }
 
-  /* Personal  Day Karmico*/
+  /* Personal  Day Karmico */
   calcPersonalDayISK(dayToCalculate = null, monthToCalculate = null, yearToCalculate = null) {
     const personalDay = this.reduceNumberISK(this.calcPersonalYear(yearToCalculate) + dayToCalculate + monthToCalculate)
     return this.karmicos.includes(personalDay) ? '*' : '';
@@ -448,7 +458,8 @@ export class Person {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(yearToCalculate)
   }
-  /* Universal Year Karmico*/
+
+  /* Universal Year Karmico */
   calcUniversalYearISK(yearToCalculate = null) {
     const universalYear = this.calcUniversalYear(yearToCalculate)
     return this.karmicos.includes(universalYear) ? '*' : '';
@@ -460,6 +471,7 @@ export class Person {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(this.calcUniversalYear(yearToCalculate) + monthToCalculate)
   }
+
   /* Universal Month Karmico */
   calcUniversalMonthISK(monthToCalculate = null, yearToCalculate = null) {
     const universalMonth = this.reduceNumberISK(this.calcUniversalYear(yearToCalculate) + monthToCalculate)
@@ -470,36 +482,37 @@ export class Person {
   calcUniversalWeek(monthToCalculate = null, weekToCalculate, yearToCalculate = null) {
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
     yearToCalculate = yearToCalculate || this.NOW.year()
-    let weekOne = monthToCalculate + this.calcUniversalYear(yearToCalculate)
+    const weekOne = monthToCalculate + this.calcUniversalYear(yearToCalculate)
     if (weekToCalculate === 1) { return this.reduceNumber(weekOne) }
-    let weekTwo = this.calcUniversalYear(yearToCalculate) + this.reduceNumber(weekOne)
+    const weekTwo = this.calcUniversalYear(yearToCalculate) + this.reduceNumber(weekOne)
     if (weekToCalculate === 2) { return this.reduceNumber(weekTwo) }
-    let weekThr = this.reduceNumber(weekOne) + this.reduceNumber(weekTwo)
+    const weekThr = this.reduceNumber(weekOne) + this.reduceNumber(weekTwo)
     if (weekToCalculate === 3) { return this.reduceNumber(weekThr) }
-    let weekFou = monthToCalculate + this.reduceNumber(weekOne)
+    const weekFou = monthToCalculate + this.reduceNumber(weekOne)
     console.log(this.calcUniversalYear(yearToCalculate))
     console.log(monthToCalculate);
     console.log(weekOne);
     if (weekToCalculate === 4) { return this.reduceNumber(weekFou) }
   }
-  /* Universal Week Karmico*/
+
+  /* Universal Week Karmico */
   calcUniversalWeekISK(monthToCalculate = null, weekToCalculate, yearToCalculate = null) {
-    let weekOne = monthToCalculate + this.calcUniversalYear(yearToCalculate)
+    const weekOne = monthToCalculate + this.calcUniversalYear(yearToCalculate)
     if (weekToCalculate === 1) {
       const universalWeekOne = this.reduceNumberISK(weekOne)
       return this.karmicos.includes(universalWeekOne) ? '*' : '';
     }
-    let weekTwo = this.calcUniversalYear(yearToCalculate) + weekOne
+    const weekTwo = this.calcUniversalYear(yearToCalculate) + weekOne
     if (weekToCalculate === 2) {
       const universalWeekTwo = this.reduceNumberISK(weekTwo)
       return this.karmicos.includes(universalWeekTwo) ? '*' : '';
     }
-    let weekThr = weekOne + weekTwo
+    const weekThr = weekOne + weekTwo
     if (weekToCalculate === 3) {
       const universalWeekThree = this.reduceNumberISK(weekThr)
       return this.karmicos.includes(universalWeekThree) ? '*' : '';
     }
-    let weekFou = monthToCalculate + weekOne
+    const weekFou = monthToCalculate + weekOne
     if (weekToCalculate === 4) {
       const universalweekFou = this.reduceNumberISK(weekFou)
       return this.karmicos.includes(universalweekFou) ? '*' : '';
@@ -512,47 +525,50 @@ export class Person {
     dayToCalculate = dayToCalculate || this.NOW.date()
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(
-      this.calcUniversalYear(yearToCalculate) +
-      monthToCalculate +
-      dayToCalculate
+      this.calcUniversalYear(yearToCalculate)
+      + monthToCalculate
+      + dayToCalculate
     )
   }
-  /* Universal  Day Karmico*/
+
+  /* Universal  Day Karmico */
   calcUniversalDayISK(dayToCalculate = null, monthToCalculate = null, yearToCalculate = null) {
     const universalDay = this.reduceNumberISK(this.calcUniversalYear(yearToCalculate) + dayToCalculate + monthToCalculate)
     return this.karmicos.includes(universalDay) ? '*' : '';
   }
+
   /*  Función adaptada a Redux */
   calcSelectPersonalWeek(monthToCalculate = null, weekToCalculate, yearToCalculate = null) {
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
     yearToCalculate = yearToCalculate || this.NOW.year()
-    let weekOne = monthToCalculate + this.calcPersonalYear(yearToCalculate)
+    const weekOne = monthToCalculate + this.calcPersonalYear(yearToCalculate)
     if (weekToCalculate === 1) { return this.reduceNumber(weekOne) }
-    let weekTwo = this.calcPersonalYear(yearToCalculate) + weekOne
+    const weekTwo = this.calcPersonalYear(yearToCalculate) + weekOne
     if (weekToCalculate === 2) { return this.reduceNumber(weekTwo) }
-    let weekThr = this.reduceNumber(this.reduceNumber(weekOne) + this.reduceNumber(weekTwo))
+    const weekThr = this.reduceNumber(this.reduceNumber(weekOne) + this.reduceNumber(weekTwo))
     if (weekToCalculate === 3) { return this.reduceNumber(weekThr) }
-    let weekFou = this.reduceNumber(monthToCalculate + this.reduceNumber(weekOne))
+    const weekFou = this.reduceNumber(monthToCalculate + this.reduceNumber(weekOne))
     if (weekToCalculate === 4) { return this.reduceNumber(weekFou) }
   }
+
   /* Personal Week Karmico */
   calcSelectPersonalWeekISK(monthToCalculate = null, weekToCalculate, yearToCalculate = null) {
-    let weekOne = monthToCalculate + this.calcPersonalYear(yearToCalculate)
+    const weekOne = monthToCalculate + this.calcPersonalYear(yearToCalculate)
     if (weekToCalculate === 1) {
       const personalWeekOne = this.reduceNumberISK(weekOne)
       return this.karmicos.includes(personalWeekOne) ? '*' : '';
     }
-    let weekTwo = this.calcPersonalYear(yearToCalculate) + weekOne
+    const weekTwo = this.calcPersonalYear(yearToCalculate) + weekOne
     if (weekToCalculate === 2) {
       const personalWeekTwo = this.reduceNumberISK(weekTwo)
       return this.karmicos.includes(personalWeekTwo) ? '*' : '';
     }
-    let weekThr = this.reduceNumber(this.reduceNumber(weekOne) + this.reduceNumber(weekTwo))
+    const weekThr = this.reduceNumber(this.reduceNumber(weekOne) + this.reduceNumber(weekTwo))
     if (weekToCalculate === 3) {
       const personalWeekThr = this.reduceNumberISK(weekThr)
       return this.karmicos.includes(personalWeekThr) ? '*' : '';
     }
-    let weekFou = this.reduceNumber(monthToCalculate + this.reduceNumber(weekOne))
+    const weekFou = this.reduceNumber(monthToCalculate + this.reduceNumber(weekOne))
     if (weekToCalculate === 4) {
       const personalWeekFou = this.reduceNumberISK(weekFou)
       return this.karmicos.includes(personalWeekFou) ? '*' : '';
@@ -568,7 +584,9 @@ export class Person {
   calcKarma() {
     return this.reduceNumber(this.birthDate.month() + 1);
   }
+
   getA() { return this.calcKarma() }
+
   getAISK() {
     const A = this.reduceNumberISK(this.birthDate.month() + 1);
     return this.karmicos.includes(A) ? '*' : ''
@@ -583,7 +601,9 @@ export class Person {
   calcPersonalNumber() {
     return this.reduceNumber(this.birthDate.date())
   }
+
   getB() { return this.calcPersonalNumber() }
+
   getBISK() {
     const B = this.reduceNumberISK(this.birthDate.date())
     return this.karmicos.includes(B) ? '*' : '';
@@ -598,7 +618,9 @@ export class Person {
   calcPastLife() {
     return this.reduceNumber(this.birthDate.year())
   }
+
   getC() { return this.calcPastLife() }
+
   getCISK() {
     const C = this.reduceNumberISK(this.birthDate.year())
     return this.karmicos.includes(C) ? '*' : '';
@@ -612,32 +634,35 @@ export class Person {
    */
   calcPersonalityNumber() {
     return this.reduceNumber(
-      this.birthDate.date() +
-      this.birthDate.month() + 1 +
-      this.birthDate.year()
+      this.birthDate.date()
+      + this.birthDate.month() + 1
+      + this.birthDate.year()
     )
   }
+
   getD() { return this.calcPersonalityNumber() }
+
   getDISK() {
     const D = this.reduceNumberISK(
-      this.birthDate.date() +
-      this.birthDate.month() + 1 +
-      this.birthDate.year()
+      this.birthDate.date()
+      + this.birthDate.month() + 1
+      + this.birthDate.year()
     )
     return this.karmicos.includes(D) ? '*' : '';
   }
-  getDCheck() {
-    let yearReduce = this.reduceNumber(this.birthDate.year())
-    let monthReduce = this.reduceNumber(this.birthDate.month() + 1)
-    let dayReduce = this.reduceNumber(this.birthDate.date())
-    let sumReduce = this.reduceNumber(yearReduce + monthReduce + dayReduce)
-    return sumReduce
 
+  getDCheck() {
+    const yearReduce = this.reduceNumber(this.birthDate.year())
+    const monthReduce = this.reduceNumber(this.birthDate.month() + 1)
+    const dayReduce = this.reduceNumber(this.birthDate.date())
+    const sumReduce = this.reduceNumber(yearReduce + monthReduce + dayReduce)
+    return sumReduce
   }
+
   getHCheck() {
-    let monthReduce = this.reduceNumber(this.birthDate.month() + 1)
-    let yearReduce = this.reduceNumber(this.birthDate.year())
-    let sumReduce = this.reduceNumber(monthReduce + yearReduce)
+    const monthReduce = this.reduceNumber(this.birthDate.month() + 1)
+    const yearReduce = this.reduceNumber(this.birthDate.year())
+    const sumReduce = this.reduceNumber(monthReduce + yearReduce)
 
     return sumReduce
   }
@@ -671,6 +696,7 @@ export class Person {
     if (stage === 6) return stageTwo
     if (stage === 7) return stageOne
   }
+
   /** Life Stage Karmico */
   calcLifeStageISK(stage = 1) {
     const reducedYear = this.reduceNumber(this.birthDate.year())
@@ -695,6 +721,7 @@ export class Person {
   }
 
   getE() { return this.calcLifeStage(1) }
+
   getEISK() {
     const reducedMonth = this.reduceNumber(this.birthDate.month() + 1)
     const reducedDay = this.reduceNumber(this.birthDate.date())
@@ -702,7 +729,9 @@ export class Person {
 
     return this.karmicos.includes(stageOne) ? '*' : '';
   }
+
   getF() { return this.calcLifeStage(2) }
+
   getFISK() {
     const reducedDay = this.reduceNumber(this.birthDate.date())
     const reducedYear = this.reduceNumber(this.birthDate.year())
@@ -710,38 +739,42 @@ export class Person {
 
     return this.karmicos.includes(stageTwo) ? '*' : '';
   }
+
   getG() { return this.calcLifeStage(3) }
+
   getGISK() {
     const stageThr = this.reduceNumberISK(this.getE() + this.getF())
 
     return this.karmicos.includes(stageThr) ? '*' : '';
   }
+
   getH() { return this.calcLifeStage(4) }
+
   getHISK() {
     const stageFou = this.reduceNumberISK(this.birthDate.month() + 1 + this.birthDate.year())
 
     return this.karmicos.includes(stageFou) ? '*' : '';
   }
+
   hasDoubleStage() {
-    let yearBirthDate = this.birthDate.year()
-    let monthBirthDate = this.birthDate.month() + 1
-    let dayBirthDate = this.birthDate.date()
+    const yearBirthDate = this.birthDate.year()
+    const monthBirthDate = this.birthDate.month() + 1
+    const dayBirthDate = this.birthDate.date()
 
     const reducedYear = this.reduceNumber(yearBirthDate)
     const reducedMonth = this.reduceNumber(monthBirthDate)
     const reducedDay = this.reduceNumber(dayBirthDate)
 
-    let etapa_1 = yearBirthDate + monthBirthDate + dayBirthDate
-    let etapa_2 = reducedYear + reducedMonth + reducedDay
-    let reduce_stage_1 = this.reduceNumber(etapa_1)
-    let reduce_stage_2 = this.reduceNumber(etapa_2)
+    const etapa_1 = yearBirthDate + monthBirthDate + dayBirthDate
+    const etapa_2 = reducedYear + reducedMonth + reducedDay
+    const reduce_stage_1 = this.reduceNumber(etapa_1)
+    const reduce_stage_2 = this.reduceNumber(etapa_2)
     // console.log('etapa 1 => '+ this.reduceNumber(etapa_1))
     // console.log('etapa 2 => '+ this.reduceNumber(etapa_2))
     if (reduce_stage_1 === reduce_stage_2) {
       return false;
-    } else {
-      return true;
     }
+      return true;
   }
 
 
@@ -762,6 +795,7 @@ export class Person {
 
     return 0
   }
+
   calcDoubleLifeStageDuration(stage = 1) {
     const year = this.birthDate.year()
     const month = this.birthDate.month() + 1
@@ -791,9 +825,9 @@ export class Person {
   /* Función adaptada a Redux */
   getLifeStage(yearToCompare = null) {
     yearToCompare = yearToCompare || this.NOW.year()
-    let yearBirthDate = this.birthDate.year()
-    let monthBirthDate = this.birthDate.month() + 1
-    let dayBirthDate = this.birthDate.date()
+    const yearBirthDate = this.birthDate.year()
+    const monthBirthDate = this.birthDate.month() + 1
+    const dayBirthDate = this.birthDate.date()
 
     const reducedYear = this.reduceNumber(yearBirthDate)
     const reducedMonth = this.reduceNumber(monthBirthDate)
@@ -835,12 +869,12 @@ export class Person {
       return stageOne;
     }
   }
+
   /* Life Stage Karmico  */
   getLifeStageISK(yearToCompare = null) {
-
-    let yearBirthDate = this.birthDate.year()
-    let monthBirthDate = this.birthDate.month() + 1
-    let dayBirthDate = this.birthDate.date()
+    const yearBirthDate = this.birthDate.year()
+    const monthBirthDate = this.birthDate.month() + 1
+    const dayBirthDate = this.birthDate.date()
 
     const reducedYear = this.reduceNumber(yearBirthDate)
     const reducedMonth = this.reduceNumber(monthBirthDate)
@@ -890,9 +924,9 @@ export class Person {
 
   getLifeStageNumber(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
-    let yearBirthDate = this.birthDate.year()
-    let monthBirthDate = this.birthDate.month() + 1
-    let dayBirthDate = this.birthDate.date()
+    const yearBirthDate = this.birthDate.year()
+    const monthBirthDate = this.birthDate.month() + 1
+    const dayBirthDate = this.birthDate.date()
 
     const reducedYear = this.reduceNumber(yearBirthDate)
     const reducedMonth = this.reduceNumber(monthBirthDate)
@@ -937,15 +971,15 @@ export class Person {
 
   getDoubleLifeStageNumber(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
-    let yearBirthDate = this.birthDate.year()
-    let monthBirthDate = this.birthDate.month() + 1
-    let dayBirthDate = this.birthDate.date()
+    const yearBirthDate = this.birthDate.year()
+    const monthBirthDate = this.birthDate.month() + 1
+    const dayBirthDate = this.birthDate.date()
 
     const reducedYear = this.reduceNumber(yearBirthDate)
     const reducedMonth = this.reduceNumber(monthBirthDate)
     const reducedDay = this.reduceNumber(dayBirthDate)
 
-    //const reduceSum = this.reduceNumber( yearBirthDate + monthBirthDate + dayBirthDate )
+    // const reduceSum = this.reduceNumber( yearBirthDate + monthBirthDate + dayBirthDate )
     const reduceSum = this.reduceNumber(reducedYear + reducedMonth + reducedDay)
     // console.log('double =>'+reduceSum)
     // const stageOne = this.reduceNumber( reducedMonth + reducedDay )
@@ -991,17 +1025,19 @@ export class Person {
    */
   calcUnconsciousNumber() {
     return this.reduceNumber(
-      this.calcLifeStage() +
-      this.calcLifeStage(2) +
-      this.calcLifeStage(3)
+      this.calcLifeStage()
+      + this.calcLifeStage(2)
+      + this.calcLifeStage(3)
     )
   }
+
   getI() { return this.calcUnconsciousNumber() }
+
   getIISK() {
     const unconsciousNumber = this.reduceNumberISK(
-      this.calcLifeStage() +
-      this.calcLifeStage(2) +
-      this.calcLifeStage(3)
+      this.calcLifeStage()
+      + this.calcLifeStage(2)
+      + this.calcLifeStage(3)
     )
     return this.karmicos.includes(unconsciousNumber) ? '*' : '';
   }
@@ -1014,15 +1050,17 @@ export class Person {
    */
   calcSubconsciousNumber() {
     return this.reduceNumber(
-      this.calcPersonalityNumber() +
-      this.calcLifeStage(4)
+      this.calcPersonalityNumber()
+      + this.calcLifeStage(4)
     )
   }
+
   getJ() { return this.calcSubconsciousNumber() }
+
   getJISK() {
     const subconsciousNumber = this.reduceNumberISK(
-      this.calcPersonalityNumber() +
-      this.calcLifeStage(4)
+      this.calcPersonalityNumber()
+      + this.calcLifeStage(4)
     )
     return this.karmicos.includes(subconsciousNumber) ? '*' : '';
   }
@@ -1058,9 +1096,13 @@ export class Person {
     const goalFou = Math.abs(sumMonth - sumYear)
     if (goal === 4) return goalFou
   }
+
   getK() { return this.calcLifeGoal(1) }
+
   getL() { return this.calcLifeGoal(2) }
+
   getM() { return this.calcLifeGoal(3) }
+
   getN() { return this.calcLifeGoal(4) }
 
 
@@ -1072,11 +1114,12 @@ export class Person {
    */
   calcNegativeUnconsciousNumber() {
     return this.reduceNumber(
-      this.calcLifeGoal() +
-      this.calcLifeGoal(2) +
-      this.calcLifeGoal(3)
+      this.calcLifeGoal()
+      + this.calcLifeGoal(2)
+      + this.calcLifeGoal(3)
     )
   }
+
   getO() { return this.calcNegativeUnconsciousNumber() }
 
   /**
@@ -1087,10 +1130,11 @@ export class Person {
    */
   calcShadeNumber() {
     return this.reduceNumber(
-      this.calcPersonalityNumber() +
-      this.calcNegativeUnconsciousNumber()
+      this.calcPersonalityNumber()
+      + this.calcNegativeUnconsciousNumber()
     )
   }
+
   getP() { return this.calcShadeNumber() }
 
   /**
@@ -1100,10 +1144,11 @@ export class Person {
    */
   calcQ() {
     return this.reduceNumber(
-      this.calcLifeGoal() +
-      this.calcLifeGoal(3)
+      this.calcLifeGoal()
+      + this.calcLifeGoal(3)
     )
   }
+
   getQ() { return this.calcQ() }
 
   /**
@@ -1113,10 +1158,11 @@ export class Person {
    */
   calcR() {
     return this.reduceNumber(
-      this.calcLifeGoal(2) +
-      this.calcLifeGoal(3)
+      this.calcLifeGoal(2)
+      + this.calcLifeGoal(3)
     )
   }
+
   getR() { return this.calcR() }
 
   /**
@@ -1126,10 +1172,11 @@ export class Person {
    */
   calcS() {
     return this.reduceNumber(
-      this.calcQ() +
-      this.calcR()
+      this.calcQ()
+      + this.calcR()
     )
   }
+
   getS() { return this.calcS() }
 
   /**
@@ -1149,30 +1196,30 @@ export class Person {
       this.getS(),
       this.getP(),
     ]
-    const occurrences = appearances.reduce(function (acc, curr) {
+    const occurrences = appearances.reduce((acc, curr) => {
       return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
     }, {});
 
     let w = 0;
     let W = ''
-    Object.values(occurrences).forEach(el => el === 3 ? w++ : w)
+    Object.values(occurrences).forEach(el => (el === 3 ? w++ : w))
     if (w === 1) {
       Object.entries(occurrences).map((el, i) => {
         if (el[1] === 3) {
           W = parseInt(el[0]) * 3
         }
       })
-
     }
     return W === '' ? '' : this.reduceNumber(W)
   }
+
   getW() { return this.calcW() }
 
   getAbsencesName() {
     const appearances = this.getAppearances();
     const absents = Object.entries(appearances).filter((el, i) => el[1].a === 0)
     const absentsTxt = Object.entries(absents).map((el, i) => el[1][0])
-    return absentsTxt.join(' ') //.toString().replaceAll(',', ', ')
+    return absentsTxt.join(' ') // .toString().replaceAll(',', ', ')
     // const alpabeth = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     // const name = this.fullName.toString().toLowerCase().toLowerCase().split('')
     // const absents = alpabeth.filter( (el) => ! name.includes(el) )
@@ -1202,7 +1249,7 @@ export class Person {
       this.getS(),
       this.getW(),
     ]
-    const occurrences = appearances.reduce(function (acc, curr) {
+    const occurrences = appearances.reduce((acc, curr) => {
       if (curr !== '' & curr !== 0) {
         return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
       }
@@ -1210,8 +1257,8 @@ export class Person {
     }, {});
 
     const base = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-    let intersection = base.filter(x => !Object.keys(occurrences).includes(x));
-    return intersection.join(' ') //.toString().replaceAll(',', ', ')
+    const intersection = base.filter(x => !Object.keys(occurrences).includes(x));
+    return intersection.join(' ') // .toString().replaceAll(',', ', ')
   }
 
   calcReaction() {
@@ -1229,29 +1276,29 @@ export class Person {
 
   calcSynthesis() {
     return this.reduceNumber(
-      this.getA() +
-      this.getB() +
-      this.getC() +
-      this.getD() +
-      this.calcReaction()
+      this.getA()
+      + this.getB()
+      + this.getC()
+      + this.getD()
+      + this.calcReaction()
     )
   }
 
   calcSynthesisISK() {
     const synthesis = this.reduceNumberISK(
-      this.getA() +
-      this.getB() +
-      this.getC() +
-      this.getD() +
-      this.calcReaction()
+      this.getA()
+      + this.getB()
+      + this.getC()
+      + this.getD()
+      + this.calcReaction()
     )
     return this.karmicos.includes(synthesis) ? '*' : '';
   }
 
   calcGift() {
     let gift = this.reduceNumber(
-      parseInt(this.birthDate.year().toString()[2]) +
-      parseInt(this.birthDate.year().toString()[3])
+      parseInt(this.birthDate.year().toString()[2])
+      + parseInt(this.birthDate.year().toString()[3])
     )
     if (gift === 0) {
       gift = this.birthDate.year().toString()[1]
@@ -1265,8 +1312,8 @@ export class Person {
 
   calcGiftISK() {
     let gift = this.reduceNumberISK(
-      parseInt(this.birthDate.year().toString()[2]) +
-      parseInt(this.birthDate.year().toString()[3])
+      parseInt(this.birthDate.year().toString()[2])
+      + parseInt(this.birthDate.year().toString()[3])
     )
     if (gift === 0) {
       gift = this.birthDate.year().toString()[1]
@@ -1310,13 +1357,14 @@ export class Person {
   }
 
   nameCount() {
-    const full = this.fullName.split(' ').join('') //.replaceAll(' ', '')
+    const full = this.fullName.split(' ').join('') // .replaceAll(' ', '')
     return full.length
   }
 
   calcNameCycles() {
     return [1, 2, 3, 4].map(i => this.nameCount() * i)
   }
+
   calcNameSubCycles() {
     const factor = (this.nameCount() / 2) / 2;
     const subCycles = [];
@@ -1486,7 +1534,7 @@ export class Person {
   }
 
   getUngroupName(name = this.fullName) {
-    let ungroupName = []
+    const ungroupName = []
     // let ungroupNameV = 0
     // let ungroupNameC = 0
     name.toLowerCase().split('').forEach(el => {
@@ -1504,7 +1552,7 @@ export class Person {
   }
 
   getUngroupNameValues(name = this.fullName) {
-    let ungroupName = []
+    const ungroupName = []
     let ungroupNameV = 0
     let ungroupNameC = 0
     name.toLowerCase().split('').forEach(el => {
@@ -1516,8 +1564,9 @@ export class Person {
     ungroupName.push({ v: ungroupNameV, L: '', c: ungroupNameC })
     return ungroupName
   }
+
   getUngroupNameTotal(name = this.fullName) {
-    let ungroupName = []
+    const ungroupName = []
     let ungroupNameV = 0
     let ungroupNameC = 0
     name.toLowerCase().split('').forEach(el => {
@@ -1536,8 +1585,9 @@ export class Person {
     })
     return ungroupName
   }
+
   getUngroupNameTotalFull(name = this.fullName) {
-    let ungroupName = []
+    const ungroupName = []
     let ungroupNameV = 0
     let ungroupNameC = 0
     name.toLowerCase().split('').forEach(el => {
@@ -1555,7 +1605,7 @@ export class Person {
   }
 
   getAppearances() {
-    let appearances = {
+    const appearances = {
       1: { a: 0, v: 'AJS' },
       2: { a: 0, v: 'BKT' },
       3: { a: 0, v: 'CLU' },
@@ -1569,14 +1619,14 @@ export class Person {
     this.fullName.toLowerCase().split('').forEach(el => {
       if (el !== ' ') {
         const val = this.reduceNumberForSub(this.inclusionValue(el))
-        appearances[val]['a']++
+        appearances[val].a++
       }
     })
     return appearances
   }
 
   getNameSetting() {
-    let nameSetting = []
+    const nameSetting = []
     const name = `${this.fullName.toLowerCase()} ${this.fullName.toLowerCase()}`
     name.split('').forEach(el => {
       const lValue = this.inclusionValue(el)
@@ -1599,7 +1649,7 @@ export class Person {
 
     const pfLetters = `${this.scdLastName.toString().toLowerCase()}`.toLowerCase().split('')
 
-    let destinity = []
+    const destinity = []
     do {
       pmLetters.forEach(el => {
         const lValue = this.letterValue(el)
@@ -1644,12 +1694,12 @@ export class Person {
     } while (ipfLetters < 120)
 
     return destinity.slice(0, 122)
-
   }
 
   getAllMonths() {
     return ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
   }
+
   getAllMonthsEnglish() {
     return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   }
@@ -1688,6 +1738,7 @@ export class Person {
     ]
     return nineYearCycle
   }
+
   /**
    * get nine year cycle
    * @returns {Number} nineYearCycle2
@@ -1696,9 +1747,9 @@ export class Person {
     yearToCalculate = yearToCalculate || this.NOW.year()
     let fisrtValue = false
     let firstYear
-    let nineYearCycle = []
+    const nineYearCycle = []
     for (let index = 0; index <= 9; index++) {
-      let personalYear = this.calcPersonalYear(yearToCalculate - index)
+      const personalYear = this.calcPersonalYear(yearToCalculate - index)
       if (personalYear === 9 && fisrtValue === false) {
         nineYearCycle.push(yearToCalculate - index)
         firstYear = yearToCalculate - index
@@ -1718,7 +1769,8 @@ export class Person {
   getQuaterOne() {
     return this.calcPastLife()
   }
-  /* Quater One Karmico*/
+
+  /* Quater One Karmico */
   getQuaterOneISK() {
     const quaterOne = this.reduceNumberISK(this.birthDate.year())
     return this.karmicos.includes(quaterOne) ? '*' : '';
@@ -1733,6 +1785,7 @@ export class Person {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(yearToCalculate - this.calcPersonalityNumber())
   }
+
   /* Quater Two Karmico */
   getQuaterTwoISK(yearToCalculate = null) {
     const quaterTwo = this.reduceNumberISK(yearToCalculate - this.calcPersonalityNumber())
@@ -1748,6 +1801,7 @@ export class Person {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(this.getQuaterOne() + this.getQuaterTwo(yearToCalculate))
   }
+
   /* Quater Three Karmico */
   getQuaterThreeISK(yearToCalculate = null) {
     const quaterThree = this.reduceNumberISK(this.getQuaterOne() + this.getQuaterTwo(yearToCalculate))
@@ -1763,7 +1817,7 @@ export class Person {
     monthToCalculate = monthToCalculate || this.NOW
     yearToCalculate = yearToCalculate || this.NOW.year()
     String.prototype.capitalize = function () {
-      return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
+      return this.replace(/(^|\s)([a-z])/g, (m, p1, p2) => { return p1 + p2.toUpperCase(); });
     }
     const listOfMonths = this.getCustomMonths()
     const listOfMonthE = this.getAllMonthsEnglish()
@@ -1777,31 +1831,29 @@ export class Person {
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
         return this.getQuaterThree(yearToCalculate - 1)
-      } else {
-        return this.getQuaterOne()
       }
+        return this.getQuaterOne()
     }
     if (index > 4 && index < 9) {
       if (index > indexEnero) {
         return this.getQuaterTwo(yearToCalculate - 1)
-      } else {
-        return this.getQuaterTwo(yearToCalculate)
       }
+        return this.getQuaterTwo(yearToCalculate)
     }
     if (index > 8) {
       if (index > indexEnero) {
         return this.getQuaterThree(yearToCalculate - 1)
-      } else {
-        return this.getQuaterThree(yearToCalculate)
       }
+        return this.getQuaterThree(yearToCalculate)
     }
   }
+
   /* Current Quater Karmico */
   calcCurrentQuaterISK(monthToCalculate = null, yearToCalculate = null) {
     monthToCalculate = monthToCalculate || this.NOW
     yearToCalculate = yearToCalculate || this.NOW.year()
     String.prototype.capitalize = function () {
-      return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
+      return this.replace(/(^|\s)([a-z])/g, (m, p1, p2) => { return p1 + p2.toUpperCase(); });
     }
     const listOfMonths = this.getCustomMonths()
     const listOfMonthE = this.getAllMonthsEnglish()
@@ -1815,29 +1867,28 @@ export class Person {
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
         return this.getQuaterThreeISK(yearToCalculate - 1)
-      } else {
-        return this.getQuaterOneISK()
       }
+        return this.getQuaterOneISK()
     }
     if (index > 4 && index < 9) {
       if (index > indexEnero) {
         return this.getQuaterTwoISK(yearToCalculate - 1)
-      } else {
-        return this.getQuaterTwoISK(yearToCalculate)
       }
+        return this.getQuaterTwoISK(yearToCalculate)
     }
     if (index > 8) {
       if (index > indexEnero) {
         return this.getQuaterThreeISK(yearToCalculate - 1)
-      } else {
-        return this.getQuaterThreeISK(yearToCalculate)
       }
+        return this.getQuaterThreeISK(yearToCalculate)
     }
   }
+
   getDaysOfWeek() {
     return ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
   }
-  /* Función adaptada de Redux*/
+
+  /* Función adaptada de Redux */
   getQuaterMonth(month, year) {
     String.prototype.capitalize = function () {
       return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
@@ -1850,85 +1901,85 @@ export class Person {
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
-          } else {
+          } 
             return this.getQuaterOne(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
-          } else {
+          } 
             return this.getQuaterTwo(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
-          } else {
+          } 
             return this.getQuaterThree(year)
-          }
+          
         }
         break;
       case 2:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
-          } else {
+          } 
             return this.getQuaterOne(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
-          } else {
+          } 
             return this.getQuaterTwo(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
-          } else {
+          } 
             return this.getQuaterThree(year)
-          }
+          
         }
         break;
       case 3:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
-          } else {
+          } 
             return this.getQuaterOne(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
-          } else {
+          } 
             return this.getQuaterTwo(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
-          } else {
+          } 
             return this.getQuaterThree(year)
-          }
+          
         }
         break;
       case 4:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
-          } else {
+          } 
             return this.getQuaterOne(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
-          } else {
+          } 
             return this.getQuaterTwo(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
@@ -2124,6 +2175,7 @@ export class Person {
         break;
     }
   }
+
   /* Quater Month Karmico */
   getQuaterMonthISK(month, year) {
     String.prototype.capitalize = function () {
@@ -2137,85 +2189,85 @@ export class Person {
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
-          } else {
+          } 
             return this.getQuaterOneISK(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
-          } else {
+          } 
             return this.getQuaterTwoISK(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
-          } else {
+          } 
             return this.getQuaterThreeISK(year)
-          }
+          
         }
         break;
       case 2:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
-          } else {
+          } 
             return this.getQuaterOneISK(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
-          } else {
+          } 
             return this.getQuaterTwoISK(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
-          } else {
+          } 
             return this.getQuaterThreeISK(year)
-          }
+          
         }
         break;
       case 3:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
-          } else {
+          } 
             return this.getQuaterOneISK(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
-          } else {
+          } 
             return this.getQuaterTwoISK(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
-          } else {
+          } 
             return this.getQuaterThreeISK(year)
-          }
+          
         }
         break;
       case 4:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
-          } else {
+          } 
             return this.getQuaterOneISK(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
-          } else {
+          } 
             return this.getQuaterTwoISK(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
@@ -2411,8 +2463,9 @@ export class Person {
         break;
     }
   }
+
   getAllDaysInMonth(month, year = null) {
-    console.log('mes => ' + month);
+    console.log(`mes => ${month}`);
     year = year || this.NOW.year()
     return Array.from(Array(moment(`${year}-${month}`).daysInMonth()), (_, i) => i + 1)
   }
@@ -2421,10 +2474,10 @@ export class Person {
     console.log(month);
     year = year || this.NOW.year()
     String.prototype.capitalize = function () {
-      return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
+      return this.replace(/(^|\s)([a-z])/g, (m, p1, p2) => { return p1 + p2.toUpperCase(); });
     }
     const daysInMonth = this.getAllDaysInMonth(month, year)
-    let daysCustom = []
+    const daysCustom = []
     const dayInWeek = this.getDaysOfWeek()
     let firstDay = this.NOW.month(month - 1).date(daysInMonth[0]).format('ddd')
     firstDay = firstDay.replace(/\./g, '')
@@ -2438,6 +2491,7 @@ export class Person {
     }
     return daysCustom
   }
+
   compatibilityObject() {
     const table = {
       1: { pn: [1, 5, 7, 11], pc: [2, 3, 9], pd: [4, 6, 22], pne: [8] },
@@ -2454,6 +2508,7 @@ export class Person {
     }
     return table;
   }
+
   getCompatibility(number, partnerN) {
     const table = this.compatibilityObject()
     const tableNumber = table[number]
@@ -2462,22 +2517,20 @@ export class Person {
         return k.toUpperCase();
       }
     }
-
   }
+
   getSumHierarchy(a, b) {
     return this.reduceNumber(a + b)
   }
+
   getResHierarchy(a, b) {
     (a === 11) ? a = 2 : a = a;
     (a === 22) ? a = 4 : a = a;
     (b === 11) ? b = 2 : b = b;
     (b === 22) ? b = 4 : b = b;
-    let res = this.reduceNumber(a - b)
+    const res = this.reduceNumber(a - b)
     return Math.abs(res)
   }
-
-
-
 }
 
 // module.exports = Person
