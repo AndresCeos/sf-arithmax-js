@@ -1,40 +1,22 @@
-import { dateSelect, useConsultant, useGroup } from '../hooks';
 import { useSelector } from 'react-redux';
 import { UnselectedConsultant } from '../components/UnselectedConsultant';
+import { dateSelect, useConsultant, useGroup } from '../hooks';
 
+import { PDFViewer } from '@react-pdf/renderer';
+import { Group, Person, Synastry } from '../resources';
 import {
   PDF,
-  PinnaclePDF,
-  LifePathPDF,
-  NamePDF,
-  CreateNamePDF,
-  TimeVibrationPDF,
-  CalendarPDF,
-  MonthPDF,
-  AnnualReturnsPDF,
-  CircleTimePDF,
-  SynastryVibrationTimePDF,
-  CompatibilityTablePDF,
-  DestinityPDF,
-  SynastryPinnaclePDF,
-  SynastryAnnualReturnsPDF,
-  SynastryDestinityPDF,
-  GroupPinnaclePDF,
-  GroupVibrationTimePDF,
-  GroupAnnualReturnsPDF
+  PinnaclePDF
 } from './document';
-import { Group, Person, Synastry } from '../resources';
-import { PDFViewer } from '@react-pdf/renderer';
 
 export const PreviewPDF = () => {
-
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
   const { group } = useGroup()
 
   const { names, lastName, scdLastName, date,
-    email, webSite, phone } = useSelector(state => state.auth)
+    email, webSite, phone, logoURL } = useSelector(state => state.auth)
   const { newDate } = dateSelect()
   const profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
   const sidebar = { email, webSite, phone }
@@ -55,7 +37,7 @@ export const PreviewPDF = () => {
   const synastry = new Synastry(consultant, partner)
   console.log(synastry)
   const config = [
-    // PinnaclePDF(consultant),
+    PinnaclePDF, // ({ consultant }),
     // LifePathPDF(consultant, newDate),
     // ...NamePDF(consultant, newDate),
     // CreateNamePDF(consultant),
@@ -66,25 +48,23 @@ export const PreviewPDF = () => {
     // ...CalendarPDF(consultant, newDate),
     // MonthPDF(consultant, newDate, 8),
     // SYNASTRY
-    //SynastryPinnaclePDF(synastry, newDate),
+    // SynastryPinnaclePDF(synastry, newDate),
     // ...SynastryVibrationTimePDF(synastry, newDate),
     // CompatibilityTablePDF(synastry, newDate),
     // SynastryAnnualReturnsPDF(synastry, newDate),
-    //SynastryDestinityPDF(synastry, newDate),
+    // SynastryDestinityPDF(synastry, newDate),
     // GROUP
-    ...GroupPinnaclePDF(groupConsult, newDate),
+    // ...GroupPinnaclePDF(groupConsult, newDate),
     // ...GroupVibrationTimePDF(groupConsult,newDate),
     // GroupAnnualReturnsPDF(groupConsult,newDate),
   ]
 
   return (
-    <>
-      <div className='mx-10 my-16'>
-        Preview
-        <PDFViewer width='100%' height='100%' style={{ height: 800 }}>
-          <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} />
-        </PDFViewer>
-      </div>
-    </>
+    <div className='mx-10 my-16'>
+      Preview
+      <PDFViewer width='100%' height='100%' style={{ height: 800 }}>
+        <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} logoURL={logoURL} />
+      </PDFViewer>
+    </div>
   )
 }

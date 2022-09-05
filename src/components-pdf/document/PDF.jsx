@@ -9,10 +9,10 @@ export const PDF = ({ consultant, config, profile, date, sidebar, synastry, grou
   const listOfPDF = config.map(i => {
     if (!Array.isArray(i)) {
       console.log('single')
-      return i({ consultant, newDate, synastry, groupConsult, newDate, month })
+      return i({ consultant, newDate, synastry, groupConsult, month })
     }
     console.log('array')
-    return i.map(x => x({ consultant, newDate, synastry, groupConsult, newDate, month }))
+    return i.map(x => x({ consultant, synastry, groupConsult, newDate, month }))
   }).flat()
 
 

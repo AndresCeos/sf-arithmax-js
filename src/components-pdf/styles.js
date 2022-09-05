@@ -135,8 +135,8 @@ export const configReport = StyleSheet.create({
     position: 'absolute',
     left: '495px',
     top: '17px',
-    width: '100px',
-    height: '55px',
+    width: '103px',
+    height: '58px',
     objectFit: 'contain'
   },
   content: {
