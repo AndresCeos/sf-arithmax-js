@@ -831,6 +831,7 @@ svg {
     #pinaculo.small .pinncle-letter {
         font-size: 17px;
     }
+
     #pinaculo.small .pinncle-letter[data-letter="B"] {
         font-size: 27px;
     }
@@ -2822,12 +2823,14 @@ top: 134px;
 }
 
 @media (max-width: 1440px) {
+
     .nameBreakdown,
     .destinity-table,
     .active-name {
         transform: scale(0.9);
         transform-origin: top;
     }
+
     .destinity-table .nameBreakdown {
         transform: scale(1);
         transform-origin: top;
@@ -2838,18 +2841,22 @@ top: 134px;
     #main-menu img {
         max-width: 25px;
     }
+
     #main-menu .px-3 {
         padding-left: 0.25rem;
         padding-right: 0.25rem;
     }
+
     #App-content>.grid {
         transform: scale(0.9);
         transform-origin: top;
     }
+
     #App-content>.mx-14 {
         margin-left: 0;
         margin-right: 0;
     }
+
     .nameBreakdown div {
         /* width: 30px; */
     }
@@ -2859,20 +2866,25 @@ top: 134px;
     body {
         /* width: 1260px; */
     }
+
     #App-content>.grid {
         transform: scale(0.88);
         transform-origin: top;
     }
+
     #main-menu img {
         max-width: 35px;
     }
+
     #main-menu .px-3 {
         font-size: 0;
         line-height: 0;
     }
+
     #main-menu .px-3 br {
         display: none;
     }
+
     .pinnacle-wrap {
         padding: 10px;
     }
@@ -2912,4 +2924,8 @@ top: 134px;
     right: 10px;
     z-index: 999999999;
     padding: 10px;
+}
+
+.z-100 {
+    z-index: 100;
 }

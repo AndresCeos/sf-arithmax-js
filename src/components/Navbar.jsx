@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { dateSelect, useConsultant, useGroup } from "../hooks";
+import { dateSelect, useConsultant, useGroup } from '../hooks';
 import { setDate, setIsEditing } from '../store/slices/users/users';
 
-import Swal from "sweetalert2";
-import add_user from '../assets/icons/add_user.svg';
+import Swal from 'sweetalert2';
+import addUser from '../assets/icons/add_user.svg';
 import bell from '../assets/icons/bell.svg';
-import change_date from '../assets/icons/change_date.svg';
-import group_data from '../assets/icons/group_data.svg';
+import changeDateIcon from '../assets/icons/change_date.svg';
+import groupData from '../assets/icons/group_data.svg';
 import mail from '../assets/icons/mail.svg';
-import partner_data from '../assets/icons/partner_data.svg';
-import save_report from '../assets/icons/save_report.svg';
-import update_user from '../assets/icons/update_user.svg';
+import partnerData from '../assets/icons/partner_data.svg';
+import saveReport from '../assets/icons/save_report.svg';
+import updateUser from '../assets/icons/update_user.svg';
 import Logo from '../assets/logo.png';
 
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import moment from 'moment/min/moment-with-locales';
-import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from "../components-pdf/document";
-import { Group, Person, sanitize, Synastry } from "../resources";
+import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from '../components-pdf/document';
+import { Group, Person, sanitize, Synastry } from '../resources';
 
 
 export const Navbar = () => {
@@ -68,7 +68,7 @@ export const Navbar = () => {
         dispatch(setDate(now))
       }
       if (result.isDenied) {
-        let date = document.getElementById('newDate').value
+        const date = document.getElementById('newDate').value
         dispatch(setDate(date))
       }
     })
@@ -100,7 +100,7 @@ export const Navbar = () => {
     'group_retornos'
   ]
 
-  const path = location?.pathname.split('/')[1]
+  const path = location.pathname.split('/')[1]
   const existDownloadPDF = () => {
     return reportList.includes(path)
   }
@@ -109,36 +109,41 @@ export const Navbar = () => {
   if (location.pathname.includes('group') && !isEmpty) {
     console.log('estoy en los grupos')
     const isEmptyG = Object.keys(userActive.group).length === 0;
-    let groupCap = groupConsult.group
-    isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyG &&groupCap.length>=3)
+    const groupCap = groupConsult.group
+    isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyG && groupCap.length >= 3)
   }
   if (location.pathname.includes('sinastria') && !isEmpty) {
     console.log('estoy en las parejas')
     const isEmptyP = Object.keys(userActive.partner).length === 0;
     isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyP && isSelectPartner)
   }
-  let config, docName, profile, MyPDF, AllPDF, configAll;
+  let config;
+  let docName;
+  let profile;
+  let MyPDF;
+  let AllPDF;
+  let configAll;
 
   if (isDownloadPDFEnabled) {
     const reports = {
-      'pinaculo': PinnaclePDF, //(consultant),
-      'camino': LifePathPDF, //(consultant, newDate),
-      'nombre': NamePDF, //(consultant, newDate),
-      'crear_nombre': CreateNamePDF, //(consultant),
-      'destino': DestinityPDF, //(consultant, newDate),
-      'tiempo': TimeVibrationPDF, //(consultant, newDate),
-      'retornos': AnnualReturnsPDF, //(consultant, newDate),
-      'circulo_tiempo': CircleTimePDF, //(consultant, newDate),
-      'calendario': CalendarPDF, //(consultant, newDate),
-      'calendarioMensual': MonthPDF, //(consultant, newDate, newDate.month, //() + 1),
-      'sinastria': SynastryPinnaclePDF, //(synastry, newDate),
-      'sinastria_retornos': SynastryAnnualReturnsPDF, //(synastry, newDate),
+      pinaculo: PinnaclePDF, // (consultant),
+      camino: LifePathPDF, // (consultant, newDate),
+      nombre: NamePDF, // (consultant, newDate),
+      crear_nombre: CreateNamePDF, // (consultant),
+      destino: DestinityPDF, // (consultant, newDate),
+      tiempo: TimeVibrationPDF, // (consultant, newDate),
+      retornos: AnnualReturnsPDF, // (consultant, newDate),
+      circulo_tiempo: CircleTimePDF, // (consultant, newDate),
+      calendario: CalendarPDF, // (consultant, newDate),
+      calendarioMensual: MonthPDF, // (consultant, newDate, newDate.month, //() + 1),
+      sinastria: SynastryPinnaclePDF, // (synastry, newDate),
+      sinastria_retornos: SynastryAnnualReturnsPDF, // (synastry, newDate),
       // 'sinastria_destino': SynastryDestinityPDF, //(synastry, newDate),
-      'sinastria_compatibilidad': CompatibilityTablePDF, //(synastry, newDate),
-      'sinastria_vibracion': SynastryVibrationTimePDF, //(synastry, newDate),
-      'group_pinnacle': GroupPinnaclePDF, //(groupConsult, newDate),
-      'group_vibracion': GroupVibrationTimePDF, //(groupConsult, newDate),
-      'group_retornos': GroupAnnualReturnsPDF, //(groupConsult, newDate)
+      sinastria_compatibilidad: CompatibilityTablePDF, // (synastry, newDate),
+      sinastria_vibracion: SynastryVibrationTimePDF, // (synastry, newDate),
+      group_pinnacle: GroupPinnaclePDF, // (groupConsult, newDate),
+      group_vibracion: GroupVibrationTimePDF, // (groupConsult, newDate),
+      group_retornos: GroupAnnualReturnsPDF, // (groupConsult, newDate)
     }
     docName = sanitize(`${path} ${consultant.fullName}`)
     config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
@@ -154,7 +159,7 @@ export const Navbar = () => {
         groupConsult={groupConsult}
         newDate={newDate}
         month={newDate.month() + 1}
-        logoURL={ logoURL}
+        logoURL={logoURL}
       />
     )
     AllPDF = () => (
@@ -221,7 +226,7 @@ export const Navbar = () => {
                   to="/consultante"
                 >
                   <img
-                    src={add_user}
+                    src={addUser}
                     alt="add_user"
                     className="mb-1"
                   />
@@ -229,10 +234,13 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="flex items-center">
-                <Link className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
-                  to="consultante" onClick={handlerEdit}>
+                <Link
+                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  to="consultante"
+                  onClick={handlerEdit}
+                >
                   <img
-                    src={update_user}
+                    src={updateUser}
                     className="mb-1"
                     alt="update_user"
                   />
@@ -240,10 +248,12 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="flex items-center">
-                <button className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
-                  onClick={changeDate}>
+                <button
+                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  onClick={changeDate}
+                >
                   <img
-                    src={change_date}
+                    src={changeDateIcon}
                     className="mb-1"
                     alt="change_date"
                   />
@@ -256,7 +266,7 @@ export const Navbar = () => {
                   to="/sinastria"
                 >
                   <img
-                    src={partner_data}
+                    src={partnerData}
                     className="mb-1"
                     alt="partner_data"
                   />
@@ -264,10 +274,12 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="flex items-center">
-                <Link className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
-                  to="/group_pinnacle">
+                <Link
+                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  to="/group_pinnacle"
+                >
                   <img
-                    src={group_data}
+                    src={groupData}
                     className="mb-1"
                     alt="group_data"
                   />
@@ -276,26 +288,31 @@ export const Navbar = () => {
               </li>
 
               <li className="flex items-center">
-                {isDownloadPDFEnabled ?
-                  <PDFDownloadLink
-                    document={<MyPDF />}
-                    fileName={docName}
-                    className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
-                    <img
-                      src={save_report}
-                      className="mb-1"
-                      alt="save_report"
-                    />
-                    Guardar<br />reporte
-                  </PDFDownloadLink> :
-                  <button className="flex flex-col justify-center text-center items-center text-white h-full px-3 opacity-30 cursor-auto">
-                    <img
-                      src={save_report}
-                      className="mb-1"
-                      alt="save_report"
-                    />
-                    Guardar<br />reporte
-                  </button>
+                {isDownloadPDFEnabled
+                  ? (
+                    <PDFDownloadLink
+                      document={<MyPDF />}
+                      fileName={docName}
+                      className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                    >
+                      <img
+                        src={saveReport}
+                        className="mb-1"
+                        alt="save_report"
+                      />
+                      Guardar<br />reporte
+                    </PDFDownloadLink>
+                  )
+                  : (
+                    <button className="flex flex-col justify-center text-center items-center text-white h-full px-3 opacity-30 cursor-auto">
+                      <img
+                        src={saveReport}
+                        className="mb-1"
+                        alt="save_report"
+                      />
+                      Guardar<br />reporte
+                    </button>
+                  )
                 }
               </li>
               {/* <li className="flex items-center">
@@ -320,10 +337,12 @@ export const Navbar = () => {
                   </button>}
               </li> */}
               <li className="flex items-center ml-20">
-                <img
-                  src={mail}
-                  alt="email"
-                />
+                <a href="https://app.numerologia-cotidiana.com/formulario-de-soporte-arithmax/" target="_blank" rel="noreferrer">
+                  <img
+                    src={mail}
+                    alt="email"
+                  />
+                </a>
               </li>
               <li className="flex items-center ml-7">
                 <img
