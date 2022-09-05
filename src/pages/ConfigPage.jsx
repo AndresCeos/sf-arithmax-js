@@ -2,14 +2,23 @@ import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile } from '../store/slices/auth';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TiPlus } from 'react-icons/ti';
 import add_user from '../assets/icons/add_user.svg';
+import c_delete from '../assets/icons/c_delete.svg';
+import { showToast } from '../store/slices/users/users';
 
 const ConfigPage = () => {
   const { names, lastName, scdLastName, date, company, address, email, tel, phone, logoURL, webSite, appVersion, licence } = useSelector(state => state.auth)
-const [base, setBase] = useState(logoURL !== null ? logoURL : '')
+  const [base, setBase] = useState(logoURL !== null ? logoURL : '')
+  const [isSelect, setIsSelect] = useState(false)
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (base !== '') {
+      setIsSelect(true)
+    }
+  }, [])
+
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -28,7 +37,12 @@ const [base, setBase] = useState(logoURL !== null ? logoURL : '')
     const base64 = await convertBase64(file);
     console.log(base64);
     setBase(base64)
-};
+    setIsSelect(true)
+  };
+  const clear = () => {
+    setIsSelect(false)
+    setBase('')
+  }
 
   return (
     <div className='grid grid-cols-12 mt-8 mx-14 gap-6 py-10'>
@@ -76,9 +90,12 @@ const [base, setBase] = useState(logoURL !== null ? logoURL : '')
             }}
             onSubmit={(user, { setSubmitting, resetForm }) => {
               user.logoURL = base
-              console.log(user)
-
               dispatch(updateUserProfile(user))
+              dispatch(showToast({
+                message: 'Perfil actualizado',
+                type: 'success',
+                show: true
+              }))
               // dispatch(updateUserInfo(user))
               setSubmitting(false);
               // resetForm({})
@@ -259,6 +276,7 @@ const [base, setBase] = useState(logoURL !== null ? logoURL : '')
                         />
                         {errors.webSite && touched.webSite ? <span className="form-error">{errors.webSite}</span> : null}
                       </div>
+                      {(!isSelect) ? (
                       <div className="form-group w-1/2">
                         <label className='font-bold mb-1 text-13'>Adjuntar Logo</label>
                         <input
@@ -270,6 +288,22 @@ const [base, setBase] = useState(logoURL !== null ? logoURL : '')
                           accept="image/*"
                         />
                       </div>
+                        ) : null}
+                    </div>
+                    <div className='flex w-full mt-6'>
+                      {(isSelect) ? (
+                      <div className="form-group w-full">
+                        <label className='font-bold mb-1 text-13'>
+                          Preview
+                        </label>
+                        <div className='flex w-full'>
+                          <img className=' w-2/3 h-28 object-contain border-2 border-black' src={base} alt="logoURL" />
+                          <button className="ml-6 w-1/3" onClick={clear}>
+                            <img src={c_delete} alt="delete" />
+                          </button>
+                        </div>
+                      </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>

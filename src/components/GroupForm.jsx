@@ -1,57 +1,56 @@
+import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik } from 'formik'
 
-import { editUser, generateUserId, setIsGroupEditing } from '../store/slices/users/users';
+import { editUser, setIsGroupEditing } from '../store/slices/users/users';
 
-import add_user_main from '../assets/icons/add_user_group.svg'
 import { useState } from 'react';
+import add_user_main from '../assets/icons/add_user_group.svg';
 
-export const GroupForm = ( {dataPartner,userIndex, setIsAddFormActive,indexGroup} ) => {
+export const GroupForm = ({ dataPartner, userIndex, setIsAddFormActive, indexGroup }) => {
   const dispatch = useDispatch();
   const { isGroupEditing, userActive } = useSelector(state => state.users);
   let groupDateEmpty = true
   const gDate = userActive.dateGroup
-  const [groupDate, setGroupDate] = useState(isGroupEditing?gDate:null)
-  const [bool,setBool] = useState(false)
-if(userActive.dateGroup !== null){
+  const [groupDate, setGroupDate] = useState(isGroupEditing ? gDate : null)
+  const [bool, setBool] = useState(false)
+if (userActive.dateGroup !== null) {
   groupDateEmpty = false
 }
-let cap = userActive.group
+const cap = userActive.group
 console.log(cap.length);
 
 
-const closeForm = () =>{
+const closeForm = () => {
   setIsAddFormActive(false)
   dispatch(setIsGroupEditing(false))
 }
-const validateDate = () =>{
-  if(groupDate===null){
+const validateDate = () => {
+  if (groupDate === null) {
     setBool(true)
   }
 }
-  return(
+  return (
     <>
     <Formik
       enableReinitialize
-      initialValues={ ( ! isGroupEditing ) ?
-        { names: '', date: '',lastName:'',scdLastName:'' ,dateInit:''}
-        :
-        {
-          names:cap[indexGroup].names,
-          date:cap[indexGroup].date,
-          lastName:cap[indexGroup].lastName,
-          scdLastName:cap[indexGroup].scdLastName,
-          dateInit:groupDate
+      initialValues={(!isGroupEditing)
+        ? { names: '', date: '', lastName: '', scdLastName: '', dateInit: '' }
+        : {
+          names: cap[indexGroup].names,
+          date: cap[indexGroup].date,
+          lastName: cap[indexGroup].lastName,
+          scdLastName: cap[indexGroup].scdLastName,
+          dateInit: groupDate
 
         }
       }
-      validate={ values => {
+      validate={values => {
         const errors = {};
         const letters = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g
         if (!values.names) {
           errors.names = 'Requerido';
         }
-        if (!values.names.match( letters )) {
+        if (!values.names.match(letters)) {
           errors.names = 'No valido';
         }
         if (!values.date) {
@@ -60,41 +59,39 @@ const validateDate = () =>{
         if (!values.lastName) {
           errors.lastName = 'Requerido';
         }
-        if (!values.lastName.match( letters )) {
+        if (!values.lastName.match(letters)) {
           errors.lastName = 'No valido';
         }
         if (!values.scdLastName) {
           errors.scdLastName = 'Requerido';
         }
-        if (!values.scdLastName.match( letters )) {
+        if (!values.scdLastName.match(letters)) {
           errors.scdLastName = 'No valido';
         }
-        if (!values.scdLastName.match( letters )) {
+        if (!values.scdLastName.match(letters)) {
           errors.scdLastName = 'No valido';
         }
         if (!values.dateInit) {
           errors.dateInit = 'Requerido';
         }
         return errors;
-      } }
-      onSubmit={(user,  { setSubmitting, resetForm }) => {
-          if(!isGroupEditing){
+      }}
+      onSubmit={(user, { setSubmitting, resetForm }) => {
+          if (!isGroupEditing) {
             const updatedUser = {
               ...dataPartner,
-              group :[
+              group: [
                 ...dataPartner.group,
                 user,
               ],
-              dateGroup:user.dateInit
+              dateGroup: user.dateInit
             }
-            dispatch( editUser(updatedUser, userIndex) )
+            dispatch(editUser(updatedUser, userIndex))
           }
-          if(isGroupEditing){
-            let arrayGroups =Object.assign({},dataPartner.group,{})
+          if (isGroupEditing) {
+            const arrayGroups = { ...dataPartner.group, }
             arrayGroups[indexGroup] = user
-            let userPartners = Object.assign({}, dataPartner,{
-              group : Object.keys(arrayGroups).map(key => arrayGroups[key]),
-            })
+            const userPartners = { ...dataPartner, group: Object.keys(arrayGroups).map(key => arrayGroups[key]), }
             userPartners.dateGroup = user.dateInit
             console.log(userPartners);
             dispatch(editUser(userPartners, userIndex))
@@ -115,9 +112,9 @@ const validateDate = () =>{
       isSubmitting,
       /* and other goodies */
     }) => (
-      <form  className="block w-full mt-3" onSubmit={handleSubmit}>
+      <form className="block w-full mt-3" onSubmit={handleSubmit}>
         <h2 className="flex justify-center items-center text-xl font-bold">
-          <img src={add_user_main} className="mr-3" alt='add_user_main'/>
+          <img src={add_user_main} className="mr-3" alt='add_user_main' />
           Agregar Persona al Grupo
         </h2>
         <div className="flex w-full mt-6">
@@ -134,7 +131,7 @@ const validateDate = () =>{
               onBlur={handleBlur}
               value={values.names}
             />
-            {errors.names && touched.names ? <span className="form-error">{errors.names}</span>  : null }
+            {errors.names && touched.names ? <span className="form-error">{errors.names}</span> : null }
           </div>
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
@@ -149,7 +146,7 @@ const validateDate = () =>{
               onBlur={handleBlur}
               value={values.lastName}
             />
-            {errors.lastName && touched.lastName ? <span className="form-error">{errors.lastName}</span>  : null }
+            {errors.lastName && touched.lastName ? <span className="form-error">{errors.lastName}</span> : null }
           </div>
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
@@ -164,7 +161,7 @@ const validateDate = () =>{
               onBlur={handleBlur}
               value={values.scdLastName}
             />
-            {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span>  : null }
+            {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span> : null }
           </div>
         </div>
         <div className="flex w-full mt-3">
@@ -181,7 +178,7 @@ const validateDate = () =>{
               onBlur={handleBlur}
               value={values.date}
             />
-            {errors.date && touched.date ? <span className="form-error">{errors.date}</span>  : null }
+            {errors.date && touched.date ? <span className="form-error">{errors.date}</span> : null }
           </div>
           <div className="form-group w-1/3">
         <label className='font-bold mb-1'>
@@ -196,19 +193,17 @@ const validateDate = () =>{
           onBlur={handleBlur}
           value={values.dateInit}
         />
-        {errors.dateInit && touched.dateInit ? <span className="form-error">{errors.dateInit}</span>  : null }
-      </div>
+        {errors.dateInit && touched.dateInit ? <span className="form-error">{errors.dateInit}</span> : null }
+          </div>
         </div>
         <div className="flex w-full mt-3 justify-center">
           <button type="submit" className="btn-save w-32" disabled={isSubmitting} onClick={validateDate}>Guardar</button>
-          {(isGroupEditing)?<button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm} >Cancelar</button> :''}
+          {(isGroupEditing) ? <button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm}>Cancelar</button> : ''}
         </div>
       </form>
     )}
     </Formik>
-<div className="flex w-full mt-3">
-
-    </div>
+<div className="flex w-full mt-3" />
     </>
   )
 }
