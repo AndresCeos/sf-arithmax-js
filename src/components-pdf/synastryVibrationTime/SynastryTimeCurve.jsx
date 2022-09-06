@@ -1,9 +1,15 @@
-import { View, Text, StyleSheet } from "@react-pdf/renderer"
+import { Image, StyleSheet, Text, View } from '@react-pdf/renderer'
+import bgTimeCurve from '../assets/s-time-vibration-time-bk.png'
 
-export const SynastryTimeCurve = ({synastry, newDate})=>{
+export const SynastryTimeCurve = ({ synastry, newDate }) => {
+  const activeStage = synastry.getLifeStageNumber(newDate.year(), newDate)
   return (
-    <View style={timeCurve.container}>
-      <View style={timeCurve.wrap}>
+    <View style={[timeCurve.container]}>
+
+      <View style={{ position: 'absolute', top: 0, zIndex: 3 }}>
+        <Image src={bgTimeCurve} style={{ position: 'absolute', top: -10, width: '535px' }} />
+      </View>
+      <View style={[timeCurve.wrap, { zIndex: 2 }]}>
         <View style={[timeCurve.item, timeCurve.s1_duration]}>
         <Text>{synastry.getK()}</Text>
         </View>
@@ -73,6 +79,16 @@ export const SynastryTimeCurve = ({synastry, newDate})=>{
           </Text>
         </View>
       </View>
+       <View style={{ zIndex: 4 }}>
+        {(activeStage === 1) ? <View style={[timeCurve.activeLarge, timeCurve.active_1]} /> : null}
+        {(activeStage === 2) ? <View style={[timeCurve.active, timeCurve.active_2]} /> : null}
+        {(activeStage === 3) ? <View style={[timeCurve.active, timeCurve.active_3]} /> : null}
+        {(activeStage === 4) ? <View style={[timeCurve.active, timeCurve.active_4]} /> : null}
+        {(activeStage === 5) ? <View style={[timeCurve.active, timeCurve.active_5]} /> : null}
+        {(activeStage === 6) ? <View style={[timeCurve.active, timeCurve.active_6]} /> : null}
+        {(activeStage === 7) ? <View style={[timeCurve.activeLast, timeCurve.active_7]} /> : null}
+
+       </View>
     </View>
   )
 }
@@ -203,41 +219,91 @@ export const timeCurve = StyleSheet.create({
   s1_begining: {
     top: '142px',
     left: '10px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s2_begining: {
     top: '142px',
     left: '165px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s3_begining: {
     top: '142px',
     left: '222px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s4_begining: {
     top: '142px',
     left: '277px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s5_begining: {
     top: '142px',
     left: '331px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s6_begining: {
     top: '142px',
     left: '387px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s7_begining: {
     top: '142px',
     left: '450px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   ending: {
     top: '142px',
     left: '480px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
+  active: {
+    width: '50px',
+    height: '122px',
+    backgroundColor: '#CDCDCD',
+  },
+  activeLarge: {
+    width: '157px',
+    height: '122px',
+    backgroundColor: '#CDCDCD',
+  },
+  activeLast: {
+    width: '70px',
+    height: '122px',
+    backgroundColor: '#CDCDCD',
+  },
+  active_1: {
+    position: 'absolute',
+    top: 20,
+    left: 17
+  },
+   active_2: {
+    position: 'absolute',
+    top: 20,
+    left: 176
+   },
+  active_3: {
+    position: 'absolute',
+    top: 20,
+    left: 231
+  },
+  active_4: {
+    position: 'absolute',
+    top: 20,
+    left: 286
+  },
+  active_5: {
+    position: 'absolute',
+    top: 20,
+    left: 341
+  },
+      active_6: {
+    position: 'absolute',
+    top: 20,
+    left: 398
+  },
+  active_7: {
+    position: 'absolute',
+    top: 20,
+    left: 451
+  }
 })
