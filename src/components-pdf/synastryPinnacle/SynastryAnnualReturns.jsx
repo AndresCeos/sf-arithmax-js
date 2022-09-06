@@ -1,14 +1,13 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
-import moment from "moment";
-import { SynastryAnnualReturn } from "./SynastryAnnualReturn";
+import { StyleSheet, View } from '@react-pdf/renderer';
+import moment from 'moment';
+import { SynastryAnnualReturn } from './SynastryAnnualReturn';
 
 export const SynastryAnnualReturns = ({ synastry }) => {
   const newDate = moment()
 
-  const annualReturnCurrent = synastry.annualReturn(newDate.year())
-  const annualReturnLastYear = synastry.annualReturn(newDate.year() - 1)
-  const annualReturnNextYear = synastry.annualReturn(newDate.year() + 1)
+  const annualReturnCurrent = synastry.consultant.annualReturn(newDate.year())
+  const annualReturnLastYear = synastry.annualReturn(newDate.year())
+  const annualReturnNextYear = synastry.partner.annualReturn(newDate.year())
 
   return (
     <View style={annualReturn.container}>

@@ -1,6 +1,5 @@
 import moment from 'moment/min/moment-with-locales'
-import { capitalize } from './Helper'
-moment.locale("es-mx")
+moment.locale('es-mx')
 
 export class Synastry {
   constructor(consultant, partner) {
@@ -11,16 +10,18 @@ export class Synastry {
     this.birthDate = moment(partner.birthDate)
     this.karmicos = [13, 14, 16, 19]
   }
+
   getYearMeet() {
-    return this.yearMeet //.year()
+    return this.yearMeet // .year()
   }
+
   getYearTimeCurve() {
     return this.yearMeet
   }
 
   getYearsOld(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
-    return yearToCalculate - this.yearMeet //.year()
+    return yearToCalculate - this.yearMeet // .year()
   }
 
   getA() {
@@ -36,12 +37,14 @@ export class Synastry {
 
     return this.reduceNumber(birthDate.date() + partnerBirthDate.date());
   }
+
   getBISK() {
     const birthDate = this.consultant.getBirthDate()
     const partnerBirthDate = this.partner.getBirthDate()
     const B = this.reduceNumberISK(birthDate.date() + partnerBirthDate.date())
     return this.karmicos.includes(B) ? '*' : ''
   }
+
   getC() {
     const birthDate = this.consultant.getBirthDate()
     const partnerBirthDate = this.partner.getBirthDate()
@@ -49,116 +52,133 @@ export class Synastry {
 
     return this.reduceNumber(birthDate.year() + partnerBirthDate.year());
   }
+
   getCISK() {
     const birthDate = this.consultant.getBirthDate()
     const partnerBirthDate = this.partner.getBirthDate()
     const C = this.reduceNumberISK(birthDate.year() + partnerBirthDate.year())
     return this.karmicos.includes(C) ? '*' : ''
   }
+
   getD() {
     return this.reduceNumber(
-      this.getA() +
-      this.getB() +
-      this.getC()
+      this.getA()
+      + this.getB()
+      + this.getC()
     );
   }
+
   getDCheck() {
-    let A = this.reduceNumber(this.getA())
-    let B = this.reduceNumber(this.getB())
-    let C = this.reduceNumber(this.getC())
+    const A = this.reduceNumber(this.getA())
+    const B = this.reduceNumber(this.getB())
+    const C = this.reduceNumber(this.getC())
     return this.reduceNumber(A + B + C)
   }
+
   getDISK() {
     const D = this.reduceNumberISK(
-      this.getA() +
-      this.getB() +
-      this.getC()
+      this.getA()
+      + this.getB()
+      + this.getC()
     )
     return this.karmicos.includes(D) ? '*' : ''
   }
 
   getE() {
     return this.reduceNumber(
-      this.getA() +
-      this.getB()
+      this.getA()
+      + this.getB()
     );
   }
+
   getEISK() {
     const E = this.reduceNumberISK(
-      this.getA() +
-      this.getB()
+      this.getA()
+      + this.getB()
     )
     return this.karmicos.includes(E) ? '*' : ''
   }
 
   getF() {
     return this.reduceNumber(
-      this.getC() +
-      this.getB()
+      this.getC()
+      + this.getB()
     );
   }
+
   getFISK() {
     const F = this.reduceNumberISK(
-      this.getC() +
-      this.getB()
+      this.getC()
+      + this.getB()
     )
     return this.karmicos.includes(F) ? '*' : ''
   }
 
   getG() {
     return this.reduceNumber(
-      this.getE() +
-      this.getF()
+      this.getE()
+      + this.getF()
     );
   }
+
   getGISK() {
     const G = this.reduceNumberISK(
-      this.getE() +
-      this.getF()
+      this.getE()
+      + this.getF()
     )
     return this.karmicos.includes(G) ? '*' : ''
   }
 
   getH() {
     return this.reduceNumber(
-      this.getA() +
-      this.getC()
+      this.getA()
+      + this.getC()
     );
   }
+
   getHISK() {
     const H = this.reduceNumberISK(
-      this.getA() +
-      this.getC()
+      this.getA()
+      + this.getC()
     )
     return this.karmicos.includes(H) ? '*' : ''
   }
 
-  getI() {
+   getHCheck() {
     return this.reduceNumber(
-      this.getE() +
-      this.getF() +
-      this.getG()
+      this.getA()
+      + this.getC()
     );
   }
+
+  getI() {
+    return this.reduceNumber(
+      this.getE()
+      + this.getF()
+      + this.getG()
+    );
+  }
+
   getIISK() {
     const I = this.reduceNumberISK(
-      this.getE() +
-      this.getF() +
-      this.getG()
+      this.getE()
+      + this.getF()
+      + this.getG()
     )
     return this.karmicos.includes(I) ? '*' : ''
   }
 
   getJ() {
     return this.reduceNumber(
-      this.getH() +
-      this.getD()
+      this.getH()
+      + this.getD()
     );
   }
+
   getJISK() {
     const J = this.reduceNumberISK(
-      this.getH() +
-      this.getD()
+      this.getH()
+      + this.getD()
     )
     return this.karmicos.includes(J) ? '*' : ''
   }
@@ -186,63 +206,68 @@ export class Synastry {
 
   getK() {
     return Math.abs(this.reduceNumber(
-      this.getAs() -
-      this.getBs()
+      this.getAs()
+      - this.getBs()
     ));
   }
 
   getL() {
     return Math.abs(this.reduceNumber(
-      this.getBs() -
-      this.getCs()
+      this.getBs()
+      - this.getCs()
     ));
   }
 
   getM() {
     return Math.abs(this.reduceNumber(
-      this.getK() -
-      this.getL()
+      this.getK()
+      - this.getL()
     ));
   }
 
   getN() {
     return Math.abs(this.reduceNumber(
-      this.getAs() -
-      this.getCs()
+      this.getAs()
+      - this.getCs()
     ));
   }
 
   getO() {
     return this.reduceNumber(
-      this.getM() +
-      this.getK() +
-      this.getL()
+      this.getM()
+      + this.getK()
+      + this.getL()
     );
   }
+
   getP() {
     return this.reduceNumber(
-      this.getD() +
-      this.getO()
+      this.getD()
+      + this.getO()
     );
   }
+
   getQ() {
     return this.reduceNumber(
-      this.getM() +
-      this.getK()
+      this.getM()
+      + this.getK()
     );
   }
+
   getR() {
     return this.reduceNumber(
-      this.getM() +
-      this.getL()
+      this.getM()
+      + this.getL()
     );
   }
+
   getS() {
     return this.reduceNumber(
-      this.getQ() +
-      this.getR()
+      this.getQ()
+      + this.getR()
     );
   }
+
   getW() {
     const appearances = [
       this.getK(),
@@ -255,86 +280,97 @@ export class Synastry {
       this.getS(),
       this.getP(),
     ]
-    const occurrences = appearances.reduce(function (acc, curr) {
+    const occurrences = appearances.reduce((acc, curr) => {
       return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
     }, {});
 
     let w = 0;
     let W = ''
-    Object.values(occurrences).forEach(el => el === 3 ? w++ : w)
+    Object.values(occurrences).forEach(el => (el === 3 ? w++ : w))
     if (w === 1) {
       Object.entries(occurrences).map((el, i) => {
         if (el[1] === 3) {
           W = parseInt(el[0]) * 3
         }
       })
-
     }
     return W === '' ? '' : this.reduceNumber(W)
   }
 
   calcReaction() {
     return this.reduceNumber(
-      this.consultant.calcReaction() +
-      this.partner.calcReaction()
+      this.consultant.calcReaction()
+      + this.partner.calcReaction()
     )
   }
+
   calcReactionISK() {
     // todo
   }
+
   calcSynthesis() {
     return this.reduceNumber(
-      this.consultant.calcSynthesis() +
-      this.partner.calcSynthesis()
+      this.consultant.calcSynthesis()
+      + this.partner.calcSynthesis()
     )
   }
+
   calcSynthesisISK() {
     // todo
   }
+
   calcGift() {
     return this.reduceNumber(
-      parseInt(this.consultant.calcGift()) +
-      parseInt(this.partner.calcGift())
+      parseInt(this.consultant.calcGift())
+      + parseInt(this.partner.calcGift())
     )
   }
+
   calcGiftISK() {
     // todo
   }
 
   calcName() {
     return this.reduceNumber(
-      this.consultant.calcName() +
-      this.partner.calcName()
+      this.consultant.calcName()
+      + this.partner.calcName()
     )
   }
+
   calcNameISK() { // todo
   }
+
   calcSoulNumber() {
     return this.reduceNumber(
-      this.consultant.calcSoulNumber() +
-      this.partner.calcSoulNumber()
+      this.consultant.calcSoulNumber()
+      + this.partner.calcSoulNumber()
     )
   }
+
   calcSoulNumberISK() {
     const soul = this.reduceNumberISK(this.consultant.calcSoulNumber() + this.partner.calcSoulNumber())
     return this.karmicos.includes(soul) ? '*' : '';
   }
+
   calcSoulExpresion() {
     return this.reduceNumber(
-      this.consultant.calcSoulExpresion() +
-      this.partner.calcSoulExpresion()
+      this.consultant.calcSoulExpresion()
+      + this.partner.calcSoulExpresion()
     )
   }
+
   calcSoulExpresionISK() {
     const soul = this.reduceNumberISK(this.consultant.calcSoulExpresion() + this.partner.calcSoulExpresion())
     return this.karmicos.includes(soul) ? '*' : '';
   }
+
   calcMaturity() {
     return this.reduceNumber(
-      this.consultant.calcMaturity() +
-      this.partner.calcMaturity()
+      this.consultant.calcMaturity()
+      + this.partner.calcMaturity()
     )
   }
+
   calcMaturityISK() {
     // todo
   }
@@ -346,12 +382,13 @@ export class Synastry {
   calcPersonalYear(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(
-      this.getA() +
-      this.getB() +
-      yearToCalculate
+      this.getA()
+      + this.getB()
+      + yearToCalculate
     )
   }
-  /* Personal  Year Karmico*/
+
+  /* Personal  Year Karmico */
   calcPersonalYearISK(yearToCalculate = null) {
     const personalYear = this.reduceNumberISK(this.getA() + this.getB() + yearToCalculate)
     return this.karmicos.includes(personalYear) ? '*' : '';
@@ -364,13 +401,14 @@ export class Synastry {
   calcPersonalMonth(monthToCalculate = null, yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
-    let personalYear = this.calcPersonalYear(yearToCalculate)
+    const personalYear = this.calcPersonalYear(yearToCalculate)
     const personalMonth = this.reduceNumber(personalYear + monthToCalculate)
     return personalMonth
   }
+
   /** Personal Month Karmico */
   calcPersonalMonthISK(monthToCalculate = null, yearToCalculate = null) {
-    let personalYear = this.calcPersonalYear(yearToCalculate)
+    const personalYear = this.calcPersonalYear(yearToCalculate)
     const personalMonth = this.reduceNumberISK(personalYear + monthToCalculate)
     return this.karmicos.includes(personalMonth) ? '*' : '';
   }
@@ -383,47 +421,48 @@ export class Synastry {
     yearToCalculate = yearToCalculate || this.NOW.year()
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
     dayToCalculate = dayToCalculate || this.NOW.date()
-    let sumPersonalWeekOne = this.reduceNumber(this.calcPersonalYear(yearToCalculate) + monthToCalculate)
+    const sumPersonalWeekOne = this.reduceNumber(this.calcPersonalYear(yearToCalculate) + monthToCalculate)
     if (dayToCalculate >= 1 && dayToCalculate <= 7) {
       return sumPersonalWeekOne;
     }
-    let sumPersonalWeekTwo = this.reduceNumber(this.calcPersonalYear(yearToCalculate) + sumPersonalWeekOne)
+    const sumPersonalWeekTwo = this.reduceNumber(this.calcPersonalYear(yearToCalculate) + sumPersonalWeekOne)
     if (dayToCalculate >= 8 && dayToCalculate <= 14) {
       return sumPersonalWeekTwo;
     }
 
-    let sumPersonalWeekThree = this.reduceNumber(sumPersonalWeekTwo + sumPersonalWeekOne);
+    const sumPersonalWeekThree = this.reduceNumber(sumPersonalWeekTwo + sumPersonalWeekOne);
     if ((dayToCalculate) >= 15 && dayToCalculate <= 21) {
       return sumPersonalWeekThree;
     }
 
-    let sumPersonalWeekFour = this.reduceNumber(monthToCalculate + sumPersonalWeekOne);
+    const sumPersonalWeekFour = this.reduceNumber(monthToCalculate + sumPersonalWeekOne);
     if (dayToCalculate >= 22) {
       return sumPersonalWeekFour;
     }
   }
+
   /** Personal Week Karmico */
   calcPersonalWeekISK(dayToCalculate = null, monthToCalculate = null, yearToCalculate = null) {
-
-    let sumPersonalWeekOne = this.reduceNumberISK(this.calcPersonalYear(yearToCalculate) + monthToCalculate)
+    const sumPersonalWeekOne = this.reduceNumberISK(this.calcPersonalYear(yearToCalculate) + monthToCalculate)
     if (dayToCalculate >= 1 && dayToCalculate <= 7) {
       return this.karmicos.includes(sumPersonalWeekOne) ? '*' : '';
     }
-    let sumPersonalWeekTwo = this.reduceNumberISK(this.calcPersonalYear(yearToCalculate) + sumPersonalWeekOne)
+    const sumPersonalWeekTwo = this.reduceNumberISK(this.calcPersonalYear(yearToCalculate) + sumPersonalWeekOne)
     if (dayToCalculate >= 8 && dayToCalculate <= 14) {
       return this.karmicos.includes(sumPersonalWeekTwo) ? '*' : '';
     }
 
-    let sumPersonalWeekThree = this.reduceNumberISK(sumPersonalWeekTwo + sumPersonalWeekOne);
+    const sumPersonalWeekThree = this.reduceNumberISK(sumPersonalWeekTwo + sumPersonalWeekOne);
     if ((dayToCalculate) >= 15 && dayToCalculate <= 21) {
       return this.karmicos.includes(sumPersonalWeekThree) ? '*' : '';
     }
 
-    let sumPersonalWeekFour = this.reduceNumberISK(monthToCalculate + sumPersonalWeekOne);
+    const sumPersonalWeekFour = this.reduceNumberISK(monthToCalculate + sumPersonalWeekOne);
     if (dayToCalculate >= 22) {
       return this.karmicos.includes(sumPersonalWeekFour) ? '*' : '';
     }
   }
+
   /**
    * calculate personal day
    * @returns {Number} sumPersonalDay
@@ -433,36 +472,37 @@ export class Synastry {
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
     dayToCalculate = dayToCalculate || this.NOW.date()
     return this.reduceNumber(
-      this.calcPersonalYear(yearToCalculate) +
-      monthToCalculate +
-      dayToCalculate
+      this.calcPersonalYear(yearToCalculate)
+      + monthToCalculate
+      + dayToCalculate
     )
   }
+
   /** Personal Day Karmico */
   calcPersonalDayISK(dayToCalculate = null, monthToCalculate = null, yearToCalculate = null) {
     const personalDay = this.reduceNumberISK(this.calcPersonalYear(yearToCalculate) + monthToCalculate + dayToCalculate)
     return this.karmicos.includes(personalDay) ? '*' : '';
   }
+
   hasDoubleStage() {
-    let yearBirthDate = this.birthDate.year() + this.partner.birthDate.year()
-    let monthBirthDate = (this.birthDate.month() + 1) + (this.partner.birthDate.month() + 1)
-    let dayBirthDate = this.birthDate.date() + this.partner.birthDate.date()
+    const yearBirthDate = this.birthDate.year() + this.partner.birthDate.year()
+    const monthBirthDate = (this.birthDate.month() + 1) + (this.partner.birthDate.month() + 1)
+    const dayBirthDate = this.birthDate.date() + this.partner.birthDate.date()
 
     const reducedYear = this.reduceNumber(yearBirthDate)
     const reducedMonth = this.reduceNumber(monthBirthDate)
     const reducedDay = this.reduceNumber(dayBirthDate)
 
-    let etapa_1 = yearBirthDate + monthBirthDate + dayBirthDate
-    let etapa_2 = reducedYear + reducedMonth + reducedDay
-    let reduce_stage_1 = this.reduceNumber(etapa_1)
-    let reduce_stage_2 = this.reduceNumber(etapa_2)
+    const etapa_1 = yearBirthDate + monthBirthDate + dayBirthDate
+    const etapa_2 = reducedYear + reducedMonth + reducedDay
+    const reduce_stage_1 = this.reduceNumber(etapa_1)
+    const reduce_stage_2 = this.reduceNumber(etapa_2)
     // console.log('etapa 1 => '+ this.reduceNumber(etapa_1))
     // console.log('etapa 2 => '+ this.reduceNumber(etapa_2))
     if (reduce_stage_1 === reduce_stage_2) {
       return false;
-    } else {
-      return true;
     }
+      return true;
   }
 
   /**
@@ -490,6 +530,7 @@ export class Synastry {
     if (stage === 6) return stageTwo
     if (stage === 7) return stageOne
   }
+
   calcLifeStageISK(stage = 1) {
     const stageOne = this.reduceNumberISK(this.getA() + this.getB())
     if (stage === 1) return this.karmicos.includes(stageOne) ? '*' : '';
@@ -509,7 +550,7 @@ export class Synastry {
   }
 
   calcDurationStage(stage) {
-    let stageOne = 9 - this.reduceNumberForSub(this.getA() + this.getB())
+    const stageOne = 9 - this.reduceNumberForSub(this.getA() + this.getB())
     // let stageOneEnd =  stageOne
     // if(stageOne === 0){
     //   stageOneEnd = stageOneEnd +9
@@ -531,13 +572,14 @@ export class Synastry {
 
 
   calcLifeStageDuration(stage = 1) {
-    let start = this.yearMeet //.year()
-    let stageOne = 9 - this.reduceNumberForSub(
-      this.getA() +this.getB() + start)
+    const start = this.yearMeet // .year()
+    const stageOne = 9 - this.reduceNumberForSub(
+      this.getA() + this.getB() + start
+)
     console.log(stageOne)
     let stageOneEnd = start + stageOne
     if (stageOne === 0) {
-      stageOneEnd = stageOneEnd + 9
+      stageOneEnd += 9
     }
 
     if (stage === 1) {
@@ -550,12 +592,13 @@ export class Synastry {
 
     return 0
   }
+
   calcDoubleLifeStageDuration(stage = 1) {
-    let start = this.yearMeet //.year()
-    let stageOne = 9 - this.reduceNumberForSub(this.getA() + this.getB())
+    const start = this.yearMeet // .year()
+    const stageOne = 9 - this.reduceNumberForSub(this.getA() + this.getB())
     let stageOneEnd = start + stageOne
     if (stageOne === 0) {
-      stageOneEnd = stageOneEnd + 9
+      stageOneEnd += 9
     }
     if (stage === 1) return stageOneEnd
 
@@ -571,110 +614,105 @@ export class Synastry {
    * calculate current satge number
    * @returns {Number} stage
    */
-  getLifeStage(yearToCalculate = null , newDate=null) {
+  getLifeStage(yearToCalculate = null, newDate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     newDate = newDate || this.NOW
     const monthCut = this.getCustomMonths()
 		const actualMonth = newDate.format('MMMM')
 		const listOfMonths = this.getAllMonths()
 		const listOfMonthsE = this.getAllMonthsEnglish()
-		const indexE = listOfMonthsE.findIndex(i=>i === actualMonth.capitalize)
-		const indexEnero = monthCut.findIndex(i=>i === 'Enero')
-		const index = monthCut.findIndex(i=>i=== listOfMonths[indexE] )
+		const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize)
+		const indexEnero = monthCut.findIndex(i => i === 'Enero')
+		const index = monthCut.findIndex(i => i === listOfMonths[indexE])
 
-    let start = this.yearMeet //.year()
-    let duration = 9 - this.reduceNumberForSub(
-      this.getA() +
-      this.getB() +
-      start
+    const start = this.yearMeet // .year()
+    const duration = 9 - this.reduceNumberForSub(
+      this.getA()
+      + this.getB()
+      + start
     )
     let stageOneEnd = start + duration
     if (duration === 0) {
-      stageOneEnd = stageOneEnd + 9
+      stageOneEnd += 9
     }
-    let stageOne = this.getE()
-    let stageTwo = this.getF()
-    let stageTwoEnd = stageOneEnd + 9
-    let stageThr = this.getG()
-    let stageThrEnd = stageTwoEnd + 9
-    let stageFou = this.getH()
-    let stageFouEnd = stageThrEnd + 9
+    const stageOne = this.getE()
+    const stageTwo = this.getF()
+    const stageTwoEnd = stageOneEnd + 9
+    const stageThr = this.getG()
+    const stageThrEnd = stageTwoEnd + 9
+    const stageFou = this.getH()
+    const stageFouEnd = stageThrEnd + 9
     if (start <= yearToCalculate && yearToCalculate <= stageOneEnd) {
-      if(indexEnero>index&&yearToCalculate===stageOneEnd){
+      if (indexEnero > index && yearToCalculate === stageOneEnd) {
         return stageTwo;
-      }else{
-        return stageOne;
       }
+        return stageOne;
     }
     if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
-      if(indexEnero>index&&yearToCalculate===stageTwoEnd){
+      if (indexEnero > index && yearToCalculate === stageTwoEnd) {
         return stageThr;
-      }else{
-        return stageTwo;
       }
+        return stageTwo;
     }
 
     if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
-      if(indexEnero>index&&yearToCalculate===stageThrEnd){
+      if (indexEnero > index && yearToCalculate === stageThrEnd) {
         return stageFou;
-      }else{
-        return stageThr;
       }
+        return stageThr;
     }
 
     if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
-      if(indexEnero>index&&yearToCalculate===stageFouEnd){
+      if (indexEnero > index && yearToCalculate === stageFouEnd) {
         return stageThr;
-      }else{
-        return stageFou;
       }
+        return stageFou;
     }
 
     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9)) {
-      if(indexEnero>index&&yearToCalculate===stageFouEnd+9){
+      if (indexEnero > index && yearToCalculate === stageFouEnd + 9) {
         return stageTwo;
-      }else{
-        return stageThr;
       }
+        return stageThr;
     }
     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18)) {
-      if(indexEnero>index&&yearToCalculate===stageFouEnd+18){
+      if (indexEnero > index && yearToCalculate === stageFouEnd + 18) {
         return stageOne;
-      }else{
-        return stageTwo;
       }
+        return stageTwo;
     }
     if ((stageFouEnd + 18) <= yearToCalculate) {
       return stageOne;
     }
   }
+
   /** Life Stage Karmica */
   getLifeStageISK(yearToCalculate = null) {
-    let start = this.yearMeet //.year()
-    let duration = 9 - this.reduceNumberForSub(this.getA()+this.getB()+start)
+    const start = this.yearMeet // .year()
+    const duration = 9 - this.reduceNumberForSub(this.getA() + this.getB() + start)
     let stageOneEnd = start + duration
     if (duration === 0) {
-      stageOneEnd = stageOneEnd + 9
+      stageOneEnd += 9
     }
-    let stageOne = this.reduceNumberISK(this.getA() + this.getB())
+    const stageOne = this.reduceNumberISK(this.getA() + this.getB())
     if (start <= yearToCalculate && yearToCalculate <= stageOneEnd) {
       return this.karmicos.includes(stageOne) ? '*' : '';
     }
 
-    let stageTwo = this.reduceNumberISK(this.getC() + this.getB())
-    let stageTwoEnd = stageOneEnd + 9
+    const stageTwo = this.reduceNumberISK(this.getC() + this.getB())
+    const stageTwoEnd = stageOneEnd + 9
     if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
       return this.karmicos.includes(stageTwo) ? '*' : '';
     }
 
-    let stageThr = this.reduceNumberISK(this.getE() + this.getF())
-    let stageThrEnd = stageTwoEnd + 9
+    const stageThr = this.reduceNumberISK(this.getE() + this.getF())
+    const stageThrEnd = stageTwoEnd + 9
     if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
       return this.karmicos.includes(stageThr) ? '*' : '';
     }
 
-    let stageFou = this.reduceNumberISK(this.getA() + this.getC())
-    let stageFouEnd = stageThrEnd + 9
+    const stageFou = this.reduceNumberISK(this.getA() + this.getC())
+    const stageFouEnd = stageThrEnd + 9
     if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
       return this.karmicos.includes(stageFou) ? '*' : '';
     }
@@ -689,91 +727,87 @@ export class Synastry {
       return this.karmicos.includes(stageOne) ? '*' : '';
     }
   }
+
   /**
    * calculate current satge number
    * @returns {Number} stage
    */
-  getLifeStageNumber(yearToCalculate = null, newDate=null) {
+  getLifeStageNumber(yearToCalculate = null, newDate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     newDate = newDate || this.NOW
     const monthCut = this.getCustomMonths()
 		const actualMonth = newDate.format('MMMM')
 		const listOfMonths = this.getAllMonths()
 		const listOfMonthsE = this.getAllMonthsEnglish()
-		const indexE = listOfMonthsE.findIndex(i=>i === actualMonth.capitalize)
-		const indexEnero = monthCut.findIndex(i=>i === 'Enero')
-		const index = monthCut.findIndex(i=>i=== listOfMonths[indexE] )
-    const start = this.yearMeet //.year()
-    let duration = 9 - this.reduceNumberForSub(
-      this.getA() +
-      this.getB() +
-      start
+		const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize)
+		const indexEnero = monthCut.findIndex(i => i === 'Enero')
+		const index = monthCut.findIndex(i => i === listOfMonths[indexE])
+    const start = this.yearMeet // .year()
+    const duration = 9 - this.reduceNumberForSub(
+      this.getA()
+      + this.getB()
+      + start
     )
     let stageOneEnd = start + duration
     if (duration === 0) {
-      stageOneEnd = stageOneEnd + 9
+      stageOneEnd += 9
     }
-    let stageTwoEnd = stageOneEnd + 9
-    let stageThrEnd = stageTwoEnd + 9
-    let stageFouEnd = stageThrEnd + 9
+    const stageTwoEnd = stageOneEnd + 9
+    const stageThrEnd = stageTwoEnd + 9
+    const stageFouEnd = stageThrEnd + 9
     // let stageOne = this.getE()
     if (start <= yearToCalculate && yearToCalculate <= stageOneEnd) {
-       if(indexEnero>index&&yearToCalculate===stageOneEnd){
+       if (indexEnero > index && yearToCalculate === stageOneEnd) {
         return 2;
-      }else{
-        return 1;
       }
+        return 1;
     }
 
     // let stageTwo = this.getF()
     if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
-       if(indexEnero>index&&yearToCalculate===stageTwoEnd){
+       if (indexEnero > index && yearToCalculate === stageTwoEnd) {
         return 3;
-      }else{
-        return 2;
       }
+        return 2;
     }
     // let stageThr = this.getG()
     if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
-       if(indexEnero>index&&yearToCalculate===stageThrEnd){
+       if (indexEnero > index && yearToCalculate === stageThrEnd) {
         return 4;
-      }else{
-        return 3;
       }
+        return 3;
     }
     // const stageFou = this.getH()
     if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
-       if(indexEnero>index&&yearToCalculate===stageFouEnd){
+       if (indexEnero > index && yearToCalculate === stageFouEnd) {
         return 5;
-      }else{
-        return 4;
       }
+        return 4;
     }
     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9)) {
-       if(indexEnero>index&&yearToCalculate===stageFouEnd+9){
+       if (indexEnero > index && yearToCalculate === stageFouEnd + 9) {
         return 6;
-      }else{
-        return 5;
       }
+        return 5;
     }
     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18)) {
-       if(indexEnero>index&&yearToCalculate===stageFouEnd+18){
+       if (indexEnero > index && yearToCalculate === stageFouEnd + 18) {
         return 7;
-      }else{
-        return 6;
       }
+        return 6;
     }
     if ((stageFouEnd + 18) <= yearToCalculate) {
       return 7;
     }
   }
+
   getDoubleLifeStageNumber(yearToCalculate = null) {
-    const start = this.yearMeet //.year()
+    const start = this.yearMeet // .year()
     yearToCalculate = yearToCalculate || this.NOW.year()
-    let duration = 9 - this.reduceNumberForSub(this.getA() + this.getB())
+    const duration = 9 - this.reduceNumberForSub(this.getA() + this.getB())
     let stageOneEnd = start + duration
     if (duration === 0) {
-      stageOneEnd = stageOneEnd + 9
+      stageOneEnd += 9
     }
     // const stageOne = this.reduceNumber( reducedMonth + reducedDay )
     if (start <= yearToCalculate && yearToCalculate <= stageOneEnd) {
@@ -817,9 +851,9 @@ export class Synastry {
     yearToCalculate = yearToCalculate || this.NOW.year()
     let fisrtValue = false
     let firstYear
-    let nineYearCycle = []
+    const nineYearCycle = []
     for (let index = 0; index <= 9; index++) {
-      let personalYear = this.calcPersonalYear(yearToCalculate - index)
+      const personalYear = this.calcPersonalYear(yearToCalculate - index)
       if (personalYear === 9 && fisrtValue === false) {
         nineYearCycle.push(yearToCalculate - index)
         firstYear = yearToCalculate - index
@@ -833,10 +867,10 @@ export class Synastry {
   }
 
   getCycleCustom(stage) {
-    let start = this.yearMeet //.year()
+    let start = this.yearMeet // .year()
     let stageOne = 9 - this.reduceNumberForSub(this.getA() + this.getB())
     if (stageOne === 0) {
-      stageOne = stageOne + 9
+      stageOne += 9
     }
     const cycleStage = []
     if (stage === 1) {
@@ -853,20 +887,21 @@ export class Synastry {
       }
     }
     return cycleStage
-
   }
 
 
   getAllMonths() {
     return ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
   }
+
   getAllMonthsEnglish() {
     return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   }
+
   getCustomMonths() {
-    let consultantBirthate = this.consultant.getBirthDate()
-    let partnerBirthate = this.partner.getBirthDate()
-    let sumBirthdates = (consultantBirthate.month() + 1) + (partnerBirthate.month() + 1)
+    const consultantBirthate = this.consultant.getBirthDate()
+    const partnerBirthate = this.partner.getBirthDate()
+    const sumBirthdates = (consultantBirthate.month() + 1) + (partnerBirthate.month() + 1)
     let reduce;
     if (sumBirthdates === 19) {
       reduce = 10;
@@ -894,6 +929,7 @@ export class Synastry {
   getQuaterOne() {
     return this.getC()
   }
+
   /* Quater One Karmico  */
   getQuaterOneISK() {
     const birthDate = this.consultant.getBirthDate()
@@ -910,11 +946,13 @@ export class Synastry {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(yearToCalculate - this.getD())
   }
+
   /* Quater Two Karmico  */
   getQuaterTwoISK(yearToCalculate = null) {
     const quaterTwo = this.reduceNumberISK(yearToCalculate - this.getD())
     return this.karmicos.includes(quaterTwo) ? '*' : '';
   }
+
   /**
    * calculate third quater
    * @returns {Number} quater three
@@ -923,11 +961,13 @@ export class Synastry {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return this.reduceNumber(this.getQuaterOne() + this.getQuaterTwo(yearToCalculate))
   }
+
   /* Quater Three Karmico  */
   getQuaterThreeISK(yearToCalculate = null) {
     const quaterThr = this.reduceNumberISK(this.getQuaterOne() + this.getQuaterTwo(yearToCalculate))
     return this.karmicos.includes(quaterThr) ? '*' : '';
   }
+
   /**
    * calculate current quater
    * @param {Number} yearToCalculate
@@ -936,7 +976,7 @@ export class Synastry {
   calcCurrentQuater(monthToCalculate = null, yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     String.prototype.capitalize = function () {
-      return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
+      return this.replace(/(^|\s)([a-z])/g, (m, p1, p2) => { return p1 + p2.toUpperCase(); });
     }
     const listOfMonths = this.getCustomMonths()
     const listOfMonthsE = this.getAllMonthsEnglish()
@@ -950,22 +990,21 @@ export class Synastry {
     if (index > 4 && index < 9) {
       if (index > indexEnero) {
         return this.getQuaterTwo(yearToCalculate - 1)
-      } else {
-        return this.getQuaterTwo(yearToCalculate)
       }
+        return this.getQuaterTwo(yearToCalculate)
     }
     if (index > 8) {
       if (index > indexEnero) {
         return this.getQuaterThree(yearToCalculate - 1)
-      } else {
-        return this.getQuaterThree(yearToCalculate)
       }
+        return this.getQuaterThree(yearToCalculate)
     }
   }
+
   /** Current Quater Karmico */
   calcCurrentQuaterISK(monthToCalculate = null, yearToCalculate = null) {
     String.prototype.capitalize = function () {
-      return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
+      return this.replace(/(^|\s)([a-z])/g, (m, p1, p2) => { return p1 + p2.toUpperCase(); });
     }
     const listOfMonths = this.getCustomMonths()
     const actualMonth = monthToCalculate.format('MMMM');
@@ -975,16 +1014,14 @@ export class Synastry {
     if (index > 4 && index < 9) {
       if (index > indexEnero) {
         return this.getQuaterTwoISK(yearToCalculate - 1)
-      } else {
-        return this.getQuaterTwoISK(yearToCalculate)
       }
+        return this.getQuaterTwoISK(yearToCalculate)
     }
     if (index > 8) {
       if (index > indexEnero) {
         return this.getQuaterThreeISK(yearToCalculate - 1)
-      } else {
-        return this.getQuaterThreeISK(yearToCalculate)
       }
+        return this.getQuaterThreeISK(yearToCalculate)
     }
   }
 
@@ -994,16 +1031,16 @@ export class Synastry {
     const age = yearToCalculate - this.partner.yearMeet // yearMeetDate.year()
     const A = this.partner.reduceNumber(yearToCalculate)
     const B = this.partner.reduceNumber(
-      yearToCalculate +
-      this.partner.reduceNumber(this.consultant.birthDate.month() + this.partner.birthDate.month() + 2) +
-      this.partner.reduceNumber(this.consultant.birthDate.date() + this.partner.birthDate.date())
+      yearToCalculate
+      + this.partner.reduceNumber(this.consultant.birthDate.month() + this.partner.birthDate.month() + 2)
+      + this.partner.reduceNumber(this.consultant.birthDate.date() + this.partner.birthDate.date())
     )
     const C = this.reduceNumber(
       (
-        this.consultant.birthDate.year() +
-        this.partner.birthDate.year()
-      ) -
-      yearToCalculate
+        this.consultant.birthDate.year()
+        + this.partner.birthDate.year()
+      )
+      - yearToCalculate
     )
     const D = this.reduceNumber(A + B)
     const E = this.reduceNumber(B + C)
@@ -1037,14 +1074,15 @@ export class Synastry {
       reduceSum = reduceSum.toString().split('').reduce((r, c) => r += parseInt(c), 0);
     }
     return parseInt(reduceSum);
-
   }
+
   reduceMonth(reduceSum) {
     if (!(reduceSum === 11 || reduceSum === 12)) {
       reduceSum = reduceSum.toString().split('').reduce((r, c) => r += parseInt(c), 0);
     }
     return parseInt(reduceSum);
   }
+
   getAbsences() {
     const appearances = [
       this.getA(),
@@ -1069,7 +1107,7 @@ export class Synastry {
       this.getW(),
     ]
     console.log({ appearances })
-    const occurrences = appearances.reduce(function (acc, curr) {
+    const occurrences = appearances.reduce((acc, curr) => {
       if (curr !== '' & curr !== 0) {
         return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
       }
@@ -1077,19 +1115,20 @@ export class Synastry {
     }, {});
 
     const base = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-    let intersection = base.filter(x => !Object.keys(occurrences).includes(x));
+    const intersection = base.filter(x => !Object.keys(occurrences).includes(x));
     return intersection.join(' ')
   }
 
   getSumHierarchy(a, b) {
     return this.reduceNumber(a + b)
   }
+
   getResHierarchy(a, b) {
     (a === 11) ? a = 2 : a = a;
     (a === 22) ? a = 4 : a = a;
     (b === 11) ? b = 2 : b = b;
     (b === 22) ? b = 4 : b = b;
-    let res = this.reduceNumber(a - b)
+    const res = this.reduceNumber(a - b)
     return Math.abs(res)
   }
 
@@ -1109,6 +1148,7 @@ export class Synastry {
     }
     return table;
   }
+
   getCompatibility(number, partnerN) {
     const table = this.compatibilityObject()
     const tableNumber = table[number]
@@ -1117,8 +1157,8 @@ export class Synastry {
         return k.toUpperCase();
       }
     }
-
   }
+
   /**
    * get nine year cycle
    * @returns {Number} nineYearCycle
