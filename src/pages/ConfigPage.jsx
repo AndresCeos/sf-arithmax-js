@@ -298,6 +298,7 @@ const ConfigPage = () => {
                           {(maxBytes) ? <p className='text-13 text-red-600'>Archivo demasiado pesado</p> : null}
                           <p className='text-13 mt-2'>Tamaño del archivo max. 1MB</p>
                           <p className='text-13'>Tipo de archivo .jpeg .png</p>
+                          <p className='text-13'>Dimensiones recomendadas 309 x174 pixeles</p>
                       </div>
                         ) : null}
                     </div>
@@ -308,7 +309,7 @@ const ConfigPage = () => {
                           Preview
                         </label>
                         <div className='flex w-full'>
-                          <img className=' w-2/3 h-28 object-contain border-2 border-black' src={base} alt="logoURL" />
+                          <img className=' w-2/3 h-28 object-contain shadow-2xl' src={base} alt="logoURL" />
                           <button className="ml-6 w-1/3" onClick={clear}>
                             <img src={c_delete} alt="delete" />
                           </button>
