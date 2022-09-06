@@ -1,5 +1,4 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 export const BridgeStage = ({ consultant }) => {
   return (
@@ -18,7 +17,7 @@ export const BridgeStage = ({ consultant }) => {
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
             <Text>
-              {Math.abs(consultant.getE() - consultant.getK())}
+              {consultant.getResHierarchy(consultant.getE(), consultant.getK())}
             </Text>
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
@@ -45,7 +44,7 @@ export const BridgeStage = ({ consultant }) => {
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
             <Text>
-              {Math.abs(consultant.getF() - consultant.getL())}
+              {consultant.getResHierarchy(consultant.getF(), consultant.getL())}
             </Text>
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
@@ -72,7 +71,7 @@ export const BridgeStage = ({ consultant }) => {
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
             <Text>
-              {Math.abs(consultant.getG() - consultant.getM())}
+              {consultant.getResHierarchy(consultant.getG(), consultant.getM())}
             </Text>
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
@@ -99,7 +98,7 @@ export const BridgeStage = ({ consultant }) => {
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
             <Text>
-              {Math.abs(consultant.getH() - consultant.getN())}
+              {consultant.getResHierarchy(consultant.getH(), consultant.getN())}
             </Text>
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>

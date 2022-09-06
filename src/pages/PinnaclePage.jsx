@@ -1,56 +1,55 @@
 import { useSelector } from 'react-redux';
 
-import { useConsultant, dateSelect } from '../hooks';
-import { AnnualReturn, TimeCurve, Pinnacle,
-  CircleNumber, UnselectedConsultant } from '../components/';
+import { AnnualReturn, CircleNumber, Pinnacle, TimeCurve, UnselectedConsultant } from '../components';
+import { dateSelect, useConsultant } from '../hooks';
 
-import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
-import { TiPlus } from "react-icons/ti";
-import check from '../assets/icons/check.svg'
 import { useState } from 'react';
+import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
+import { TiPlus } from 'react-icons/ti';
+import check from '../assets/icons/check.svg';
 
 const PinnaclePage = () => {
-  const { userActive} = useSelector(state => state.users);
+  const { userActive } = useSelector(state => state.users);
   const { consultant } = useConsultant()
-  const {newDate} = dateSelect()
+  const { newDate } = dateSelect()
   const isEmpty = Object.keys(userActive).length === 0;
-  const [checkP, setcheckP] =  useState(false)
-  const [checkN, setcheckN] =  useState(false)
+  const [checkP, setcheckP] = useState(false)
+  const [checkN, setcheckN] = useState(false)
 
-  if( isEmpty ){
+  if (isEmpty) {
     return <UnselectedConsultant />
   }
 
   const annualReturnCurrent = consultant.annualReturn(newDate.year())
-  const annualReturnLastYear = consultant.annualReturn(newDate.year()-1)
-  const annualReturnNextYear = consultant.annualReturn(newDate.year()+1)
+  const annualReturnLastYear = consultant.annualReturn(newDate.year() - 1)
+  const annualReturnNextYear = consultant.annualReturn(newDate.year() + 1)
 
   const activeStage = consultant.getLifeStageNumber()
   const secondStage = consultant.hasDoubleStage()
 
-  const checkPinacle = () =>{
-    (checkP)?setcheckP(false):setcheckP(true)
+  const checkPinacle = () => {
+    (checkP) ? setcheckP(false) : setcheckP(true)
   }
 
-  const checkName = () =>{
-    (checkN)?setcheckN(false):setcheckN(true)
+  const checkName = () => {
+    (checkN) ? setcheckN(false) : setcheckN(true)
   }
 
-  return(
-    <>
-      <div className='grid grid-cols-24 mt-8 mx-14 gap-6 pt-10'>
+  return (
+    <div className='grid grid-cols-24 mt-8 mx-14 gap-6 pt-10'>
 
         <div className='col-span-13'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-between items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='flex items-center'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Nombre
             </div>
             <button
               onClick={checkName}
-              className={`float-right ${(checkN)?'bg-gold':'bg-yellow'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl flex justify-center items-center`}>
+              className={`float-right ${(checkN) ? 'bg-gold' : 'bg-yellow'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl flex justify-center items-center`}
+            >
                 <img src={check} alt="" />Comprobación
             </button>
           </div>
@@ -58,19 +57,19 @@ const PinnaclePage = () => {
             <div className='flex items-center justify-center text-gray-500 font-bold'>
               <label className='mr-1'>Nombre</label>
               <CircleNumber size="sm" appearance="blue-30" border="blue">
-                {(!checkN)?`${consultant.calcName()}${consultant.calcNameISK()}`:`${consultant.getNameCheck()}${consultant.calcNameISK()}`}
+                {(!checkN) ? `${consultant.calcName()}${consultant.calcNameISK()}` : `${consultant.getNameCheck()}${consultant.calcNameISK()}`}
               </CircleNumber>
             </div>
             <div className='flex items-center justify-center text-gray-500 font-bold'>
               <label className='mr-1'>Alma</label>
               <CircleNumber size="sm" appearance="blue-30" border="blue" radiant="true">
-                {(!checkN)?`${consultant.calcSoulNumber()}${consultant.calcSoulNumberISK()}`:`${consultant.getSoulCheck()}${consultant.calcSoulNumberISK()}`}
+                {(!checkN) ? `${consultant.calcSoulNumber()}${consultant.calcSoulNumberISK()}` : `${consultant.getSoulCheck()}${consultant.calcSoulNumberISK()}`}
               </CircleNumber>
             </div>
             <div className='flex items-center justify-center text-gray-500 font-bold'>
               <label className='mr-1'>Expresión</label>
               <CircleNumber size="sm" appearance="blue-30" border="blue">
-                {(!checkN)?`${consultant.calcSoulExpresion()}${consultant.calcSoulExpresionISK()}`:`${consultant.getExpressionSoulCheck()}${consultant.calcSoulExpresionISK()}`}
+                {(!checkN) ? `${consultant.calcSoulExpresion()}${consultant.calcSoulExpresionISK()}` : `${consultant.getExpressionSoulCheck()}${consultant.calcSoulExpresionISK()}`}
               </CircleNumber>
             </div>
             <div className='flex items-center justify-center text-gray-500 font-bold'>
@@ -85,7 +84,7 @@ const PinnaclePage = () => {
         <div className='col-span-11'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Potencial Frecuencial
           </div>
@@ -115,18 +114,19 @@ const PinnaclePage = () => {
           <div className='bg-black text-white text-base font-bold h-8 flex justify-between items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='flex items-center'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Pináculo
-          </div>
+            </div>
           <button
               onClick={checkPinacle}
-              className={`float-right ${(checkP)?'bg-gold':'bg-yellow'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl flex justify-center items-center`}>
+              className={`float-right ${(checkP) ? 'bg-gold' : 'bg-yellow'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl flex justify-center items-center`}
+          >
                 <img src={check} alt="" />Comprobación
-            </button>
-            </div>
+          </button>
+          </div>
           <div className='pinnacle-wrap p-7 pb-16'>
-            <Pinnacle consultant={consultant} checkP={checkP}/>
+            <Pinnacle consultant={consultant} checkP={checkP} />
           </div>
         </div>
 
@@ -135,12 +135,12 @@ const PinnaclePage = () => {
             <div className='col-span-9'>
               <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
                 <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
-                  <TiPlus className='text-2xl'/>
+                  <TiPlus className='text-2xl' />
                 </div>
                 Puentes por etapa
               </div>
               <div className='pinnacle-wrap'>
-                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 1 || activeStage === 7  ? 'bg-active-radial' : null }`}>
+                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 1 || activeStage === 7 ? 'bg-active-radial' : null}`}>
                   <h2 className='text-base font-bold text-center'>
                     Puente 1
                   </h2>
@@ -153,7 +153,7 @@ const PinnaclePage = () => {
                         {consultant.getA()}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
-                        {Math.abs(consultant.getE() - consultant.getK())}
+                        {consultant.getResHierarchy(consultant.getE(), consultant.getK())}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="white" border="main" position="er" descb="B">
                         {consultant.getB()}{consultant.getBISK()}
@@ -167,18 +167,22 @@ const PinnaclePage = () => {
                     <div className='flex gap-1 col-start-1 row-start-1'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> 0 - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } años
                     </div>
-                    {(secondStage)?<div className='flex gap-1 col-start-1 row-start-2'>
+                    {(secondStage) ? (
+<div className='flex gap-1 col-start-1 row-start-2'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> 0 - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } años
-                    </div>:''}
+</div>
+) : ''}
                     <div className='flex gap-1 col-start-2 row-start-1'>
                       <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(4) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(5) - consultant.birthDate.year() } años
                     </div>
-                    {(secondStage)?<div className='flex gap-1 col-start-2 row-start-2'>
+                    {(secondStage) ? (
+<div className='flex gap-1 col-start-2 row-start-2'>
                       <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year() } años
-                    </div>:''}
+</div>
+) : ''}
                   </div>
                 </div>
-                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 2 || activeStage === 6  ? 'bg-active-radial' : null }`}>
+                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 2 || activeStage === 6 ? 'bg-active-radial' : null}`}>
                   <h2 className='text-base font-bold text-center'>
                     Puente 2
                   </h2>
@@ -191,7 +195,7 @@ const PinnaclePage = () => {
                         {consultant.getB()}{consultant.getBISK()}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
-                        {Math.abs(consultant.getF() - consultant.getL())}
+                        {consultant.getResHierarchy(consultant.getF(), consultant.getL())}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="white" border="main" position="er" descb="C">
                         {consultant.getC()}{consultant.getCISK()}
@@ -204,19 +208,23 @@ const PinnaclePage = () => {
                   <div className='grid grid-cols-2 text-xs mt-5'>
                   <div className='flex gap-1 col-start-1 row-start-1'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(2) - consultant.birthDate.year() } años
-                    </div>
-                    {(secondStage)?<div className='flex gap-1 col-start-1 row-start-2'>
+                  </div>
+                    {(secondStage) ? (
+<div className='flex gap-1 col-start-1 row-start-2'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year() } años
-                    </div>:''}
+</div>
+) : ''}
                     <div className='flex gap-1 col-start-2 row-start-1'>
                       <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(5) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(6) - consultant.birthDate.year() } años
                     </div>
-                    {(secondStage)?<div className='flex gap-1 col-start-2 row-start-2'>
+                    {(secondStage) ? (
+<div className='flex gap-1 col-start-2 row-start-2'>
                       <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year() } años
-                    </div>:''}
+</div>
+) : ''}
                   </div>
                 </div>
-                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 3 || activeStage === 5 ? 'bg-active-radial' : null }`}>
+                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 3 || activeStage === 5 ? 'bg-active-radial' : null}`}>
                   <h2 className='text-base font-bold text-center'>
                     Puente 3
                   </h2>
@@ -229,7 +237,7 @@ const PinnaclePage = () => {
                         {consultant.getE()}{consultant.getEISK()}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
-                        {Math.abs(consultant.getG() - consultant.getM())}
+                        {consultant.getResHierarchy(consultant.getG(), consultant.getM())}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="white" border="main" position="er" descb="F">
                         {consultant.getF()}{consultant.getFISK()}
@@ -242,19 +250,23 @@ const PinnaclePage = () => {
                   <div className='grid grid-cols-2 text-xs mt-5'>
                   <div className='flex gap-1 col-start-1 row-start-1'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(2) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(3) - consultant.birthDate.year() } años
-                    </div>
-                    {(secondStage)?<div className='flex gap-1 col-start-1 row-start-2'>
+                  </div>
+                    {(secondStage) ? (
+<div className='flex gap-1 col-start-1 row-start-2'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year() } años
-                    </div>:''}
+</div>
+) : ''}
                     <div className='flex gap-1 col-start-2 row-start-1'>
                       <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(6) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(7) - consultant.birthDate.year() } años
                     </div>
-                    {(secondStage)?<div className='flex gap-1 col-start-2 row-start-2'>
+                    {(secondStage) ? (
+<div className='flex gap-1 col-start-2 row-start-2'>
                       <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(7) - consultant.birthDate.year() } años
-                    </div>:''}
+</div>
+) : ''}
                   </div>
                 </div>
-                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 ? 'bg-active-radial' : null }`}>
+                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 ? 'bg-active-radial' : null}`}>
                   <h2 className='text-base font-bold text-center'>
                     Puente 4
                   </h2>
@@ -267,7 +279,7 @@ const PinnaclePage = () => {
                         {consultant.getA()}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
-                        {Math.abs(consultant.getH() - consultant.getN())}
+                        {consultant.getResHierarchy(consultant.getH(), consultant.getN())}
                       </CircleNumber>
                       <CircleNumber size="sm" appearance="white" border="main" position="er" descb="C">
                         {consultant.getC()}{consultant.getCISK()}
@@ -280,10 +292,12 @@ const PinnaclePage = () => {
                   <div className='grid grid-cols-2 text-xs mt-5'>
                   <div className='flex gap-1 col-start-1 row-start-1'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(3) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(4) - consultant.birthDate.year() } años
-                    </div>
-                    {(secondStage)?<div className='flex gap-1 col-start-1 row-start-2'>
+                  </div>
+                    {(secondStage) ? (
+<div className='flex gap-1 col-start-1 row-start-2'>
                       <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year() } años
-                    </div>:''}
+</div>
+) : ''}
                   </div>
                 </div>
               </div>
@@ -291,7 +305,7 @@ const PinnaclePage = () => {
             <div className='col-span-11'>
               <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
                 <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-                  <TiPlus className='text-2xl'/>
+                  <TiPlus className='text-2xl' />
                 </div>
                 Retornos anuales
               </div>
@@ -300,7 +314,7 @@ const PinnaclePage = () => {
                   <AnnualReturn annualReturn={annualReturnLastYear} />
                 </div>
                 <div className='px-5 py-8 border-b border-solid border-gray-300 bg-active-radial bg-opacity-15'>
-                  <AnnualReturn annualReturn={annualReturnCurrent} current={true} />
+                  <AnnualReturn annualReturn={annualReturnCurrent} current />
                 </div>
                 <div className='px-5 py-8'>
                   <AnnualReturn annualReturn={annualReturnNextYear} />
@@ -313,7 +327,7 @@ const PinnaclePage = () => {
         <div className='col-span-24 mb-10'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Curva del tiempo
           </div>
@@ -322,8 +336,7 @@ const PinnaclePage = () => {
           </div>
         </div>
 
-      </div>
-    </>
+    </div>
   )
 }
 
