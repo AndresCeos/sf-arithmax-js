@@ -12,6 +12,7 @@ const ConfigPage = () => {
   const { names, lastName, scdLastName, date, company, address, email, tel, phone, logoURL, webSite, appVersion, licence } = useSelector(state => state.auth)
   const [base, setBase] = useState(logoURL !== null ? logoURL : '')
   const [isSelect, setIsSelect] = useState(false)
+  const [maxBytes, setMaxBytes] = useState(false)
   const dispatch = useDispatch();
   useEffect(() => {
     if (base !== '') {
@@ -33,12 +34,19 @@ const ConfigPage = () => {
     });
   };
   const uploadImage = async (event) => {
+    const bytes = 1000000;
     const file = event.target.files[0];
-    const base64 = await convertBase64(file);
-    console.log(base64);
-    setBase(base64)
-    setIsSelect(true)
-  };
+    if (file.size > bytes) {
+      setMaxBytes(true)
+    } else {
+      const base64 = await convertBase64(file);
+      // console.log(file.size)
+      // console.log(base64);
+      setBase(base64)
+      setIsSelect(true)
+      setMaxBytes(false)
+    }
+  }
   const clear = () => {
     setIsSelect(false)
     setBase('')
@@ -287,6 +295,9 @@ const ConfigPage = () => {
                           className="rounded-md"
                           accept="image/*"
                         />
+                          {(maxBytes) ? <p className='text-13 text-red-600'>Archivo demasiado pesado</p> : null}
+                          <p className='text-13 mt-2'>Tamaño del archivo max. 1MB</p>
+                          <p className='text-13'>Tipo de archivo .jpeg .png</p>
                       </div>
                         ) : null}
                     </div>
