@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 
 import { CircleTime } from '../components';
-import { Person, Universal, currentDate } from '../resources';
 import { dateSelect } from '../hooks';
+import { currentDate, Person, Universal } from '../resources';
 
-import { TiPlus } from "react-icons/ti";
-import welcome from '../assets/welcome.png'
-import universal from '../assets/icons/e_universal.svg'
-import personal from '../assets/icons/e_personal.svg'
-import personal_disabled from '../assets/icons/e_personal_disabled.svg'
+import { TiPlus } from 'react-icons/ti';
+import personal from '../assets/icons/e_personal.svg';
+import personalDisabled from '../assets/icons/e_personal_disabled.svg';
+import universal from '../assets/icons/e_universal.svg';
+import welcome from '../assets/welcome.png';
 
 const HomePage = () => {
   const { names, lastName, scdLastName, date } = useSelector(state => state.auth)
@@ -26,6 +26,7 @@ const HomePage = () => {
 
   return (
     <>
+      <div />
       <div className='grid grid-cols-2'>
         <div className='mt-20 pl-14 pt-11 pb-7 bg-white bg-opacity-50 w-full relative rounded-tr-3xl rounded-br-3xl'>
           <h2 className='font-black mt-0 mb-2 text-main text-2xl'>Bienvenid@ {names}</h2>
@@ -83,7 +84,7 @@ const HomePage = () => {
               <div className='font-black'>PERSONAL</div>
             </li>
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6 font-black text-13 text-center'>
-              {profile.displayname ?? displayname}
+              {profile.displayname || displayname}
             </li>
             <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black'>
               {profile.birthDate.isValid() ? profile.calcPersonalDay(currentDay, currentMonth, currentYear) : '-'}
@@ -100,7 +101,7 @@ const HomePage = () => {
           </ul>
           <ul className='flex flex-col items-center'>
             <li className='mb-2'>
-              <img src={personal_disabled} alt="personal_disabled" />
+              <img src={personalDisabled} alt="personal_disabled" />
             </li>
             <li className='text-center text-main opacity-25'>
               ENERGÍA<br />
@@ -109,22 +110,14 @@ const HomePage = () => {
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6 font-black opacity-25'>
               <TiPlus />
             </li>
-            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
-
-            </li>
-            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
-
-            </li>
-            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
-
-            </li>
-            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
-
-            </li>
+            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25' />
+            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25' />
+            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25' />
+            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25' />
           </ul>
           <ul className='flex flex-col items-center'>
             <li className='mb-2'>
-              <img src={personal_disabled} alt="personal_disabled" />
+              <img src={personalDisabled} alt="personal_disabled" />
             </li>
             <li className='text-center text-main opacity-25'>
               ENERGÍA<br />
@@ -133,18 +126,10 @@ const HomePage = () => {
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6 font-black opacity-25'>
               <TiPlus />
             </li>
-            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
-
-            </li>
-            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
-
-            </li>
-            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
-
-            </li>
-            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25'>
-
-            </li>
+            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25' />
+            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25' />
+            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25' />
+            <li className='rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3 font-black opacity-25' />
           </ul>
         </div>
       </div>

@@ -2,9 +2,17 @@ export const CircleNumber = props => {
   const borderWithClass = props.borderwidth ? 'border' : `border-${props.borderwidth}`
   const radiantClass = props.radiant ? 'inner-shadow-gold' : ''
 
-  return(
+  const size = () => {
+    const sizes = { xx: 7, xs: 8, sm: 10 }
+    return sizes[props.size] || 10
+  }
+  const fontSize = () => {
+    const sizes = { xs: 'base', sm: 'xl' }
+    return sizes[props.size] || 10
+  }
+  return (
     <div
-      className={`w-10 h-10 relative text-xl font-black text-black flex justify-center items-center bg-${props.appearance} ${borderWithClass} border-${props.border} rounded-full inner-shadow box-${props.position} z-10 ${radiantClass}`}
+      className={`w-${size()} h-${size()} relative text-${fontSize()} font-black text-black flex justify-center items-center bg-${props.appearance} ${borderWithClass} border-${props.border} rounded-full inner-shadow box-${props.position} z-10 ${radiantClass}`}
       {...props}
     >
       {props.children}

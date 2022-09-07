@@ -2929,3 +2929,8 @@ top: 134px;
 .z-100 {
     z-index: 100;
 }
+
+#App-statusBar+div {
+    max-width: 1094px;
+    margin: 40px auto;
+}

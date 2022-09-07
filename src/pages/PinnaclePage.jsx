@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 
-import { AnnualReturn, CircleNumber, Pinnacle, TimeCurve, UnselectedConsultant } from '../components';
+import {
+  AnnualReturn, Bridge, CircleNumber, Pinnacle, TimeCurve, UnselectedConsultant
+} from '../components';
 import { dateSelect, useConsultant } from '../hooks';
 
 import { useState } from 'react';
-import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
-import { TiPlus } from 'react-icons/ti';
-import check from '../assets/icons/check.svg';
+import { WrapTitle } from '../components/WrapTitle';
 
 const PinnaclePage = () => {
   const { userActive } = useSelector(state => state.users);
@@ -36,305 +36,170 @@ const PinnaclePage = () => {
   }
 
   return (
-    <div className='grid grid-cols-24 mt-8 mx-14 gap-6 pt-10'>
+    <div className='grid grid-cols-10 mt-8 mx-14 gap-4 pt-10'>
+      <div className='col-span-3 row-span-6'>
+        <WrapTitle
+          title="Pináculo"
+          button={{
+            text: 'Comprobación',
+            handle: checkPinacle,
+            state: checkP
+          }}
+        />
+        <div className='pinnacle-wrap px-2 py-7'>
+          <Pinnacle consultant={consultant} checkP={checkP} size="small" />
+        </div>
+      </div>
 
-        <div className='col-span-13'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-between items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='flex items-center'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl' />
-            </div>
-            Nombre
-            </div>
-            <button
-              onClick={checkName}
-              className={`float-right ${(checkN) ? 'bg-gold' : 'bg-yellow'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl flex justify-center items-center`}
-            >
-                <img src={check} alt="" />Comprobación
-            </button>
+      <div className='col-span-1 row-span-3'>
+        <WrapTitle
+          title="Nombre"
+          button={{
+            handle: checkName,
+            state: checkN
+          }}
+        />
+        <div className='pinnacle-wrap p-4'>
+          <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
+            <label className='text-10'>Nombre</label>
+            <CircleNumber size="sm" appearance="blue-30" border="blue">
+              {(!checkN) ? `${consultant.calcName()}${consultant.calcNameISK()}` : `${consultant.getNameCheck()}${consultant.calcNameISK()}`}
+            </CircleNumber>
           </div>
-          <div className='pinnacle-wrap grid grid-cols-4 px-4 py-8'>
-            <div className='flex items-center justify-center text-gray-500 font-bold'>
-              <label className='mr-1'>Nombre</label>
-              <CircleNumber size="sm" appearance="blue-30" border="blue">
-                {(!checkN) ? `${consultant.calcName()}${consultant.calcNameISK()}` : `${consultant.getNameCheck()}${consultant.calcNameISK()}`}
-              </CircleNumber>
-            </div>
-            <div className='flex items-center justify-center text-gray-500 font-bold'>
-              <label className='mr-1'>Alma</label>
-              <CircleNumber size="sm" appearance="blue-30" border="blue" radiant="true">
-                {(!checkN) ? `${consultant.calcSoulNumber()}${consultant.calcSoulNumberISK()}` : `${consultant.getSoulCheck()}${consultant.calcSoulNumberISK()}`}
-              </CircleNumber>
-            </div>
-            <div className='flex items-center justify-center text-gray-500 font-bold'>
-              <label className='mr-1'>Expresión</label>
-              <CircleNumber size="sm" appearance="blue-30" border="blue">
-                {(!checkN) ? `${consultant.calcSoulExpresion()}${consultant.calcSoulExpresionISK()}` : `${consultant.getExpressionSoulCheck()}${consultant.calcSoulExpresionISK()}`}
-              </CircleNumber>
-            </div>
-            <div className='flex items-center justify-center text-gray-500 font-bold'>
-              <label className='mr-1'>Madurez</label>
-              <CircleNumber size="sm" appearance="aguamarina-30" border="aguamarina">
-                {consultant.calcMaturity()}{consultant.calcMaturityISK()}
-              </CircleNumber>
-            </div>
+          <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
+            <label className='text-10 mt-3'>Alma</label>
+            <CircleNumber size="sm" appearance="blue-30" border="blue" radiant="true">
+              {(!checkN) ? `${consultant.calcSoulNumber()}${consultant.calcSoulNumberISK()}` : `${consultant.getSoulCheck()}${consultant.calcSoulNumberISK()}`}
+            </CircleNumber>
+          </div>
+          <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
+            <label className='text-10 mt-3'>Expresión</label>
+            <CircleNumber size="sm" appearance="blue-30" border="blue">
+              {(!checkN) ? `${consultant.calcSoulExpresion()}${consultant.calcSoulExpresionISK()}` : `${consultant.getExpressionSoulCheck()}${consultant.calcSoulExpresionISK()}`}
+            </CircleNumber>
+          </div>
+          <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
+            <label className='text-10 mt-3'>Madurez</label>
+            <CircleNumber size="sm" appearance="aguamarina-30" border="aguamarina">
+              {consultant.calcMaturity()}{consultant.calcMaturityISK()}
+            </CircleNumber>
           </div>
         </div>
+      </div>
 
-        <div className='col-span-11'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-              <TiPlus className='text-2xl' />
-            </div>
-            Potencial Frecuencial
+      <div className='col-span-6 row-span-2'>
+        <WrapTitle title="Puentes por etapa" color='bg-green-s' />
+        <div className='pinnacle-wrap grid grid-cols-4'>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 1 || activeStage === 7 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+            <h2 className='text-xs font-bold text-center'>
+              Puente 1
+            </h2>
+            <Bridge
+              top={`${consultant.getE()}${consultant.getEISK()}`}
+              right={`${consultant.getB()}${consultant.getBISK()}`}
+              bottom={consultant.getK()}
+              left={consultant.getA()}
+              center={consultant.getResHierarchy(consultant.getE(), consultant.getK())}
+              stageStart={`0 - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} años`}
+              stageEnd={`${consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} años`}
+              stageDoubleStart={`0 - ${consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} años`}
+              stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year()} años`}
+            />
           </div>
-          <div className='pinnacle-wrap grid grid-cols-3 px-4 py-8'>
-            <div className='flex items-center justify-center text-gray-500 font-bold'>
-              <label className='mr-1'>Reacción</label>
-              <CircleNumber size="sm" appearance="purple-30" border="purple">
-                {consultant.calcReaction()}{consultant.calcReactionISK()}
-              </CircleNumber>
-            </div>
-            <div className='flex items-center justify-center text-gray-500 font-bold'>
-              <label className='mr-1'>Síntesis</label>
-              <CircleNumber size="sm" appearance="purple-30" border="purple">
-                {consultant.calcSynthesis()}{consultant.calcSynthesisISK()}
-              </CircleNumber>
-            </div>
-            <div className='flex items-center justify-center text-gray-500 font-bold'>
-              <label className='mr-1'>Regalo</label>
-              <CircleNumber size="sm" appearance="purple-30" border="purple">
-                {consultant.calcGift()}{consultant.calcGiftISK()}
-              </CircleNumber>
-            </div>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 2 || activeStage === 6 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+            <h2 className='text-xs font-bold text-center'>
+              Puente 2
+            </h2>
+            <Bridge
+              top={`${consultant.getF()}${consultant.getFISK()}`}
+              right={`${consultant.getC()}${consultant.getCISK()}`}
+              bottom={consultant.getL()}
+              left={`${consultant.getB()}${consultant.getBISK()}`}
+              center={consultant.getResHierarchy(consultant.getF(), consultant.getL())}
+              stageStart={`${consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(2) - consultant.birthDate.year()} años`}
+              stageEnd={`${consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} años`}
+              stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year()} años`}
+              stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year()} años`}
+            />
+          </div>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 3 || activeStage === 5 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+            <h2 className='text-xs font-bold text-center'>
+              Puente 3
+            </h2>
+            <Bridge
+              top={`${consultant.getG()}${consultant.getGISK()}`}
+              right={`${consultant.getF()}${consultant.getFISK()}`}
+              bottom={consultant.getM()}
+              left={`${consultant.getE()}${consultant.getEISK()}`}
+              center={consultant.getResHierarchy(consultant.getG(), consultant.getM())}
+              stageStart={`${consultant.calcLifeStageDuration(2) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(3) - consultant.birthDate.year()} años`}
+              stageEnd={`${consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(7) - consultant.birthDate.year()} años`}
+              stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year()} años`}
+              stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(7) - consultant.birthDate.year()} años`}
+            />
+          </div>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 ? 'bg-active-radial' : null}`}>
+            <h2 className='text-xs font-bold text-center'>
+              Puente 4
+            </h2>
+            <Bridge
+              top={`${consultant.getH()}${consultant.getHISK()}`}
+              right={`${consultant.getC()}${consultant.getCISK()}`}
+              bottom={consultant.getN()}
+              left={consultant.getA()}
+              center={consultant.getResHierarchy(consultant.getH(), consultant.getN())}
+              stageStart={`${consultant.calcLifeStageDuration(3) - consultant.birthDate.year()}- ${consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} años`}
+              stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} años`}
+            />
           </div>
         </div>
+      </div>
 
-        <div className='col-span-13'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-between items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='flex items-center'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-              <TiPlus className='text-2xl' />
-            </div>
-            Pináculo
-            </div>
-          <button
-              onClick={checkPinacle}
-              className={`float-right ${(checkP) ? 'bg-gold' : 'bg-yellow'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl flex justify-center items-center`}
-          >
-                <img src={check} alt="" />Comprobación
-          </button>
+      <div className='col-span-6 col-start-5 row-span-4'>
+        <WrapTitle title="Retornos anuales" />
+        <div className='pinnacle-wrap  grid grid-cols-3'>
+          <div className='px-5 py-8 border-b border-solid border-gray-300'>
+            <AnnualReturn size="xs" annualReturn={annualReturnLastYear} />
           </div>
-          <div className='pinnacle-wrap p-7 pb-16'>
-            <Pinnacle consultant={consultant} checkP={checkP} />
+          <div className='px-5 py-8 border-b border-solid border-gray-300 bg-active-radial bg-opacity-15'>
+            <AnnualReturn size="xs" annualReturn={annualReturnCurrent} current />
+          </div>
+          <div className='px-5 py-8'>
+            <AnnualReturn size="xs" annualReturn={annualReturnNextYear} />
           </div>
         </div>
+      </div>
 
-        <div className='col-span-11'>
-          <div className='grid grid-cols-20 gap-6'>
-            <div className='col-span-9'>
-              <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-                <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
-                  <TiPlus className='text-2xl' />
-                </div>
-                Puentes por etapa
-              </div>
-              <div className='pinnacle-wrap'>
-                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 1 || activeStage === 7 ? 'bg-active-radial' : null}`}>
-                  <h2 className='text-base font-bold text-center'>
-                    Puente 1
-                  </h2>
-                  <div className='w-full flex items-center justify-center bg-opacity-100'>
-                    <div className='grid grid-cols-3 mt-3 w-36 gap-2 bridge-wrap relative'>
-                      <CircleNumber size="sm" appearance="green" border="green" position="et" descrt="E">
-                        {consultant.getE()}{consultant.getEISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descb="A">
-                        {consultant.getA()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
-                        {consultant.getResHierarchy(consultant.getE(), consultant.getK())}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="main" position="er" descb="B">
-                        {consultant.getB()}{consultant.getBISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descrb="K">
-                        {consultant.getK()}
-                      </CircleNumber>
-                    </div>
-                  </div>
-                  <div className='grid grid-cols-2 text-xs mt-5'>
-                    <div className='flex gap-1 col-start-1 row-start-1'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> 0 - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } años
-                    </div>
-                    {(secondStage) ? (
-<div className='flex gap-1 col-start-1 row-start-2'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> 0 - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } años
-</div>
-) : ''}
-                    <div className='flex gap-1 col-start-2 row-start-1'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(4) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(5) - consultant.birthDate.year() } años
-                    </div>
-                    {(secondStage) ? (
-<div className='flex gap-1 col-start-2 row-start-2'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year() } años
-</div>
-) : ''}
-                  </div>
-                </div>
-                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 2 || activeStage === 6 ? 'bg-active-radial' : null}`}>
-                  <h2 className='text-base font-bold text-center'>
-                    Puente 2
-                  </h2>
-                  <div className='w-full flex items-center justify-center bg-opacity-100'>
-                    <div className='grid grid-cols-3 mt-3 w-36 gap-2 bridge-wrap relative'>
-                      <CircleNumber size="sm" appearance="green" border="green" position="et" descrt="F">
-                        {consultant.getF()}{consultant.getFISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descb="B">
-                        {consultant.getB()}{consultant.getBISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
-                        {consultant.getResHierarchy(consultant.getF(), consultant.getL())}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="main" position="er" descb="C">
-                        {consultant.getC()}{consultant.getCISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descrb="L">
-                        {consultant.getL()}
-                      </CircleNumber>
-                    </div>
-                  </div>
-                  <div className='grid grid-cols-2 text-xs mt-5'>
-                  <div className='flex gap-1 col-start-1 row-start-1'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(2) - consultant.birthDate.year() } años
-                  </div>
-                    {(secondStage) ? (
-<div className='flex gap-1 col-start-1 row-start-2'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year() } años
-</div>
-) : ''}
-                    <div className='flex gap-1 col-start-2 row-start-1'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(5) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(6) - consultant.birthDate.year() } años
-                    </div>
-                    {(secondStage) ? (
-<div className='flex gap-1 col-start-2 row-start-2'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year() } años
-</div>
-) : ''}
-                  </div>
-                </div>
-                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 3 || activeStage === 5 ? 'bg-active-radial' : null}`}>
-                  <h2 className='text-base font-bold text-center'>
-                    Puente 3
-                  </h2>
-                  <div className='w-full flex items-center justify-center bg-opacity-100'>
-                    <div className='grid grid-cols-3 mt-3 w-36 gap-2 bridge-wrap relative'>
-                      <CircleNumber size="sm" appearance="green" border="green" position="et" descrt="G">
-                        {consultant.getG()}{consultant.getGISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descb="E">
-                        {consultant.getE()}{consultant.getEISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
-                        {consultant.getResHierarchy(consultant.getG(), consultant.getM())}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="main" position="er" descb="F">
-                        {consultant.getF()}{consultant.getFISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descrb="M">
-                        {consultant.getM()}
-                      </CircleNumber>
-                    </div>
-                  </div>
-                  <div className='grid grid-cols-2 text-xs mt-5'>
-                  <div className='flex gap-1 col-start-1 row-start-1'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(2) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(3) - consultant.birthDate.year() } años
-                  </div>
-                    {(secondStage) ? (
-<div className='flex gap-1 col-start-1 row-start-2'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year() } años
-</div>
-) : ''}
-                    <div className='flex gap-1 col-start-2 row-start-1'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcLifeStageDuration(6) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(7) - consultant.birthDate.year() } años
-                    </div>
-                    {(secondStage) ? (
-<div className='flex gap-1 col-start-2 row-start-2'>
-                      <FaArrowAltCircleDown color='#663366' size={14} /> {consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(7) - consultant.birthDate.year() } años
-</div>
-) : ''}
-                  </div>
-                </div>
-                <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 ? 'bg-active-radial' : null}`}>
-                  <h2 className='text-base font-bold text-center'>
-                    Puente 4
-                  </h2>
-                  <div className='w-full flex items-center justify-center bg-opacity-100'>
-                    <div className='grid grid-cols-3 mt-3 w-36 gap-2 bridge-wrap relative'>
-                      <CircleNumber size="sm" appearance="green" border="green" position="et" descrt="H">
-                        {consultant.getH()}{consultant.getHISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="purple" position="el" descb="A">
-                        {consultant.getA()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="gold" border="gold" position="ec">
-                        {consultant.getResHierarchy(consultant.getH(), consultant.getN())}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="main" position="er" descb="C">
-                        {consultant.getC()}{consultant.getCISK()}
-                      </CircleNumber>
-                      <CircleNumber size="sm" appearance="white" border="red" position="eb" descrb="M">
-                        {consultant.getN()}
-                      </CircleNumber>
-                    </div>
-                  </div>
-                  <div className='grid grid-cols-2 text-xs mt-5'>
-                  <div className='flex gap-1 col-start-1 row-start-1'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcLifeStageDuration(3) - consultant.birthDate.year() }- {consultant.calcLifeStageDuration(4) - consultant.birthDate.year() } años
-                  </div>
-                    {(secondStage) ? (
-<div className='flex gap-1 col-start-1 row-start-2'>
-                      <FaArrowAltCircleUp color='#51A133' size={14} /> {consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year() } años
-</div>
-) : ''}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='col-span-11'>
-              <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-                <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-                  <TiPlus className='text-2xl' />
-                </div>
-                Retornos anuales
-              </div>
-              <div className='pinnacle-wrap'>
-                <div className='px-5 py-8 border-b border-solid border-gray-300'>
-                  <AnnualReturn annualReturn={annualReturnLastYear} />
-                </div>
-                <div className='px-5 py-8 border-b border-solid border-gray-300 bg-active-radial bg-opacity-15'>
-                  <AnnualReturn annualReturn={annualReturnCurrent} current />
-                </div>
-                <div className='px-5 py-8'>
-                  <AnnualReturn annualReturn={annualReturnNextYear} />
-                </div>
-              </div>
-            </div>
+      <div className='col-span-1 row-span-2 col-start-4 row-start-4'>
+        <WrapTitle title="Frecuencia" />
+        <div className='pinnacle-wrap grid grid-cols-1 p-4'>
+          <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
+            <label className='text-xs mt-1'>Reacción</label>
+            <CircleNumber size="sm" appearance="purple-30" border="purple">
+              {consultant.calcReaction()}{consultant.calcReactionISK()}
+            </CircleNumber>
+          </div>
+          <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
+            <label className='text-xs mt-3'>Síntesis</label>
+            <CircleNumber size="sm" appearance="purple-30" border="purple">
+              {consultant.calcSynthesis()}{consultant.calcSynthesisISK()}
+            </CircleNumber>
+          </div>
+          <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
+            <label className='text-xs mt-3'>Regalo</label>
+            <CircleNumber size="sm" appearance="purple-30" border="purple">
+              {consultant.calcGift()}{consultant.calcGiftISK()}
+            </CircleNumber>
           </div>
         </div>
+      </div>
 
-        <div className='col-span-24 mb-10'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
-              <TiPlus className='text-2xl' />
-            </div>
-            Curva del tiempo
-          </div>
-          <div className='pinnacle-wrap px-8 py-8'>
-            <TimeCurve consultant={consultant} isPartner={false} />
-          </div>
+      <div className='col-span-10 mb-10'>
+        <WrapTitle title="Curva del tiempo" color='bg-green-s' />
+        <div className='pinnacle-wrap px-8 py-8'>
+          <TimeCurve consultant={consultant} isPartner={false} />
         </div>
+      </div>
 
     </div>
   )
