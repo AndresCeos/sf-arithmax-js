@@ -1,14 +1,14 @@
+import moment from 'moment/min/moment-with-locales';
 import { useSelector } from 'react-redux';
-import { UnselectedConsultant, PathMonth, HierarchyLine } from '../components/';
-import moment from 'moment/min/moment-with-locales'
-moment.locale("es-mx")
+import { HierarchyLine, PathMonth, UnselectedConsultant } from '../components';
 
-import { useConsultant, dateSelect } from '../hooks';
-import { nowWeekNumber, capitalize, ciclePhrases } from '../resources/';
-import { TiPlus } from "react-icons/ti";
+import { TiPlus } from 'react-icons/ti';
+import { dateSelect, useConsultant } from '../hooks';
+import { capitalize, ciclePhrases, nowWeekNumber } from '../resources';
 
-import green_arrow from '../assets/icons/green-arrow.svg'
-import arrow_bk from '../assets/arrow_bk.svg'
+import arrow_bk from '../assets/arrow_bk.svg';
+import green_arrow from '../assets/icons/green-arrow.svg';
+moment.locale('es-mx')
 
 const PathPage = () => {
   const { userActive } = useSelector(state => state.users);
@@ -22,7 +22,7 @@ const PathPage = () => {
 
   const now = moment()
 
-  const cicle = [
+  /* const cicle = [
     {
       vibration: consultant.calcPersonalYear(newDate.year() - 4),
       year: newDate.year() - 4
@@ -63,10 +63,13 @@ const PathPage = () => {
       vibration: consultant.calcPersonalYear(newDate.year() + 5),
       year: newDate.year() + 5
     },
-  ]
+  ] */
+  const cycle = consultant.getNineYearCycleStage(newDate.year())
 
-  let m1, m2, m3, m4, cm1, cm2, cm3, cm4 = ''
-  let start, end = ''
+  let m1; let m2; let m3; let m4; let cm1; let cm2; let cm3; let
+cm4 = ''
+  let start; let
+end = ''
   const listOfMonths = consultant.getCustomMonths()
   const index = listOfMonths.findIndex(i => i === 'Enero')
 
@@ -90,7 +93,8 @@ const PathPage = () => {
   const quater1NextYear = consultant.getQuaterOne()
   // const quater2NextYear = consultant.getQuaterTwo(now.add(1, 'year'))
 
-  let ism1 = false, ism2 = false, ism3 = false, ism4 = false
+  let ism1 = false; let ism2 = false; let ism3 = false; let
+ism4 = false
   const now2 = moment()
 
   const personalYear = consultant.calcPersonalYear()
@@ -100,7 +104,7 @@ const PathPage = () => {
   const allMonth = consultant.getAllMonths()
   const allMonthE = consultant.getAllMonthsEnglish()
 
-  let monthIndex = allMonthE.findIndex(i => i === newDate.format('MMMM'))
+  const monthIndex = allMonthE.findIndex(i => i === newDate.format('MMMM'))
   const actualMonth = allMonth[monthIndex]
 
 
@@ -112,9 +116,9 @@ const PathPage = () => {
 
   switch (index) {
     case 0:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
-      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[4]}`
+      m2 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m3 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
       cm1 = quater1 + quater1Karmico
       cm2 = quater2 + quater2Karmico
       cm3 = quater3 + quater3Karmico
@@ -123,9 +127,9 @@ const PathPage = () => {
       if (currentMonth >= 9 && currentMonth <= 11) { ism3 = true }
       break;
     case 1:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
-      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[4]}`
+      m2 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m3 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
       m4 = listOfMonths3[index - 1]
       cm1 = quater1LastYear + quater1Karmico
       cm2 = quater2LastYear + quater2KarmicoLast
@@ -140,10 +144,10 @@ const PathPage = () => {
       break;
     case 2:
     case 3:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
-      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m4 = listOfMonths3[0] + ' - ' + listOfMonths3[index - 1]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[4]}`
+      m2 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m3 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m4 = `${listOfMonths3[0]} - ${listOfMonths3[index - 1]}`
       cm1 = quater1LastYear + quater1Karmico
       cm2 = quater2LastYear + quater2KarmicoLast
       cm3 = quater3LastYear + quater3KarmicoLast
@@ -155,9 +159,9 @@ const PathPage = () => {
       break;
     case 4:
       m1 = listOfMonths3[index]
-      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m4 = listOfMonths3[0] + ' - ' + listOfMonths3[index - 1]
+      m2 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m3 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m4 = `${listOfMonths3[0]} - ${listOfMonths3[index - 1]}`
       cm1 = quater1LastYear + quater1Karmico
       cm2 = quater2LastYear + quater2KarmicoLast
       cm3 = quater3LastYear + quater3KarmicoLast
@@ -168,9 +172,9 @@ const PathPage = () => {
       if (currentMonth >= 0 && currentMonth <= 7) { ism4 = true }
       break;
     case 5:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
-      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[8]}`
+      m2 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m3 = `${listOfMonths3[12]} - ${listOfMonths3[4]}`
       cm1 = quater2LastYear + quater2KarmicoLast
       cm2 = quater3LastYear + quater3KarmicoLast
       cm3 = quater1 + quater1Karmico
@@ -180,9 +184,9 @@ const PathPage = () => {
 
       break;
     case 6:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
-      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[8]}`
+      m2 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m3 = `${listOfMonths3[12]} - ${listOfMonths3[4]}`
       m4 = listOfMonths3[index - 1]
       cm1 = quater2LastYear + quater2KarmicoLast
       cm2 = quater3LastYear + quater3KarmicoLast
@@ -194,10 +198,10 @@ const PathPage = () => {
       if (currentMonth === 5) { ism4 = true }
       break;
     case 7:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
-      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
-      m4 = listOfMonths3[5] + ' - ' + listOfMonths3[index - 1]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[8]}`
+      m2 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m3 = `${listOfMonths3[12]} - ${listOfMonths3[4]}`
+      m4 = `${listOfMonths3[5]} - ${listOfMonths3[index - 1]}`
       cm1 = quater2LastYear + quater2KarmicoLast
       cm2 = quater3LastYear + quater3KarmicoLast
       cm3 = quater1 + quater1Karmico
@@ -209,9 +213,9 @@ const PathPage = () => {
       break;
     case 8:
       m1 = listOfMonths3[index]
-      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
-      m4 = listOfMonths3[5] + ' - ' + listOfMonths3[index - 1]
+      m2 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m3 = `${listOfMonths3[12]} - ${listOfMonths3[4]}`
+      m4 = `${listOfMonths3[5]} - ${listOfMonths3[index - 1]}`
 
       cm1 = quater2LastYear + quater2KarmicoLast
       cm2 = quater3LastYear + quater3KarmicoLast
@@ -223,9 +227,9 @@ const PathPage = () => {
       if (currentMonth >= 5 && currentMonth <= 7) { ism4 = true }
       break;
     case 9:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[11]
-      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
-      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[11]}`
+      m2 = `${listOfMonths3[0]} - ${listOfMonths3[4]}`
+      m3 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
       cm1 = quater3LastYear + quater3KarmicoLast
       cm2 = quater1 + quater1Karmico
       cm3 = quater2 + quater2Karmico
@@ -235,9 +239,9 @@ const PathPage = () => {
 
       break;
     case 10:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[11]
-      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
-      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[11]}`
+      m2 = `${listOfMonths3[0]} - ${listOfMonths3[4]}`
+      m3 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
       m4 = listOfMonths3[index - 1]
       cm1 = quater3LastYear + quater3KarmicoLast
       cm2 = quater1 + quater1Karmico
@@ -250,9 +254,9 @@ const PathPage = () => {
       break;
     case 11:
       m1 = listOfMonths3[index]
-      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
-      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m4 = listOfMonths3[9] + ' - ' + listOfMonths3[index - 1]
+      m2 = `${listOfMonths3[0]} - ${listOfMonths3[4]}`
+      m3 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m4 = `${listOfMonths3[9]} - ${listOfMonths3[index - 1]}`
       cm1 = quater3LastYear + quater3KarmicoLast
       cm2 = quater1 + quater1Karmico
       cm3 = quater2 + quater2Karmico
@@ -262,7 +266,6 @@ const PathPage = () => {
       if (currentMonth >= 5 && currentMonth <= 8) { ism3 = true }
       if (currentMonth >= 9 && currentMonth <= index - 1) { ism4 = true }
       break;
-
   }
 
 
@@ -273,8 +276,7 @@ const PathPage = () => {
   const currentWeek = nowWeekNumber(newDate)
 
   return (
-    <>
-      <div className='grid grid-cols-24 mt-8 mx-14 gap-6 pt-10'>
+    <div className='grid grid-cols-24 mt-8 mx-14 gap-6 pt-10'>
 
         <div className='col-span-24 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
@@ -294,15 +296,16 @@ const PathPage = () => {
               <div className='col-start-1 col-span-2 row-start-3 h-10 bg-red flex justify-center items-center text-black text-xl font-bold rounded-md border-4 border-red'>
                 Año {consultant.calcPersonalYear(newDate.year())}
               </div>
-              <div className='col-start-1 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
+              <div className='col-start-1 col-span-2 row-start-5 h-9 arrow-down-cicle' />
               <div className='col-start-1 col-span-2 row-start-6 text-13 font-bold'>
                 {ciclePhrases[consultant.calcPersonalYear(newDate.year())][0]} <br />
                 {ciclePhrases[consultant.calcPersonalYear(newDate.year())][1]} <br />
                 {ciclePhrases[consultant.calcPersonalYear(newDate.year())][2]}
               </div>
 
-              {(newDate.year() - 27 > consultant.getYearOfBirth()) &&
-                <>
+              {(newDate.year() - 27 > consultant.getYearOfBirth())
+                && (
+<>
                   <div className='col-start-4 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 27}</div>
                   <div className='col-start-4 col-span-2 row-start-3 relative'>
                     <div className='absolute z-10 centered-axis-x'>
@@ -311,8 +314,8 @@ const PathPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='col-start-4 col-span-2 row-start-5 h-9 arrow-down-line'></div>
-                  <div className='col-start-4 col-span-2 row-start-6 h-9 arrow-down-cicle'></div>
+                  <div className='col-start-4 col-span-2 row-start-5 h-9 arrow-down-line' />
+                  <div className='col-start-4 col-span-2 row-start-6 h-9 arrow-down-cicle' />
                   <div className='col-start-4 col-span-2 row-start-7 text-13 font-bold'>
                     <div className='col-start-7 col-span-2 row-start-6 text-13 font-bold'>
                       {ciclePhrases[consultant.calcPersonalYear(newDate.year())][3]}
@@ -324,12 +327,14 @@ const PathPage = () => {
                   <div className='col-start-6 row-start-2 flex items-center justify-center'>
                     <img src={green_arrow} alt="green arrow" />
                   </div>
-                </>
+</>
+)
               }
 
 
-              {(newDate.year() - 18 > consultant.getYearOfBirth()) &&
-                <>
+              {(newDate.year() - 18 > consultant.getYearOfBirth())
+                && (
+<>
                   <div className='col-start-7 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 18}</div>
                   <div className='col-start-7 col-span-2 row-start-3 relative'>
                     <div className='absolute z-10 centered-axis-x'>
@@ -338,7 +343,7 @@ const PathPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='col-start-7 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
+                  <div className='col-start-7 col-span-2 row-start-5 h-9 arrow-down-cicle' />
                   <div className='col-start-7 col-span-2 row-start-6 text-13 font-bold'>
                     {ciclePhrases[consultant.calcPersonalYear(newDate.year())][4]}
                   </div>
@@ -348,11 +353,13 @@ const PathPage = () => {
                   <div className='col-start-9 row-start-2 flex items-center justify-center'>
                     <img src={green_arrow} alt="green arrow" />
                   </div>
-                </>
+</>
+)
               }
 
-              {(newDate.year() - 9 > consultant.getYearOfBirth()) &&
-                <>
+              {(newDate.year() - 9 > consultant.getYearOfBirth())
+                && (
+<>
                   <div className='col-start-10 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 9}</div>
                   <div className='col-start-10 col-span-2 row-start-3 relative'>
                     <div className='absolute z-10 centered-axis-x'>
@@ -361,8 +368,8 @@ const PathPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='col-start-10 col-span-2 row-start-5 h-9 arrow-down-line'></div>
-                  <div className='col-start-10 col-span-2 row-start-6 h-9 arrow-down-cicle'></div>
+                  <div className='col-start-10 col-span-2 row-start-5 h-9 arrow-down-line' />
+                  <div className='col-start-10 col-span-2 row-start-6 h-9 arrow-down-cicle' />
                   <div className='col-start-10 col-span-2 row-start-7 text-13 font-bold'>
                     {ciclePhrases[consultant.calcPersonalYear(newDate.year())][5]}
                   </div>
@@ -372,7 +379,8 @@ const PathPage = () => {
                   <div className='col-start-12 row-start-2 flex items-center justify-center'>
                     <img src={green_arrow} alt="green arrow" />
                   </div>
-                </>
+</>
+)
               }
 
 
@@ -384,7 +392,7 @@ const PathPage = () => {
                   </div>
                 </div>
               </div>
-              <div className='col-start-13 col-span-2 row-start-5 h-9 arrow-down-cicle'></div>
+              <div className='col-start-13 col-span-2 row-start-5 h-9 arrow-down-cicle' />
               <div className='col-start-13 col-span-2 row-start-6 text-13 font-bold'>
                 {ciclePhrases[consultant.calcPersonalYear(newDate.year())][6]}
               </div>
@@ -473,27 +481,26 @@ const PathPage = () => {
                   CICLO DE 9 AÑOS
                 </div>
 
-                {cicle.map((cicle, i) =>
+                {cycle.map((cicle, i) => (
                   <>
                     <div
                       className={`
                         row-start-2 text-xl font-bold flex items-center justify-center rounded-md h-10 relative mt-6
-                        ${(cicle.vibration === 22 || cicle.vibration === 44) ? 'col-span-2' : ''}
-                        ${newDate.year() === cicle.year ? 'bg-secondary path-personal-vibration-active' : 'bg-purple-30'}
+                        ${newDate.year() === cicle ? 'bg-secondary path-personal-vibration-active' : 'bg-purple-30'}
                       `}
                     >
-                      {cicle.vibration}{consultant.calcPersonalYearISK(cicle.year)}
+                      {consultant.calcPersonalYear(cicle)}{consultant.calcPersonalYearISK(cicle)}
                     </div>
                     <div
                       className={`
                         row-start-3 text-13 font-bold text-center my-1 relative
-                        ${now.year() === cicle.year ? 'text-secondary path-personal-year-active' : 'text-gray-400'}
+                        ${now.year() === cicle ? 'text-secondary path-personal-year-active' : 'text-gray-400'}
                       `}
                     >
-                      {cicle.year}
+                      {cicle}
                     </div>
                   </>
-                )}
+                ))}
               </div>
             </div>
             <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pt-3 pb-12'>
@@ -515,7 +522,8 @@ const PathPage = () => {
                     {cm1}
                     <div
                       className={`path-quarter-des ${ism1 ? 'path-quater-active' : ''}`}
-                    >{m1.toUpperCase()}</div>
+                    >{m1.toUpperCase()}
+                    </div>
                   </div>
                   <div
                     className={
@@ -526,7 +534,8 @@ const PathPage = () => {
                     {cm2}
                     <div
                       className={`path-quarter-des ${ism2 ? 'path-quater-active' : ''}`}
-                    >{m2.toUpperCase()}</div>
+                    >{m2.toUpperCase()}
+                    </div>
                   </div>
                   <div
                     className={
@@ -537,19 +546,23 @@ const PathPage = () => {
                     {cm3}
                     <div
                       className={`path-quarter-des ${ism3 ? 'path-quater-active' : ''}`}
-                    >{m3.toUpperCase()}</div>
+                    >{m3.toUpperCase()}
+                    </div>
                   </div>
-                  {(m4 !== undefined) ? <div
+                  {(m4 !== undefined) ? (
+<div
                     className={
                       `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
                       ${ism4 ? 'quater-active' : ''}`
                     }
-                  >
+>
                     {cm4}
                     <div
                       className={`path-quarter-des ${ism4 ? 'path-quater-active' : ''}`}
-                    >{m4.toUpperCase()}</div>
-                  </div> : ''}
+                    >{m4.toUpperCase()}
+                    </div>
+</div>
+) : ''}
                 </div>
               </div>
             </div>
@@ -583,7 +596,8 @@ const PathPage = () => {
                     {consultant.calcSelectPersonalWeek(newDate.month() + 1, 1, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 1, newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 1 ? 'path-week-active' : ''}`}
-                    >1-7 {currentMonthName}</div>
+                    >1-7 {currentMonthName}
+                    </div>
                   </div>
                   <div
                     className={`
@@ -594,7 +608,8 @@ const PathPage = () => {
                     {consultant.calcSelectPersonalWeek(newDate.month() + 1, 2, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 2, newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 2 ? 'path-week-active' : ''}`}
-                    >8-14 {currentMonthName}</div>
+                    >8-14 {currentMonthName}
+                    </div>
                   </div>
                   <div
                     className={`
@@ -605,7 +620,8 @@ const PathPage = () => {
                     {consultant.calcSelectPersonalWeek(newDate.month() + 1, 3, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 3, newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 3 ? 'path-week-active' : ''}`}
-                    >15-21 {currentMonthName}</div>
+                    >15-21 {currentMonthName}
+                    </div>
                   </div>
                   <div
                     className={`
@@ -616,7 +632,8 @@ const PathPage = () => {
                     {consultant.calcSelectPersonalWeek(newDate.month() + 1, 4, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 4, newDate.year())}
                     <div
                       className={`path-week-des ${currentWeek === 4 ? 'path-week-active' : ''}`}
-                    >22-{moment(now2).endOf('month').format('DD')} {currentMonthName}</div>
+                    >22-{moment(now2).endOf('month').format('DD')} {currentMonthName}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -634,8 +651,7 @@ const PathPage = () => {
             <HierarchyLine consultant={consultant} />
           </div>
         </div>
-      </div>
-    </>
+    </div>
   )
 }
 
