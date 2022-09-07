@@ -1,9 +1,8 @@
-import { Text, View, Image } from '@react-pdf/renderer';
-import { StyleSheet } from '@react-pdf/renderer';
-import bgRed from '../assets/bgRed.png'
-import bgBlue from '../assets/backBlue.png'
-import borderRed from '../assets/brRed3.png'
+import { Image, StyleSheet, Text, View } from '@react-pdf/renderer';
 import { Universal } from '../../resources';
+import bgBlue from '../assets/backBlue.png';
+import bgRed from '../assets/bgRed.png';
+import borderRed from '../assets/brRed3.png';
 
 export const Circle = ({ consultant, newDate }) => {
   const currentYear = newDate.year()
@@ -87,9 +86,9 @@ export const Circle = ({ consultant, newDate }) => {
       <Text style={[circle.circleFont, { top: 140, left: 335 }, circle.w30]}>{consultant.calcPersonalMonth(8, currentYear)}{consultant.calcPersonalMonthISK(8, currentYear)} / {u.calcUniversalMonth(8, currentYear)}{u.calcUniversalMonthISK(8, currentYear)}</Text>
       <Text style={[circle.circleFont, { top: 105, left: 290 }, circle.w30]}>{consultant.calcPersonalMonth(9, currentYear)}{consultant.calcPersonalMonthISK(9, currentYear)} / {u.calcUniversalMonth(9, currentYear)}{u.calcUniversalMonthISK(9, currentYear)}</Text>
 
-      <Text style={[circle.circleFont, { top: 105, left: 230 }, circle.w30]}>{consultant.calcPersonalMonth(10, currentYear)}{consultant.calcPersonalMonthISK(12, currentYear)} / {u.calcUniversalMonth(12, currentYear)}{u.calcUniversalMonthISK(12, currentYear)}</Text>
+      <Text style={[circle.circleFont, { top: 105, left: 230 }, circle.w30]}>{consultant.calcPersonalMonth(10, currentYear)}{consultant.calcPersonalMonthISK(12, currentYear)} / {u.calcUniversalMonth(10, currentYear)}{u.calcUniversalMonthISK(10, currentYear)}</Text>
       <Text style={[circle.circleFont, { top: 140, left: 170 }, circle.w30]}>{consultant.calcPersonalMonth(11, currentYear)}{consultant.calcPersonalMonthISK(11, currentYear)} / {u.calcUniversalMonth(11, currentYear)}{u.calcUniversalMonthISK(11, currentYear)}</Text>
-      <Text style={[circle.circleFont, { top: 195, left: 150 }, circle.w30]}>{consultant.calcPersonalMonth(12, currentYear)}{consultant.calcPersonalMonthISK(10, currentYear)} / {u.calcUniversalMonth(10, currentYear)}{u.calcUniversalMonthISK(10, currentYear)}</Text>
+      <Text style={[circle.circleFont, { top: 195, left: 150 }, circle.w30]}>{consultant.calcPersonalMonth(12, currentYear)}{consultant.calcPersonalMonthISK(10, currentYear)} / {u.calcUniversalMonth(12, currentYear)}{u.calcUniversalMonthISK(12, currentYear)}</Text>
 
       <Text style={[circle.circleFont, { top: 240, left: 210 }]}>{consultant.getQuaterMonth(1, currentYear)}{consultant.getQuaterMonthISK(1, currentYear)}</Text>
       <Text style={[circle.circleFont, { top: 265, left: 225 }]}>{consultant.getQuaterMonth(2, currentYear)}{consultant.getQuaterMonthISK(2, currentYear)}</Text>
@@ -107,31 +106,31 @@ export const Circle = ({ consultant, newDate }) => {
       <Text style={[circle.circleFont, { top: 185, left: 225 }]}>{consultant.getQuaterMonth(11, currentYear)}{consultant.getQuaterMonthISK(11, currentYear)}</Text>
       <Text style={[circle.circleFont, { top: 210, left: 210 }]}>{consultant.getQuaterMonth(12, currentYear)}{consultant.getQuaterMonthISK(12, currentYear)}</Text>
 
-      {currentMonth !== 1 && currentMonth > 1 ? <Image style={[circle.img, circle.pos1]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 2 && currentMonth > 2 ? <Image style={[circle.img, circle.pos2, circle.rotatePos2]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 3 && currentMonth > 3 ? <Image style={[circle.img, circle.pos3, circle.rotatePos3]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 4 && currentMonth > 4 ? <Image style={[circle.img, circle.pos4, circle.rotatePos4]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 5 && currentMonth > 5 ? <Image style={[circle.img, circle.pos5, circle.rotatePos5]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 6 && currentMonth > 6 ? <Image style={[circle.img, circle.pos6, circle.rotatePos6]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 7 && currentMonth > 7 ? <Image style={[circle.img, circle.pos7, circle.rotatePos7]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 8 && currentMonth > 8 ? <Image style={[circle.img, circle.pos8, circle.rotatePos8]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 9 && currentMonth > 9 ? <Image style={[circle.img, circle.pos9, circle.rotatePos9]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 10 && currentMonth > 10 ? <Image style={[circle.img, circle.pos10, circle.rotatePos10]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 11 && currentMonth > 11 ? <Image style={[circle.img, circle.pos11, circle.rotatePos11]} src={bgBlue}></Image> : ''}
-      {currentMonth !== 12 && currentMonth > 12 ? <Image style={[circle.img, circle.pos12, circle.rotatePos12]} src={bgBlue}></Image> : ''}
+      {currentMonth !== 1 && currentMonth > 1 ? <Image style={[circle.img, circle.pos1]} src={bgBlue} /> : ''}
+      {currentMonth !== 2 && currentMonth > 2 ? <Image style={[circle.img, circle.pos2, circle.rotatePos2]} src={bgBlue} /> : ''}
+      {currentMonth !== 3 && currentMonth > 3 ? <Image style={[circle.img, circle.pos3, circle.rotatePos3]} src={bgBlue} /> : ''}
+      {currentMonth !== 4 && currentMonth > 4 ? <Image style={[circle.img, circle.pos4, circle.rotatePos4]} src={bgBlue} /> : ''}
+      {currentMonth !== 5 && currentMonth > 5 ? <Image style={[circle.img, circle.pos5, circle.rotatePos5]} src={bgBlue} /> : ''}
+      {currentMonth !== 6 && currentMonth > 6 ? <Image style={[circle.img, circle.pos6, circle.rotatePos6]} src={bgBlue} /> : ''}
+      {currentMonth !== 7 && currentMonth > 7 ? <Image style={[circle.img, circle.pos7, circle.rotatePos7]} src={bgBlue} /> : ''}
+      {currentMonth !== 8 && currentMonth > 8 ? <Image style={[circle.img, circle.pos8, circle.rotatePos8]} src={bgBlue} /> : ''}
+      {currentMonth !== 9 && currentMonth > 9 ? <Image style={[circle.img, circle.pos9, circle.rotatePos9]} src={bgBlue} /> : ''}
+      {currentMonth !== 10 && currentMonth > 10 ? <Image style={[circle.img, circle.pos10, circle.rotatePos10]} src={bgBlue} /> : ''}
+      {currentMonth !== 11 && currentMonth > 11 ? <Image style={[circle.img, circle.pos11, circle.rotatePos11]} src={bgBlue} /> : ''}
+      {currentMonth !== 12 && currentMonth > 12 ? <Image style={[circle.img, circle.pos12, circle.rotatePos12]} src={bgBlue} /> : ''}
 
-      {currentMonth === 1 ? <><Image style={[circle.img, circle.pos1]} src={bgRed}></Image><Image style={[circle.img, circle.pos1]} src={borderRed}></Image></> : ''}
-      {currentMonth === 2 ? <><Image style={[circle.img, circle.pos2, circle.rotatePos2]} src={bgRed}></Image><Image style={[circle.img, circle.pos2, circle.rotatePos2]} src={borderRed}></Image></> : ''}
-      {currentMonth === 3 ? <><Image style={[circle.img, circle.pos3, circle.rotatePos3]} src={bgRed}></Image><Image style={[circle.img, circle.pos3, circle.rotatePos3]} src={borderRed}></Image></> : ''}
-      {currentMonth === 4 ? <><Image style={[circle.img, circle.pos4, circle.rotatePos4]} src={bgRed}></Image><Image style={[circle.img, circle.pos4, circle.rotatePos4]} src={borderRed}></Image></> : ''}
-      {currentMonth === 5 ? <><Image style={[circle.img, circle.pos5, circle.rotatePos5]} src={bgRed}></Image><Image style={[circle.img, circle.pos5, circle.rotatePos5]} src={borderRed}></Image></> : ''}
-      {currentMonth === 6 ? <><Image style={[circle.img, circle.pos6, circle.rotatePos6]} src={bgRed}></Image><Image style={[circle.img, circle.pos6, circle.rotatePos6]} src={borderRed}></Image></> : ''}
-      {currentMonth === 7 ? <><Image style={[circle.img, circle.pos7, circle.rotatePos7]} src={bgRed}></Image><Image style={[circle.img, circle.pos7, circle.rotatePos7]} src={borderRed}></Image></> : ''}
-      {currentMonth === 8 ? <><Image style={[circle.img, circle.pos8, circle.rotatePos8]} src={bgRed}></Image><Image style={[circle.img, circle.pos8, circle.rotatePos8]} src={borderRed}></Image></> : ''}
-      {currentMonth === 9 ? <><Image style={[circle.img, circle.pos9, circle.rotatePos9]} src={bgRed}></Image><Image style={[circle.img, circle.pos9, circle.rotatePos9]} src={borderRed}></Image></> : ''}
-      {currentMonth === 10 ? <><Image style={[circle.img, circle.pos10, circle.rotatePos10]} src={bgRed}></Image><Image style={[circle.img, circle.pos10, circle.rotatePos10]} src={borderRed}></Image></> : ''}
-      {currentMonth === 11 ? <><Image style={[circle.img, circle.pos11, circle.rotatePos11]} src={bgRed}></Image><Image style={[circle.img, circle.pos11, circle.rotatePos11]} src={borderRed}></Image></> : ''}
-      {currentMonth === 12 ? <><Image style={[circle.img, circle.pos12, circle.rotatePos12]} src={bgRed}></Image><Image style={[circle.img, circle.pos12, circle.rotatePos12]} src={borderRed}></Image></> : ''}
+      {currentMonth === 1 ? <><Image style={[circle.img, circle.pos1]} src={bgRed} /><Image style={[circle.img, circle.pos1]} src={borderRed} /></> : ''}
+      {currentMonth === 2 ? <><Image style={[circle.img, circle.pos2, circle.rotatePos2]} src={bgRed} /><Image style={[circle.img, circle.pos2, circle.rotatePos2]} src={borderRed} /></> : ''}
+      {currentMonth === 3 ? <><Image style={[circle.img, circle.pos3, circle.rotatePos3]} src={bgRed} /><Image style={[circle.img, circle.pos3, circle.rotatePos3]} src={borderRed} /></> : ''}
+      {currentMonth === 4 ? <><Image style={[circle.img, circle.pos4, circle.rotatePos4]} src={bgRed} /><Image style={[circle.img, circle.pos4, circle.rotatePos4]} src={borderRed} /></> : ''}
+      {currentMonth === 5 ? <><Image style={[circle.img, circle.pos5, circle.rotatePos5]} src={bgRed} /><Image style={[circle.img, circle.pos5, circle.rotatePos5]} src={borderRed} /></> : ''}
+      {currentMonth === 6 ? <><Image style={[circle.img, circle.pos6, circle.rotatePos6]} src={bgRed} /><Image style={[circle.img, circle.pos6, circle.rotatePos6]} src={borderRed} /></> : ''}
+      {currentMonth === 7 ? <><Image style={[circle.img, circle.pos7, circle.rotatePos7]} src={bgRed} /><Image style={[circle.img, circle.pos7, circle.rotatePos7]} src={borderRed} /></> : ''}
+      {currentMonth === 8 ? <><Image style={[circle.img, circle.pos8, circle.rotatePos8]} src={bgRed} /><Image style={[circle.img, circle.pos8, circle.rotatePos8]} src={borderRed} /></> : ''}
+      {currentMonth === 9 ? <><Image style={[circle.img, circle.pos9, circle.rotatePos9]} src={bgRed} /><Image style={[circle.img, circle.pos9, circle.rotatePos9]} src={borderRed} /></> : ''}
+      {currentMonth === 10 ? <><Image style={[circle.img, circle.pos10, circle.rotatePos10]} src={bgRed} /><Image style={[circle.img, circle.pos10, circle.rotatePos10]} src={borderRed} /></> : ''}
+      {currentMonth === 11 ? <><Image style={[circle.img, circle.pos11, circle.rotatePos11]} src={bgRed} /><Image style={[circle.img, circle.pos11, circle.rotatePos11]} src={borderRed} /></> : ''}
+      {currentMonth === 12 ? <><Image style={[circle.img, circle.pos12, circle.rotatePos12]} src={bgRed} /><Image style={[circle.img, circle.pos12, circle.rotatePos12]} src={borderRed} /></> : ''}
     </View>
   )
 }
