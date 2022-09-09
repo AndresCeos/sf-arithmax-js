@@ -547,7 +547,7 @@ export class Person {
     if (weekToCalculate === 2) { return this.reduceNumber(weekTwo) }
     const weekThr = this.reduceNumber(this.reduceNumber(weekOne) + this.reduceNumber(weekTwo))
     if (weekToCalculate === 3) { return this.reduceNumber(weekThr) }
-    const weekFou = this.reduceNumber(monthToCalculate + this.reduceNumber(weekOne))
+    const weekFou = this.reduceNumber(monthToCalculate + weekOne)
     if (weekToCalculate === 4) { return this.reduceNumber(weekFou) }
   }
 
@@ -2062,78 +2062,78 @@ export class Person {
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
-          } else {
+          } 
             return this.getQuaterOne(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
-          } else {
+          } 
             return this.getQuaterTwo(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
-          } else {
+          } 
             return this.getQuaterThree(year)
-          }
+          
         }
         break;
       case 9:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
-          } else {
+          } 
             return this.getQuaterOne(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
-          } else {
+          } 
             return this.getQuaterTwo(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
-          } else {
+          } 
             return this.getQuaterThree(year)
-          }
+          
         }
         break;
       case 10:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
-          } else {
+          } 
             return this.getQuaterOne(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
-          } else {
+          } 
             return this.getQuaterTwo(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
-          } else {
+          } 
             return this.getQuaterThree(year)
-          }
+          
         }
         break;
       case 11:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
-          } else {
+          } 
             return this.getQuaterOne(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
@@ -2350,78 +2350,78 @@ export class Person {
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
-          } else {
+          } 
             return this.getQuaterOneISK(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
-          } else {
+          } 
             return this.getQuaterTwoISK(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
-          } else {
+          } 
             return this.getQuaterThreeISK(year)
-          }
+          
         }
         break;
       case 9:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
-          } else {
+          } 
             return this.getQuaterOneISK(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
-          } else {
+          } 
             return this.getQuaterTwoISK(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
-          } else {
+          } 
             return this.getQuaterThreeISK(year)
-          }
+          
         }
         break;
       case 10:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
-          } else {
+          } 
             return this.getQuaterOneISK(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
-          } else {
+          } 
             return this.getQuaterTwoISK(year)
-          }
+          
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
-          } else {
+          } 
             return this.getQuaterThreeISK(year)
-          }
+          
         }
         break;
       case 11:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
-          } else {
+          } 
             return this.getQuaterOneISK(year)
-          }
+          
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {

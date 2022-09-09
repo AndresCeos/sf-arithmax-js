@@ -23,9 +23,11 @@ const VibrationTimePage = () => {
 
   const nineYearCycle = consultant.getNineYearCycleStage(newDate.year())
 
+  // eslint-disable-next-line react/no-unstable-nested-components
   const StageOne = () => {
     const duration = consultant.calcLifeStageDuration(1) - consultant.getYearOfBirth()
     const birthYear = consultant.getYearOfBirth()
+    console.log(consultant.calcPersonalYear(birthYear));
     const arr = []
     for (let index = 0; index <= duration; index++) {
       arr[index] = birthYear + index
@@ -35,7 +37,7 @@ const VibrationTimePage = () => {
         {
         arr.map((year, i) => (
           <b className={`
-          ${i > 29 ? 'row-start-6' : (i > 19 && i < 30) ? 'row-start-5' : (i > 9 && i < 20) ? 'row-start-4' : 'row-start-3'} 
+          ${i > 29 ? 'row-start-6' : (i > 19 && i < 30) ? 'row-start-5' : (i > 9 && i < 20) ? 'row-start-4' : 'row-start-3'}
           ${(year === newDate.year()) ? 'text-black' : 'text-gray-300'}`
           }
           >{year}
@@ -59,7 +61,7 @@ const VibrationTimePage = () => {
             <b className='col-start-1 row-start-1 text-sm'>Etapa Actual</b>
             <div className='col-start-1 row-start-2 row-span-2 m-auto'>
               <CircleNumber size="sm" appearance="green-50" border="green">
-                {consultant.getLifeStage(newDate.year())}{consultant.getLifeStageISK(newDate.year())}
+                {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year()))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year()))}
               </CircleNumber>
             </div>
             <b className='col-start-2 row-start-2 text-sm pl-1'>Año Personal</b>
@@ -146,7 +148,7 @@ const VibrationTimePage = () => {
 ) : null}
               </div>
             ))}
-            <StageOne />
+          {(consultant.getLifeStageNumber(newDate.year()) === 1) ? <StageOne /> : ''}
             <div className="col-start-4 border-r-2 row-start-1 border-green-700 h-4 mt-12" />
             <div className="col-start-1  row-start-2 flex justify-start h-4">
               <div className='border-r-2 border-green-700' />

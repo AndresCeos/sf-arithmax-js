@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from "@react-pdf/renderer"
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 export const PinnacleTimeCurve = ({ consultant }) => {
   return (
@@ -24,6 +24,27 @@ export const PinnacleTimeCurve = ({ consultant }) => {
         </View>
         <View style={[timeCurve.item, timeCurve.s7_duration]}>
           <Text>{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45} - ...</Text>
+        </View>
+        <View style={[timeCurve.item, timeCurve.s1_retorn]}>
+        <Text>{consultant.getK()}</Text>
+        </View>
+        <View style={[timeCurve.item, timeCurve.s2_retorn]}>
+        <Text>{consultant.getL()}</Text>
+        </View>
+        <View style={[timeCurve.item, timeCurve.s3_retorn]}>
+        <Text>{consultant.getM()}</Text>
+        </View>
+        <View style={[timeCurve.item, timeCurve.s4_retorn]}>
+        <Text>{consultant.getN()}</Text>
+        </View>
+        <View style={[timeCurve.item, timeCurve.s5_retorn]}>
+        <Text>{consultant.getM()}</Text>
+        </View>
+        <View style={[timeCurve.item, timeCurve.s6_retorn]}>
+        <Text>{consultant.getL()}</Text>
+        </View>
+        <View style={[timeCurve.item, timeCurve.s7_retorn]}>
+          <Text>{consultant.getK()}</Text>
         </View>
         <View style={[timeCurve.circle, timeCurve.s1_vibration]}>
           <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
@@ -199,5 +220,73 @@ export const timeCurve = StyleSheet.create({
   ending: {
     top: '142px',
     left: '480px',
+  },
+  s1_retorn: {
+
+    top: '125px', // +14
+    left: '82px',
+    width: '20px',
+    height: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  s2_retorn: {
+
+    top: '107px',
+    left: '194px',
+    width: '20px',
+    height: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  s3_retorn: {
+
+    top: '78px',
+    left: '248px',
+    width: '20px',
+    height: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  s4_retorn: {
+
+    top: '62px',
+    left: '306px',
+    width: '20px',
+    height: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  s5_retorn: {
+
+    top: '78px',
+    left: '354px',
+    width: '20px',
+    height: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  s6_retorn: {
+    top: '107px',
+    left: '411px',
+    width: '20px',
+    height: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  s7_retorn: {
+    top: '125px',
+    left: '470px',
+    width: '20px',
+    height: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })

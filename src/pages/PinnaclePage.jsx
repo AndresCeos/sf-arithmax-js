@@ -24,7 +24,7 @@ const PinnaclePage = () => {
   const annualReturnLastYear = consultant.annualReturn(newDate.year() - 1)
   const annualReturnNextYear = consultant.annualReturn(newDate.year() + 1)
 
-  const activeStage = consultant.getLifeStageNumber()
+  const activeStage = consultant.getLifeStageNumber(newDate.year())
   const secondStage = consultant.hasDoubleStage()
 
   const checkPinacle = () => {
@@ -101,9 +101,9 @@ const PinnaclePage = () => {
               left={consultant.getA()}
               center={consultant.getResHierarchy(consultant.getE(), consultant.getK())}
               stageStart={`0 - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} años`}
-              stageEnd={`${consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} años`}
+              stageEnd={`${consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(7) - consultant.birthDate.year()} años`}
               stageDoubleStart={`0 - ${consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} años`}
-              stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year()} años`}
+              stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(7) - consultant.birthDate.year()} años`}
             />
           </div>
           <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 2 || activeStage === 6 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
@@ -133,9 +133,9 @@ const PinnaclePage = () => {
               left={`${consultant.getE()}${consultant.getEISK()}`}
               center={consultant.getResHierarchy(consultant.getG(), consultant.getM())}
               stageStart={`${consultant.calcLifeStageDuration(2) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(3) - consultant.birthDate.year()} años`}
-              stageEnd={`${consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(7) - consultant.birthDate.year()} años`}
+              stageEnd={`${consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} años`}
               stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year()} años`}
-              stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(7) - consultant.birthDate.year()} años`}
+              stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year()} años`}
             />
           </div>
           <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 ? 'bg-active-radial' : null}`}>

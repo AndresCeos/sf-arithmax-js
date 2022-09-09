@@ -30,6 +30,12 @@ export const BridgeStage = ({ consultant }) => {
               {consultant.getK()}
             </Text>
           </View>
+          <View style={pinnacleStage.returnStart}>
+            <Text>0 - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} años</Text>
+          </View>
+          <View style={pinnacleStage.returnEnd}>
+            <Text>{consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} - {consultant.calcLifeStageDuration(7) - consultant.birthDate.year()} años</Text>
+          </View>
         </View>
         <View style={pinnacleStage.bridge_2}>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
@@ -56,6 +62,12 @@ export const BridgeStage = ({ consultant }) => {
             <Text>
               {consultant.getL()}
             </Text>
+          </View>
+          <View style={pinnacleStage.returnStart}>
+            <Text>{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(2) - consultant.birthDate.year()} años</Text>
+          </View>
+          <View style={pinnacleStage.returnEnd}>
+            <Text>{consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} - {consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} años</Text>
           </View>
         </View>
         <View style={pinnacleStage.bridge_3}>
@@ -84,6 +96,12 @@ export const BridgeStage = ({ consultant }) => {
               {consultant.getM()}
             </Text>
           </View>
+          <View style={pinnacleStage.returnStart}>
+            <Text>{consultant.calcLifeStageDuration(2) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(3) - consultant.birthDate.year()} años</Text>
+          </View>
+          <View style={pinnacleStage.returnEnd}>
+            <Text>{consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} - {consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} años</Text>
+          </View>
         </View>
         <View style={pinnacleStage.bridge_4}>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
@@ -110,6 +128,9 @@ export const BridgeStage = ({ consultant }) => {
             <Text>
               {consultant.getN()}
             </Text>
+          </View>
+          <View style={pinnacleStage.returnStart}>
+            <Text>{consultant.calcLifeStageDuration(3) - consultant.birthDate.year() } - {consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} años</Text>
           </View>
         </View>
       </View>
@@ -190,4 +211,16 @@ export const pinnacleStage = StyleSheet.create({
     top: '65px',
     left: '42.5px',
   },
+  returnStart: {
+    top: '100px',
+    left: '5px',
+    fontSize: '7px',
+    position: 'absolute'
+  },
+  returnEnd: {
+    top: '100px',
+    right: '5px',
+    fontSize: '7px',
+    position: 'absolute'
+  }
 })

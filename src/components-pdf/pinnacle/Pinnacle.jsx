@@ -1,5 +1,4 @@
-import { Text, View } from '@react-pdf/renderer';
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer';
 
 export const Pinnacle = ({ consultant }) => {
   return (
@@ -78,6 +77,10 @@ export const Pinnacle = ({ consultant }) => {
 
         <View style={[pinnacle.letter, pinnacle.W]}>
           <Text>{consultant.getW()}</Text>
+        </View>
+
+        <View style={[pinnacle.ausensias]}>
+          <Text>{ consultant.getAbsences()}</Text>
         </View>
       </View>
     </View>
@@ -210,9 +213,15 @@ export const pinnacle = StyleSheet.create({
     left: '13px',
   },
   ausensias: {
-    top: '204',
-    left: '153.6px',
-    width: '21.30px'
+    position: 'absolute',
+    top: '360px',
+    left: '190px',
+    width: '60px',
+    height: '55px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // border: '1px solid #000'
   },
   reaccion: {
     top: '-27.8px',
