@@ -1,5 +1,5 @@
 import moment from 'moment/min/moment-with-locales'
-moment.locale("es-mx")
+moment.locale('es-mx')
 
 const now = moment()
 export const clientConfig = {
@@ -95,13 +95,13 @@ export const ciclePhrases = {
 export const formatDate = dateStr => {
   const date = moment(dateStr)
   console.log(date.format('MMMM'));
-  let index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
+  const index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
   return `${date.date()} de ${date.format('MMMM')} ${date.year()}`
 }
 
 export const currentDate = (date = null) => {
   date = date || now
-  let index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
+  const index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
   return `${date.date()} ${getAllMonths[index]} ${date.year()}`
 }
 
@@ -128,7 +128,7 @@ export const nowWeekNumber = (date = now) => {
 export const formBirthDate = date => {
   // console.log( {date} )
   const birthDate = moment(date)
-  return `${birthDate.date()}/${birthDate.format("MM")}/${birthDate.year()}`
+  return `${birthDate.date()}/${birthDate.format('MM')}/${birthDate.year()}`
 }
 
 export const calcAge = (date, yearToCalculate) => {
@@ -138,7 +138,7 @@ export const calcAge = (date, yearToCalculate) => {
   return yearToCalculate - birthDate.year()
 }
 
-export const capitalize = (str = "") => {
+export const capitalize = (str = '') => {
   // console.log( str )
   return str.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 }
@@ -146,11 +146,20 @@ export const capitalize = (str = "") => {
 export const sanitize = (text) => {
   return text
     .toString()
-    .normalize('NFD')  // split an accented letter in the base letter and the acent
-    .replace(/[\u0300-\u036f]/g, '')  // remove all previously split accents
+    .normalize('NFD') // split an accented letter in the base letter and the acent
+    .replace(/[\u0300-\u036f]/g, '') // remove all previously split accents
     .toLowerCase()
     .trim()
     .replace(/\s+/g, '-')
     .replace(/[^\w\-]+/g, '')
     .replace(/\-\-+/g, '-');
 };
+
+export const sliceIntoChunks = (arr, chunkSize) => {
+  const res = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    res.push(chunk);
+  }
+  return res;
+}
