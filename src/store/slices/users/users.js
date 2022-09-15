@@ -1,35 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import localForage from 'localforage';
+import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
-import localForage from 'localforage'
-import moment from 'moment/min/moment-with-locales'
-import { syncUserInfo } from "./thunks";
-moment.locale("es-mx")
+import { syncUserInfo } from './thunks';
+moment.locale('es-mx')
 
 const serializableDate = JSON.stringify(moment())
 
 const initialState = {
   userInfo: {
-    'names': '',
-    'lastName': '',
-    'scdLastName': '',
-    'date': '',
+    names: '',
+    lastName: '',
+    scdLastName: '',
+    date: '',
   },
   createName: {
-    'name': '',
-    'date': '',
+    name: '',
+    date: '',
   },
   list: [],
   userActive: {},
-  isEditing:false,
-  isPartnerEditing:false,
-  isGroupEditing:false,
-  addPartner:false,
-  hasPartner:false,
-  hasGroup:false,
-  userPartnerActive:{},
-  isSelectPartner:false,
-  partnerIndex:0,
-  partnerSelected:{},
+  isEditing: false,
+  isPartnerEditing: false,
+  isGroupEditing: false,
+  addPartner: false,
+  hasPartner: false,
+  hasGroup: false,
+  userPartnerActive: {},
+  isSelectPartner: false,
+  partnerIndex: 0,
+  partnerSelected: {},
   dateSelected: serializableDate,
   toast: {
     message: '',
@@ -40,7 +40,7 @@ const initialState = {
 }
 
 export const userSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState,
   reducers: {
     setUserInfo: (state, action) => {
@@ -55,13 +55,13 @@ export const userSlice = createSlice({
     setUserActive: (state, action) => {
       state.userActive = action.payload
     },
-    setIsEditing:(state,action) => {
+    setIsEditing: (state, action) => {
       state.isEditing = action.payload
     },
-    setAddPartner:(state,action) => {
+    setAddPartner: (state, action) => {
       state.addPartner = action.payload
     },
-    setHasPartner:(state,action) => {
+    setHasPartner: (state, action) => {
       state.hasPartner = action.payload
     },
     setUserPartnerActive: (state, action) => {
@@ -70,31 +70,31 @@ export const userSlice = createSlice({
     setIsSelectPartner: (state, action) => {
       state.isSelectPartner = action.payload
     },
-    setIsPartnerEditing:(state,action) => {
+    setIsPartnerEditing: (state, action) => {
       state.isPartnerEditing = action.payload
     },
-    setIsGroupEditing:(state,action) => {
+    setIsGroupEditing: (state, action) => {
       state.isGroupEditing = action.payload
     },
-    setPartnerIndex:(state,action)=>{
+    setPartnerIndex: (state, action) => {
       state.partnerIndex = action.payload
     },
-    setPartnerSelected:(state,action) =>{
+    setPartnerSelected: (state, action) => {
       state.partnerSelected = action.payload
     },
-    logout:(state,action) =>{
+    logout: (state, action) => {
       state = initialState
     },
-    setDateSelected:(state,action) => {
+    setDateSelected: (state, action) => {
       state.dateSelected = action.payload
     },
-    setToast: (state, action) =>{
+    setToast: (state, action) => {
       state.toast = action.payload
     },
-    setEventYear:(state, action)=>{
+    setEventYear: (state, action) => {
       state.eventYear = action.payload
     },
-    setHasGroup:(state, action)=>{
+    setHasGroup: (state, action) => {
       state.hasGroup = action.payload
     }
   }
@@ -124,9 +124,9 @@ export default userSlice.reducer;
 
 export const fetchAllUsers = () => async dispatch => {
   const value = await localForage.getItem('users');
-  return value != null ?
-    dispatch( setUserList(value) ) :
-    dispatch( setUserList([]) );
+  return value != null
+    ? dispatch(setUserList(value))
+    : dispatch(setUserList([]));
 };
 export const setDate = (date) => async dispatch => {
   const serializableDate = JSON.stringify(moment(date))
@@ -136,26 +136,26 @@ export const setDate = (date) => async dispatch => {
 export const addUser = user => async dispatch => {
   user.id = generateUserId()
   localForage.getItem('users', (err, users) => {
-    if( users == null ){
+    if (users == null) {
       users = []
     }
     users = [...users, user]
     localForage.setItem('users', users).then(() => {
-      dispatch( setUserList(users) )
-      syncUserInfo( users )
-      dispatch( selectUserActive( user.id ) )
+      dispatch(setUserList(users))
+      syncUserInfo(users)
+      dispatch(selectUserActive(user.id))
     })
   })
 }
 
 export const setUsers = users => async dispatch => {
   localForage.setItem('users', users).then(() => {
-    dispatch( setUserList(users) )
+    dispatch(setUserList(users))
   })
 }
 
 export const showToast = toast => async dispatch => {
-  dispatch( setToast( toast ) )
+  dispatch(setToast(toast))
 }
 
 export const generateUserId = () => Math.random().toString(36).substring(2, 9);
@@ -164,46 +164,44 @@ export const removeUser = id => async dispatch => {
   const users = await localForage.getItem('users')
   Swal.fire({
     title: '¿Estas seguro?',
-    text: "La persona se borrara permanentemente",
+    text: 'La persona se borrara permanentemente',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Si, Borrar',
     cancelButtonText: 'Cancelar'
-  }).then( result=> {
+  }).then(result => {
     if (result.isConfirmed) {
-      const listUsers = users.filter( e => e.id !== id )
-      localForage.setItem('users', listUsers ).then(val=>{console.log(val)})
-      dispatch( setUserList(listUsers) )
-      syncUserInfo( users )
-      Swal.fire(
-        'Borrado!',
-        'La persona ha sido borrada',
-        'success'
-      )
+      const listUsers = users.filter(e => e.id !== id)
+      localForage.setItem('users', listUsers).then(val => { console.log(val) })
+      syncUserInfo(listUsers)
+      dispatch(setUserList(listUsers))
+      dispatch(showToast({
+        message: 'La persona ha sido borrada',
+        type: 'success',
+        show: true
+      }))
     }
   })
 }
-export const removeGroupUser = (data, i) => async dispatch =>{
+export const removeGroupUser = (data, i) => async dispatch => {
   const users = await localForage.getItem('users')
   Swal.fire({
     title: '¿Estas seguro?',
-    text: "La persona se borrara permanentemente",
+    text: 'La persona se borrara permanentemente',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Si, Borrar',
     cancelButtonText: 'Cancelar'
-  }).then( result=> {
+  }).then(result => {
     if (result.isConfirmed) {
-      const usertoedit = users.filter(e =>e.id === data.id)
-      let group = data.group
-      const groupwithout = group.filter((e,index) =>group[index] !== group[i])
-      let userPartners = Object.assign({}, data,{
-        group : Object.keys(groupwithout).map(key => groupwithout[key])
-      })
+      const usertoedit = users.filter(e => e.id === data.id)
+      const group = data.group
+      const groupwithout = group.filter((e, index) => group[index] !== group[i])
+      const userPartners = { ...data, group: Object.keys(groupwithout).map(key => groupwithout[key]) }
       dispatch(editUser(userPartners))
       Swal.fire(
         'Borrado!',
@@ -214,25 +212,23 @@ export const removeGroupUser = (data, i) => async dispatch =>{
   })
 }
 
-export const removePartnerUser = (data, i) => async dispatch =>{
+export const removePartnerUser = (data, i) => async dispatch => {
   const users = await localForage.getItem('users')
   Swal.fire({
     title: '¿Estas seguro?',
-    text: "La persona se borrara permanentemente",
+    text: 'La persona se borrara permanentemente',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Si, Borrar',
     cancelButtonText: 'Cancelar'
-  }).then( result=> {
+  }).then(result => {
     if (result.isConfirmed) {
-      const usertoedit = users.filter(e =>e.id === data.id)
-      let group = data.partner
-      const groupwithout = group.filter((e,index) =>group[index] !== group[i])
-      let userPartners = Object.assign({}, data,{
-        partner : Object.keys(groupwithout).map(key => groupwithout[key])
-      })
+      const usertoedit = users.filter(e => e.id === data.id)
+      const group = data.partner
+      const groupwithout = group.filter((e, index) => group[index] !== group[i])
+      const userPartners = { ...data, partner: Object.keys(groupwithout).map(key => groupwithout[key]) }
       dispatch(editUser(userPartners))
       Swal.fire(
         'Borrado!',
@@ -245,16 +241,16 @@ export const removePartnerUser = (data, i) => async dispatch =>{
 
 export const editUser = user => async dispatch => {
   const users = await localForage.getItem('users')
-  const listUsers = users.filter( e => e.id !== user.id )
+  const listUsers = users.filter(e => e.id !== user.id)
   const updatedUsers = [
     ...listUsers,
     user
   ]
-  localForage.setItem('users', updatedUsers).then( () => {
-    dispatch( setUserList(updatedUsers) )
-    syncUserInfo( updatedUsers )
-    dispatch( setIsEditing(false) )
-    dispatch( selectUserActive( user.id ) )
+  localForage.setItem('users', updatedUsers).then(() => {
+    dispatch(setUserList(updatedUsers))
+    syncUserInfo(updatedUsers)
+    dispatch(setIsEditing(false))
+    dispatch(selectUserActive(user.id))
     // dispatch( setAddPartner(false) )
     // dispatch( setIsPartnerEditing(false) )
     // window.location.reload(false);
@@ -273,26 +269,26 @@ export const editUser = user => async dispatch => {
 
 
 export const selectUserActive = userId => async dispatch => {
-  if( userId === 0 ){
-    dispatch( setUserActive( [] ) )
+  if (userId === 0) {
+    dispatch(setUserActive([]))
     return;
   }
   const users = await localForage.getItem('users')
-  const user = users.find( ({ id }) => id === userId )
-  dispatch( setUserActive(user) )
+  const user = users.find(({ id }) => id === userId)
+  dispatch(setUserActive(user))
   dispatch(setEventYear(null))
 }
-export const selectUserPartnerActive = (userId,parnetIndex) => async dispatch => {
+export const selectUserPartnerActive = (userId, parnetIndex) => async dispatch => {
   const users = await localForage.getItem('users')
-  const user = users.find( ({ id }) => id === userId )
+  const user = users.find(({ id }) => id === userId)
   const partnerActive = user.partner[parnetIndex]
-  dispatch( setUserPartnerActive(partnerActive) )
+  dispatch(setUserPartnerActive(partnerActive))
 }
 
 export const updateUser = user => async dispatch => {
-  localForage.setItem('userInfo', user ).then( val => {
+  localForage.setItem('userInfo', user).then(val => {
     console.log(val)
-    dispatch( setUserInfo(user) )
+    dispatch(setUserInfo(user))
   })
 }
 
@@ -305,8 +301,8 @@ export const updateUser = user => async dispatch => {
 // }
 
 export const updateCreateName = user => async dispatch => {
-  localForage.setItem('createName', user ).then( val => {
+  localForage.setItem('createName', user).then(val => {
     console.log(val)
-    dispatch( setCreateName(user) )
+    dispatch(setCreateName(user))
   })
 }

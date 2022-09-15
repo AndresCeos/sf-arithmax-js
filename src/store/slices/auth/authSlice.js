@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -60,6 +60,11 @@ export const authSlice = createSlice({
       state.photoURL = payload.photoURL;
       console.log(state.names)
     },
+    expired: (state, { payload }) => {
+      // console.log( payload )
+      state.status = 'not-authenticated';
+      state.errorMessage = payload.errorMessage;
+    },
     logout: (state, { payload }) => {
       // console.log( payload )
       state.status = 'not-authenticated';
@@ -85,4 +90,4 @@ export const authSlice = createSlice({
   }
 })
 
-export const { updateUserInfo, login, logout, checkingCredentials } = authSlice.actions
+export const { updateUserInfo, login, logout, expired, checkingCredentials } = authSlice.actions

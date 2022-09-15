@@ -15,6 +15,7 @@ body * {
 }
 
 #screen {
+    display: none;
     top: 0;
     width: 100vw;
     height: 100vh;
@@ -2891,6 +2892,10 @@ top: 134px;
 }
 
 @media (max-width: 1240px) {
+    #screen::before {
+        content: 'Resolución miníma de 1260px';
+    }
+
     #screen {
         display: flex;
         justify-content: center;

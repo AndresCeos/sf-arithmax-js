@@ -1,7 +1,8 @@
 import axios from 'axios';
 import localForage from 'localforage';
 import { clientConfig } from '../../../resources/Helper';
-import { logout } from '../auth';
+import { expired, logout } from '../auth/authSlice';
+import { setUserList } from './users';
 
 export const checkAvailabilityDevices = async (dispatch) => {
   try {
@@ -13,6 +14,16 @@ export const checkAvailabilityDevices = async (dispatch) => {
     const restApiUrl = `${clientConfig.siteUrl}/wp-json/app/v1/d`;
     axios.post(restApiUrl, { m }, config)
       .then(res => {
+        localForage.getItem('users', (err, users) => {
+          console.log({ users })
+          console.log({ res: res.data.user_consultants })
+          if (JSON.stringify(users) !== JSON.stringify(res.data.user_consultants)) {
+            dispatch(setUserList(res.data.user_consultants))
+            localForage.setItem('users', res.data.user_consultants)
+          }
+          // if (Object.keys(users).length !== Object.keys(res.data.user_consultants).length) {
+          // }
+        })
         console.log({ data: res.data })
         console.log({ app_version: res.data.app_version })
         if (res.data.app_version !== localStorage.getItem('app_version')) {
@@ -27,9 +38,13 @@ export const checkAvailabilityDevices = async (dispatch) => {
         if (res.data.msg === 'full') {
           dispatch(logout({ errorMessage: 'límite de dispositivos alcanzado' }))
         }
+      }).catch(error => {
+        console.log({ error })
+        dispatch(expired({ errorMessage: 'sesion caducada' }))
       })
   } catch (error) {
-    console.log(error)
+    console.log({ error })
+    dispatch(logout({ errorMessage: '' }))
   }
 }
 
@@ -41,6 +56,6 @@ export const syncUserInfo = async userData => {
   const restApiUrl = `${clientConfig.siteUrl}/wp-json/app/v1/u`;
   axios.post(restApiUrl, userData, config)
     .then(res => {
-      console.log(res)
+      console.log({ syncUserInfo: res, userData })
     })
 }
