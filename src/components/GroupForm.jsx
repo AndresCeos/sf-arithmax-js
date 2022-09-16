@@ -62,7 +62,7 @@ const validateDate = () => {
         if (!values.lastName.match(letters)) {
           errors.lastName = 'No valido';
         }
-        if (!values.scdLastName) {
+        /* if (!values.scdLastName) {
           errors.scdLastName = 'Requerido';
         }
         if (!values.scdLastName.match(letters)) {
@@ -70,7 +70,7 @@ const validateDate = () => {
         }
         if (!values.scdLastName.match(letters)) {
           errors.scdLastName = 'No valido';
-        }
+        } */
         if (!values.dateInit) {
           errors.dateInit = 'Requerido';
         }
@@ -151,7 +151,7 @@ const validateDate = () => {
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
               Apellido Materno
-              <span className='text-red-800'>*</span>
+
             </label>
             <input
               type="text"
@@ -161,7 +161,7 @@ const validateDate = () => {
               onBlur={handleBlur}
               value={values.scdLastName}
             />
-            {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span> : null }
+
           </div>
         </div>
         <div className="flex w-full mt-3">

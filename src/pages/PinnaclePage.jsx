@@ -99,7 +99,7 @@ const PinnaclePage = () => {
               right={`${consultant.getB()}${consultant.getBISK()}`}
               bottom={consultant.getK()}
               left={consultant.getA()}
-              center={consultant.getResHierarchy(consultant.getE(), consultant.getK())}
+              center={consultant.getResBridge(consultant.getE(), consultant.getK())}
               stageStart={`0 - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} años`}
               stageEnd={`${consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(7) - consultant.birthDate.year()} años`}
               stageDoubleStart={`0 - ${consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} años`}
@@ -115,7 +115,7 @@ const PinnaclePage = () => {
               right={`${consultant.getC()}${consultant.getCISK()}`}
               bottom={consultant.getL()}
               left={`${consultant.getB()}${consultant.getBISK()}`}
-              center={consultant.getResHierarchy(consultant.getF(), consultant.getL())}
+              center={consultant.getResBridge(consultant.getF(), consultant.getL())}
               stageStart={`${consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(2) - consultant.birthDate.year()} años`}
               stageEnd={`${consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} años`}
               stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year()} años`}
@@ -131,7 +131,7 @@ const PinnaclePage = () => {
               right={`${consultant.getF()}${consultant.getFISK()}`}
               bottom={consultant.getM()}
               left={`${consultant.getE()}${consultant.getEISK()}`}
-              center={consultant.getResHierarchy(consultant.getG(), consultant.getM())}
+              center={consultant.getResBridge(consultant.getG(), consultant.getM())}
               stageStart={`${consultant.calcLifeStageDuration(2) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(3) - consultant.birthDate.year()} años`}
               stageEnd={`${consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} años`}
               stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year()} años`}
@@ -147,7 +147,7 @@ const PinnaclePage = () => {
               right={`${consultant.getC()}${consultant.getCISK()}`}
               bottom={consultant.getN()}
               left={consultant.getA()}
-              center={consultant.getResHierarchy(consultant.getH(), consultant.getN())}
+              center={consultant.getResBridge(consultant.getH(), consultant.getN())}
               stageStart={`${consultant.calcLifeStageDuration(3) - consultant.birthDate.year()}- ${consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} años`}
               stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} años`}
             />

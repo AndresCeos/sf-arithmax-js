@@ -1,43 +1,41 @@
+import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik } from 'formik'
 
-import { editUser, generateUserId, setAddPartner,setIsPartnerEditing } from '../store/slices/users/users';
+import { editUser, generateUserId, setAddPartner, setIsPartnerEditing } from '../store/slices/users/users';
 
-import add_user_main from '../assets/icons/add_user_main.svg'
+import add_user_main from '../assets/icons/add_user_main.svg';
 
-export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
+export const PartnerForm = ({ dataPartner, userIndex, setIsAddFormActive }) => {
   const dispatch = useDispatch();
   const { isPartnerEditing, userPartnerActive, userActive } = useSelector(state => state.users);
 
-  const closeForm = () =>{
+  const closeForm = () => {
     setIsAddFormActive(false)
     dispatch(setAddPartner(false))
     dispatch(setIsPartnerEditing(false))
   }
-  console.log(userActive.partner);
 
 
-  return(
+  return (
     <Formik
       enableReinitialize
-      initialValues={ ( ! isPartnerEditing ) ?
-        { names: '', date: '',lastName:'',scdLastName:'',yearMeet:'' }
-        :
-        {
-          names:userPartnerActive.names,
-          date:userPartnerActive.date,
-          lastName:userPartnerActive.lastName,
-          scdLastName:userPartnerActive.scdLastName,
-          yearMeet:userPartnerActive.yearMeet
+      initialValues={(!isPartnerEditing)
+        ? { names: '', date: '', lastName: '', scdLastName: '', yearMeet: '' }
+        : {
+          names: userPartnerActive.names,
+          date: userPartnerActive.date,
+          lastName: userPartnerActive.lastName,
+          scdLastName: userPartnerActive.scdLastName,
+          yearMeet: userPartnerActive.yearMeet
         }
       }
-      validate={ values => {
+      validate={values => {
         const errors = {};
         const letters = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g
         if (!values.names) {
           errors.names = 'Requerido';
         }
-        if (!values.names.match( letters )) {
+        if (!values.names.match(letters)) {
           errors.names = 'No valido';
         }
         if (!values.date) {
@@ -46,10 +44,10 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
         if (!values.lastName) {
           errors.lastName = 'Requerido';
         }
-        if (!values.lastName.match( letters )) {
+        if (!values.lastName.match(letters)) {
           errors.lastName = 'No valido';
         }
-        if (!values.scdLastName) {
+       /* if (!values.scdLastName) {
           errors.scdLastName = 'Requerido';
         }
         if (!values.scdLastName.match( letters )) {
@@ -57,43 +55,40 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
         }
         if (!values.scdLastName.match( letters )) {
           errors.scdLastName = 'No valido';
-        }
-        if ( values.yearMeet < 1 ) {
+        } */
+        if (values.yearMeet < 1) {
           errors.yearMeet = 'No valido';
         }
         return errors;
-      } }
-      onSubmit={(user,  { setSubmitting, resetForm }) => {
+      }}
+      onSubmit={(user, { setSubmitting, resetForm }) => {
         // alert( 'submit' )
         // console.log({isPartnerEditing})
         // console.log( {user} )
         // console.log( {userIndex} )
         // console.log( {dataPartner} )
-        if( ! isPartnerEditing ){
+        if (!isPartnerEditing) {
           user.id = generateUserId()
           const updatedUser = {
             ...dataPartner,
-            partner :[
+            partner: [
               ...dataPartner.partner,
               user,
             ]
           }
-          console.log( {updatedUser} )
-          dispatch( editUser(updatedUser, userIndex) )
+          dispatch(editUser(updatedUser, userIndex))
         }
         /*
          * TODO: EDIT PARTNER
          */
 
-        if(isPartnerEditing){
-          let partness = dataPartner.partner
-          let partnerIndex = partness.findIndex(i=>i.id === userPartnerActive.id)
-          let arrayPartners =Object.assign({},dataPartner.partner,{})
+        if (isPartnerEditing) {
+          const partness = dataPartner.partner
+          const partnerIndex = partness.findIndex(i => i.id === userPartnerActive.id)
+          const arrayPartners = { ...dataPartner.partner, }
           arrayPartners[partnerIndex] = user
-          let userPartners = Object.assign({}, dataPartner,{
-            partner : Object.keys(arrayPartners).map(key => arrayPartners[key])
-          })
-          console.log(userPartners);
+          const userPartners = { ...dataPartner, partner: Object.keys(arrayPartners).map(key => arrayPartners[key]) }
+
           dispatch(editUser(userPartners, userIndex))
         }
       setIsAddFormActive(false)
@@ -111,9 +106,9 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
       isSubmitting,
       /* and other goodies */
     }) => (
-      <form  className="block w-full mt-3" onSubmit={handleSubmit}>
+      <form className="block w-full mt-3" onSubmit={handleSubmit}>
         <h2 className="flex justify-center items-center text-xl font-bold">
-          <img src={add_user_main} className="mr-3" alt='add_user_main'/>
+          <img src={add_user_main} className="mr-3" alt='add_user_main' />
           Asignar Pareja
         </h2>
         <div className="flex w-full mt-6">
@@ -130,7 +125,7 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
               onBlur={handleBlur}
               value={values.names}
             />
-            {errors.names && touched.names ? <span className="form-error">{errors.names}</span>  : null }
+            {errors.names && touched.names ? <span className="form-error">{errors.names}</span> : null }
           </div>
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
@@ -145,12 +140,12 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
               onBlur={handleBlur}
               value={values.lastName}
             />
-            {errors.lastName && touched.lastName ? <span className="form-error">{errors.lastName}</span>  : null }
+            {errors.lastName && touched.lastName ? <span className="form-error">{errors.lastName}</span> : null }
           </div>
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
               Apellido Materno
-              <span className='text-red-800'>*</span>
+
             </label>
             <input
               type="text"
@@ -160,7 +155,7 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
               onBlur={handleBlur}
               value={values.scdLastName}
             />
-            {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span>  : null }
+
           </div>
         </div>
         <div className="flex w-full mt-3">
@@ -177,7 +172,7 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
               onBlur={handleBlur}
               value={values.date}
             />
-            {errors.date && touched.date ? <span className="form-error">{errors.date}</span>  : null }
+            {errors.date && touched.date ? <span className="form-error">{errors.date}</span> : null }
           </div>
           <div className="form-group w-1/3">
             <label className='font-bold mb-1'>
@@ -192,13 +187,13 @@ export const PartnerForm = ( {dataPartner,userIndex, setIsAddFormActive} ) => {
               onBlur={handleBlur}
               value={values.yearMeet}
             />
-            {errors.yearMeet && touched.yearMeet ? <span className="form-error">{errors.yearMeet}</span>  : null }
+            {errors.yearMeet && touched.yearMeet ? <span className="form-error">{errors.yearMeet}</span> : null }
           </div>
         </div>
         <div className="flex w-full mt-3 justify-center">
           <button type="submit" className="btn-save w-32" disabled={isSubmitting}>Guardar</button>
-          {(isPartnerEditing)?<button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm} >Cancelar</button>:''}
-          
+          {(isPartnerEditing) ? <button className='w-32 btn-cancel rounded-full' type='button' onClick={closeForm}>Cancelar</button> : ''}
+
         </div>
       </form>
     )}

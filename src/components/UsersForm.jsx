@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Formik } from 'formik'
+import { Formik } from 'formik';
 
-import { addUser, setIsEditing, editUser, showToast } from '../store/slices/users/users';
+import { addUser, editUser, setIsEditing, showToast } from '../store/slices/users/users';
 
-import add_user_main from '../assets/icons/add_user_main.svg'
+import add_user_main from '../assets/icons/add_user_main.svg';
 
 export const UsersForm = (props) => {
   const dispatch = useDispatch();
@@ -19,13 +19,19 @@ export const UsersForm = (props) => {
   return (
     <Formik
       enableReinitialize
-      initialValues={isEditing ?
-        {
-          names: dataUserEdit.names, date: dataUserEdit.date, lastName: dataUserEdit.lastName, scdLastName: dataUserEdit.scdLastName,
-          nationality: dataUserEdit.nationality, phone: dataUserEdit.phone, email: dataUserEdit.email, company: dataUserEdit.company, gender: dataUserEdit.gender
+      initialValues={isEditing
+        ? {
+          names: dataUserEdit.names,
+          date: dataUserEdit.date,
+          lastName: dataUserEdit.lastName,
+          scdLastName: dataUserEdit.scdLastName,
+          nationality: dataUserEdit.nationality,
+          phone: dataUserEdit.phone,
+          email: dataUserEdit.email,
+          company: dataUserEdit.company,
+          gender: dataUserEdit.gender
         }
-        :
-        { names: '', date: '', lastName: '', scdLastName: '', partner: [], group: [], dateGroup: null, nationality: '', phone: '', email: '', company: '', gender: '' }
+        : { names: '', date: '', lastName: '', scdLastName: '', partner: [], group: [], dateGroup: null, nationality: '', phone: '', email: '', company: '', gender: '' }
       }
       validate={values => {
         const errors = {};
@@ -45,12 +51,12 @@ export const UsersForm = (props) => {
         if (!values.lastName.match(letters)) {
           errors.lastName = 'No valido';
         }
-        if (!values.scdLastName) {
+        /* if (!values.scdLastName) {
           errors.scdLastName = 'Requerido';
         }
         if (!values.scdLastName.match(letters)) {
           errors.scdLastName = 'No valido';
-        }
+        } */
         return errors;
       }}
       onSubmit={(user, { setSubmitting, resetForm }) => {
@@ -121,7 +127,7 @@ export const UsersForm = (props) => {
             <div className="form-group w-1/3">
               <label className='font-bold mb-1'>
                 Apellido Materno
-                <span className='text-red-800'>*</span>
+                {/* <span className='text-red-800'>*</span> */}
               </label>
               <input
                 type="text"
@@ -131,7 +137,7 @@ export const UsersForm = (props) => {
                 onBlur={handleBlur}
                 value={values.scdLastName}
               />
-              {errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span> : null}
+              {/* errors.scdLastName && touched.scdLastName ? <span className="form-error">{errors.scdLastName}</span> : null */}
             </div>
           </div>
           <div className="flex w-full mt-3">
@@ -224,18 +230,21 @@ export const UsersForm = (props) => {
             {/* <div className='form-group w-2/3'>
               <label className='font-bold mb-1'>Motivo de la Consulta</label>
               <textarea className='rounded'></textarea>
-              </div>*/}
+              </div> */}
             <div className='w-1/3'>
-              {(!isEditing) ?
+              {(!isEditing)
+              ? (
                 <div className='text-center flex justify-center items-center flex-col'>
                   <img src={add_user_main} className="mb-3" alt='add_user_main' />
                   <button type="submit" className="btn-save w-full" disabled={isSubmitting}>Guardar</button>
                 </div>
-                :
+                  )
+                : (
                 <div className='w-full flex flex-wrap'>
                   <button className='w-full btn-conf mb-3' type="submit" disabled={isSubmitting}>Confirmar</button>
-                  <button className='w-full btn-cancel' type='button' onClick={handleCancel} >Cancelar</button>
+                  <button className='w-full btn-cancel' type='button' onClick={handleCancel}>Cancelar</button>
                 </div>
+                    )
               }
             </div>
           </div>

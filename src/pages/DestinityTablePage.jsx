@@ -24,7 +24,7 @@ const DestinityTablePage = () => {
   const nameSubCycles = consultant.calcNameSubCycles()
 
   return (
-    <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pt-10'>
+    <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pt-10 relative'>
       <div className='col-span-12 mb-5'>
         <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
           <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-gold p-2'>

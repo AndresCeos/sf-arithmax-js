@@ -1,30 +1,31 @@
-import { useSelector } from 'react-redux'
+import { useState } from 'react'
 import { dateSelect } from '../hooks'
 
 export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCycles }) => {
-  const {newDate} = dateSelect()
-
-  const consultantAge = consultant.getYearsOld( newDate.year() )
+  const { newDate } = dateSelect()
+  const single = consultant.getSingle()
+  const [binomActive, setBinomActive] = useState(false)
+  const consultantAge = consultant.getYearsOld(newDate.year())
   const isCycle = i => {
     return i === consultantAge ? false : nameCycles.includes(i)
   }
   const isSubCycle = i => {
     return i === consultantAge ? false : nameSubCycles.includes(i)
   }
-  const bkConfig = ( i , bg ) => {
-    if(i === consultantAge){
+  const bkConfig = (i, bg) => {
+    if (i === consultantAge) {
       return 'bg-red-80'
     }
-    if( isCycle(i) ){
+    if (isCycle(i)) {
       return 'bg-gold-10'
     }
-    if( isSubCycle(i) ){
+    if (isSubCycle(i)) {
       return 'bg-gold-30'
     }
     return bg
   }
 
-  return(
+  return (
     <div className='destinity-table flex mb-8 justify-center'>
       <div className='w-32'>
         <div className='h-6 w-32 text-13 font-black bg-main-30 border-t border-gray-400 border-l border-r flex items-center justify-start px-1'>
@@ -42,6 +43,11 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
         <div className='h-12 text-13 font-black bg-white border-b border-l border-r border-gray-400 flex items-center justify-start px-1'>
           Plano Emocional
         </div>
+        <button
+          className={` ${binomActive ? 'bg-gold' : 'bg-yellow'} h-10  font-bold mb-1 rounded-tl-3xl  rounded-tr-3xl rounded-bl-3xl flex justify-center items-center absolute btn-destiny text-13 text-white px-2`}
+          onClick={() => { setBinomActive(!binomActive) }}
+        >Binomios
+        </button>
         <div className='h-10 text-13 font-black bg-pink border-b border-l border-r border-gray-400 flex items-center justify-start px-1'>
           Plano Espiritual
         </div>
@@ -53,36 +59,36 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
           Núm. Destino
         </div>
       </div>
-      { table.map( (el, i) =>
+      { table.map((el, i) => (
         <div key={i} className='nameBreakdown'>
-          <div className={`h-6 w-30 text-10  ${bkConfig( i + start, 'bg-main-30')} text-center border-t border-gray-400 border-r`}>
+          <div className={`h-6 w-30 text-10  ${bkConfig(i + start, 'bg-main-30')} text-center border-t border-gray-400 border-r`}>
             {consultant.getYearOfBirth() + i + start}
           </div>
-          <div className={`h-6 w-30 text-13 ${bkConfig( i + start, 'bg-black bg-opacity-10')} text-center border-b border-r border-gray-400`}>{i + start} </div>
-          <div className={`h-12 w-30 text-13 ${bkConfig( i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
+          <div className={`h-6 w-30 text-13 ${bkConfig(i + start, 'bg-black bg-opacity-10')} text-center border-b border-r border-gray-400`}>{i + start} </div>
+          <div className={`h-12 w-30 text-13 ${bkConfig(i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
             <strong className='h-6 text-center border-b border-gray-400 w-full'>{el.pmC}</strong>
             <label className='h-6 text-center text-10 pt-1'>{el.pmN}/{el.pmD}</label>
           </div>
-          <div className={`h-12 w-30 text-13 ${bkConfig( i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
+          <div className={`h-12 w-30 text-13 ${bkConfig(i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
             <strong className='h-6 text-center border-b border-gray-400 w-full'>{el.pMC}</strong>
             <label className='h-6 text-center text-10 pt-1'>{el.pMN}/{el.pMD}</label>
           </div>
-          <div className={`h-12 w-30 text-13 ${bkConfig( i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
-            <strong className='h-6 text-center border-b border-gray-400 w-full'>{el.pfC}</strong>
-            <label className='h-6 text-center text-10 pt-1'>{el.pfN}/{el.pfD}</label>
+          <div className={`h-12 w-30 text-13 ${bkConfig(i + start, 'bg-white')} border-b border-r border-gray-400 flex flex-col`}>
+            <strong className='h-6 text-center border-b border-gray-400 w-full'>{single ? el.pfC : ''}</strong>
+            <label className='h-6 text-center text-10 pt-1'>{single ? `${el.pfN}/${el.pfD}` : ''}</label>
           </div>
-          <div className={`h-10 w-30 text-13 ${bkConfig( i + start, 'bg-pink')} border-b border-r border-gray-400 flex items-center justify-center`}>
-            <strong>{consultant.reduceNumber( el.pmD + el.pMD + el.pfD)}</strong>
+          <div className={`h-10 w-30 ${bkConfig(i + start, 'bg-pink')} border-b border-r border-gray-400 flex items-center justify-center ${binomActive ? 'text-xs' : 'text-13'}`}>
+            <strong>{ binomActive && `${consultant.reduceNumber(el.pmN + el.pMN + (single ? el.pfN : 0))}/`}{consultant.reduceNumber(el.pmD + el.pMD + (single ? el.pfD : 0))}</strong>
           </div>
 
-          <div className={`mt-5 h-10 w-30 text-13 ${bkConfig( i + start, 'bg-gray bg-opacity-15')} border-b border-r border-t border-gray-400 flex items-center justify-center`}>
+          <div className={`mt-5 h-10 w-30 text-13 ${bkConfig(i + start, 'bg-gray bg-opacity-15')} border-b border-r border-t border-gray-400 flex items-center justify-center`}>
             {consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start)}
           </div>
-          <div className={`h-10 w-30 text-13 ${bkConfig( i + start, 'bg-white')} border-b border-r border-gray-400 flex items-center justify-center`}>
-            {consultant.reduceNumber( el.pmD + el.pMD + el.pfD + consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start) ) }
+          <div className={`h-10 w-30 text-13 ${bkConfig(i + start, 'bg-white')} border-b border-r border-gray-400 flex items-center justify-center`}>
+            {consultant.reduceNumber(el.pmD + el.pMD + (single ? el.pfD : 0) + consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start)) }
           </div>
         </div>
-      )}
+      ))}
     </div>
   )
 }

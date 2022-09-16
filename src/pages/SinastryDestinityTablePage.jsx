@@ -27,7 +27,7 @@ const SinastyDestinityTablePage = () => {
 
   if (!isSelectedPartner) {
     return (
-      <div className='grid grid-cols-12 mx-14 gap-6 mt-8 pt-10'>
+      <div className='grid grid-cols-12 mx-14 gap-6 mt-8 pt-10 relative'>
         <UserPartnerSelect />
         <div className="col-span-12 text-center text-black">Agrega/Selecciona una pareja para ver esta información</div>
       </div>
@@ -81,7 +81,7 @@ const SinastyDestinityTablePage = () => {
       {(isSelectedPartner)
 
         ? (
-          <div className='col-span-12 mb-5'>
+          <div className='col-span-12 mb-5 relative'>
             <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
               <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-gold p-2'>
                 <TiPlus className='text-2xl' />

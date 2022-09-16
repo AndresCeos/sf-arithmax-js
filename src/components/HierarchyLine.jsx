@@ -1,17 +1,17 @@
-import { dateSelect } from "../hooks"
-import { CircleNumber } from "./CircleNumber"
+import { dateSelect } from '../hooks'
+import { CircleNumber } from './CircleNumber'
 
-export const HierarchyLine = ({consultant}) =>{
-  const {newDate} = dateSelect()
-  return(
+export const HierarchyLine = ({ consultant }) => {
+  const { newDate } = dateSelect()
+  return (
     <div>
       <div className='w-full flex items-center justify-center bg-opacity-100'>
         <div className="w-1/5 flex justify-center border-r border-black">
           <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5 '>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
-            <CircleNumber size="sm" appearance="green" border="green" >
-              {consultant.getSumHierarchy(consultant.getB(),consultant.getLifeStage(newDate.year()))}
+            <CircleNumber size="sm" appearance="green" border="green">
+              {consultant.getSumHierarchy(consultant.getB(), consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year())))}
             </CircleNumber>
           </div>
           <div className="col-start-1 row-start-2 lines">
@@ -20,14 +20,14 @@ export const HierarchyLine = ({consultant}) =>{
             </CircleNumber>
           </div>
           <div className="col-start-3 row-start-2 triangle">
-          <CircleNumber size="sm" appearance="white" border="secondary" >
-              {consultant.getLifeStage(newDate.year())}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="secondary">
+              {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year()))}
+          </CircleNumber>
           </div>
           <div className="col-start-2 row-start-3">
-          <CircleNumber size="sm" appearance="white" border="red" >
-          {consultant.getResHierarchy(consultant.getB(),consultant.getLifeStage(newDate.year()))}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="red">
+          {consultant.getResHierarchy(consultant.getB(), consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year())))}
+          </CircleNumber>
             <p className="mb-1 font-bold text-sm">Reto</p>
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">NP</div>
@@ -38,24 +38,24 @@ export const HierarchyLine = ({consultant}) =>{
           <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5 '>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
-            <CircleNumber size="sm" appearance="green" border="green" >
-              {consultant.getSumHierarchy(consultant.getLifeStage(newDate.year()),consultant.calcPersonalYear(newDate.year()))}
+            <CircleNumber size="sm" appearance="green" border="green">
+              {consultant.getSumHierarchy(consultant.getLifeStage(newDate.year()), consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year())))}
             </CircleNumber>
           </div>
           <div className="col-start-1 row-start-2 lines">
             <CircleNumber size="sm" appearance="white" border="main" radiant="inner-shadow-gold">
-              {consultant.getLifeStage(newDate.year())}
+              {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year()))}
             </CircleNumber>
           </div>
           <div className="col-start-3 row-start-2 triangle">
-          <CircleNumber size="sm" appearance="white" border="secondary" >
+          <CircleNumber size="sm" appearance="white" border="secondary">
               {consultant.calcPersonalYear(newDate.year())}
-            </CircleNumber>
+          </CircleNumber>
           </div>
           <div className="col-start-2 row-start-3">
-          <CircleNumber size="sm" appearance="white" border="red" >
-          {consultant.getResHierarchy(consultant.getLifeStage(newDate.year()),consultant.calcPersonalYear(newDate.year()))}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="red">
+          {consultant.getResHierarchy(consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year())), consultant.calcPersonalYear(newDate.year()))}
+          </CircleNumber>
             <p className="mb-1 font-bold text-sm">Reto</p>
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">Etapa</div>
@@ -66,8 +66,8 @@ export const HierarchyLine = ({consultant}) =>{
           <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5 '>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
-            <CircleNumber size="sm" appearance="green" border="green" >
-              {consultant.getSumHierarchy(consultant.calcPersonalYear(newDate.year()),consultant.calcCurrentQuater(newDate,newDate.year()))}
+            <CircleNumber size="sm" appearance="green" border="green">
+              {consultant.getSumHierarchy(consultant.calcPersonalYear(newDate.year()), consultant.calcCurrentQuater(newDate, newDate.year()))}
             </CircleNumber>
           </div>
           <div className="col-start-1 row-start-2 lines">
@@ -76,14 +76,14 @@ export const HierarchyLine = ({consultant}) =>{
             </CircleNumber>
           </div>
           <div className="col-start-3 row-start-2 triangle">
-          <CircleNumber size="sm" appearance="white" border="secondary" >
-              {consultant.calcCurrentQuater(newDate,newDate.year())}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="secondary">
+              {consultant.calcCurrentQuater(newDate, newDate.year())}
+          </CircleNumber>
           </div>
           <div className="col-start-2 row-start-3">
-          <CircleNumber size="sm" appearance="white" border="red" >
-          {consultant.getResHierarchy(consultant.calcPersonalYear(newDate.year()),consultant.calcCurrentQuater(newDate,newDate.year()))}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="red">
+          {consultant.getResHierarchy(consultant.calcPersonalYear(newDate.year()), consultant.calcCurrentQuater(newDate, newDate.year()))}
+          </CircleNumber>
             <p className="mb-1 font-bold text-sm">Reto</p>
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">Año P.</div>
@@ -94,24 +94,24 @@ export const HierarchyLine = ({consultant}) =>{
           <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5 '>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
-            <CircleNumber size="sm" appearance="green" border="green" >
-              {consultant.getSumHierarchy(consultant.calcCurrentQuater(newDate,newDate.year()), consultant.calcPersonalMonth(newDate.month()+1,newDate.year()))}
+            <CircleNumber size="sm" appearance="green" border="green">
+              {consultant.getSumHierarchy(consultant.calcCurrentQuater(newDate, newDate.year()), consultant.calcPersonalMonth(newDate.month() + 1, newDate.year()))}
             </CircleNumber>
           </div>
           <div className="col-start-1 row-start-2 lines">
             <CircleNumber size="sm" appearance="white" border="main" radiant="inner-shadow-gold">
-              {consultant.calcCurrentQuater(newDate,newDate.year())}
+              {consultant.calcCurrentQuater(newDate, newDate.year())}
             </CircleNumber>
           </div>
           <div className="col-start-3 row-start-2 triangle">
-          <CircleNumber size="sm" appearance="white" border="secondary" >
-              {consultant.calcPersonalMonth(newDate.month()+1,newDate.year())}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="secondary">
+              {consultant.calcPersonalMonth(newDate.month() + 1, newDate.year())}
+          </CircleNumber>
           </div>
           <div className="col-start-2 row-start-3">
-          <CircleNumber size="sm" appearance="white" border="red" >
-          {consultant.getResHierarchy(consultant.calcCurrentQuater(newDate,newDate.year()),consultant.calcPersonalMonth(newDate.month()+1,newDate.year()))}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="red">
+          {consultant.getResHierarchy(consultant.calcCurrentQuater(newDate, newDate.year()), consultant.calcPersonalMonth(newDate.month() + 1, newDate.year()))}
+          </CircleNumber>
             <p className="mb-1 font-bold text-sm">Reto</p>
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">Cuat.</div>
@@ -122,24 +122,24 @@ export const HierarchyLine = ({consultant}) =>{
           <div className='grid grid-cols-3 pt-3 w-220 gap-2 relative hierarchy-lines m-auto px-5'>
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
-            <CircleNumber size="sm" appearance="green" border="green" >
-              {consultant.getSumHierarchy(consultant.calcPersonalMonth(newDate.month()+1,newDate.year()),consultant.calcPersonalWeek(newDate.date(), newDate.month()+1,newDate.year()))}
+            <CircleNumber size="sm" appearance="green" border="green">
+              {consultant.getSumHierarchy(consultant.calcPersonalMonth(newDate.month() + 1, newDate.year()), consultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year()))}
             </CircleNumber>
           </div>
           <div className="col-start-1 row-start-2 lines">
             <CircleNumber size="sm" appearance="white" border="main" radiant="inner-shadow-gold">
-            {consultant.calcPersonalMonth(newDate.month()+1,newDate.year())}
+            {consultant.calcPersonalMonth(newDate.month() + 1, newDate.year())}
             </CircleNumber>
           </div>
           <div className="col-start-3 row-start-2 triangle">
-          <CircleNumber size="sm" appearance="white" border="secondary" >
-              {consultant.calcPersonalWeek(newDate.date(), newDate.month()+1,newDate.year())}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="secondary">
+              {consultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year())}
+          </CircleNumber>
           </div>
           <div className="col-start-2 row-start-3">
-          <CircleNumber size="sm" appearance="white" border="red" >
-          {consultant.getResHierarchy(consultant.calcPersonalMonth(newDate.month()+1,newDate.year()),consultant.calcPersonalWeek(newDate.date(), newDate.month()+1,newDate.year()))}
-            </CircleNumber>
+          <CircleNumber size="sm" appearance="white" border="red">
+          {consultant.getResHierarchy(consultant.calcPersonalMonth(newDate.month() + 1, newDate.year()), consultant.calcPersonalWeek(newDate.date(), newDate.month() + 1, newDate.year()))}
+          </CircleNumber>
             <p className="mb-1 font-bold text-sm">Reto</p>
           </div>
           <div className="col-start-1 row-start-3 font-bold text-sm">Mes P.</div>
