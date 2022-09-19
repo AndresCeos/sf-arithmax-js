@@ -16,7 +16,6 @@ export const PDF = ({ consultant, config, profile, date, sidebar, synastry, grou
   }).flat()
 
 
-  console.log({ listOfPDF })
   return (
     <Document>
       {listOfPDF.map((e, i) => (
@@ -40,7 +39,7 @@ export const PDF = ({ consultant, config, profile, date, sidebar, synastry, grou
               <Text>{consultant.getYearsOld()}</Text>
             </View>
             <View style={configReport.header_logo} />
-            <Image style={configReport.img_logo} src={logoURL} />
+            {logoURL && <Image style={configReport.img_logo} src={logoURL} />}
           </View>
           <View style={configReport.sidebar}>
             <Text style={configReport.page_number}>{i + 1}</Text>
