@@ -20,7 +20,8 @@ const CreateNamePage = () => {
 
   const { names: name, lastName, scdLastName, date: birthDate } = userActive
   const { name: createName, date: createDate } = useSelector(state => state.users.createName)
-
+  console.log(createName)
+  console.log(createDate)
   const dispatch = useDispatch()
 
   const inputName = useRef()

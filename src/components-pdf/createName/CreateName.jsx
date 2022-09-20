@@ -1,8 +1,6 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 export const CreateName = ({ consultant }) => {
-
   const { name, lastName, scdLastName } = consultant
 
 
@@ -16,7 +14,7 @@ export const CreateName = ({ consultant }) => {
           <Text>{consultant.getDayOfBirth()}</Text>
         </View>
         <View style={[pinnacleName.circle, { left: 202, top: 70, height: 13 }]}>
-          <Text>{consultant.getMonthOfBirth()}</Text>
+          <Text>{consultant.getMonthOfBirth() + 1}</Text>
         </View>
         <View style={[pinnacleName.circle, { left: 270, top: 70, height: 13 }]}>
           <Text>{consultant.getYearOfBirth()}</Text>
