@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { dateSelect } from '../hooks';
+import { Synastry } from '../resources';
 
 export const SinastryDestinyTable = ({ table, start, consultant, startP, partner, tableP }) => {
   const { newDate } = dateSelect()
   const singleC = consultant.getSingle()
   const singleP = partner.getSingle()
   const [binomActive, setBinomActive] = useState(false)
+  const synastry = new Synastry(consultant, partner)
 
   const partnerDT = [];
   // console.log( { table, start, consultant, startP, partner, tableP } )
@@ -47,7 +49,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
   // console.log( {partnerDT} )
 
   return (
-    <div className='destinity-table flex mb-8 justify-center'>
+      <div className='destinity-table flex mb-8 justify-center'>
       <div className='w-32'>
         <div className='h-6 w-32 text-13 font-black bg-main-30 border-t border-gray-400 border-l border-r flex items-center justify-start px-1'>
           Año
@@ -266,10 +268,10 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
               ${newDate.year() === consultant.getYearOfBirth() + i + start ? 'bg-red-80' : 'bg-gold-15'}`
             }
             >
-              {consultant.reduceNumber(
+              {/* consultant.reduceNumber(
                 consultant.calcPersonalYear(consultant.getYearOfBirth() + i)
                 + partner.calcPersonalYear(partner.getYearOfBirth() + i)
-              )}
+              ) */synastry.calcPersonalYear(consultant.getYearOfBirth() + i + start)}
             </div>
             <div className={`
               h-10 w-7 text-xs font-bold border-b border-r border-gray-400 flex items-center justify-center
@@ -278,15 +280,15 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             >
               {consultant.reduceNumber(
                 consultant.reduceNumber(el.pmDPC + el.pMDPC + el.pfDPC)
-                + consultant.reduceNumber(
+                + synastry.calcPersonalYear(consultant.getYearOfBirth() + i + start) /* consultant.reduceNumber(
                   consultant.calcPersonalYear(consultant.getYearOfBirth() + i)
                   + partner.calcPersonalYear(partner.getYearOfBirth() + i)
-                )
+                ) */
               ) }
             </div>
           </div>
         </>
       ))}
-    </div>
+      </div>
   )
 }
