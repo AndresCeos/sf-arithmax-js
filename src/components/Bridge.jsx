@@ -1,7 +1,8 @@
-import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa'
-import { CircleNumber } from './CircleNumber'
+import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
+import { CircleNumber } from './CircleNumber';
 
-export const Bridge = ({ top, right, bottom, left, center, stageStart, stageEnd, stageDoubleStart, stageDoubleEnd }) => {
+export const Bridge = ({ top, right, bottom, left, center, stageStart, stageEnd, stageDoubleStart, stageDoubleEnd, hasDouble }) => {
+console.log(hasDouble);
   return (
     <>
       <div className='w-full flex items-center justify-center bg-opacity-100'>
@@ -36,9 +37,11 @@ export const Bridge = ({ top, right, bottom, left, center, stageStart, stageEnd,
         }
         {stageStart !== stageDoubleStart && (
           <>
+            {hasDouble && (
             <div className='flex gap-1 mt-4'>
               <FaArrowAltCircleUp color='#51A133' size={14} /> {stageDoubleStart}
             </div>
+            )}
             {stageDoubleEnd
               && (
                 <div className='flex gap-1 mt-2'>
