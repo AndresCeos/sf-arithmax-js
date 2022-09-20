@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import { fetchAllUsers, selectUserActive, setIsSelectPartner, setUserPartnerActive } from '../store/slices/users/users';
+import { fetchAllUsers, selectUserActive, setIsSelectPartner, setUserList, setUserPartnerActive } from '../store/slices/users/users';
 
 import icSearch from '../assets/icons/sb_search.svg';
 
@@ -17,6 +17,11 @@ export const ConsultantPicker = () => {
     dispatch(selectUserActive(e.value))
     dispatch(setIsSelectPartner(false))
     dispatch(setUserPartnerActive({}))
+  }
+
+  if (typeof users === 'string') {
+    dispatch(setUserList([]))
+    return null
   }
 
   const options = users.map(({ id, names, lastName, scdLastName }) => ({
