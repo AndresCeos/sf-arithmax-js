@@ -24,10 +24,7 @@ export const Notifications = () => {
         || (
           <ul className='absolute w-80 bg-white right-0 z-100 rounded-sm top-10 text-left'>
             {notifications.split(',').map(notification => (
-              <>
-                <li className='px-2 py-4 border-b'>{notification}</li>
-                <li className="post__content" dangerouslySetInnerHTML={{ __html: notification }} />
-              </>
+              <li className="post__content" dangerouslySetInnerHTML={{ __html: notification }} />
             ))}
           </ul>
         )}
