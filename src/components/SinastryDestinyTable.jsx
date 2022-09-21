@@ -84,7 +84,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
       </div>
       { partnerDT.map((el, i) => (
         <>
-          <div key={el} className='nameBreakdown'>
+          <div className='nameBreakdown'>
             <div className={`
               h-6 w-7 text-10 text-center border-t border-gray-400 border-rc
               ${newDate.year() === consultant.getYearOfBirth() + i + start ? 'bg-red-50' : 'bg-main-30'}`
