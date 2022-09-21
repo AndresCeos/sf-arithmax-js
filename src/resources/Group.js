@@ -164,6 +164,15 @@ export class Group {
     return this.karmicos.includes(D) ? '*' : ''
   }
 
+  getDISKCheck() {
+    const D = this.reduceNumberISK(
+      this.getA()
+      + this.getB()
+      + this.getC()
+    )
+    return this.karmicos.includes(D) ? '*' : ''
+  }
+
   getDCheck() {
     const A = this.reduceNumber(this.getA())
     const B = this.reduceNumber(this.getB())
@@ -186,6 +195,14 @@ export class Group {
     return this.karmicos.includes(E) ? '*' : ''
   }
 
+  getEISKCheck() {
+    const E = this.reduceNumberISK(
+      this.getA()
+      + this.getB()
+    )
+    return this.karmicos.includes(E) ? '*' : ''
+  }
+
   getF() {
     return this.reduceNumber(
       this.getC()
@@ -194,6 +211,14 @@ export class Group {
   }
 
   getFISK() {
+    const F = this.reduceNumberISK(
+      this.getC()
+      + this.getB()
+    )
+    return this.karmicos.includes(F) ? '*' : ''
+  }
+
+  getFISKCheck() {
     const F = this.reduceNumberISK(
       this.getC()
       + this.getB()
@@ -236,6 +261,14 @@ export class Group {
       this.getA()
       + this.getC()
     );
+  }
+
+  getHISKCheck() {
+    const H = this.reduceNumberISK(
+      this.getA()
+      + this.getC()
+    )
+    return this.karmicos.includes(H) ? '*' : ''
   }
 
   getI() {

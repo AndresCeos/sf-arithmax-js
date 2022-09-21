@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { CircleTime } from '../components';
 import { dateSelect } from '../hooks';
-import { currentDate, Person, Universal } from '../resources';
+import { currentDateShort, Person, Universal } from '../resources';
 
 import { TiPlus } from 'react-icons/ti';
 import personal from '../assets/icons/e_personal.svg';
@@ -48,7 +48,7 @@ const HomePage = () => {
               <div className='font-black'>UNIVERSAL</div>
             </li>
             <li className='rounded-full bg-white w-32 h-10 flex items-center justify-center border border-gray-700 inner-shadow mt-3 mb-6 font-black text-13 text-center'>
-              {currentDate(newDate)}
+              {currentDateShort(newDate)}
             </li>
             <li
               className='name-energy rounded-full bg-white w-10 h-10 flex items-center justify-center border border-gray-700 inner-shadow text-xl mb-3'

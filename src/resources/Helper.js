@@ -104,6 +104,12 @@ export const currentDate = (date = null) => {
   const index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
   return `${date.date()} ${getAllMonths[index]} ${date.year()}`
 }
+export const currentDateShort = (date = null) => {
+  date = date || now
+  const index = getAllMonthsEnglish.findIndex(i => i === date.format('MMMM'))
+  const shortName = getAllMonths[index]
+  return `${date.date()} ${shortName.slice(0, 3)} ${date.year()}`
+}
 
 export const pageName = location => {
   location = location.replace('/', '')

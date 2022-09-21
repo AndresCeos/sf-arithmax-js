@@ -84,6 +84,15 @@ export class Synastry {
     return this.karmicos.includes(D) ? '*' : ''
   }
 
+  getDISKCheck() {
+    const D = this.reduceNumberISK(
+      this.getA()
+      + this.getB()
+      + this.getC()
+    )
+    return this.karmicos.includes(D) ? '*' : ''
+  }
+
   getE() {
     return this.reduceNumber(
       this.getA()
@@ -99,6 +108,14 @@ export class Synastry {
     return this.karmicos.includes(E) ? '*' : ''
   }
 
+    getEISKCheck() {
+    const E = this.reduceNumberISK(
+      this.getA()
+      + this.getB()
+    )
+    return this.karmicos.includes(E) ? '*' : ''
+  }
+
   getF() {
     return this.reduceNumber(
       this.getC()
@@ -107,6 +124,14 @@ export class Synastry {
   }
 
   getFISK() {
+    const F = this.reduceNumberISK(
+      this.getC()
+      + this.getB()
+    )
+    return this.karmicos.includes(F) ? '*' : ''
+  }
+
+  getFISKCheck() {
     const F = this.reduceNumberISK(
       this.getC()
       + this.getB()
@@ -137,6 +162,14 @@ export class Synastry {
   }
 
   getHISK() {
+    const H = this.reduceNumberISK(
+      this.getA()
+      + this.getC()
+    )
+    return this.karmicos.includes(H) ? '*' : ''
+  }
+
+  getHISKCheck() {
     const H = this.reduceNumberISK(
       this.getA()
       + this.getC()

@@ -10,13 +10,13 @@ export const Pinnacle = ({ consultant, size, checkP }) => {
         <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="A">{consultant.getA()}</div>
         <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="B">{consultant.getB()}{consultant.getBISK()}</div>
         <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="C">{consultant.getC()}{consultant.getCISK()}</div>
-        <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="D">{(!checkP) ? `${consultant.getDCheck()}${consultant.getDISK()}` : `${consultant.getD()}${consultant.getDISK()}`}</div>
+        <div className="pinncle-letter" border="purple" appearance="purple-30" data-letter="D">{(!checkP) ? `${consultant.getDCheck()}${consultant.getDISKCheck()}` : `${consultant.getD()}${consultant.getDISK()}`}</div>
 
-        <div className="pinncle-letter" border="green" appearance="green" data-letter="E">{consultant.getE()}{consultant.getEISK()}</div>
-        <div className="pinncle-letter" border="green" appearance="green" data-letter="F">{consultant.getF()}{consultant.getFISK()}</div>
+        <div className="pinncle-letter" border="green" appearance="green" data-letter="E">{`${consultant.getE()}${(!checkP) ? consultant.getEISK() : consultant.getEISKCheck()}`}</div>
+        <div className="pinncle-letter" border="green" appearance="green" data-letter="F">{`${consultant.getF()}${(!checkP) ? consultant.getFISK() : consultant.getFISKCheck()}`}</div>
         <div className="pinncle-letter" border="green" appearance="green" data-letter="I">{consultant.getI()}{consultant.getIISK()}</div>
 
-        <div className="pinncle-letter" border="green" appearance="green" data-letter="H">{(!checkP) ? `${consultant.getHCheck()}${consultant.getHISK()}` : `${consultant.getH()}${consultant.getHISK()}`}</div>
+        <div className="pinncle-letter" border="green" appearance="green" data-letter="H">{(!checkP) ? `${consultant.getHCheck()}${consultant.getHISK()}` : `${consultant.getH()}${consultant.getHISKCheck()}`}</div>
         <div className="pinncle-letter" border="green" appearance="green" data-letter="G">{consultant.getG()}{consultant.getGISK()}</div>
         <div className="pinncle-letter" border="green" appearance="green" data-letter="J">{consultant.getJ()}{consultant.getJISK()}</div>
 

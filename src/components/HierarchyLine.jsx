@@ -39,7 +39,7 @@ export const HierarchyLine = ({ consultant }) => {
           <div className="col-start-2 row-start-1">
             <p className="mb-1 font-bold text-sm">Diálogo</p>
             <CircleNumber size="sm" appearance="green" border="green">
-              {consultant.getSumHierarchy(consultant.getLifeStage(newDate.year()), consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year())))}
+              {consultant.getSumHierarchy(consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year())), consultant.calcPersonalYear(newDate.year()))}
             </CircleNumber>
           </div>
           <div className="col-start-1 row-start-2 lines">
