@@ -1,10 +1,9 @@
 
-import nameImage from '../assets/s-destinity-table.jpg'
+import { default as nameImage, default as nameImage2 } from '../assets/s-destinity-table.jpg'
 import { SynastryDestinityTable } from '../synastryDestinyTable/SynastryDestinyTable'
 import { SynastryData } from '../synastryVibrationTime/SynastryData'
 
 export const SynastryDestinityPDF = ({ synastry, newDate }) => {
-
   const ageMeet = synastry.partner.yearMeet - synastry.consultant.birthDate.year()
   const t = synastry.consultant.getDestinityTable()
   const table = t.slice(ageMeet)
@@ -33,10 +32,10 @@ export const SynastryDestinityPDF = ({ synastry, newDate }) => {
   partnerTable3 = partnerTable.slice(22, 33);
   partnerTable4 = partnerTable.slice(33, 44);
 
-  return {
+  return [{
     bg: nameImage,
     children: <>
-      <SynastryData synastry={synastry} newDate={newDate} horizontal={true} />
+      <SynastryData synastry={synastry} newDate={newDate} horizontal />
       <SynastryDestinityTable
         table={table1}
         newDate={newDate}
@@ -57,6 +56,32 @@ export const SynastryDestinityPDF = ({ synastry, newDate }) => {
         tableP={partnerTable2}
         startP={11 + ageMeetP}
       />
-    </>
+              </>
+  }, {
+    bg: nameImage2,
+    children: <>
+      <SynastryData synastry={synastry} newDate={newDate} horizontal />
+      <SynastryDestinityTable
+        table={table3}
+        newDate={newDate}
+        start={22 + ageMeet}
+        consultant={synastry.consultant}
+        partner={synastry.partner}
+        tableP={partnerTable3}
+        startP={22 + ageMeetP}
+        slice={0}
+      />
+      <SynastryDestinityTable
+        newDate={newDate}
+        slice={1}
+        table={table4}
+        start={33 + ageMeet}
+        consultant={synastry.consultant}
+        partner={synastry.partner}
+        tableP={partnerTable4}
+        startP={33 + ageMeetP}
+      />
+              </>
   }
+]
 }

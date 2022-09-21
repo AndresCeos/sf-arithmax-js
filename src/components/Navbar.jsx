@@ -16,7 +16,7 @@ import Logo from '../assets/logo.png';
 
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import moment from 'moment/min/moment-with-locales';
-import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from '../components-pdf/document';
+import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryDestinityPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from '../components-pdf/document';
 import { Group, Person, sanitize, Synastry } from '../resources';
 import { Notifications } from './Notifications';
 
@@ -30,6 +30,8 @@ export const Navbar = () => {
   const isEmpty = Object.keys(userActive).length === 0;
   // const [modal, setModal] = useState(false)
   const { name: createName, date: createDate } = useSelector(state => state.users.createName)
+  const isSelectedPartner = Object.keys(userPartnerActive).length > 0;
+
 
   const { names, lastName, scdLastName, date, email, webSite, phone, logoURL } = useSelector(state => state.auth)
   const sidebar = { email, webSite, phone }
@@ -101,7 +103,7 @@ export const Navbar = () => {
     'calendarioMensual',
     'sinastria',
     'sinastria_retornos',
-    // 'sinastria_destino',
+    'sinastria_destino',
     'sinastria_compatibilidad',
     'sinastria_vibracion',
     'group_pinnacle',
@@ -116,15 +118,13 @@ export const Navbar = () => {
   let isDownloadPDFEnabled = existDownloadPDF() && !isEmpty
 
   if (location.pathname.includes('group') && !isEmpty) {
-    console.log('estoy en los grupos')
     const isEmptyG = Object.keys(userActive.group).length === 0;
     const groupCap = groupConsult.group
     isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyG && groupCap.length >= 3)
   }
   if (location.pathname.includes('sinastria') && !isEmpty) {
-    console.log('estoy en las parejas')
     const isEmptyP = Object.keys(userActive.partner).length === 0;
-    isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyP && isSelectPartner)
+    isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyP && isSelectedPartner)
   }
   let config;
   let docName;
@@ -147,7 +147,7 @@ export const Navbar = () => {
       calendarioMensual: MonthPDF, // (consultant, newDate, newDate.month, //() + 1),
       sinastria: SynastryPinnaclePDF, // (synastry, newDate),
       sinastria_retornos: SynastryAnnualReturnsPDF, // (synastry, newDate),
-      // 'sinastria_destino': SynastryDestinityPDF, //(synastry, newDate),
+      sinastria_destino: SynastryDestinityPDF, // (synastry, newDate),
       sinastria_compatibilidad: CompatibilityTablePDF, // (synastry, newDate),
       sinastria_vibracion: SynastryVibrationTimePDF, // (synastry, newDate),
       group_pinnacle: GroupPinnaclePDF, // (groupConsult, newDate),
