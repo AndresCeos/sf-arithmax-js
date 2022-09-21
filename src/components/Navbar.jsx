@@ -32,6 +32,7 @@ export const Navbar = () => {
   const { name: createName, date: createDate } = useSelector(state => state.users.createName)
   const isSelectedPartner = Object.keys(userPartnerActive).length > 0;
 
+
   const { names, lastName, scdLastName, date, email, webSite, phone, logoURL } = useSelector(state => state.auth)
   const sidebar = { email, webSite, phone }
   const { group } = useGroup()
