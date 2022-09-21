@@ -1,24 +1,19 @@
 import {
-  CreateName,
-  CreateNumeric,
-  CreateTable,
-  CreatePinnacle,
-  CreateBreakdown,
-  AnnualReturns
+  AnnualReturns, CreateBreakdown, CreateName,
+  CreateNumeric, CreatePinnacle, CreateTable
 } from '..';
+import createName from '../assets/create-name.jpg';
 
-import createName from '../assets/create-name.jpg'
-
-export const CreateNamePDF = ({ consultant }) => {
+export const CreateNamePDF = ({ createNameObj }) => {
   return {
     bg: createName,
     children: <>
-      <CreateName consultant={consultant} />
-      <CreateNumeric consultant={consultant} />
-      <CreateTable consultant={consultant} />
-      <CreatePinnacle consultant={consultant} />
-      <CreateBreakdown consultant={consultant} />
-      <AnnualReturns consultant={consultant} />
-    </>
+      <CreateName consultant={createNameObj} />
+      <CreateNumeric consultant={createNameObj} />
+      <CreateTable consultant={createNameObj} />
+      <CreatePinnacle consultant={createNameObj} />
+      <CreateBreakdown consultant={createNameObj} />
+      <AnnualReturns consultant={createNameObj} />
+              </>
   }
 }

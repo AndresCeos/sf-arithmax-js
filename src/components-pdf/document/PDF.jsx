@@ -2,17 +2,17 @@ import { Document, Image, Page, Text, View } from '@react-pdf/renderer';
 import { currentDate } from '../../resources';
 import { configReport } from '../styles';
 
-export const PDF = ({ consultant, config, profile, date, sidebar, synastry, groupConsult, newDate, month, logoURL }) => {
+export const PDF = ({ consultant, config, profile, date, sidebar, synastry, groupConsult, newDate, month, logoURL, createNameObj }) => {
   console.log({ config })
   console.log(groupConsult)
   console.log(profile.logoURL)
   const listOfPDF = config.map(i => {
     if (!Array.isArray(i)) {
       console.log('single')
-      return i({ consultant, newDate, synastry, groupConsult, month })
+      return i({ consultant, newDate, synastry, groupConsult, month, createNameObj })
     }
     console.log('array')
-    return i.map(x => x({ consultant, synastry, groupConsult, newDate, month }))
+    return i.map(x => x({ consultant, synastry, groupConsult, newDate, month, createNameObj }))
   }).flat()
 
 

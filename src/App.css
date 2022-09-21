@@ -202,6 +202,10 @@ svg {
     background-color: #FBEDD9;
 }
 
+.bg-gold-5 {
+    background-color: #FFFDEA;
+}
+
 .border-gold {
     border-color: #E3AC5A;
 }
@@ -2901,7 +2905,6 @@ top: 134px;
     #screen::before {
         content: 'Resolución miníma de 1260px';
     }
-
     #screen {
         display: flex;
         justify-content: center;

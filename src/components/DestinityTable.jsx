@@ -20,7 +20,7 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
       return 'bg-gold-10'
     }
     if (isSubCycle(i)) {
-      return 'bg-gold-30'
+      return 'bg-gold-5'
     }
     return bg
   }

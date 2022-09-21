@@ -29,12 +29,21 @@ export const Navbar = () => {
   const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   // const [modal, setModal] = useState(false)
+  const { name: createName, date: createDate } = useSelector(state => state.users.createName)
 
   const { names, lastName, scdLastName, date, email, webSite, phone, logoURL } = useSelector(state => state.auth)
   const sidebar = { email, webSite, phone }
   const { group } = useGroup()
   const groupDate = userActive.dateGroup
   const groupConsult = new Group(group, groupDate)
+
+  const createNameData = {
+    name: createName || `${userActive.names} ${userActive.lastName} ${userActive.scdLastName}`,
+    lastName: '',
+    scdLastName: '',
+    birthDate: createDate || userActive.date,
+  }
+  const createNameObj = new Person(createNameData)
 
   const partner = new Person({
     name: userPartnerActive.names,
@@ -160,6 +169,7 @@ export const Navbar = () => {
         newDate={newDate}
         month={newDate.month() + 1}
         logoURL={logoURL}
+        createNameObj={createNameObj}
       />
     )
     AllPDF = () => (

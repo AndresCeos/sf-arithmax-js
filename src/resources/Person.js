@@ -655,6 +655,15 @@ export class Person {
     return this.karmicos.includes(D) ? '*' : '';
   }
 
+  getDISKCheck() {
+    const D = this.reduceNumberISK(
+      this.reduceNumber(this.birthDate.date())
+      + this.reduceNumber(this.birthDate.month() + 1)
+      + this.reduceNumber(this.birthDate.year())
+    )
+    return this.karmicos.includes(D) ? '*' : '';
+  }
+
   getDCheck() {
     const yearReduce = this.reduceNumber(this.birthDate.year())
     const monthReduce = this.reduceNumber(this.birthDate.month() + 1)
@@ -734,11 +743,27 @@ export class Person {
     return this.karmicos.includes(stageOne) ? '*' : '';
   }
 
+  getEISKCheck() {
+    const reducedMonth = this.birthDate.month() + 1
+    const reducedDay = this.birthDate.date()
+    const stageOne = this.reduceNumberISK(reducedMonth + reducedDay)
+
+    return this.karmicos.includes(stageOne) ? '*' : '';
+  }
+
   getF() { return this.calcLifeStage(2) }
 
   getFISK() {
     const reducedDay = this.reduceNumber(this.birthDate.date())
     const reducedYear = this.reduceNumber(this.birthDate.year())
+    const stageTwo = this.reduceNumberISK(reducedDay + reducedYear)
+
+    return this.karmicos.includes(stageTwo) ? '*' : '';
+  }
+
+  getFISKCheck() {
+    const reducedDay = this.birthDate.date()
+    const reducedYear = this.birthDate.year()
     const stageTwo = this.reduceNumberISK(reducedDay + reducedYear)
 
     return this.karmicos.includes(stageTwo) ? '*' : '';
@@ -755,8 +780,16 @@ export class Person {
   getH() { return this.calcLifeStage(4) }
 
   getHISK() {
-    const stageFou = this.reduceNumberISK(this.birthDate.month() + 1 + this.birthDate.year())
+    const reduceMonth = this.reduceNumber(this.birthDate.month() + 1)
+    const reduceYear = this.reduceNumber(this.birthDate.year())
+    const stageFou = this.reduceNumberISK(reduceMonth + reduceYear)
+    return this.karmicos.includes(stageFou) ? '*' : '';
+  }
 
+   getHISKCheck() {
+    const reduceMonth = this.birthDate.month() + 1
+    const reduceYear = this.birthDate.year()
+    const stageFou = this.reduceNumberISK(reduceMonth + reduceYear)
     return this.karmicos.includes(stageFou) ? '*' : '';
   }
 

@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { PartnerForm } from './';
+import { PartnerForm } from '.';
+import { calcAge, formBirthDate } from '../resources';
 import { removePartnerUser, selectUserPartnerActive, setIsSelectPartner, setPartnerIndex } from '../store/slices/users/users';
-import { calcAge, formBirthDate } from '../resources/';
 
-import add_user_main from '../assets/icons/add_user_main.svg'
 import { MdEdit } from 'react-icons/md';
-import c_delete from '../assets/icons/c_delete.svg'
+import add_user_main from '../assets/icons/add_user_main.svg';
+import c_delete from '../assets/icons/c_delete.svg';
 
 export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActive = false, setIsAddFormActive, editUserPartner }) => {
   const { list: users, userActive, isSelectPartner, userPartnerActive } = useSelector(state => state.users);
@@ -22,7 +22,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
   const [indexP, setIndexP] = useState(null)
 
   const selectPartner = e => {
-    let index = e.target.value
+    const index = e.target.value
     dispatch(selectUserPartnerActive(userActive.id, index))
     dispatch(setIsSelectPartner(true))
     dispatch(setPartnerIndex(index))
@@ -73,12 +73,12 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
           <button onClick={editPartner}><MdEdit className='text-xl text-gray-400' /></button> Nombre
         </label>
         <select onChange={selectPartner} className='border rounded w-full'>
-          {!isSelectPartner && <option value="" selected >Selecciona una pareja</option>}
-          {partners.map(({ id, names, lastName, scdLastName }, index) =>
-            <option key={id} value={index} >
+          {!isSelectPartner && <option value="" selected={!isSelectPartner}>Selecciona una pareja</option>}
+          {partners.map(({ id, names, lastName, scdLastName }, index) => (
+            <option key={id} value={index} selected={userPartnerActive.id === id && isSelectPartner}>
               {names} {lastName} {scdLastName}
             </option>
-          )}
+          ))}
         </select>
       </div>
       <div className="form-group-inline col-span-4 items-center justify-center">
