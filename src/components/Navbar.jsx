@@ -1,4 +1,5 @@
-import React from 'react';
+import { saveAs } from 'file-saver';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { dateSelect, useConsultant, useGroup } from '../hooks';
@@ -10,11 +11,12 @@ import changeDateIcon from '../assets/icons/change_date.svg';
 import groupData from '../assets/icons/group_data.svg';
 import mail from '../assets/icons/mail.svg';
 import partnerData from '../assets/icons/partner_data.svg';
+import printReports from '../assets/icons/print_reports.svg';
 import saveReport from '../assets/icons/save_report.svg';
 import updateUser from '../assets/icons/update_user.svg';
 import Logo from '../assets/logo.png';
 
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import { pdf, PDFViewer } from '@react-pdf/renderer';
 import moment from 'moment/min/moment-with-locales';
 import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryDestinityPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from '../components-pdf/document';
 import { Group, Person, sanitize, Synastry } from '../resources';
@@ -26,12 +28,14 @@ export const Navbar = () => {
   const { names: userNames } = useSelector(state => state.auth);
   const { consultant } = useConsultant()
   const now = moment()
-  const { userActive, userPartnerActive, isSelectPartner } = useSelector(state => state.users);
+  const { userActive, userPartnerActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
-  // const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false)
+  const [availableReports, setAvailableReports] = useState({})
+  const [availableReportsSelected, setAvailableReportsSelected] = useState([])
+  const [previewDocument, setPreviewDocument] = useState(false)
   const { name: createName, date: createDate } = useSelector(state => state.users.createName)
   const isSelectedPartner = Object.keys(userPartnerActive).length > 0;
-
 
   const { names, lastName, scdLastName, date, email, webSite, phone, logoURL } = useSelector(state => state.auth)
   const sidebar = { email, webSite, phone }
@@ -126,38 +130,37 @@ export const Navbar = () => {
     const isEmptyP = Object.keys(userActive.partner).length === 0;
     isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyP && isSelectedPartner)
   }
-  let config;
-  let docName;
   let profile;
-  let MyPDF;
-  let AllPDF;
-  let configAll;
-
   if (isDownloadPDFEnabled) {
-    const reports = {
-      pinaculo: PinnaclePDF, // (consultant),
-      camino: LifePathPDF, // (consultant, newDate),
-      nombre: NamePDF, // (consultant, newDate),
-      crear_nombre: CreateNamePDF, // (consultant),
-      destino: DestinityPDF, // (consultant, newDate),
-      tiempo: TimeVibrationPDF, // (consultant, newDate),
-      retornos: AnnualReturnsPDF, // (consultant, newDate),
-      circulo_tiempo: CircleTimePDF, // (consultant, newDate),
-      calendario: CalendarPDF, // (consultant, newDate),
-      calendarioMensual: MonthPDF, // (consultant, newDate, newDate.month, //() + 1),
-      sinastria: SynastryPinnaclePDF, // (synastry, newDate),
-      sinastria_retornos: SynastryAnnualReturnsPDF, // (synastry, newDate),
-      sinastria_destino: SynastryDestinityPDF, // (synastry, newDate),
-      sinastria_compatibilidad: CompatibilityTablePDF, // (synastry, newDate),
-      sinastria_vibracion: SynastryVibrationTimePDF, // (synastry, newDate),
-      group_pinnacle: GroupPinnaclePDF, // (groupConsult, newDate),
-      group_vibracion: GroupVibrationTimePDF, // (groupConsult, newDate),
-      group_retornos: GroupAnnualReturnsPDF, // (groupConsult, newDate)
-    }
-    docName = sanitize(`${path} ${consultant.fullName}`)
-    config = Array.isArray(reports[path]) ? [...reports[path]] : [reports[path]]
     profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
-    MyPDF = () => (
+  }
+
+  const printSingleReport = async () => {
+    const reports = {
+      pinaculo: PinnaclePDF,
+      camino: LifePathPDF,
+      nombre: NamePDF,
+      crear_nombre: CreateNamePDF,
+      destino: DestinityPDF,
+      tiempo: TimeVibrationPDF,
+      retornos: AnnualReturnsPDF,
+      circulo_tiempo: CircleTimePDF,
+      calendario: CalendarPDF,
+      calendarioMensual: MonthPDF,
+      sinastria: SynastryPinnaclePDF,
+      sinastria_retornos: SynastryAnnualReturnsPDF,
+      sinastria_destino: SynastryDestinityPDF,
+      sinastria_compatibilidad: CompatibilityTablePDF,
+      sinastria_vibracion: SynastryVibrationTimePDF,
+      group_pinnacle: GroupPinnaclePDF,
+      group_vibracion: GroupVibrationTimePDF,
+      group_retornos: GroupAnnualReturnsPDF,
+    }
+
+    const config = [Object.entries(reports).filter(i => i[0] === path)[0][1]]
+    console.log({ config })
+    // eslint-disable-next-line react/no-unstable-nested-components
+    const MyPDF = () => (
       <PDF
         consultant={consultant}
         config={config}
@@ -172,46 +175,102 @@ export const Navbar = () => {
         createNameObj={createNameObj}
       />
     )
-    AllPDF = () => (
-      <PDF consultant={consultant} config={config} profile={profile} date={newDate} sidebar={sidebar} />
+
+    const blob = await pdf((
+      <MyPDF />
+    )).toBlob();
+    saveAs(blob, sanitize(`${path} ${consultant.fullName}`));
+  }
+
+  const openModal = () => {
+    setModal(true)
+    let reportListType = '';
+    const reports = {
+      personal: {
+        pinaculo: { name: 'Pináculo', fn: PinnaclePDF },
+        camino: { name: 'Camino de Vida', fn: LifePathPDF },
+        nombre: { name: 'Nombre', fn: NamePDF },
+        // crear_nombre: { name: 'Crear Nombre', fn: CreateNamePDF },
+        destino: { name: 'Tabla del Destino', fn: DestinityPDF },
+        tiempo: { name: 'Vibración de Tiempo', fn: TimeVibrationPDF },
+        retornos: { name: 'Retornos Anuales', fn: AnnualReturnsPDF },
+        circulo_tiempo: { name: 'Circulo del Tiempo', fn: CircleTimePDF },
+        calendario: { name: 'Calendario Anual', fn: CalendarPDF },
+        calendarioMensual: { name: 'Calendario Mensual', fn: MonthPDF }
+      },
+      sinastria: {
+        sinastria: { name: 'Análisis', fn: SynastryPinnaclePDF },
+        sinastria_vibracion: { name: 'Vibración del Tiempo', fn: SynastryVibrationTimePDF },
+        sinastria_retornos: { name: 'Retornos Anuales', fn: SynastryAnnualReturnsPDF },
+        sinastria_destino: { name: 'Tabla del Destino Pareja', fn: SynastryDestinityPDF },
+        sinastria_compatibilidad: { name: 'Tabla del Compatibilidad', fn: CompatibilityTablePDF },
+      },
+      grupo: {
+        group_pinnacle: { name: 'Pináculo', fn: GroupPinnaclePDF },
+        group_vibracion: { name: 'Vibración del Tiempo', fn: GroupVibrationTimePDF },
+        group_retornos: { name: 'Retornos Anuales', fn: GroupAnnualReturnsPDF },
+      }
+    }
+    for (const kind in reports) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (reports[kind].hasOwnProperty(path)) {
+        reportListType = reports[kind]
+      }
+    }
+    setAvailableReports(reportListType)
+  }
+  const closeModal = () => {
+    setModal(false)
+    setAvailableReportsSelected([])
+    setPreviewDocument(false)
+  }
+
+  const handleSelectedReports = (e) => {
+    const report = e.target
+    if (report.checked === true) {
+      setAvailableReportsSelected([...availableReportsSelected, report.name])
+    } else {
+      const arrayReport = availableReportsSelected.filter(i => i !== report.name)
+      setAvailableReportsSelected(arrayReport)
+    }
+  }
+
+  const printButton = () => {
+    return (
+      <button
+        className={`bg-main text-white px-3 py-1 rounded-sm ${previewDocument && 'opacity-60'}`}
+        onClick={() => { setPreviewDocument(true) }}
+      >
+        Generar reportes
+      </button>
     )
   }
-  // let arrayReport = []
-  // const addToArray = (event) => {
-  //   let report = event.target
-  //   if (report.checked === true) {
-  //     arrayReport = [...arrayReport, report.name]
-  //   } else {
-  //     arrayReport = arrayReport.filter(i => i !== report.name)
-  //   }
-  //   console.log(arrayReport);
-  //   const reports = {
-  //     'pinaculo': PinnaclePDF(consultant),
-  //     'camino': LifePathPDF(consultant, newDate),
-  //     'nombre': NamePDF(consultant, newDate),
-  //     'crear_nombre': CreateNamePDF(consultant),
-  //     'destino': DestinityPDF(consultant, newDate),
-  //     'tiempo': TimeVibrationPDF(consultant, newDate),
-  //     'retornos': AnnualReturnsPDF(consultant, newDate),
-  //     'circulo_tiempo': CircleTimePDF(consultant, newDate),
-  //     'calendario': CalendarPDF(consultant, newDate),
-  //     'calendarioMensual': MonthPDF(consultant, newDate, newDate.month() + 1),
-  //     'sinastria': SynastryPinnaclePDF(synastry, newDate),
-  //     'sinastria_retornos': SynastryAnnualReturnsPDF(synastry, newDate),
-  //     'sinastria_compatibilidad': CompatibilityTablePDF(synastry, newDate),
-  //     'sinastria_vibracion': SynastryVibrationTimePDF(synastry, newDate),
-  //     'group_pinnacle': GroupPinnaclePDF(groupConsult, newDate),
-  //     'group_vibracion': GroupVibrationTimePDF(groupConsult, newDate),
-  //     'group_retornos': GroupAnnualReturnsPDF(groupConsult, newDate)
-  //   }
 
-  // }
-  // const openModal = () => {
-  //   setModal(true)
-  // }
-  // const closeModal = () => {
-  //   setModal(false)
-  // }
+  const printReportPreview = () => {
+    // setIsDocumentLoading(true)
+    const config = availableReportsSelected.map(report => availableReports[report].fn)
+    // eslint-disable-next-line react/no-unstable-nested-components
+    const MyPDF = () => (
+      <PDF
+        consultant={consultant}
+        config={config}
+        profile={profile}
+        date={newDate}
+        sidebar={sidebar}
+        synastry={synastry}
+        groupConsult={groupConsult}
+        newDate={newDate}
+        month={newDate.month() + 1}
+        logoURL={logoURL}
+        createNameObj={createNameObj}
+      />
+    )
+    return (
+      <PDFViewer width='100%' height='95%'>
+        <MyPDF />
+      </PDFViewer>
+    )
+  }
 
 
   return (
@@ -297,55 +356,58 @@ export const Navbar = () => {
                 </Link>
               </li>
 
+              <li className="flex items-center">{isDownloadPDFEnabled
+                ? (
+                  <button
+                    onClick={printSingleReport}
+                    className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  >
+                    <img
+                      src={saveReport}
+                      className="mb-1"
+                      alt="save_report"
+                    />
+                    Guardar<br />reporte
+                  </button>
+                )
+                : (
+                  <button className="flex flex-col justify-center text-center items-center text-white h-full px-3 opacity-30 cursor-auto">
+                    <img
+                      src={saveReport}
+                      className="mb-1"
+                      alt="save_report"
+                    />
+                    Guardar<br />reporte
+                  </button>
+                )
+              }
+              </li>
               <li className="flex items-center">
                 {isDownloadPDFEnabled
                   ? (
-                    <PDFDownloadLink
-                      document={<MyPDF />}
-                      fileName={docName}
+                    <button
+                      onClick={openModal}
                       className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
                     >
                       <img
-                        src={saveReport}
+                        src={printReports}
                         className="mb-1"
-                        alt="save_report"
+                        alt="printReports"
                       />
-                      Guardar<br />reporte
-                    </PDFDownloadLink>
-                  )
-                  : (
-                    <button className="flex flex-col justify-center text-center items-center text-white h-full px-3 opacity-30 cursor-auto">
-                      <img
-                        src={saveReport}
-                        className="mb-1"
-                        alt="save_report"
-                      />
-                      Guardar<br />reporte
+                      Imprimir<br />Reportes
                     </button>
                   )
-                }
+                  : (
+                    <button className="flex flex-col justify-center text-center items-center text-white opacity-30 cursor-auto h-full px-3">
+                      <img
+                        src={printReports}
+                        className="mb-1"
+                        alt="printReports"
+                      />
+                      Imprimir<br />Reportes
+                    </button>
+                  )}
               </li>
-              {/* <li className="flex items-center">
-                {isDownloadPDFEnabled ?
-                  <button
-                    onClick={openModal}
-                    className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3">
-                    <img
-                      src={print_reports}
-                      className="mb-1"
-                      alt="print_reports"
-                    />
-                    Guardar<br />reporte
-                  </button> :
-                  <button className="flex flex-col justify-center text-center items-center text-white opacity-30 cursor-auto h-full px-3">
-                    <img
-                      src={print_reports}
-                      className="mb-1"
-                      alt="print_reports"
-                    />
-                    Imprimir<br />Reportes
-                  </button>}
-              </li> */}
               <li className="flex items-center ml-20">
                 <a href="https://app.numerologia-cotidiana.com/formulario-de-soporte-arithmax/" target="_blank" rel="noreferrer">
                   <img
@@ -372,19 +434,46 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-      {/* {(modal) ? <form className="fromReport ">
-        <h4>Selecciona los reportes </h4><span><a onClick={closeModal}>X</a></span>
-        <div className="flex items-center"> <input name="pinaculo" onChange={(e) => { addToArray(e) }} type="checkbox" /> pinaculo</div>
-        <div className="flex items-center"> <input name="camino" onChange={(e) => { addToArray(e) }} type="checkbox" /> camino</div>
-        <div className="flex items-center"><input name="nombre" onChange={(e) => { addToArray(e) }} type="checkbox" />nombre</div>
-        <div className="flex items-center"><input name="crear_nombre" onChange={(e) => { addToArray(e) }} type="checkbox" />crear_nombre</div>
-        <div className="flex items-center"><input name="destino" onChange={(e) => { addToArray(e) }} type="checkbox" />destino</div>
-        <div className="flex items-center"><input name="tiempo" onChange={(e) => { addToArray(e) }} type="checkbox" />tiempo</div>
-        <div className="flex items-center"><input name="retornos" onChange={(e) => { addToArray(e) }} type="checkbox" />retornos</div>
-        <div className="flex items-center"><input name="circulo_tiempo" onChange={(e) => { addToArray(e) }} type="checkbox" />circulo_tiempo</div>
-        <div className="flex items-center"><input name="calendario" onChange={(e) => { addToArray(e) }} type="checkbox" />calendario</div>
-        <div className="flex items-center"><input name="calendarioMensual" onChange={(e) => { addToArray(e) }} type="checkbox" />calendarioMensual</div>
-      </form> : null} */}
+      {
+        (modal) ? (
+          <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-60'>
+            <div className={`bg-white p-5 rounded shadow-lg relative ${previewDocument && 'w-5/6 h-5/6'}`}>
+              <div className='flex justify-between gap-3 mb-4'>
+                <h4>
+                  {!previewDocument
+                    ? 'Selecciona los reportes que quieres imprimir' : 'Reportes'}
+                </h4>
+                <button className='border rounded-full hover:bg-purple-300' onClick={closeModal}>
+                  <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              {!previewDocument
+                && Object.entries(availableReports).map(item => (
+                  <div key={`ck_${item[0]}`} className="flex items-center mb-4">
+                    <input
+                      onChange={handleSelectedReports}
+                      id={`ck_${item[0]}`}
+                      type="checkbox"
+                      name={item[0]}
+                      className="w-4 h-4 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600"
+                    />
+                    <label htmlFor={`ck_${item[0]}`} className="ml-2 text-sm font-medium text-gray-900">{item[1].name}</label>
+                  </div>
+                ))
+              }
+              {(availableReportsSelected.length > 0 && !previewDocument) && printButton()}
+              {previewDocument && (
+                <div className='absolute top-20 text-center w-full text-gray-500 z-0'>
+                  cargando..
+                </div>
+              )}
+              {previewDocument && <div className='absolute left-0 right-0 mx-auto top-20 z-50 w-11/12 h-5/6'>{printReportPreview()}</div>}
+            </div>
+          </div>
+        ) : null
+      }
     </>
   );
 };

@@ -22,10 +22,8 @@ export const Notifications = () => {
       />
       {!isOpen
         || (
-          <ul className='absolute w-80 bg-white right-0 z-100 rounded-sm top-10 text-left'>
-            {notifications.split(',').map(notification => (
-              <li className="post__content" dangerouslySetInnerHTML={{ __html: notification }} />
-            ))}
+          <ul className='absolute w-80 bg-white right-0 z-100 rounded-sm top-10 text-left max-h-96 overflow-x-scroll'>
+            <li className="p-4" dangerouslySetInnerHTML={{ __html: notifications }} />
           </ul>
         )}
     </button>

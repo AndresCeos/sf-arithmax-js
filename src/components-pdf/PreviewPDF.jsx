@@ -5,8 +5,7 @@ import { dateSelect, useConsultant, useGroup } from '../hooks';
 import { PDFViewer } from '@react-pdf/renderer';
 import { Group, Person, Synastry } from '../resources';
 import {
-  PDF,
-  PinnaclePDF
+  PDF, SynastryDestinityPDF
 } from './document';
 
 export const PreviewPDF = () => {
@@ -37,7 +36,7 @@ export const PreviewPDF = () => {
   const synastry = new Synastry(consultant, partner)
   console.log(synastry)
   const config = [
-    PinnaclePDF, // ({ consultant }),
+    // PinnaclePDF, // ({ consultant }),
     // LifePathPDF(consultant, newDate),
     // ...NamePDF(consultant, newDate),
     // CreateNamePDF(consultant),
@@ -52,7 +51,7 @@ export const PreviewPDF = () => {
     // ...SynastryVibrationTimePDF(synastry, newDate),
     // CompatibilityTablePDF(synastry, newDate),
     // SynastryAnnualReturnsPDF(synastry, newDate),
-    // SynastryDestinityPDF(synastry, newDate),
+    ...SynastryDestinityPDF(synastry, newDate),
     // GROUP
     // ...GroupPinnaclePDF(groupConsult, newDate),
     // ...GroupVibrationTimePDF(groupConsult,newDate),

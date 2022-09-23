@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer';
 
 export const SynastryTimeCicle = ({ synastry, newDate }) => {
   const nineYearCycle = synastry.getNineYearCycleStage(newDate.year())
@@ -17,15 +17,13 @@ export const SynastryTimeCicle = ({ synastry, newDate }) => {
           <Text style={cycle.circle}>{synastry.getLifeStage(newDate.year())}{synastry.getLifeStageISK(newDate.year())}</Text>
         </View>
         <View style={cycle.item}>
-          {nineYearCycle.map(year =>
+          {nineYearCycle.map(year => (
             <View style={cycle.itemMap}>
-              {year === newDate.year() ? <Text style={[cycle.title_circle]} >{synastry.calcPersonalYear(year)}{(synastry.calcPersonalYear(year) === 2) ? '/11' : ''}{(synastry.calcPersonalYear(year) === 4) ? '/22' : ''}{synastry.calcPersonalYearISK(year)}</Text> :
-                <Text style={[cycle.title_circle]} >{synastry.calcPersonalYear(year)}{(synastry.calcPersonalYear(year) === 2) ? '/11' : ''}{(synastry.calcPersonalYear(year) === 4) ? '/22' : ''}{synastry.calcPersonalYearISK(year)}</Text>}
-              {(year == newDate.year()) ? <Text style={[cycle.title, { fontWeight: 'bold' }]}>{year}</Text> : <Text style={[cycle.title, { color: '#7E7E7E' }]}>{year}</Text>}
-              {(synastry.getLifeStageNumber(newDate.year()) === 1) ? <Text style={[cycle.title, { color: '#7E7E7E' }]}>{year + 9}</Text> : ''}
-              {(synastry.getLifeStageNumber(newDate.year()) === 1) ? <Text style={[cycle.title, { color: '#7E7E7E' }]}>{year + 18}</Text> : ''}
+              {year === newDate.year() ? <Text style={[cycle.title_circle]}>{synastry.calcPersonalYear(year)}{(synastry.calcPersonalYear(year) === 2) ? '/11' : ''}{(synastry.calcPersonalYear(year) === 4) ? '/22' : ''}{synastry.calcPersonalYearISK(year)}</Text>
+                : <Text style={[cycle.title_circle]}>{synastry.calcPersonalYear(year)}{(synastry.calcPersonalYear(year) === 2) ? '/11' : ''}{(synastry.calcPersonalYear(year) === 4) ? '/22' : ''}{synastry.calcPersonalYearISK(year)}</Text>}
+              {(year === newDate.year()) ? <Text style={[cycle.title, { fontWeight: 'bold' }]}>{year}</Text> : <Text style={[cycle.title, { color: '#7E7E7E' }]}>{year}</Text>}
             </View>
-          )}
+          ))}
         </View>
 
       </View>

@@ -1,9 +1,9 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer';
 
 export const SynastryDestinityTable = ({ table, start, consultant, startP, partner, tableP, newDate, slice = 0 }) => {
-
-  let partnerDT = [];
+  const singleC = consultant.getSingle()
+  const singleP = partner.getSingle()
+  const partnerDT = [];
   // console.log( { table, start, consultant, startP, partner, tableP } )
   for (let i = 0; i < table.length; i++) {
     partnerDT.push({
@@ -13,9 +13,9 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
       pMC: table[i].pMC,
       pMN: table[i].pMN,
       pMD: table[i].pMD,
-      pfC: table[i].pfC,
-      pfN: table[i].pfN,
-      pfD: table[i].pfD,
+      pfC: (singleC) ? table[i].pfC : '',
+      pfN: (singleC) ? table[i].pfN : 0,
+      pfD: (singleC) ? table[i].pfD : 0,
 
       pmCP: tableP[i].pmC,
       pmNP: tableP[i].pmN,
@@ -23,9 +23,9 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
       pMCP: tableP[i].pMC,
       pMNP: tableP[i].pMN,
       pMDP: tableP[i].pMD,
-      pfCP: tableP[i].pfC,
-      pfNP: tableP[i].pfN,
-      pfDP: tableP[i].pfD,
+      pfCP: singleP ? tableP[i].pfC : '',
+      pfNP: singleP ? tableP[i].pfN : 0,
+      pfDP: singleP ? tableP[i].pfD : 0,
 
       pmCPC: `${table[i].pmC} ${tableP[i].pmC}`,
       pmNPC: consultant.reduceNumber(table[i].pmN + tableP[i].pmN),
@@ -35,9 +35,9 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
       pMNPC: consultant.reduceNumber(table[i].pMN + tableP[i].pMN),
       pMDPC: consultant.reduceNumber(table[i].pMD + tableP[i].pMD),
 
-      pfCPC: `${table[i].pfC} ${tableP[i].pfC}`,
-      pfNPC: consultant.reduceNumber(table[i].pfN + tableP[i].pfN),
-      pfDPC: consultant.reduceNumber(table[i].pfD + tableP[i].pfD)
+      pfCPC: `${singleC ? table[i].pfC : ''} ${singleP ? tableP[i].pfC : ''}`,
+      pfNPC: consultant.reduceNumber((singleC ? table[i].pfN : 0) + (singleP ? tableP[i].pfN : 0)),
+      pfDPC: consultant.reduceNumber((singleC ? table[i].pfD : 0) + (singleP ? tableP[i].pfD : 0))
     })
   }
 
@@ -85,9 +85,13 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
               Núm. Destino
             </Text>
           </View>
-          {partnerDT.map((el, i) =>
+          {partnerDT.map((el, i) => (
             <>
-              <View key={i} style={{ position: 'absolute', left: 81 + (i * 54), top: 0 }} >
+              <View
+                // eslint-disable-next-line react/no-array-index-key
+                key={`${consultant.getYearOfBirth() + i + start}_${i}_partner`}
+                style={{ position: 'absolute', left: 81 + (i * 54), top: 0 }}
+              >
                 <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#c2b3c2' }]}>
                   <Text>
                     {consultant.getYearOfBirth() + i + start}
@@ -131,7 +135,11 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
                 </View>
               </View>
 
-              <View key={i} style={{ position: 'absolute', left: 100 + (i * 54), top: 0 }} >
+              <View
+                // eslint-disable-next-line react/no-array-index-key
+                key={`${consultant.getYearOfBirth() + i + start}_${i}_partner2`}
+                style={{ position: 'absolute', left: 100 + (i * 54), top: 0 }}
+              >
                 <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#c2b3c2' }]}>
                   <Text>{partner.getYearOfBirth() + i + startP}</Text>
                 </View>
@@ -167,7 +175,11 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
                 </View>
               </View>
 
-              <View key={i} style={{ position: 'absolute', left: 119 + (i * 54), top: 0 }} >
+              <View
+                // eslint-disable-next-line react/no-array-index-key
+                key={`${consultant.getYearOfBirth() + i + start}_${i}_partner3`}
+                style={{ position: 'absolute', left: 119 + (i * 54), top: 0 }}
+              >
                 <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#c2b3c2' }]}>
                   <Text>{consultant.getYearOfBirth() + i + start}</Text>
                 </View>
@@ -203,7 +215,7 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
                 </View>
               </View>
             </>
-          )}
+          ))}
         </View>
       </View>
     </View>

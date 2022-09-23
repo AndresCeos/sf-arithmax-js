@@ -1,26 +1,26 @@
 import { useState } from 'react';
+import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
+import { VscCircleFilled } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { VscCircleFilled } from "react-icons/vsc";
-import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from 'react-icons/fa'
 import { startLogout } from '../store/slices/auth/thunks';
 
-import ic_home from '../assets/icons/s_home.svg'
-import ic_consultant from '../assets/icons/s_consultant.svg'
-import ic_personal from '../assets/icons/s_personal.svg'
-import ic_partner from '../assets/icons/s_partner.svg'
-import ic_group from '../assets/icons/s_group.svg'
+import ic_consultant from '../assets/icons/s_consultant.svg';
+import ic_group from '../assets/icons/s_group.svg';
+import ic_home from '../assets/icons/s_home.svg';
+import ic_partner from '../assets/icons/s_partner.svg';
+import ic_personal from '../assets/icons/s_personal.svg';
 
-import ic_pinnacle from '../assets/icons/s_pinnacle.svg'
-import ic_life_path from '../assets/icons/s_life_path.svg'
-import ic_name from '../assets/icons/s_name.svg'
-import ic_create_name from '../assets/icons/s_create_name.svg'
-import ic_circle_time from '../assets/icons/s_circle_time.svg'
-import ic_vibration_time from '../assets/icons/s_vibration_time.svg'
-import ic_annual_return from '../assets/icons/s_annual_return.svg'
-import ic_calendar from '../assets/icons/s_calendar.svg'
-import ic_destiny_table from '../assets/icons/s_destiny_table.svg'
-import ic_compatibility_table from '../assets/icons/s_compatibility_table.svg'
+import ic_annual_return from '../assets/icons/s_annual_return.svg';
+import ic_calendar from '../assets/icons/s_calendar.svg';
+import ic_circle_time from '../assets/icons/s_circle_time.svg';
+import ic_compatibility_table from '../assets/icons/s_compatibility_table.svg';
+import ic_create_name from '../assets/icons/s_create_name.svg';
+import ic_destiny_table from '../assets/icons/s_destiny_table.svg';
+import ic_life_path from '../assets/icons/s_life_path.svg';
+import ic_name from '../assets/icons/s_name.svg';
+import ic_pinnacle from '../assets/icons/s_pinnacle.svg';
+import ic_vibration_time from '../assets/icons/s_vibration_time.svg';
 
 export const Sidebar = () => {
   const [itemActive, setItemActive] = useState('')
@@ -95,7 +95,7 @@ export const Sidebar = () => {
                 aria-current="page"
               >
                 <img src={ic_pinnacle} className="w-6 h-4 object-center" alt='ic_pinnacle' />
-                <label className='ml-2'>Pinaculo</label>
+                <label className='ml-2'>Pináculo</label>
               </NavLink>
             </li>
             <li className={itemActive === 'personal' ? '' : 'hidden'}>
@@ -402,16 +402,16 @@ export const Sidebar = () => {
       <div className='sidebar-bottom p-3'>
         <ul className="flex flex-col flex-wrap pl-0 mt-0 list-none">
           <li className="my-2 flex justify-around">
-            <a href="https://www.facebook.com/NumerologiaCotidiana" target='_blank' className='hover:text-black'>
+            <a href="https://www.facebook.com/NumerologiaCotidiana" target='_blank' className='hover:text-black' rel="noreferrer">
               <FaFacebook size={20} />
             </a>
-            <a href="https://www.instagram.com/numerologia_cotidiana/" target='_blank' className='hover:text-black'>
+            <a href="https://www.instagram.com/numerologia_cotidiana/" target='_blank' className='hover:text-black' rel="noreferrer">
               <FaInstagram size={20} />
             </a>
-            <a href="https://www.youtube.com/channel/UCLpxV1bxOgtQ6ADN9Xkn5rg" target='_blank' className='hover:text-black'>
+            <a href="https://www.youtube.com/channel/UCLpxV1bxOgtQ6ADN9Xkn5rg" target='_blank' className='hover:text-black' rel="noreferrer">
               <FaYoutube size={20} />
             </a>
-            <a href="https://www.tiktok.com/@lanumerologiadelaura" target='_blank' className='hover:text-black'>
+            <a href="https://www.tiktok.com/@lanumerologiadelaura" target='_blank' className='hover:text-black' rel="noreferrer">
               <FaTiktok size={20} />
             </a>
           </li>
@@ -419,8 +419,10 @@ export const Sidebar = () => {
             <NavLink
               // exact
               end
-              to="/manual" className="sidebar-link text-13"
-              aria-current="page">
+              to="/manual"
+              className="sidebar-link text-13"
+              aria-current="page"
+            >
               Manual de Usuario
             </NavLink>
           </li>
@@ -428,16 +430,21 @@ export const Sidebar = () => {
             <NavLink
               // exact
               end
-              to="/politicas" className="sidebar-link text-13"
-              aria-current="page">
+              to="/politicas"
+              className="sidebar-link text-13"
+              aria-current="page"
+            >
               Políticas y Privacidad
             </NavLink>
           </li>
           <li className="my-1">
-            <a href='https://app.numerologia-cotidiana.com/formulario-de-soporte-arithmax/'
+            <a
+              href='https://app.numerologia-cotidiana.com/formulario-de-soporte-arithmax/'
               target="_blank"
               className="sidebar-link text-13"
-              aria-current="page">
+              aria-current="page"
+              rel="noreferrer"
+            >
               Contacto
             </a>
           </li>

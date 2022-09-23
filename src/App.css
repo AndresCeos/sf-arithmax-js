@@ -147,6 +147,10 @@ svg {
     background-color: var(--secondary-color);
 }
 
+.hover:bg-secondary:hover {
+    background-color: var(--secondary-color);
+}
+
 .bg-main-40 {
     background-color: rgb(91, 43, 90, .40);
 }
@@ -836,6 +840,7 @@ svg {
     #pinaculo.small .pinncle-letter {
         font-size: 17px;
     }
+
     #pinaculo.small .pinncle-letter[data-letter="B"] {
         font-size: 27px;
     }
@@ -2709,6 +2714,9 @@ top: 94px;
     z-index: 1;
 }
 
+.z-60 {
+    z-index: 60;
+}
 
 /*
 top: -6px;
@@ -2837,20 +2845,24 @@ top: 134px;
 }
 
 @media (max-width: 1440px) {
+
     .nameBreakdown,
     .destinity-table,
     .active-name {
         transform: scale(0.9);
         transform-origin: top;
     }
+
     .destinity-table .nameBreakdown {
         transform: scale(1);
         transform-origin: top;
     }
+
     .btn-destiny {
         left: -75px;
         z-index: 999999;
     }
+
     .btn-destiny-synastry {
         left: -90px;
         z-index: 999999;
@@ -2861,18 +2873,22 @@ top: 134px;
     #main-menu img {
         max-width: 25px;
     }
+
     #main-menu .px-3 {
         padding-left: 0.25rem;
         padding-right: 0.25rem;
     }
+
     #App-content>.grid {
         transform: scale(0.9);
         transform-origin: top;
     }
+
     #App-content>.mx-14 {
         margin-left: 0;
         margin-right: 0;
     }
+
     .nameBreakdown div {
         /* width: 30px; */
     }
@@ -2882,20 +2898,25 @@ top: 134px;
     body {
         /* width: 1260px; */
     }
+
     #App-content>.grid {
         transform: scale(0.88);
         transform-origin: top;
     }
+
     #main-menu img {
         max-width: 35px;
     }
+
     #main-menu .px-3 {
         font-size: 0;
         line-height: 0;
     }
+
     #main-menu .px-3 br {
         display: none;
     }
+
     .pinnacle-wrap {
         padding: 10px;
     }
