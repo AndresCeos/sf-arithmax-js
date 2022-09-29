@@ -82,7 +82,7 @@ const DestinityTablePage = () => {
                   </div>
                   <div className='w-8 flex items-center justify-center'>
                     <svg width="20" height="42" viewBox="0 0 20 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <line x1="0.54602" y1="41.6486" x2="19.4036" y2="0.790452" stroke="black" stroke-opacity="0.45" />
+                      <line x1="0.54602" y1="41.6486" x2="19.4036" y2="0.790452" stroke="black" strokeOpacity="0.45" />
                     </svg>
                   </div>
                   <div className='w-10 h-10 text-2xl font-black text-black flex justify-center items-center bg-white border border-main rounded-full inner-shadow'>
@@ -99,7 +99,7 @@ const DestinityTablePage = () => {
                   </div>
                   <div className='w-8 flex items-center justify-center'>
                     <svg width="20" height="42" viewBox="0 0 20 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <line x1="0.54602" y1="41.6486" x2="19.4036" y2="0.790452" stroke="black" stroke-opacity="0.45" />
+                      <line x1="0.54602" y1="41.6486" x2="19.4036" y2="0.790452" stroke="black" strokeOpacity="0.45" />
                     </svg>
                   </div>
                   <div className='w-10 h-10 text-2xl font-black text-black flex justify-center items-center bg-aguamarina-30 border border-aguamarina rounded-full inner-shadow'>
