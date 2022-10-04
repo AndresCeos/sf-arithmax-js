@@ -108,7 +108,7 @@ export class Synastry {
     return this.karmicos.includes(E) ? '*' : ''
   }
 
-    getEISKCheck() {
+  getEISKCheck() {
     const E = this.reduceNumberISK(
       this.getA()
       + this.getB()
@@ -177,7 +177,7 @@ export class Synastry {
     return this.karmicos.includes(H) ? '*' : ''
   }
 
-   getHCheck() {
+  getHCheck() {
     return this.reduceNumber(
       this.getA()
       + this.getC()
@@ -313,21 +313,16 @@ export class Synastry {
       this.getS(),
       this.getP(),
     ]
-    const occurrences = appearances.reduce((acc, curr) => {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
-
-    let w = 0;
-    let W = ''
-    Object.values(occurrences).forEach(el => (el === 3 ? w++ : w))
-    if (w === 1) {
-      Object.entries(occurrences).map((el, i) => {
-        if (el[1] === 3) {
-          W = parseInt(el[0]) * 3
-        }
-      })
+    const occurrences = {};
+    for (const num of appearances) {
+      occurrences[num] = occurrences[num] ? occurrences[num] + 1 : 1;
     }
-    return W === '' ? '' : this.reduceNumber(W)
+    Object.entries(occurrences).forEach(occurrence => {
+      if (occurrence[1] === 3) {
+        occurrences[occurrence[1]] += 1;
+      }
+    })
+    return Object.entries(occurrences).filter(e => e[1] === 3).map(e => this.reduceNumber(e[0] * 3)).join(', ')
   }
 
   calcReaction() {
@@ -535,7 +530,7 @@ export class Synastry {
     if (reduce_stage_1 === reduce_stage_2) {
       return false;
     }
-      return true;
+    return true;
   }
 
   /**
@@ -608,7 +603,7 @@ export class Synastry {
     const start = this.yearMeet // .year()
     const stageOne = 9 - this.reduceNumberForSub(
       this.getA() + this.getB() + start
-)
+    )
     console.log(stageOne)
     let stageOneEnd = start + stageOne
     if (stageOne === 0) {
@@ -651,12 +646,12 @@ export class Synastry {
     yearToCalculate = yearToCalculate || this.NOW.year()
     newDate = newDate || this.NOW
     const monthCut = this.getCustomMonths()
-		const actualMonth = newDate.format('MMMM')
-		const listOfMonths = this.getAllMonths()
-		const listOfMonthsE = this.getAllMonthsEnglish()
-		const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize)
-		const indexEnero = monthCut.findIndex(i => i === 'Enero')
-		const index = monthCut.findIndex(i => i === listOfMonths[indexE])
+    const actualMonth = newDate.format('MMMM')
+    const listOfMonths = this.getAllMonths()
+    const listOfMonthsE = this.getAllMonthsEnglish()
+    const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize)
+    const indexEnero = monthCut.findIndex(i => i === 'Enero')
+    const index = monthCut.findIndex(i => i === listOfMonths[indexE])
 
     const start = this.yearMeet // .year()
     const duration = 9 - this.reduceNumberForSub(
@@ -679,40 +674,40 @@ export class Synastry {
       if (indexEnero > index && yearToCalculate === stageOneEnd) {
         return stageTwo;
       }
-        return stageOne;
+      return stageOne;
     }
     if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
       if (indexEnero > index && yearToCalculate === stageTwoEnd) {
         return stageThr;
       }
-        return stageTwo;
+      return stageTwo;
     }
 
     if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
       if (indexEnero > index && yearToCalculate === stageThrEnd) {
         return stageFou;
       }
-        return stageThr;
+      return stageThr;
     }
 
     if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
       if (indexEnero > index && yearToCalculate === stageFouEnd) {
         return stageThr;
       }
-        return stageFou;
+      return stageFou;
     }
 
     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9)) {
       if (indexEnero > index && yearToCalculate === stageFouEnd + 9) {
         return stageTwo;
       }
-        return stageThr;
+      return stageThr;
     }
     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18)) {
       if (indexEnero > index && yearToCalculate === stageFouEnd + 18) {
         return stageOne;
       }
-        return stageTwo;
+      return stageTwo;
     }
     if ((stageFouEnd + 18) <= yearToCalculate) {
       return stageOne;
@@ -769,12 +764,12 @@ export class Synastry {
     yearToCalculate = yearToCalculate || this.NOW.year()
     newDate = newDate || this.NOW
     const monthCut = this.getCustomMonths()
-		const actualMonth = newDate.format('MMMM')
-		const listOfMonths = this.getAllMonths()
-		const listOfMonthsE = this.getAllMonthsEnglish()
-		const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize)
-		const indexEnero = monthCut.findIndex(i => i === 'Enero')
-		const index = monthCut.findIndex(i => i === listOfMonths[indexE])
+    const actualMonth = newDate.format('MMMM')
+    const listOfMonths = this.getAllMonths()
+    const listOfMonthsE = this.getAllMonthsEnglish()
+    const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize)
+    const indexEnero = monthCut.findIndex(i => i === 'Enero')
+    const index = monthCut.findIndex(i => i === listOfMonths[indexE])
     const start = this.yearMeet // .year()
     const duration = 9 - this.reduceNumberForSub(
       this.getA()
@@ -790,44 +785,44 @@ export class Synastry {
     const stageFouEnd = stageThrEnd + 9
     // let stageOne = this.getE()
     if (start <= yearToCalculate && yearToCalculate <= stageOneEnd) {
-       if (indexEnero > index && yearToCalculate === stageOneEnd) {
+      if (indexEnero > index && yearToCalculate === stageOneEnd) {
         return 2;
       }
-        return 1;
+      return 1;
     }
 
     // let stageTwo = this.getF()
     if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
-       if (indexEnero > index && yearToCalculate === stageTwoEnd) {
+      if (indexEnero > index && yearToCalculate === stageTwoEnd) {
         return 3;
       }
-        return 2;
+      return 2;
     }
     // let stageThr = this.getG()
     if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
-       if (indexEnero > index && yearToCalculate === stageThrEnd) {
+      if (indexEnero > index && yearToCalculate === stageThrEnd) {
         return 4;
       }
-        return 3;
+      return 3;
     }
     // const stageFou = this.getH()
     if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
-       if (indexEnero > index && yearToCalculate === stageFouEnd) {
+      if (indexEnero > index && yearToCalculate === stageFouEnd) {
         return 5;
       }
-        return 4;
+      return 4;
     }
     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9)) {
-       if (indexEnero > index && yearToCalculate === stageFouEnd + 9) {
+      if (indexEnero > index && yearToCalculate === stageFouEnd + 9) {
         return 6;
       }
-        return 5;
+      return 5;
     }
     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18)) {
-       if (indexEnero > index && yearToCalculate === stageFouEnd + 18) {
+      if (indexEnero > index && yearToCalculate === stageFouEnd + 18) {
         return 7;
       }
-        return 6;
+      return 6;
     }
     if ((stageFouEnd + 18) <= yearToCalculate) {
       return 7;
@@ -1024,13 +1019,13 @@ export class Synastry {
       if (index > indexEnero) {
         return this.getQuaterTwo(yearToCalculate - 1)
       }
-        return this.getQuaterTwo(yearToCalculate)
+      return this.getQuaterTwo(yearToCalculate)
     }
     if (index > 8) {
       if (index > indexEnero) {
         return this.getQuaterThree(yearToCalculate - 1)
       }
-        return this.getQuaterThree(yearToCalculate)
+      return this.getQuaterThree(yearToCalculate)
     }
   }
 
@@ -1048,13 +1043,13 @@ export class Synastry {
       if (index > indexEnero) {
         return this.getQuaterTwoISK(yearToCalculate - 1)
       }
-        return this.getQuaterTwoISK(yearToCalculate)
+      return this.getQuaterTwoISK(yearToCalculate)
     }
     if (index > 8) {
       if (index > indexEnero) {
         return this.getQuaterThreeISK(yearToCalculate - 1)
       }
-        return this.getQuaterThreeISK(yearToCalculate)
+      return this.getQuaterThreeISK(yearToCalculate)
     }
   }
 

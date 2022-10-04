@@ -379,21 +379,16 @@ export class Group {
       this.getS(),
       this.getP(),
     ]
-    const occurrences = appearances.reduce((acc, curr) => {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
-
-    let w = 0;
-    let W = ''
-    Object.values(occurrences).forEach(el => (el === 3 ? w++ : w))
-    if (w === 1) {
-      Object.entries(occurrences).map((el, i) => {
-        if (el[1] === 3) {
-          W = parseInt(el[0]) * 3
-        }
-      })
+    const occurrences = {};
+    for (const num of appearances) {
+      occurrences[num] = occurrences[num] ? occurrences[num] + 1 : 1;
     }
-    return W === '' ? '' : this.reduceNumber(W)
+    Object.entries(occurrences).forEach(occurrence => {
+      if (occurrence[1] === 3) {
+        occurrences[occurrence[1]] += 1;
+      }
+    })
+    return Object.entries(occurrences).filter(e => e[1] === 3).map(e => this.reduceNumber(e[0] * 3)).join(', ')
   }
 
 
@@ -401,15 +396,15 @@ export class Group {
 
 
   calcName() {
-  const partnerGroup = this.group
-  let resultCalcName = 0
-  partnerGroup.forEach(g => {
-    resultCalcName += g.calcName()
-  });
-  return this.reduceNumber(resultCalcName)
+    const partnerGroup = this.group
+    let resultCalcName = 0
+    partnerGroup.forEach(g => {
+      resultCalcName += g.calcName()
+    });
+    return this.reduceNumber(resultCalcName)
   }
 
-/** Calculate Name */
+  /** Calculate Name */
   calcNameISK() {
     const partnerGroup = this.group
     let resultCalcName = 0
@@ -418,9 +413,9 @@ export class Group {
     });
     const resultISK = this.reduceNumberISK(resultCalcName)
     return this.karmicos.includes(resultISK) ? '*' : ''
-    }
+  }
 
- /** Calculate Soul */
+  /** Calculate Soul */
   calcSoulNumber() {
     const partnerGroup = this.group
     let soul = 0
@@ -428,7 +423,7 @@ export class Group {
       soul += g.calcSoulNumber()
     });
     return this.reduceNumber(soul)
-    }
+  }
 
   calcSoulNumberISK() {
     const partnerGroup = this.group
@@ -438,9 +433,9 @@ export class Group {
     });
     const soulISK = this.reduceNumberISK(soul)
     return this.karmicos.includes(soulISK) ? '*' : ''
-    }
+  }
 
- /** Calculate Soul Expression */
+  /** Calculate Soul Expression */
   calcSoulExpresion() {
     const partnerGroup = this.group
     let soul = 0
@@ -679,44 +674,44 @@ export class Group {
    * calculate first quater
    * @returns {Number} quater one
    */
-    getQuaterOne() {
-      return this.getC()
-    }
+  getQuaterOne() {
+    return this.getC()
+  }
 
-    /* Quater One Karmico  */
-    getQuaterOneISK() {
-      return this.getCISK()
-    }
+  /* Quater One Karmico  */
+  getQuaterOneISK() {
+    return this.getCISK()
+  }
 
-    /**
-     * calculate second quater
-     * @returns {Number} quater two
-     */
-    getQuaterTwo(yearToCalculate = null) {
-      yearToCalculate = yearToCalculate || this.NOW.year()
-      return this.reduceNumber(yearToCalculate - this.getD())
-    }
+  /**
+   * calculate second quater
+   * @returns {Number} quater two
+   */
+  getQuaterTwo(yearToCalculate = null) {
+    yearToCalculate = yearToCalculate || this.NOW.year()
+    return this.reduceNumber(yearToCalculate - this.getD())
+  }
 
-    /* Quater Two Karmico  */
-    getQuaterTwoISK(yearToCalculate = null) {
-      const quaterTwo = this.reduceNumberISK(yearToCalculate - this.getD())
-      return this.karmicos.includes(quaterTwo) ? '*' : '';
-    }
+  /* Quater Two Karmico  */
+  getQuaterTwoISK(yearToCalculate = null) {
+    const quaterTwo = this.reduceNumberISK(yearToCalculate - this.getD())
+    return this.karmicos.includes(quaterTwo) ? '*' : '';
+  }
 
-    /**
-     * calculate third quater
-     * @returns {Number} quater three
-     */
-    getQuaterThree(yearToCalculate = null) {
-      yearToCalculate = yearToCalculate || this.NOW.year()
-      return this.reduceNumber(this.getQuaterOne() + this.getQuaterTwo(yearToCalculate))
-    }
+  /**
+   * calculate third quater
+   * @returns {Number} quater three
+   */
+  getQuaterThree(yearToCalculate = null) {
+    yearToCalculate = yearToCalculate || this.NOW.year()
+    return this.reduceNumber(this.getQuaterOne() + this.getQuaterTwo(yearToCalculate))
+  }
 
-    /* Quater Three Karmico  */
-    getQuaterThreeISK(yearToCalculate = null) {
-      const quaterThr = this.reduceNumberISK(this.getQuaterOne() + this.getQuaterTwo(yearToCalculate))
-      return this.karmicos.includes(quaterThr) ? '*' : '';
-    }
+  /* Quater Three Karmico  */
+  getQuaterThreeISK(yearToCalculate = null) {
+    const quaterThr = this.reduceNumberISK(this.getQuaterOne() + this.getQuaterTwo(yearToCalculate))
+    return this.karmicos.includes(quaterThr) ? '*' : '';
+  }
 
 
   calcCurrentQuater(monthToCalculate = null, yearToCalculate = null) {
@@ -738,15 +733,15 @@ export class Group {
       if (index > indexEnero) {
         return this.getQuaterTwo(yearToCalculate - 1)
       }
-        return this.getQuaterTwo(yearToCalculate)
+      return this.getQuaterTwo(yearToCalculate)
     }
     if (index > 8) {
       if (indexEnero === 0) { return this.getQuaterThree(yearToCalculate) }
       if (index > indexEnero) {
         return this.getQuaterThree(yearToCalculate - 1)
       }
-        return this.getQuaterThree(yearToCalculate)
-      }
+      return this.getQuaterThree(yearToCalculate)
+    }
   }
 
   /** Current Quater Karmico */
@@ -765,14 +760,14 @@ export class Group {
       if (index > indexEnero) {
         return this.getQuaterTwoISK(yearToCalculate - 1)
       }
-        return this.getQuaterTwoISK(yearToCalculate)
+      return this.getQuaterTwoISK(yearToCalculate)
     }
     if (index > 8) {
       if (index > indexEnero) {
         return this.getQuaterThreeISK(yearToCalculate - 1)
       }
-        return this.getQuaterThreeISK(yearToCalculate)
-      }
+      return this.getQuaterThreeISK(yearToCalculate)
+    }
   }
 
   getCustomMonths() {
@@ -806,13 +801,13 @@ export class Group {
    * @returns {Number} stage
    */
 
-   getLifeStageNumber(yearToCalculate = null) {
+  getLifeStageNumber(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     const start = this.groupDate
     console.log(`${start}sadasdsadsa`);
     const duration = 9 - this.reduceNumberForSub(
       this.getA() + this.getB() + start
-)
+    )
     let stageOneEnd = start + duration
     console.log(`${stageOneEnd}stage-1`);
     if (duration === 0) {
@@ -861,7 +856,7 @@ export class Group {
    * AKA: 4 => H
    * @returns {Number}
    */
-   calcLifeStage(stage = 1) {
+  calcLifeStage(stage = 1) {
     const stageOne = this.getE()
     if (stage === 1) return stageOne
 
@@ -901,15 +896,15 @@ export class Group {
     const start = this.groupDate
     const stageOne = 9 - this.reduceNumberForSub(
       this.getA() + this.getB() + start
-)
-      console.log(stageOne);
+    )
+    console.log(stageOne);
     let stageOneEnd = start + stageOne
     if (stageOne === 0) {
       stageOneEnd += 9
     }
 
     if (stage === 1) {
-        return stageOneEnd
+      return stageOneEnd
     }
     if (stage < 8) {
       const stageEnd = stageOneEnd + Math.abs((stage - 1) * 9)
@@ -947,8 +942,8 @@ export class Group {
       const personalYear = this.calcPersonalYear(yearToCalculate - index)
       if (personalYear === 9 && fisrtValue === false) {
         nineYearCycle.push(yearToCalculate - index)
-          firstYear = yearToCalculate - index
-          fisrtValue = true
+        firstYear = yearToCalculate - index
+        fisrtValue = true
       }
     }
     for (let index = 1; index <= 9; index++) {
@@ -1024,7 +1019,7 @@ export class Group {
     return parseInt(reduceSum);
   }
 
-   reduceNumberForSub(reduceSum) {
+  reduceNumberForSub(reduceSum) {
     while (reduceSum > 9) {
       reduceSum = reduceSum.toString().split('').reduce((r, c) => r += parseInt(c), 0);
     }
@@ -1067,7 +1062,7 @@ export class Group {
     return intersection.toString()
   }
 
-  getDoubleLifeStageNumber() {}
+  getDoubleLifeStageNumber() { }
 
   hasDoubleStage() {
     return false

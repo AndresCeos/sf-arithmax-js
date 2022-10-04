@@ -213,7 +213,7 @@ export class Person {
 
   calcInitials() {
     const nameLetters = this.getInitials().toString().toLowerCase().toLowerCase()
-.split('')
+      .split('')
     let nameVowelsValues = 0
     nameLetters.forEach(e => nameVowelsValues += this.vowelsValues(e))
     let nameConsonantsValue = 0
@@ -815,7 +815,7 @@ export class Person {
     if (reduce_stage_1 === reduce_stage_2) {
       return false;
     }
-      return true;
+    return true;
   }
 
 
@@ -1256,21 +1256,16 @@ export class Person {
       this.getS(),
       this.getP(),
     ]
-    const occurrences = appearances.reduce((acc, curr) => {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
-
-    let w = 0;
-    let W = ''
-    Object.values(occurrences).forEach(el => (el === 3 ? w++ : w))
-    if (w === 1) {
-      Object.entries(occurrences).map((el, i) => {
-        if (el[1] === 3) {
-          W = parseInt(el[0]) * 3
-        }
-      })
+    const occurrences = {};
+    for (const num of appearances) {
+      occurrences[num] = occurrences[num] ? occurrences[num] + 1 : 1;
     }
-    return W === '' ? '' : this.reduceNumber(W)
+    Object.entries(occurrences).forEach(occurrence => {
+      if (occurrence[1] === 3) {
+        occurrences[occurrence[1]] += 1;
+      }
+    })
+    return Object.entries(occurrences).filter(e => e[1] === 3).map(e => this.reduceNumber(e[0] * 3)).join(', ')
   }
 
   getW() { return this.calcW() }
@@ -1738,7 +1733,7 @@ export class Person {
       })
     } while (ipMLetters < 120)
 
-     let ipfLetters = 0
+    let ipfLetters = 0
     if (this.getSingle()) {
       do {
         pfLetters.forEach(el => {
@@ -1896,7 +1891,7 @@ export class Person {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
         return this.getQuaterThree(yearToCalculate - 1)
       }
-        return this.getQuaterOne()
+      return this.getQuaterOne()
     }
     if (index > 4 && index < 9) {
       if (indexEnero === 0) {
@@ -1905,7 +1900,7 @@ export class Person {
       if (index > indexEnero) {
         return this.getQuaterTwo(yearToCalculate - 1)
       }
-        return this.getQuaterTwo(yearToCalculate)
+      return this.getQuaterTwo(yearToCalculate)
     }
     if (index > 8) {
       if (indexEnero === 0) {
@@ -1914,7 +1909,7 @@ export class Person {
       if (index > indexEnero) {
         return this.getQuaterThree(yearToCalculate - 1)
       }
-        return this.getQuaterThree(yearToCalculate)
+      return this.getQuaterThree(yearToCalculate)
     }
   }
 
@@ -1938,19 +1933,19 @@ export class Person {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
         return this.getQuaterThreeISK(yearToCalculate - 1)
       }
-        return this.getQuaterOneISK()
+      return this.getQuaterOneISK()
     }
     if (index > 4 && index < 9) {
       if (index > indexEnero) {
         return this.getQuaterTwoISK(yearToCalculate - 1)
       }
-        return this.getQuaterTwoISK(yearToCalculate)
+      return this.getQuaterTwoISK(yearToCalculate)
     }
     if (index > 8) {
       if (index > indexEnero) {
         return this.getQuaterThreeISK(yearToCalculate - 1)
       }
-        return this.getQuaterThreeISK(yearToCalculate)
+      return this.getQuaterThreeISK(yearToCalculate)
     }
   }
 
@@ -1972,19 +1967,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 2:
@@ -1992,19 +1987,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 3:
@@ -2012,19 +2007,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 4:
@@ -2032,19 +2027,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 5:
@@ -2052,19 +2047,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 6:
@@ -2072,19 +2067,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 7:
@@ -2092,19 +2087,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 8:
@@ -2112,19 +2107,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 9:
@@ -2132,19 +2127,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 10:
@@ -2152,19 +2147,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 11:
@@ -2172,19 +2167,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 12:
@@ -2192,19 +2187,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOne(year - 1)
           }
-            return this.getQuaterOne(year)
+          return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwo(year - 1)
           }
-            return this.getQuaterTwo(year)
+          return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThree(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
     }
@@ -2224,19 +2219,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 2:
@@ -2244,19 +2239,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 3:
@@ -2264,19 +2259,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 4:
@@ -2284,19 +2279,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 5:
@@ -2304,19 +2299,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 6:
@@ -2324,19 +2319,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThree(year)
+          return this.getQuaterThree(year)
         }
         break;
       case 7:
@@ -2344,19 +2339,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 8:
@@ -2364,19 +2359,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 9:
@@ -2384,19 +2379,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 10:
@@ -2404,19 +2399,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 11:
@@ -2424,19 +2419,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
       case 12:
@@ -2444,19 +2439,19 @@ export class Person {
           if (monthIndex >= indexEnero) {
             return this.getQuaterOneISK(year - 1)
           }
-            return this.getQuaterOneISK(year)
+          return this.getQuaterOneISK(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterTwoISK(year - 1)
           }
-            return this.getQuaterTwoISK(year)
+          return this.getQuaterTwoISK(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
             return this.getQuaterThreeISK(year - 1)
           }
-            return this.getQuaterThreeISK(year)
+          return this.getQuaterThreeISK(year)
         }
         break;
     }
