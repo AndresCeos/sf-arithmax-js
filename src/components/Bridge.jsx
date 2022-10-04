@@ -1,7 +1,7 @@
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
 import { CircleNumber } from './CircleNumber';
 
-export const Bridge = ({ top, right, bottom, left, center, stageStart, stageEnd, stageDoubleStart, stageDoubleEnd, hasDouble }) => {
+export const Bridge = ({ top, right, bottom, left, center, stageStart, stageEnd, stageDoubleStart, stageDoubleEnd, hasDouble, descrb }) => {
 console.log(hasDouble);
   return (
     <>
@@ -19,7 +19,7 @@ console.log(hasDouble);
           <CircleNumber size="xs" appearance="white" border="main" position="er" descb="B">
             {right}
           </CircleNumber>
-          <CircleNumber size="xs" appearance="white" border="red" position="eb" descrb="K">
+          <CircleNumber size="xs" appearance="white" border="red" position="eb" descrb={descrb}>
             {bottom}
           </CircleNumber>
         </div>

@@ -105,6 +105,7 @@ const PinnaclePage = () => {
               stageDoubleStart={`0 - ${consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} años`}
               stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(7) - consultant.birthDate.year()} años`}
               hasDouble={secondStage}
+              descrb='K'
             />
           </div>
           <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 2 || activeStage === 6 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
@@ -122,6 +123,7 @@ const PinnaclePage = () => {
               stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year()} años`}
               stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year()} años`}
               hasDouble={secondStage}
+              descrb='L'
             />
           </div>
           <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 3 || activeStage === 5 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
@@ -139,6 +141,7 @@ const PinnaclePage = () => {
               stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(2) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year()} años`}
               stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year()} años`}
               hasDouble={secondStage}
+              descrb='M'
             />
           </div>
           <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 ? 'bg-active-radial' : null}`}>
@@ -154,6 +157,7 @@ const PinnaclePage = () => {
               stageStart={`${consultant.calcLifeStageDuration(3) - consultant.birthDate.year()}- ${consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} años`}
               stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} años`}
               hasDouble={secondStage}
+              descrb='N'
             />
           </div>
         </div>
