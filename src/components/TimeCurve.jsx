@@ -4,7 +4,8 @@ import time_curve from '../assets/time-curve.svg';
 
 export const TimeCurve = ({ consultant, isPartner }) => {
     const { newDate } = dateSelect()
-    const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
+		let activeStage
+		isPartner ? activeStage = consultant.getLifeStageNumber(newDate.year(), newDate) : activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
     const activeSecondStage = consultant.getDoubleLifeStageNumber(newDate.year())
     const dobleStage = consultant.hasDoubleStage()
 		const monthCut = consultant.getCustomMonths()

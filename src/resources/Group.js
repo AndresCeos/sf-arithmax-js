@@ -15,6 +15,21 @@ export class Group {
     return this.group
   }
 
+  getMonthOfBirth() {
+    let sumBirthdates = 0
+    this.group.forEach(m => {
+      const birth = m.getBirthDate()
+      sumBirthdates += birth.month() + 1
+    })
+    let reduce;
+    if (sumBirthdates === 19) {
+      reduce = 10;
+    } else {
+      reduce = this.reduceMonth(sumBirthdates)
+    }
+    return reduce
+  }
+
   getYearTimeCurve() {
     return this.groupDate
   }

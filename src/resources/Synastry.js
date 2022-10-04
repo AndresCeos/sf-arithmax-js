@@ -19,6 +19,19 @@ export class Synastry {
     return this.yearMeet
   }
 
+  getMonthOfBirth() {
+    const consultantBirthate = this.consultant.getBirthDate()
+    const partnerBirthate = this.partner.getBirthDate()
+    const sumBirthdates = (consultantBirthate.month() + 1) + (partnerBirthate.month() + 1)
+    let reduce;
+    if (sumBirthdates === 19) {
+      reduce = 10;
+    } else {
+      reduce = this.reduceMonth(sumBirthdates)
+    }
+    return reduce
+  }
+
   getYearsOld(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     return yearToCalculate - this.yearMeet // .year()
