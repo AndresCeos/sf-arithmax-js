@@ -7,8 +7,8 @@ export const AnnualReturnsPDF = ({ consultant, newDate }) => {
   return {
     bg: annualImage,
     children: <>
-      <AnnualReturns consultant={consultant} />
+      <AnnualReturns consultant={consultant} newDate={newDate} />
       <TimeCicle consultant={consultant} newDate={newDate} />
-    </>
+              </>
   }
 }

@@ -546,12 +546,16 @@ export class Person {
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
     yearToCalculate = yearToCalculate || this.NOW.year()
     const weekOne = monthToCalculate + this.calcPersonalYear(yearToCalculate)
+    console.log(weekOne);
     if (weekToCalculate === 1) { return this.reduceNumber(weekOne) }
     const weekTwo = this.calcPersonalYear(yearToCalculate) + this.reduceNumber(weekOne)
+    console.log(weekTwo);
     if (weekToCalculate === 2) { return this.reduceNumber(weekTwo) }
     const weekThr = this.reduceNumber(this.reduceNumber(weekOne) + this.reduceNumber(weekTwo))
+    console.log(weekThr);
     if (weekToCalculate === 3) { return this.reduceNumber(weekThr) }
-    const weekFou = this.reduceNumber(monthToCalculate + weekOne)
+    const weekFou = this.reduceNumber(monthToCalculate + this.reduceNumber(weekOne))
+    console.log(weekFou);
     if (weekToCalculate === 4) { return this.reduceNumber(weekFou) }
   }
 
@@ -959,8 +963,9 @@ export class Person {
    * @returns {Number} stage
    */
 
-  getLifeStageNumber(yearToCalculate = null) {
+  getLifeStageNumber(yearToCalculate = null, monthToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
+    monthToCalculate = monthToCalculate || this.NOW.month() + 1
     const yearBirthDate = this.birthDate.year()
     const monthBirthDate = this.birthDate.month() + 1
     const dayBirthDate = this.birthDate.date()
@@ -973,33 +978,51 @@ export class Person {
     // console.log('unic =>'+reduceSum)
     // const stageOne = this.reduceNumber( reducedMonth + reducedDay )
     const stageOneEnd = yearBirthDate + 36 - reduceSum;
-    if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd) {
+    if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd && monthBirthDate > monthToCalculate) {
       return 1;
+    }
+    if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd && monthBirthDate <= monthToCalculate) {
+      return 2;
     }
 
     // const stageTwo = this.reduceNumber( dayBirthDate + yearBirthDate )
     const stageTwoEnd = stageOneEnd + 9
-    if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
+    if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd && monthBirthDate > monthToCalculate) {
       return 2;
+    }
+    if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd && monthBirthDate <= monthToCalculate) {
+      return 3;
     }
 
     // const stageThr = this.reduceNumber( stageOne + stageTwo )
     const stageThrEnd = stageTwoEnd + 9
-    if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
+    if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd && monthBirthDate > monthToCalculate) {
       return 3;
+    }
+      if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd && monthBirthDate <= monthToCalculate) {
+      return 4;
     }
 
     // const stageFou = this.reduceNumber( monthBirthDate + yearBirthDate )
     const stageFouEnd = stageThrEnd + 9
-    if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
+    if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd && monthBirthDate > monthToCalculate) {
       return 4;
     }
-
-    if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9)) {
+    if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd && monthBirthDate <= monthToCalculate) {
       return 5;
     }
-    if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18)) {
+
+    if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) && monthBirthDate > monthToCalculate) {
+      return 5;
+    }
+     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) && monthBirthDate <= monthToCalculate) {
       return 6;
+    }
+    if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) && monthBirthDate > monthToCalculate) {
+      return 6;
+    }
+     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) && monthBirthDate <= monthToCalculate) {
+      return 7;
     }
     if ((stageFouEnd + 18) <= yearToCalculate) {
       return 7;
@@ -1865,8 +1888,10 @@ export class Person {
     const birthDateMonth = this.birthDate.format('MMMM')
     const indexE = listOfMonthE.findIndex(i => i === actualMonth.capitalize())
     const index = listOfMonths.findIndex(i => i === allMonths[indexE])
-    console.log(index);
+    console.log(`index => ${index}`);
+
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
+    console.log(`index => ${indexEnero}`);
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
         return this.getQuaterThree(yearToCalculate - 1)
@@ -1874,12 +1899,18 @@ export class Person {
         return this.getQuaterOne()
     }
     if (index > 4 && index < 9) {
+      if (indexEnero === 0) {
+        return this.getQuaterTwo(yearToCalculate)
+      }
       if (index > indexEnero) {
         return this.getQuaterTwo(yearToCalculate - 1)
       }
         return this.getQuaterTwo(yearToCalculate)
     }
     if (index > 8) {
+      if (indexEnero === 0) {
+        return this.getQuaterThree(yearToCalculate)
+      }
       if (index > indexEnero) {
         return this.getQuaterThree(yearToCalculate - 1)
       }
@@ -2438,6 +2469,7 @@ export class Person {
   }
 
   getDaysOfWeekCustom(month, year = null) {
+    console.log(`year to calculate =>${year}`)
     console.log(month);
     year = year || this.NOW.year()
     String.prototype.capitalize = function () {
@@ -2446,7 +2478,7 @@ export class Person {
     const daysInMonth = this.getAllDaysInMonth(month, year)
     const daysCustom = []
     const dayInWeek = this.getDaysOfWeek()
-    let firstDay = this.NOW.month(month - 1).date(daysInMonth[0]).format('ddd')
+    let firstDay = this.NOW.year(year).month(month - 1).date(daysInMonth[0]).format('ddd')
     firstDay = firstDay.replace(/\./g, '')
     let dayIndex = this.getDaysOfWeek().findIndex(i => i === firstDay.capitalize())
     for (let i = 0; i < 7; i++) {
@@ -2456,6 +2488,7 @@ export class Person {
       daysCustom.push(dayInWeek[dayIndex])
       dayIndex++
     }
+    console.log(daysCustom);
     return daysCustom
   }
 

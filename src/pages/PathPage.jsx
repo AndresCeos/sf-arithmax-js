@@ -269,7 +269,7 @@ ism4 = false
   }
 
 
-  const activeStage = consultant.getLifeStageNumber(newDate.year())
+  const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
   // console.log('start => '+start)
   // console.log('end => '+end)
 

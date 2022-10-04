@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from '@react-pdf/renderer'
-
-export const BridgeStage = ({ consultant }) => {
+import { Image, StyleSheet, Text, View } from '@react-pdf/renderer'
+import bgTimeCurve from './assets/bridge.png'
+export const BridgeStage = ({ consultant, newDate }) => {
+  const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
   return (
     <View style={pinnacleStage.container}>
-      <View style={pinnacleStage.wrap}>
-        <View style={pinnacleStage.bridge_1}>
+      <View style={{ zIndex: 4 }}>
+        {(activeStage === 1 || activeStage === 7) ? <View style={[pinnacleStage.active, pinnacleStage.active_1]} /> : null}
+        {(activeStage === 2 || activeStage === 6) ? <View style={[pinnacleStage.active, pinnacleStage.active_2]} /> : null}
+        {(activeStage === 3 || activeStage === 5) ? <View style={[pinnacleStage.active, pinnacleStage.active_3]} /> : null}
+        {(activeStage === 4) ? <View style={[pinnacleStage.active, pinnacleStage.active_4]} /> : null}
+      </View>
+      <View style={{ position: 'absolute', top: 0, zIndex: 3 }}>
+        <Image src={bgTimeCurve} style={{ position: 'absolute', top: -20, width: '105px' }} />
+      </View>
+      <View style={[pinnacleStage.wrap, { zIndex: 2 }]}>
+        <View style={[pinnacleStage.bridge_1]}>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
             <Text>
               {consultant.getE()}{consultant.getEISK()}
@@ -17,7 +27,7 @@ export const BridgeStage = ({ consultant }) => {
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
             <Text>
-              {consultant.getResHierarchy(consultant.getE(), consultant.getK())}
+              {consultant.getResBridge(consultant.getE(), consultant.getK())}
             </Text>
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
@@ -37,7 +47,7 @@ export const BridgeStage = ({ consultant }) => {
             <Text>{consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} - {consultant.calcLifeStageDuration(7) - consultant.birthDate.year()} años</Text>
           </View>
         </View>
-        <View style={pinnacleStage.bridge_2}>
+        <View style={[pinnacleStage.bridge_2]}>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
             <Text>
               {consultant.getF()}{consultant.getFISK()}
@@ -50,7 +60,7 @@ export const BridgeStage = ({ consultant }) => {
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
             <Text>
-              {consultant.getResHierarchy(consultant.getF(), consultant.getL())}
+              {consultant.getResBridge(consultant.getF(), consultant.getL())}
             </Text>
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
@@ -70,7 +80,7 @@ export const BridgeStage = ({ consultant }) => {
             <Text>{consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} - {consultant.calcLifeStageDuration(6) - consultant.birthDate.year()} años</Text>
           </View>
         </View>
-        <View style={pinnacleStage.bridge_3}>
+        <View style={[pinnacleStage.bridge_3]}>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
             <Text>
               {consultant.getG()}{consultant.getGISK()}
@@ -83,7 +93,7 @@ export const BridgeStage = ({ consultant }) => {
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
             <Text>
-              {consultant.getResHierarchy(consultant.getG(), consultant.getM())}
+              {consultant.getResBridge(consultant.getG(), consultant.getM())}
             </Text>
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
@@ -103,7 +113,7 @@ export const BridgeStage = ({ consultant }) => {
             <Text>{consultant.calcLifeStageDuration(4) - consultant.birthDate.year()} - {consultant.calcLifeStageDuration(5) - consultant.birthDate.year()} años</Text>
           </View>
         </View>
-        <View style={pinnacleStage.bridge_4}>
+        <View style={[pinnacleStage.bridge_4]}>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeTop]}>
             <Text>
               {consultant.getH()}{consultant.getHISK()}
@@ -116,7 +126,7 @@ export const BridgeStage = ({ consultant }) => {
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeCenter]}>
             <Text>
-              {consultant.getResHierarchy(consultant.getH(), consultant.getN())}
+              {consultant.getResBridge(consultant.getH(), consultant.getN())}
             </Text>
           </View>
           <View style={[pinnacleStage.circle, pinnacleStage.bridgeRight]}>
@@ -135,6 +145,7 @@ export const BridgeStage = ({ consultant }) => {
         </View>
       </View>
 
+
     </View>
   )
 }
@@ -145,7 +156,7 @@ export const pinnacleStage = StyleSheet.create({
     position: 'absolute',
     top: '76px',
     width: '105px',
-    left: '300px',
+    left: '306px',
     fontSize: '10px',
   },
   wrap: {
@@ -154,29 +165,31 @@ export const pinnacleStage = StyleSheet.create({
   bridge_1: {
     // backgroundColor: 'blue',
     top: '0px',
+    left: '2px',
     width: '105px',
     height: '112px',
     position: 'relative'
   },
   bridge_2: {
     // backgroundColor: '#ff000012',
-    top: '2px',
+    top: '-2px',
+    left: '2px',
     width: '105px',
     height: '112px',
     position: 'relative'
   },
   bridge_3: {
     // backgroundColor: 'blue',
-    top: '0px',
-    left: '1px',
+    top: '-5px',
+    left: '2px',
     width: '105px',
     height: '112px',
     position: 'relative'
   },
   bridge_4: {
     // backgroundColor: 'green',
-    top: '-1px',
-    left: '1px',
+    top: '-10px',
+    left: '2px',
     width: '105px',
     height: '112px',
     position: 'relative'
@@ -222,5 +235,30 @@ export const pinnacleStage = StyleSheet.create({
     right: '5px',
     fontSize: '7px',
     position: 'absolute'
+  },
+  active: {
+    width: '103px',
+    height: '110px',
+    backgroundColor: '#CDCDCD',
+  },
+  active_1: {
+    position: 'absolute',
+    top: '0px',
+    left: '2px'
+  },
+  active_2: {
+    position: 'absolute',
+    top: '110px',
+    left: '2px'
+  },
+  active_3: {
+    position: 'absolute',
+     top: '220px',
+     left: '2px'
+  },
+  active_4: {
+    position: 'absolute',
+     top: '328px',
+     left: '2px'
   }
 })

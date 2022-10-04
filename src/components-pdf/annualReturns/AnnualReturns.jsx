@@ -1,10 +1,8 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
-import moment from "moment";
-import { AnnualReturn } from "./AnnualReturn";
+import { StyleSheet, View } from '@react-pdf/renderer';
+import { AnnualReturn } from './AnnualReturn';
 
-export const AnnualReturns = ({ consultant }) => {
-  const newDate = moment()
+export const AnnualReturns = ({ consultant, newDate }) => {
+ // const newDate = moment()
 
   const annualReturnCurrent = consultant.annualReturn(newDate.year())
   const annualReturnLastYear = consultant.annualReturn(newDate.year() - 1)
@@ -60,48 +58,53 @@ export const AnnualReturns = ({ consultant }) => {
       <View style={annualReturn.wrap}>
         <View style={[annualReturn.return, annualReturn.return_1]}>
           <AnnualReturn
-            annualReturn={annualReturnCurrent}
+            annualReturn={annualReturnY1}
             personalYear={personalYearY1}
             yearsOld={yearsOldY1}
             year={y1}
             top={0}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[annualReturn.return, annualReturn.return_2]}>
           <AnnualReturn
-            annualReturn={annualReturnY1}
+            annualReturn={annualReturnY2}
             personalYear={personalYearY2}
             yearsOld={yearsOldY2}
             year={y2}
             top={0}
-            left={176} />
+            left={176}
+          />
         </View>
         <View style={[annualReturn.return, annualReturn.return_3]}>
           <AnnualReturn
-            annualReturn={annualReturnY2}
+            annualReturn={annualReturnY3}
             personalYear={personalYearY3}
             yearsOld={yearsOldY3}
             year={y3}
             top={0}
-            left={352} />
+            left={352}
+          />
         </View>
         <View style={[annualReturn.return, annualReturn.return_4]}>
           <AnnualReturn
-            annualReturn={annualReturnY3}
+            annualReturn={annualReturnY4}
             personalYear={personalYearY4}
             yearsOld={yearsOldY4}
             year={y4}
             top={136}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[annualReturn.return, annualReturn.return_5]}>
           <AnnualReturn
-            annualReturn={annualReturnY4}
+            annualReturn={annualReturn}
             personalYear={personalYear}
             yearsOld={yearsOld}
             year={now}
             top={136}
-            left={176} />
+            left={176}
+          />
         </View>
         <View style={[annualReturn.return, annualReturn.return_6]}>
           <AnnualReturn
@@ -110,7 +113,8 @@ export const AnnualReturns = ({ consultant }) => {
             yearsOld={yearsOldY6}
             year={y6}
             top={136}
-            left={352} />
+            left={352}
+          />
         </View>
         <View style={[annualReturn.return, annualReturn.return_7]}>
           <AnnualReturn
@@ -119,7 +123,8 @@ export const AnnualReturns = ({ consultant }) => {
             yearsOld={yearsOldY7}
             year={y7}
             top={272}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[annualReturn.return, annualReturn.return_8]}>
           <AnnualReturn
@@ -127,7 +132,9 @@ export const AnnualReturns = ({ consultant }) => {
             personalYear={personalYearY8}
             yearsOld={yearsOldY8}
             year={y8}
-            top={272} left={176} />
+            top={272}
+left={176}
+          />
         </View>
         <View style={[annualReturn.return, annualReturn.return_9]}>
           <AnnualReturn
@@ -135,7 +142,9 @@ export const AnnualReturns = ({ consultant }) => {
             personalYear={personalYearY9}
             yearsOld={yearsOldY9}
             year={y9}
-            top={272} left={352} />
+            top={272}
+left={352}
+          />
         </View>
       </View>
     </View>

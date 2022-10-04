@@ -1,11 +1,9 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 export const NameActive = ({ consultant }) => {
-
   const { name, lastName, scdLastName } = consultant
 
-  const names = name.split(' ')
+  const names = name.split('-')
 
   const ungroupNames = names.map(el => {
     return {
@@ -34,13 +32,13 @@ export const NameActive = ({ consultant }) => {
   const row = (config, top = 0) => {
     return (
       <>
-        {ungroupNames.map((ungroup, i) =>
+        {ungroupNames.map((ungroup, i) => (
           <View style={[pinnacleName.circle, { top, left: (66 + i * 30) }]}>
             <Text>
               {ungroup.total[0][config]}
             </Text>
           </View>
-        )}
+        ))}
         <View style={[pinnacleName.circle, { top, left: 123 }]}>
           <Text>
             {ungroupLastT[0][config]}
@@ -59,9 +57,9 @@ export const NameActive = ({ consultant }) => {
         <View style={[pinnacleName.circle, { top, left: 209 }]}>
           <Text>
             {
-              config === 'v' ?
-                `${consultant.calcSoulNumber()}${consultant.calcSoulNumberISK()}` :
-                `${consultant.calcSoulExpresion()}${consultant.calcSoulExpresionISK()}`
+              config === 'v'
+                ? `${consultant.calcSoulNumber()}${consultant.calcSoulNumberISK()}`
+                : `${consultant.calcSoulExpresion()}${consultant.calcSoulExpresionISK()}`
             }
           </Text>
         </View>
@@ -72,13 +70,13 @@ export const NameActive = ({ consultant }) => {
   const rowTotals = (top = 0) => {
     return (
       <>
-        {ungroupNames.map((ungroup, i) =>
+        {ungroupNames.map((ungroup, i) => (
           <View style={[pinnacleName.circle, { top, left: (66 + i * 30) }]}>
             <Text>
               {consultant.reduceNumber(ungroup.total[0].v + ungroup.total[0].c)}
             </Text>
           </View>
-        )}
+        ))}
         <View style={[pinnacleName.circle, { top, left: 123 }]}>
           <Text>
             {consultant.reduceNumber(ungroupLastT[0].v + ungroupLastT[0].c)}

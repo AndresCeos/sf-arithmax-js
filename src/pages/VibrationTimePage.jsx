@@ -66,7 +66,7 @@ const VibrationTimePage = () => {
           <b className='col-start-1 row-start-1 text-sm'>Etapa Actual</b>
           <div className='col-start-1 row-start-2 row-span-2 m-auto'>
             <CircleNumber size="sm" appearance="green-50" border="green">
-              {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year()))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year()))}
+              {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}
             </CircleNumber>
           </div>
           <b className='col-start-2 row-start-2 text-sm pl-1'>Año Personal</b>
@@ -132,9 +132,9 @@ const VibrationTimePage = () => {
         </div>
         <div className='pinnacle-wrap grid grid-cols-9 px-4 py-8 w-full'>
           <div className="col-start-4 col-end-6 flex justify-center items-center mb-6 row-start-1">
-            Etapa {consultant.getLifeStageNumber(newDate.year())}:
+            Etapa {consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)}:
             <CircleNumber size="sm" appearance="green-50" border="green">
-              {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year()))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year()))}
+              {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}
 
             </CircleNumber>
           </div>
@@ -143,7 +143,7 @@ const VibrationTimePage = () => {
               <CircleNumber size="sm" appearance={(year === newDate.year()) ? 'purple-30' : 'white'} border="main">
                 {consultant.calcPersonalYear(year)}{consultant.calcPersonalYearISK(year)}
               </CircleNumber>
-              {(consultant.getLifeStageNumber(newDate.year()) !== 1)
+              {(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1) !== 1)
                 ? (
                   <b className={`
                   ${(year === newDate.year()) ? 'text-black' : 'text-gray-300'}
@@ -153,7 +153,7 @@ const VibrationTimePage = () => {
                 ) : null}
             </div>
           ))}
-          {(consultant.getLifeStageNumber(newDate.year()) === 1) && <StageOne />}
+          {(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1) === 1) && <StageOne />}
           <div className="col-start-4 border-r-2 row-start-1 border-green-700 h-4 mt-12" />
           <div className="col-start-1  row-start-2 flex justify-start h-4">
             <div className='border-r-2 border-green-700' />

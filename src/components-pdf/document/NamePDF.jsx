@@ -1,16 +1,10 @@
 import {
-  NameValues,
-  NamePotential,
-  NameTable,
-  NameActive,
-  NameInhabitants,
-  NameCycle,
-  NameBalance,
-  NameFrequencyPotential
+  NameActive, NameBalance, NameCycle, NameFrequencyPotential, NameInhabitants, NamePotential,
+  NameTable, NameValues
 } from '..';
 
-import nameImage from '../assets/name.jpg'
-import nameImage2 from '../assets/name2.jpg'
+import nameImage from '../assets/name.jpg';
+import nameImage2 from '../assets/name2.jpg';
 
 export const NamePDF = ({ consultant, newDate }) => {
   return [
@@ -22,7 +16,7 @@ export const NamePDF = ({ consultant, newDate }) => {
         <NameTable consultant={consultant} />
         <NameActive consultant={consultant} />
         <NameInhabitants consultant={consultant} />
-      </>
+                </>
     },
     {
       bg: nameImage2,
@@ -30,7 +24,7 @@ export const NamePDF = ({ consultant, newDate }) => {
         <NameCycle consultant={consultant} date={newDate} />
         <NameBalance consultant={consultant} />
         <NameFrequencyPotential consultant={consultant} />
-      </>
+                </>
     }
   ]
 }

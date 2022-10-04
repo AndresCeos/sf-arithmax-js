@@ -1,10 +1,10 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 export const NameTable = ({ consultant }) => {
-
   const { name, lastName, scdLastName } = consultant
-  const names = name.split(' ')
+  console.log(name)
+  const names = name.split('-')
+  console.log(names)
   const ungroupNames = names.map(el => {
     return {
       name: consultant.getUngroupName(el),
@@ -38,7 +38,7 @@ export const NameTable = ({ consultant }) => {
   }
 
   const table = (name) => {
-    return name.map((el, i) =>
+    return name.map((el, i) => (
       <>
         <View style={[pinnacleName.name, { top: 16, left: 33 + (i * 14) }]}>
           <Text>
@@ -56,10 +56,11 @@ export const NameTable = ({ consultant }) => {
           </Text>
         </View>
       </>
-    )
+    ))
   }
   const results = (values, total, top = 0) => {
-    return (<>
+    return (
+<>
       <View style={[pinnacleName.name, { top: (top + 14), left: 468 }]}>
         <Text>
           {values[0].v !== 0 ? values[0].v : ''}
@@ -85,12 +86,13 @@ export const NameTable = ({ consultant }) => {
           {total[0].c !== 0 ? total[0].c : ''}
         </Text>
       </View>
-    </>)
+</>
+)
   }
 
   return (
     <View style={pinnacleName.container}>
-      {ungroupNames.map((ungroup, i) =>
+      {ungroupNames.map((ungroup, i) => (
         <>
           <View style={[pinnacleName.wrap, { top: (63 * i) }]}>
             {table(ungroup.name)}
@@ -99,7 +101,7 @@ export const NameTable = ({ consultant }) => {
             {results(ungroup.values, ungroup.total)}
           </View>
         </>
-      )}
+      ))}
 
       <View style={[pinnacleName.wrap, { top: 125 }]}>
         {table(ungroupLast)}

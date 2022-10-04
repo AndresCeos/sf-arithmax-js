@@ -1,123 +1,142 @@
-import { useSelector } from 'react-redux';
 import { dateSelect } from '../hooks';
 
-import time_curve from '../assets/time-curve.svg'
-import { capitalize } from '../resources';
+import time_curve from '../assets/time-curve.svg';
 
 export const TimeCurve = ({ consultant, isPartner }) => {
-    const {newDate} = dateSelect()
-    const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate)
+    const { newDate } = dateSelect()
+    const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
     const activeSecondStage = consultant.getDoubleLifeStageNumber(newDate.year())
     const dobleStage = consultant.hasDoubleStage()
 		const monthCut = consultant.getCustomMonths()
 		const actualMonth = newDate.format('MMMM')
 		const listOfMonths = consultant.getAllMonths()
 		const listOfMonthsE = consultant.getAllMonthsEnglish()
-		const indexE = listOfMonthsE.findIndex(i=>i === actualMonth.capitalize)
-		const indexEnero = monthCut.findIndex(i=>i === 'Enero')
-		const index = monthCut.findIndex(i=>i=== listOfMonths[indexE] )
-		console.log('Index Enero'+indexEnero);
-		console.log('index mes actaul'+index)
+		const indexE = listOfMonthsE.findIndex(i => i === actualMonth.capitalize)
+		const indexEnero = monthCut.findIndex(i => i === 'Enero')
+	const index = monthCut.findIndex(i => i === listOfMonths[indexE])
+	const limitYear = consultant.calcLifeStageDuration(activeStage)
+	const limitMonth = consultant.getMonthOfBirth() + 1
 
-    return(
+	console.log(limitMonth)
+	console.log(limitYear)
+
+    return (
 		<div>
 				<div id="lifePath" className="grid grid-cols-19 w-full border-l border-b border-gray-400 relative">
 						<div
 								className={`
 										col-start-1 col-end-7 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-										${activeStage === 1? 'bg-active' : null }
+										${activeStage === 1 ? 'bg-active' : null}
 								`
-						}></div>
+						}
+						/>
 						<div
 								className={`
 										col-start-7 col-end-9 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-										${activeStage === 2? 'bg-active' : null }
+										${activeStage === 2 ? 'bg-active' : null}
 								`
-						}></div>
+						}
+						/>
 						<div
 								className={`
 										col-start-9 col-end-11 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-										${activeStage === 3 ? 'bg-active' : null }
+										${activeStage === 3 ? 'bg-active' : null}
 								`
-						}></div>
+						}
+						/>
 						<div
 								className={`
 										col-start-11 col-end-13 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-										${activeStage === 4 ? 'bg-active' : null }
+										${activeStage === 4 ? 'bg-active' : null}
 								`
-						}></div>
+						}
+						/>
 						<div
 								className={`
 										col-start-13 col-end-15 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-										${activeStage === 5? 'bg-active' : null }
+										${activeStage === 5 ? 'bg-active' : null}
 								`
-						}></div>
+						}
+						/>
 						<div
 								className={`
 										col-start-15 col-end-17 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-										${activeStage === 6 ? 'bg-active' : null }
+										${activeStage === 6 ? 'bg-active' : null}
 								`
-						}></div>
+						}
+						/>
 						<div
 								className={`
 										col-start-17 col-end-21 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-										${activeStage === 7? 'bg-active' : null }
+										${activeStage === 7 ? 'bg-active' : null}
 								`
-						}></div>
-						{(dobleStage&&!isPartner)?
-								<>
+						}
+						/>
+						{(dobleStage && !isPartner)
+								? (
+<>
 										<div
 										className={`
 												col-start-1 col-end-7 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-												${activeSecondStage === 1? 'bg-active' : null }
+												${activeSecondStage === 1 ? 'bg-active' : null}
 										`
-								}></div>
+								}
+										/>
 								<div
 										className={`
 												col-start-7 col-end-9 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-												${activeSecondStage === 2? 'bg-active' : null }
+												${activeSecondStage === 2 ? 'bg-active' : null}
 										`
-								}></div>
+								}
+								/>
 								<div
 										className={`
 												col-start-9 col-end-11 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-												${activeSecondStage === 3  ? 'bg-active' : null }
+												${activeSecondStage === 3 ? 'bg-active' : null}
 										`
-								}></div>
+								}
+								/>
 								<div
 										className={`
 												col-start-11 col-end-13 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-												${activeSecondStage === 4 ? 'bg-active' : null }
+												${activeSecondStage === 4 ? 'bg-active' : null}
 										`
-								}></div>
+								}
+								/>
 								<div
 										className={`
 												col-start-13 col-end-15 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-												${activeSecondStage === 5? 'bg-active' : null }
+												${activeSecondStage === 5 ? 'bg-active' : null}
 										`
-								}></div>
+								}
+								/>
 								<div
 										className={`
 												col-start-15 col-end-17 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-												${activeSecondStage === 6 ? 'bg-active' : null }
+												${activeSecondStage === 6 ? 'bg-active' : null}
 										`
-								}></div>
+								}
+								/>
 								<div
 										className={`
 												col-start-17 col-end-21 row-start-1 row-end-14 border-dashed border-l-2 border-r-2 border-gray-400
-												${activeSecondStage === 7? 'bg-active' : null }
+												${activeSecondStage === 7 ? 'bg-active' : null}
 										`
-								}></div>
-						</>:'' }
+								}
+								/>
+</>
+) : '' }
 
 
 						<div className='col-start-1 col-end-7 row-start-7 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-								{(!isPartner)?`Del nacimiento a los ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() }`:`${consultant.getYearTimeCurve()} - ${consultant.calcLifeStageDuration(1)}`}
+								{(!isPartner) ? `Del nacimiento a los ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year()}` : `${consultant.getYearTimeCurve()} - ${consultant.calcLifeStageDuration(1)}`}
 						</div>
-						{(!isPartner&&dobleStage)?
-								<div className='col-start-1 col-end-7 row-start-8 text-center text-13 h-6  flex items-end justify-center'>
+						{(!isPartner && dobleStage)
+								? (
+<div className='col-start-1 col-end-7 row-start-8 text-center text-13 h-6  flex items-end justify-center'>
 										Del nacimiento a los {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() }
-								</div>:''
+</div>
+) : ''
 						}
 						<div className='col-start-1 col-end-7 row-start-9	 text-center text-13 h-6 flex items-start justify-center z-20 text-gray font-bold'>
 							E
@@ -132,13 +151,15 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 						<div className='col-start-1 col-end-7 row-start-13 m-auto'>{consultant.getK()}</div>
 
 						<div className='col-start-7 col-end-9 row-start-5 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-								{(!isPartner)?`${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() } - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 }`:`${consultant.calcLifeStageDuration(1)} - ${consultant.calcLifeStageDuration(2)}`}
+								{(!isPartner) ? `${consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9}` : `${consultant.calcLifeStageDuration(1)} - ${consultant.calcLifeStageDuration(2)}`}
 						</div>
 
-						{(!isPartner&&dobleStage)?
-								<div className='col-start-7 col-end-9 row-start-6 text-center text-13 h-6  flex items-end justify-center'>
+						{(!isPartner && dobleStage)
+								? (
+<div className='col-start-7 col-end-9 row-start-6 text-center text-13 h-6  flex items-end justify-center'>
 										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 9 }
-								</div>:''
+</div>
+) : ''
 						}
 						<div className='col-start-7 col-end-9 row-start-7	 text-center text-13 h-6 text-gray font-bold'>
 							F
@@ -153,12 +174,14 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 						<div className='col-start-7 col-end-9 row-start-11 m-auto'>{consultant.getL()}</div>
 
 						<div className='col-start-9 col-end-11 row-start-2 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-								{(!isPartner)?` ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9 } - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18 }`:`${consultant.calcLifeStageDuration(2)} - ${consultant.calcLifeStageDuration(3)}`}
+								{(!isPartner) ? ` ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9} - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18}` : `${consultant.calcLifeStageDuration(2)} - ${consultant.calcLifeStageDuration(3)}`}
 						</div>
-						{(!isPartner&&dobleStage)?
-								<div className='col-start-9 col-end-11 row-start-3 text-center text-13 h-6  flex items-end justify-center'>
-										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()+9 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 18 }
-								</div>:''
+						{(!isPartner && dobleStage)
+								? (
+<div className='col-start-9 col-end-11 row-start-3 text-center text-13 h-6  flex items-end justify-center'>
+										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 9 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 18 }
+</div>
+) : ''
 						}
 						<div className='col-start-9 col-end-11 row-start-4 text-center text-13 h-6 font-bold text-gray'>
 							G
@@ -173,14 +196,16 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 						<div className='col-start-9 col-end-11 row-start-8 m-auto'>{consultant.getM()}</div>
 
 
-						<div className='col-start-11 col-end-13 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400'></div>
+						<div className='col-start-11 col-end-13 row-start-1 row-end-13 border-dashed border-l-2 border-r-2 border-gray-400' />
 						<div className='col-start-11 col-end-13 row-start-1 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-								{(!isPartner)?`${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18 } - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27 }`:`${consultant.calcLifeStageDuration(3)} - ${consultant.calcLifeStageDuration(4)}`}
+								{(!isPartner) ? `${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18} - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27}` : `${consultant.calcLifeStageDuration(3)} - ${consultant.calcLifeStageDuration(4)}`}
 						</div>
-						{(!isPartner&&dobleStage)?
-								<div className='col-start-11 col-end-13 row-start-2 text-center text-13 h-6  flex items-end justify-center'>
-										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()+18 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 27 }
-								</div>:''
+						{(!isPartner && dobleStage)
+								? (
+<div className='col-start-11 col-end-13 row-start-2 text-center text-13 h-6  flex items-end justify-center'>
+										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 18 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 27 }
+</div>
+) : ''
 						}
 						<div className='col-start-11 col-end-13 row-start-3 text-center text-13 h-6 font-bold text-gray'>
 							H
@@ -195,12 +220,14 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 						<div className='col-start-11 col-end-13 row-start-6 m-auto'>{consultant.getN()}</div>
 
 						<div className='col-start-13 col-end-15 row-start-2 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-								{(!isPartner)?`${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27 } - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36 }`:`${consultant.calcLifeStageDuration(4)} - ${consultant.calcLifeStageDuration(5)}`}
+								{(!isPartner) ? `${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27} - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36}` : `${consultant.calcLifeStageDuration(4)} - ${consultant.calcLifeStageDuration(5)}`}
 						</div>
-						{(!isPartner&&dobleStage)?
-								<div className='col-start-13 col-end-15 row-start-3 text-center text-13 h-6  flex items-end justify-center'>
-										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()+27 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 36 }
-								</div>:''
+						{(!isPartner && dobleStage)
+								? (
+<div className='col-start-13 col-end-15 row-start-3 text-center text-13 h-6  flex items-end justify-center'>
+										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 27 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 36 }
+</div>
+) : ''
 						}
 						<div className='col-start-13 col-end-15 row-start-4 text-center text-13 h-6 text-gray font-bold'>
 							G
@@ -215,12 +242,14 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 						<div className='col-start-13 col-end-15 row-start-8 m-auto'>{consultant.getM()}</div>
 
 						<div className='col-start-15 col-end-17 row-start-5 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-								{(!isPartner)?`${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36 } - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45 }`:`${consultant.calcLifeStageDuration(5)} - ${consultant.calcLifeStageDuration(6)}`}
+								{(!isPartner) ? `${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36} - ${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45}` : `${consultant.calcLifeStageDuration(5)} - ${consultant.calcLifeStageDuration(6)}`}
 						</div>
-						{(!isPartner&&dobleStage)?
-								<div className='col-start-15 col-end-17 row-start-6 text-center text-13 h-6  flex items-end justify-center'>
-										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()+36 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 45 }
-								</div>:''
+						{(!isPartner && dobleStage)
+								? (
+<div className='col-start-15 col-end-17 row-start-6 text-center text-13 h-6  flex items-end justify-center'>
+										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 36 } - {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 45 }
+</div>
+) : ''
 						}
 						<div className='col-start-15 col-end-17 row-start-7 text-center text-13 h-6 text-gray font-bold'>
 							F
@@ -235,12 +264,14 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 						<div className='col-start-15 col-end-17 row-start-11 m-auto'>{consultant.getL()}</div>
 
 						<div className='col-start-17 col-end-21 row-start-7 text-center text-13 h-6 border-b-3 border-purple-35 lifePathDuration flex items-end justify-center'>
-								{(!isPartner)?`${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45 } - ...`:`${consultant.calcLifeStageDuration(6)} - ...`}
+								{(!isPartner) ? `${consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45} - ...` : `${consultant.calcLifeStageDuration(6)} - ...`}
 						</div>
-						{(!isPartner&&dobleStage)?
-								<div className='col-start-17 col-end-21 row-start-8 text-center text-13 h-6  flex items-end justify-center'>
-										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()+45 } - ...
-								</div>:''
+						{(!isPartner && dobleStage)
+								? (
+<div className='col-start-17 col-end-21 row-start-8 text-center text-13 h-6  flex items-end justify-center'>
+										{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 45 } - ...
+</div>
+) : ''
 						}
 						<div className='col-start-17 col-end-21 row-start-9 text-center text-13 h-6 text-gray font-bold'>
 							E
@@ -255,12 +286,12 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 						<div className='col-start-17 col-end-21 row-start-13 m-auto'>{consultant.getK()}</div>
 
 						<img src={time_curve} className="absolute bottom-0 left-0 w-full" />
-						<div className='col-start-1 col-end-7 row-start-5 h-6'></div>
-						<div className='col-start-1 col-end-7 row-start-8 h-6'></div>
-						<div className='col-start-1 col-end-7 row-start-9 h-6'></div>
-						<div className='col-start-1 col-end-7 row-start-10 h-6'></div>
-						<div className='col-start-1 col-end-7 row-start-11 h-6'></div>
-						<div className='col-start-1 col-end-7 row-start-12 h-6'></div>
+						<div className='col-start-1 col-end-7 row-start-5 h-6' />
+						<div className='col-start-1 col-end-7 row-start-8 h-6' />
+						<div className='col-start-1 col-end-7 row-start-9 h-6' />
+						<div className='col-start-1 col-end-7 row-start-10 h-6' />
+						<div className='col-start-1 col-end-7 row-start-11 h-6' />
+						<div className='col-start-1 col-end-7 row-start-12 h-6' />
 				</div>
 				<div id="lifePathYears" className="grid grid-cols-19 w-full -ml-3 mt-3">
 						<div className='col-start-1 col-end-7 text-13 row-start-1'>
@@ -287,7 +318,7 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 						<div className='col-start-18 col-end-20 text-13 row-start-1'>
 								En adelante...
 						</div>
-						{/*(dobleStage&&!isPartner)?
+						{/* (dobleStage&&!isPartner)?
 						<>
 								<div className='col-start-1 col-end-7 text-13 row-start-2'>
 								{consultant.getYearTimeCurve()}

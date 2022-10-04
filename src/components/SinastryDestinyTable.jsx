@@ -105,7 +105,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pmC}</strong>
-              <label className='h-6 w-7 leading-6 text-center'>{el.pmN}/{el.pmD}</label>
+              <label className='h-6 w-7 leading-6 text-center text-10'>{el.pmN}/{el.pmD}</label>
             </div>
             <div className={`
               h-12 w-7 text-13 border-b border-r border-gray-400 flex flex-col
@@ -113,7 +113,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pMC}</strong>
-              <label className='h-4 text-center'>{el.pMN}/{el.pMD}</label>
+              <label className='h-4 text-center text-10'>{el.pMN}/{el.pMD}</label>
             </div>
             <div className={`
               h-12 w-7 text-13 border-b border-r border-gray-400 flex flex-col
@@ -121,7 +121,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pfC}</strong>
-              <label className='h-4 text-center'>{singleC && `${el.pfN} / ${el.pfD}`}</label>
+              <label className='h-4 text-center text-10'>{singleC && `${el.pfN} / ${el.pfD}`}</label>
             </div>
             <div className={`
               h-10 w-7 border-b border-r border-gray-400 flex items-center justify-center
@@ -169,7 +169,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pmCP}</strong>
-              <label className='h-6 w-7 leading-6 text-center'>{el.pmNP}/{el.pmDP}</label>
+              <label className='h-6 w-7 leading-6 text-center text-10'>{el.pmNP}/{el.pmDP}</label>
             </div>
             <div className={`
               h-12 w-7 text-13 border-b border-r border-gray-400 flex flex-col
@@ -177,7 +177,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pMCP}</strong>
-              <label className='h-4 text-center'>{el.pMNP}/{el.pMDP}</label>
+              <label className='h-4 text-center text-10'>{el.pMNP}/{el.pMDP}</label>
             </div>
             <div className={`
               h-12 w-7 text-13 border-b border-r border-gray-400 flex flex-col
@@ -185,7 +185,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pfCP}</strong>
-              <label className='h-4 text-center'>{singleP && `${el.pfNP} / ${el.pfDP}`}</label>
+              <label className='h-4 text-center text-10'>{singleP && `${el.pfNP}/${el.pfDP}`}</label>
             </div>
             <div className={`
               h-10 w-7 border-b border-r border-gray-400 flex items-center justify-center
@@ -233,7 +233,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pmCPC}</strong>
-              <label className='h-6 w-7 leading-6 text-center'>{el.pmNPC}/{el.pmDPC}</label>
+              <label className='h-6 w-7 leading-6 text-center text-10'>{el.pmNPC}/{el.pmDPC}</label>
             </div>
             <div className={`
               h-12 w-7 text-xs border-b border-r border-gray-400 flex flex-col
@@ -241,7 +241,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pMCPC}</strong>
-              <label className='h-4 text-center'>{el.pMNPC}/{el.pMDPC}</label>
+              <label className='h-4 text-center text-10'>{el.pMNPC}/{el.pMDPC}</label>
             </div>
             <div className={`
               h-12 w-7 text-xs border-b border-r border-gray-400 flex flex-col
@@ -249,7 +249,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
             }
             >
               <strong className='h-6 w-7 leading-6 text-center border-b border-gray-400'>{el.pfCPC}</strong>
-              <label className='h-4 text-center'>{(singleC && singleP) && `${el.pfNPC} / ${el.pfDPC}`}</label>
+              <label className='h-4 text-center text-10'>{(singleC && singleP) && `${el.pfNPC}/${el.pfDPC}`}</label>
             </div>
             <div className={`
               h-10 w-7 text-xs border-b border-r border-gray-400 flex items-center justify-center

@@ -1,24 +1,24 @@
 import {
-  PinnacleName,
-  Pinnacle,
-  PinnaclePotential,
-  PinnacleTimeCurve,
+  Pinnacle, PinnacleName, PinnaclePotential,
+  PinnacleTimeCurve
 } from '..';
-import { BridgeStage } from '../BridgeStage';
 import { AnnualReturns } from '../AnnualReturns';
+import { BridgeStage } from '../BridgeStage';
 
-import pinnacleImage from '../assets/pinnacle.jpg'
+// import pinnacleImage from '../assets/pinnacle.jpg'
+// import pinnacleImage2 from '../assets/newPinacle.jpeg';
+import pinnacleImage2 from '../assets/newPinacle2.jpeg';
 
-export const PinnaclePDF = ({ consultant }) => {
+export const PinnaclePDF = ({ consultant, newDate }) => {
   return {
-    bg: pinnacleImage,
+    bg: pinnacleImage2,
     children: <>
-      <PinnacleName consultant={consultant}></PinnacleName>
-      <PinnaclePotential consultant={consultant}></PinnaclePotential>
-      <Pinnacle consultant={consultant}></Pinnacle>
-      <BridgeStage consultant={consultant}></BridgeStage>
+      <PinnacleName consultant={consultant} />
+      <PinnaclePotential consultant={consultant} />
+      <Pinnacle consultant={consultant} />
+      <BridgeStage consultant={consultant} newDate={newDate} />
       <AnnualReturns consultant={consultant} />
-      <PinnacleTimeCurve consultant={consultant} />
-    </>
+      <PinnacleTimeCurve consultant={consultant} newDate={newDate} />
+              </>
   }
 }

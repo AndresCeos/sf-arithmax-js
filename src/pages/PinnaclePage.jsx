@@ -24,7 +24,7 @@ const PinnaclePage = () => {
   const annualReturnLastYear = consultant.annualReturn(newDate.year() - 1)
   const annualReturnNextYear = consultant.annualReturn(newDate.year() + 1)
 
-  const activeStage = consultant.getLifeStageNumber(newDate.year())
+  const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
   const secondStage = consultant.hasDoubleStage()
 
   const checkPinacle = () => {

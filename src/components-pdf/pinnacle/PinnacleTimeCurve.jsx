@@ -1,9 +1,13 @@
-import { StyleSheet, Text, View } from '@react-pdf/renderer'
-
-export const PinnacleTimeCurve = ({ consultant }) => {
+import { Image, StyleSheet, Text, View } from '@react-pdf/renderer'
+import bgTimeCurve from '../assets/curvaPerson.png'
+export const PinnacleTimeCurve = ({ consultant, newDate }) => {
+   const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
   return (
     <View style={timeCurve.container}>
-      <View style={timeCurve.wrap}>
+      <View style={{ position: 'absolute', top: 0, zIndex: 3 }}>
+        <Image src={bgTimeCurve} style={{ position: 'absolute', top: -8, width: '535px' }} />
+      </View>
+      <View style={[timeCurve.wrap, { zIndex: 2 }]}>
         <View style={[timeCurve.item, timeCurve.s1_duration]}>
           <Text>Del nacimiento a los {consultant.calcLifeStageDuration(1) - consultant.birthDate.year()}</Text>
         </View>
@@ -93,6 +97,16 @@ export const PinnacleTimeCurve = ({ consultant }) => {
           <Text>En adelante...
           </Text>
         </View>
+      </View>
+      <View style={{ zIndex: 4 }}>
+        {(activeStage === 1) ? <View style={[timeCurve.activeLarge, timeCurve.active_1]} /> : null}
+        {(activeStage === 2) ? <View style={[timeCurve.active, timeCurve.active_2]} /> : null}
+        {(activeStage === 3) ? <View style={[timeCurve.active, timeCurve.active_3]} /> : null}
+        {(activeStage === 4) ? <View style={[timeCurve.active, timeCurve.active_4]} /> : null}
+        {(activeStage === 5) ? <View style={[timeCurve.active, timeCurve.active_5]} /> : null}
+        {(activeStage === 6) ? <View style={[timeCurve.active, timeCurve.active_6]} /> : null}
+        {(activeStage === 7) ? <View style={[timeCurve.activeLast, timeCurve.active_7]} /> : null}
+
       </View>
     </View>
   )
@@ -289,4 +303,54 @@ export const timeCurve = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+   active: {
+    width: '50px',
+    height: '122px',
+    backgroundColor: '#7E7E7E',
+  },
+  activeLarge: {
+    width: '157px',
+    height: '122px',
+    backgroundColor: '#7E7E7E',
+  },
+  activeLast: {
+    width: '70px',
+    height: '122px',
+    backgroundColor: '#7E7E7E',
+  },
+  active_1: {
+    position: 'absolute',
+    top: 20,
+    left: 17
+  },
+   active_2: {
+    position: 'absolute',
+    top: 20,
+    left: 176
+   },
+  active_3: {
+    position: 'absolute',
+    top: 20,
+    left: 231
+  },
+  active_4: {
+    position: 'absolute',
+    top: 20,
+    left: 286
+  },
+  active_5: {
+    position: 'absolute',
+    top: 20,
+    left: 341
+  },
+      active_6: {
+    position: 'absolute',
+    top: 20,
+    left: 398
+  },
+  active_7: {
+    position: 'absolute',
+    top: 20,
+    left: 451
+  }
 })
