@@ -22,6 +22,7 @@ module.exports = {
     "max-len": "off",
     "import/prefer-default-export": "off",
     "no-console": "off",
+    "import/no-cycle": "off",
     "semi": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "react/react-in-jsx-scope": "off",
