@@ -20,6 +20,7 @@ import { pdf, PDFViewer } from '@react-pdf/renderer';
 import moment from 'moment/min/moment-with-locales';
 import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryDestinityPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from '../components-pdf/document';
 import { Group, Person, sanitize, Synastry } from '../resources';
+import Modal from './Modal';
 import { Notifications } from './Notifications';
 
 
@@ -436,42 +437,40 @@ export const Navbar = () => {
       </nav>
       {
         (modal) ? (
-          <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-60'>
-            <div className={`bg-white p-5 rounded shadow-lg relative ${previewDocument && 'w-5/6 h-5/6'}`}>
-              <div className='flex justify-between gap-3 mb-4'>
-                <h4>
-                  {!previewDocument
-                    ? 'Selecciona los reportes que quieres imprimir' : 'Reportes'}
-                </h4>
-                <button className='border rounded-full hover:bg-purple-300' onClick={closeModal}>
-                  <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              {!previewDocument
-                && Object.entries(availableReports).map(item => (
-                  <div key={`ck_${item[0]}`} className="flex items-center mb-4">
-                    <input
-                      onChange={handleSelectedReports}
-                      id={`ck_${item[0]}`}
-                      type="checkbox"
-                      name={item[0]}
-                      className="w-4 h-4 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600"
-                    />
-                    <label htmlFor={`ck_${item[0]}`} className="ml-2 text-sm font-medium text-gray-900">{item[1].name}</label>
-                  </div>
-                ))
-              }
-              {(availableReportsSelected.length > 0 && !previewDocument) && printButton()}
-              {previewDocument && (
-                <div className='absolute top-20 text-center w-full text-gray-500 z-0'>
-                  cargando..
-                </div>
-              )}
-              {previewDocument && <div className='absolute left-0 right-0 mx-auto top-20 z-50 w-11/12 h-5/6'>{printReportPreview()}</div>}
+          <Modal class={`${previewDocument && 'w-5/6 h-5/6'}`}>
+            <div className='flex justify-between gap-3 mb-4'>
+              <h4>
+                {!previewDocument
+                  ? 'Selecciona los reportes que quieres imprimir' : 'Reportes'}
+              </h4>
+              <button className='border rounded-full hover:bg-purple-300' onClick={closeModal}>
+                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
-          </div>
+            {!previewDocument
+              && Object.entries(availableReports).map(item => (
+                <div key={`ck_${item[0]}`} className="flex items-center mb-4">
+                  <input
+                    onChange={handleSelectedReports}
+                    id={`ck_${item[0]}`}
+                    type="checkbox"
+                    name={item[0]}
+                    className="w-4 h-4 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600"
+                  />
+                  <label htmlFor={`ck_${item[0]}`} className="ml-2 text-sm font-medium text-gray-900">{item[1].name}</label>
+                </div>
+              ))
+            }
+            {(availableReportsSelected.length > 0 && !previewDocument) && printButton()}
+            {previewDocument && (
+              <div className='absolute top-20 text-center w-full text-gray-500 z-0'>
+                cargando..
+              </div>
+            )}
+            {previewDocument && <div className='absolute left-0 right-0 mx-auto top-20 z-50 w-11/12 h-5/6'>{printReportPreview()}</div>}
+          </Modal>
         ) : null
       }
     </>
