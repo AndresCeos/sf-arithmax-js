@@ -41,6 +41,28 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
     })
   }
 
+  const bkConfig = (i, bg) => {
+    console.log(i + consultant.getYearOfBirth(), newDate.year())
+    if (newDate.year() === consultant.getYearOfBirth() + i) {
+      return '#b9525380';
+    }
+    return bg;
+  }
+  const bkConfigFull = (i, bg) => {
+    console.log(i + consultant.getYearOfBirth(), newDate.year())
+    if (newDate.year() === consultant.getYearOfBirth() + i) {
+      return '#b95253';
+    }
+    return bg;
+  }
+
+  const borderRightConfig = (i, item) => {
+    if (i + 1 === item.length) {
+      return 1;
+    }
+    return 0;
+  }
+
   return (
     <View style={pinnacleName.container}>
       <View style={pinnacleName.wrap}>
@@ -85,50 +107,51 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
               Núm. Destino
             </Text>
           </View>
-          {partnerDT.map((el, i) => (
+          {partnerDT.map((el, i, item) => (
             <>
               <View
                 // eslint-disable-next-line react/no-array-index-key
                 key={`${consultant.getYearOfBirth() + i + start}_${i}_partner`}
                 style={{ position: 'absolute', left: 81 + (i * 54), top: 0 }}
               >
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#c2b3c2' }]}>
+                ${newDate.year() === consultant.getYearOfBirth() + i + start ? 'bg-red-50' : 'bg-main-30'}`
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, fontSize: 6, backgroundColor: bkConfig(i + start, '#c2b3c2') }]}>
                   <Text>
                     {consultant.getYearOfBirth() + i + start}
                   </Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#e5e5e5' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfig(i + start, '#e5e5e5') }]}>
                   <Text>
                     {i + start}
                   </Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pmC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, fontSize: 6, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pmN}/{el.pmD}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pMC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, fontSize: 6, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pMN}/{el.pMD}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pfC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pfN}/{el.pfD}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#edd7eb' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfig(i + start, '#edd7eb') }]}>
                   <Text>{consultant.reduceNumber(el.pmD + el.pMD + el.pfD)}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#ededed', marginTop: 10 }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfig(i + start, '#ededed'), marginTop: 10 }]}>
                   <Text>
                     {consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start)}
                   </Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>
                     {consultant.reduceNumber(el.pmD + el.pMD + el.pfD + consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start))}
                   </Text>
@@ -140,37 +163,37 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
                 key={`${consultant.getYearOfBirth() + i + start}_${i}_partner2`}
                 style={{ position: 'absolute', left: 100 + (i * 54), top: 0 }}
               >
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#c2b3c2' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, fontSize: 6, backgroundColor: bkConfig(i + start, '#c2b3c2') }]}>
                   <Text>{partner.getYearOfBirth() + i + startP}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#e5e5e5' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfig(i + start, '#e5e5e5') }]}>
                   <Text>{i + startP}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pmCP}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, fontSize: 6, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pmNP}/{el.pmDP}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pMCP}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, fontSize: 6, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pMNP}/{el.pMDP}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pfCP}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{el.pfNP}/{el.pfDP}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#edd7eb' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfig(i + start, '#edd7eb') }]}>
                   <Text>{consultant.reduceNumber(el.pmDP + el.pMDP + el.pfDP)}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#ededed', marginTop: 10 }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfig(i + start, '#ededed'), marginTop: 10 }]}>
                   <Text>{partner.calcPersonalYear(partner.getYearOfBirth() + i + startP)}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfig(i + start, '#ffffff') }]}>
                   <Text>{partner.reduceNumber(el.pmDP + el.pMDP + el.pfDP + partner.calcPersonalYear(partner.getYearOfBirth() + i + startP))}</Text>
                 </View>
               </View>
@@ -180,37 +203,37 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
                 key={`${consultant.getYearOfBirth() + i + start}_${i}_partner3`}
                 style={{ position: 'absolute', left: 119 + (i * 54), top: 0 }}
               >
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#c2b3c2' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, fontSize: 6, backgroundColor: bkConfigFull(i + start, '#c2b3c2') }]}>
                   <Text>{consultant.getYearOfBirth() + i + start}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#e5e5e5' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfigFull(i + start, '#e5e5e5') }]}>
                   <Text>{consultant.reduceNumber(i + start + i + startP)}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfigFull(i + start, '#ffffff') }]}>
                   <Text>{el.pmCPC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, backgroundColor: bkConfigFull(i + start, '#ffffff') }]}>
                   <Text>{el.pmNPC}/{el.pmDPC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfigFull(i + start, '#ffffff') }]}>
                   <Text>{el.pMCPC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, fontSize: 6, backgroundColor: bkConfigFull(i + start, '#ffffff') }]}>
                   <Text>{el.pMNPC}/{el.pMDPC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 15, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 15, backgroundColor: bkConfigFull(i + start, '#ffffff') }]}>
                   <Text>{el.pfCPC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 16, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 16, fontSize: 6, backgroundColor: bkConfigFull(i + start, '#ffffff') }]}>
                   <Text>{el.pfNPC}/{el.pfDPC}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#edd7eb' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfigFull(i + start, '#edd7eb') }]}>
                   <Text>{consultant.reduceNumber(el.pmNPC + el.pMNPC + el.pfNPC)}/{consultant.reduceNumber(el.pmDPC + el.pMDPC + el.pfDPC)}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#ededed', marginTop: 10 }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfigFull(i + start, '#ededed'), marginTop: 10 }]}>
                   <Text>{consultant.reduceNumber(consultant.calcPersonalYear(consultant.getYearOfBirth() + i) + partner.calcPersonalYear(partner.getYearOfBirth() + i))}</Text>
                 </View>
-                <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: '#ffffff' }]}>
+                <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfigFull(i + start, '#ffffff') }]}>
                   <Text>{consultant.reduceNumber(consultant.reduceNumber(el.pmDPC + el.pMDPC + el.pfDPC) + consultant.reduceNumber(consultant.calcPersonalYear(consultant.getYearOfBirth() + i) + partner.calcPersonalYear(partner.getYearOfBirth() + i)))}</Text>
                 </View>
               </View>
