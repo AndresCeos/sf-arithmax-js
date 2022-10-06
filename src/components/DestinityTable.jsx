@@ -27,7 +27,7 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
 
   return (
     <div className='destinity-table flex mb-8 justify-center'>
-      <div className='w-32'>
+      <div className='w-32 z-0'>
         <div className='h-6 w-32 text-13 font-black bg-main-30 border-t border-gray-400 border-l border-r flex items-center justify-start px-1'>
           Año
         </div>
@@ -44,7 +44,7 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
           Plano Emocional
         </div>
         <button
-          className={` ${binomActive ? 'bg-gold' : 'bg-yellow'} h-10  font-bold mb-1 rounded-tl-3xl  rounded-tr-3xl rounded-bl-3xl flex justify-center items-center absolute btn-destiny text-13 text-white px-2`}
+          className={` ${binomActive ? 'bg-gold' : 'bg-yellow'} h-10 z-0 font-bold mb-1 rounded-tl-3xl  rounded-tr-3xl rounded-bl-3xl flex justify-center items-center absolute btn-destiny text-13 text-white px-2`}
           onClick={() => { setBinomActive(!binomActive) }}
         >Binomios
         </button>
@@ -59,7 +59,7 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
           Núm. Destino
         </div>
       </div>
-      { table.map((el, i) => (
+      {table.map((el, i) => (
         <div key={i} className='nameBreakdown'>
           <div className={`h-6 w-30 text-10  ${bkConfig(i + start, 'bg-main-30')} text-center border-t border-gray-400 border-r`}>
             {consultant.getYearOfBirth() + i + start}
@@ -78,14 +78,14 @@ export const DestinityTable = ({ table, start, consultant, nameCycles, nameSubCy
             <label className='h-6 text-center text-10 pt-1'>{single ? `${el.pfN}/${el.pfD}` : ''}</label>
           </div>
           <div className={`h-10 w-30 ${bkConfig(i + start, 'bg-pink')} border-b border-r border-gray-400 flex items-center justify-center ${binomActive ? 'text-xs' : 'text-13'}`}>
-            <strong>{ binomActive && `${consultant.reduceNumber(el.pmN + el.pMN + (single ? el.pfN : 0))}/`}{consultant.reduceNumber(el.pmD + el.pMD + (single ? el.pfD : 0))}</strong>
+            <strong>{binomActive && `${consultant.reduceNumber(el.pmN + el.pMN + (single ? el.pfN : 0))}/`}{consultant.reduceNumber(el.pmD + el.pMD + (single ? el.pfD : 0))}</strong>
           </div>
 
           <div className={`mt-5 h-10 w-30 text-13 ${bkConfig(i + start, 'bg-gray bg-opacity-15')} border-b border-r border-t border-gray-400 flex items-center justify-center`}>
             {consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start)}
           </div>
           <div className={`h-10 w-30 text-13 ${bkConfig(i + start, 'bg-white')} border-b border-r border-gray-400 flex items-center justify-center`}>
-            {consultant.reduceNumber(el.pmD + el.pMD + (single ? el.pfD : 0) + consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start)) }
+            {consultant.reduceNumber(el.pmD + el.pMD + (single ? el.pfD : 0) + consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start))}
           </div>
         </div>
       ))}

@@ -49,8 +49,8 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
   // console.log( {partnerDT} )
 
   return (
-      <div className='destinity-table flex mb-8 justify-center'>
-      <div className='w-32'>
+    <div className='destinity-table flex mb-8 justify-center'>
+      <div className='w-32 z-0'>
         <div className='h-6 w-32 text-13 font-black bg-main-30 border-t border-gray-400 border-l border-r flex items-center justify-start px-1'>
           Año
         </div>
@@ -82,7 +82,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
           Núm. Destino
         </div>
       </div>
-      { partnerDT.map((el, i) => (
+      {partnerDT.map((el, i) => (
         <>
           <div className='nameBreakdown'>
             <div className={`
@@ -144,7 +144,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
               ${newDate.year() === consultant.getYearOfBirth() + i + start ? 'bg-red-50' : 'bg-white'}`
             }
             >
-              {consultant.reduceNumber(el.pmD + el.pMD + el.pfD + consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start)) }
+              {consultant.reduceNumber(el.pmD + el.pMD + el.pfD + consultant.calcPersonalYear(consultant.getYearOfBirth() + i + start))}
             </div>
           </div>
 
@@ -208,7 +208,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
               ${newDate.year() === consultant.getYearOfBirth() + i + start ? 'bg-red-50' : 'bg-white'}`
             }
             >
-              {partner.reduceNumber(el.pmDP + el.pMDP + el.pfDP + partner.calcPersonalYear(partner.getYearOfBirth() + i + startP)) }
+              {partner.reduceNumber(el.pmDP + el.pMDP + el.pfDP + partner.calcPersonalYear(partner.getYearOfBirth() + i + startP))}
             </div>
           </div>
 
@@ -284,11 +284,11 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
                   consultant.calcPersonalYear(consultant.getYearOfBirth() + i)
                   + partner.calcPersonalYear(partner.getYearOfBirth() + i)
                 ) */
-              ) }
+              )}
             </div>
           </div>
         </>
       ))}
-      </div>
+    </div>
   )
 }
