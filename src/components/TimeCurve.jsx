@@ -17,9 +17,8 @@ export const TimeCurve = ({ consultant, isPartner }) => {
 	const index = monthCut.findIndex(i => i === listOfMonths[indexE])
 	const limitYear = consultant.calcLifeStageDuration(activeStage)
 	const limitMonth = consultant.getMonthOfBirth() + 1
-
-	console.log(limitMonth)
-	console.log(limitYear)
+	console.log(activeStage);
+	console.log(activeSecondStage);
 
     return (
 		<div>

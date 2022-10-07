@@ -1,7 +1,9 @@
 import { Image, StyleSheet, Text, View } from '@react-pdf/renderer'
 import bgTimeCurve from '../assets/curvaPerson.png'
 export const PinnacleTimeCurve = ({ consultant, newDate }) => {
-   const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
+  const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
+  const dobleStage = consultant.hasDoubleStage()
+  const activeSecondStage = consultant.getDoubleLifeStageNumber(newDate.year())
   return (
     <View style={timeCurve.container}>
       <View style={{ position: 'absolute', top: 0, zIndex: 3 }}>
@@ -11,24 +13,59 @@ export const PinnacleTimeCurve = ({ consultant, newDate }) => {
         <View style={[timeCurve.item, timeCurve.s1_duration]}>
           <Text>Del nacimiento a los {consultant.calcLifeStageDuration(1) - consultant.birthDate.year()}</Text>
         </View>
+        {dobleStage ? (
+        <View style={[timeCurve.item, timeCurve.s1_duration_d]}>
+          <Text>Del nacimiento a los {consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()}</Text>
+        </View>
+        ) : null}
         <View style={[timeCurve.item, timeCurve.s2_duration]}>
           <Text>{consultant.calcLifeStageDuration(1) - consultant.birthDate.year()} - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9}</Text>
         </View>
+        {dobleStage ? (
+        <View style={[timeCurve.item, timeCurve.s2_duration_d]}>
+            <Text>{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year()} -{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 9 }</Text>
+        </View>
+        ) : null}
         <View style={[timeCurve.item, timeCurve.s3_duration]}>
           <Text>{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 9} - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18}</Text>
         </View>
+          {dobleStage ? (
+        <View style={[timeCurve.item, timeCurve.s3_duration_d]}>
+            <Text>{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 9} -{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 18 }</Text>
+        </View>
+        ) : null}
         <View style={[timeCurve.item, timeCurve.s4_duration]}>
           <Text>{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 18} - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27}</Text>
         </View>
+          {dobleStage ? (
+        <View style={[timeCurve.item, timeCurve.s4_duration_d]}>
+            <Text>{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 18} -{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 27 }</Text>
+        </View>
+        ) : null}
         <View style={[timeCurve.item, timeCurve.s5_duration]}>
           <Text>{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 27} - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36}</Text>
         </View>
+          {dobleStage ? (
+        <View style={[timeCurve.item, timeCurve.s5_duration_d]}>
+            <Text>{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 27} -{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 36 }</Text>
+        </View>
+        ) : null}
         <View style={[timeCurve.item, timeCurve.s6_duration]}>
           <Text>{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 36} - {consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45}</Text>
         </View>
+          {dobleStage ? (
+        <View style={[timeCurve.item, timeCurve.s6_duration_d]}>
+            <Text>{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 36} -{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 45 }</Text>
+        </View>
+        ) : null}
         <View style={[timeCurve.item, timeCurve.s7_duration]}>
           <Text>{consultant.calcLifeStageDuration(1) - consultant.birthDate.year() + 45} - ...</Text>
         </View>
+          {dobleStage ? (
+        <View style={[timeCurve.item, timeCurve.s7_duration_d]}>
+            <Text>{consultant.calcDoubleLifeStageDuration(1) - consultant.birthDate.year() + 45} - ... </Text>
+        </View>
+        ) : null}
         <View style={[timeCurve.item, timeCurve.s1_retorn]}>
         <Text>{consultant.getK()}</Text>
         </View>
@@ -106,6 +143,13 @@ export const PinnacleTimeCurve = ({ consultant, newDate }) => {
         {(activeStage === 5) ? <View style={[timeCurve.active, timeCurve.active_5]} /> : null}
         {(activeStage === 6) ? <View style={[timeCurve.active, timeCurve.active_6]} /> : null}
         {(activeStage === 7) ? <View style={[timeCurve.activeLast, timeCurve.active_7]} /> : null}
+        {(activeSecondStage === 1) ? <View style={[timeCurve.activeLarge, timeCurve.active_1]} /> : null}
+        {(activeSecondStage === 2) ? <View style={[timeCurve.active, timeCurve.active_2]} /> : null}
+        {(activeSecondStage === 3) ? <View style={[timeCurve.active, timeCurve.active_3]} /> : null}
+        {(activeSecondStage === 4) ? <View style={[timeCurve.active, timeCurve.active_4]} /> : null}
+        {(activeSecondStage === 5) ? <View style={[timeCurve.active, timeCurve.active_5]} /> : null}
+        {(activeSecondStage === 6) ? <View style={[timeCurve.active, timeCurve.active_6]} /> : null}
+        {(activeSecondStage === 7) ? <View style={[timeCurve.activeLast, timeCurve.active_7]} /> : null}
 
       </View>
     </View>
@@ -135,9 +179,19 @@ export const timeCurve = StyleSheet.create({
     top: '76px',
     left: '18px',
   },
+  s1_duration_d: {
+    width: '155px',
+    top: '86px',
+    left: '18px',
+  },
   s2_duration: {
     width: '51px',
-    top: '50px',
+    top: '55px',
+    left: '175px',
+  },
+    s2_duration_d: {
+    width: '51px',
+    top: '65px',
     left: '175px',
   },
   s3_duration: {
@@ -145,9 +199,19 @@ export const timeCurve = StyleSheet.create({
     top: '33px',
     left: '232px',
   },
+  s3_duration_d: {
+    width: '51px',
+    top: '43px',
+    left: '232px',
+  },
   s4_duration: {
     width: '51px',
     top: '15px',
+    left: '287px',
+  },
+  s4_duration_d: {
+    width: '51px',
+    top: '26px',
     left: '287px',
   },
   s5_duration: {
@@ -155,14 +219,29 @@ export const timeCurve = StyleSheet.create({
     top: '34px',
     left: '341px',
   },
+  s5_duration_d: {
+    width: '51px',
+    top: '44px',
+    left: '341px',
+  },
   s6_duration: {
     width: '51px',
     top: '55px',
     left: '397px',
   },
+  s6_duration_d: {
+    width: '51px',
+    top: '65px',
+    left: '397px',
+  },
   s7_duration: {
     width: '51px',
     top: '79px',
+    left: '460px',
+  },
+  s7_duration_d: {
+    width: '51px',
+    top: '89px',
     left: '460px',
   },
   circle: {

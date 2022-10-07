@@ -149,7 +149,7 @@ const PinnaclePage = () => {
               Puente 4
             </h2>
             <Bridge
-              top={`${consultant.getH()}${consultant.getHISK()}`}
+              top={(!checkP) ? `${consultant.getHCheck()}${consultant.getHISK()}` : `${consultant.getH()}${consultant.getHISKCheck()}`}
               right={`${consultant.getC()}${consultant.getCISK()}`}
               bottom={consultant.getN()}
               left={consultant.getA()}

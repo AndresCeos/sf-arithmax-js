@@ -974,59 +974,67 @@ export class Person {
     const reducedMonth = this.reduceNumber(monthBirthDate)
     const reducedDay = this.reduceNumber(dayBirthDate)
 
-    const reduceSum = this.reduceNumberForSub(reducedYear + reducedMonth + reducedDay)
+    const reduceSum = this.reduceNumber(dayBirthDate + monthBirthDate + yearBirthDate)
     // console.log('unic =>'+reduceSum)
     // const stageOne = this.reduceNumber( reducedMonth + reducedDay )
+
     const stageOneEnd = yearBirthDate + 36 - reduceSum;
-    if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd && monthBirthDate > monthToCalculate) {
+    console.log(`final etapa unica => ${stageOneEnd}`);
+    if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd) {
+      if (yearToCalculate === stageOneEnd && monthBirthDate <= monthToCalculate) {
+        return 2;
+      }
       return 1;
-    }
-    if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd && monthBirthDate <= monthToCalculate) {
-      return 2;
     }
 
     // const stageTwo = this.reduceNumber( dayBirthDate + yearBirthDate )
     const stageTwoEnd = stageOneEnd + 9
-    if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd && monthBirthDate > monthToCalculate) {
+    if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
+      if (yearToCalculate === stageTwoEnd && monthBirthDate <= monthToCalculate) {
+      return 3;
+      }
       return 2;
     }
-    if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd && monthBirthDate <= monthToCalculate) {
-      return 3;
-    }
+
 
     // const stageThr = this.reduceNumber( stageOne + stageTwo )
     const stageThrEnd = stageTwoEnd + 9
-    if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd && monthBirthDate > monthToCalculate) {
-      return 3;
-    }
-    if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd && monthBirthDate <= monthToCalculate) {
+    if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
+      if (yearToCalculate === stageThrEnd && monthBirthDate <= monthToCalculate) {
       return 4;
+    }
+      return 3;
     }
 
     // const stageFou = this.reduceNumber( monthBirthDate + yearBirthDate )
     const stageFouEnd = stageThrEnd + 9
-    if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd && monthBirthDate > monthToCalculate) {
+    if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd) {
+      if (yearToCalculate === stageFouEnd && monthBirthDate <= monthToCalculate) {
+        return 5;
+      }
       return 4;
     }
-    if (stageThrEnd <= yearToCalculate && yearToCalculate <= stageFouEnd && monthBirthDate <= monthToCalculate) {
+
+
+    if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9)) {
+      if (yearToCalculate === (stageFouEnd + 9) && monthBirthDate <= monthToCalculate) {
+        return 6;
+      }
       return 5;
     }
 
-    if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) && monthBirthDate > monthToCalculate) {
-      return 5;
-    }
-    if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) && monthBirthDate <= monthToCalculate) {
+
+    if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18)) {
+      if (yearToCalculate === (stageFouEnd + 18) && monthBirthDate <= monthToCalculate) {
+        return 7;
+      }
       return 6;
     }
-    if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) && monthBirthDate > monthToCalculate) {
-      return 6;
-    }
-    if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) && monthBirthDate <= monthToCalculate) {
-      return 7;
-    }
+
     if ((stageFouEnd + 18) <= yearToCalculate) {
       return 7;
     }
+    return null
   }
 
   getDoubleLifeStageNumber(yearToCalculate = null) {
@@ -1043,7 +1051,8 @@ export class Person {
     const reduceSum = this.reduceNumber(reducedYear + reducedMonth + reducedDay)
     // console.log('double =>'+reduceSum)
     // const stageOne = this.reduceNumber( reducedMonth + reducedDay )
-    const stageOneEnd = yearBirthDate + 36 - reduceSum;
+    const stageOneEnd = yearBirthDate + 36 - reduceSum
+    console.log(`final etapa doble => ${stageOneEnd}`);
     if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd) {
       return 1;
     }
@@ -1461,6 +1470,11 @@ export class Person {
       reduceSum = reduceSum.toString().split('').reduce((r, c) => r += parseInt(c), 0);
     }
     return reduceSum;
+  }
+
+  reduceNumberOnce(reduceSum) {
+      reduceSum = reduceSum.toString().toLowerCase().split('').reduce((r, c) => r += parseInt(c), 0);
+    return parseInt(reduceSum);
   }
 
   sumNumbers(sumNumbers) {
