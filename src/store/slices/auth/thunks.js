@@ -1,6 +1,6 @@
 import localForage from 'localforage';
 import { checkingCredentials, login, logout, updateUserInfo } from '.';
-import { setUsers } from '../users/users';
+import { setGuestsLogin, setUsers } from '../users/users';
 
 import axios from 'axios';
 import { clientConfig } from '../../../resources/Helper';
@@ -40,6 +40,7 @@ export const startLogin = (userData) => {
           dispatch(login(user))
           if (res.data.user_consultants.length > 0) {
             dispatch(setUsers(res.data.user_consultants))
+            dispatch(setGuestsLogin(res.data.user_guests))
           }
           localForage.setItem('session', { status: 'authenticated', ...user })
         }

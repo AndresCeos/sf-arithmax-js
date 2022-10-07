@@ -19,6 +19,12 @@ module.exports = {
   ],
   "ignorePatterns": [".eslintrc.cjs", "playwright.config.ts"],
   "rules": {
+    "no-param-reassign": ["error", {
+      props: true,
+      ignorePropertyModificationsFor: [
+        "state",
+      ]
+    }],
     "max-len": "off",
     "import/prefer-default-export": "off",
     "no-console": "off",

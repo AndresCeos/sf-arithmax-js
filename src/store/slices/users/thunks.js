@@ -64,3 +64,15 @@ export const syncUserInfo = async userData => {
       console.log({ syncUserInfo: res, userData })
     })
 }
+
+export const syncGuests = async guests => {
+  const { token } = await localForage.getItem('session');
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+  const restApiUrl = `${clientConfig.siteUrl}/wp-json/app/v1/g`;
+  axios.post(restApiUrl, guests, config)
+    .then(res => {
+      console.log({ guests: res, req: guests })
+    })
+}
