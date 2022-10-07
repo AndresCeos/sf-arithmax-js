@@ -493,9 +493,9 @@ export class Person {
     const weekThr = this.reduceNumber(weekOne) + this.reduceNumber(weekTwo)
     if (weekToCalculate === 3) { return this.reduceNumber(weekThr) }
     const weekFou = monthToCalculate + this.reduceNumber(weekOne)
-    console.log(this.calcUniversalYear(yearToCalculate))
-    console.log(monthToCalculate);
-    console.log(weekOne);
+    // console.log(this.calcUniversalYear(yearToCalculate))
+    // console.log(monthToCalculate);
+    // console.log(weekOne);
     if (weekToCalculate === 4) { return this.reduceNumber(weekFou) }
   }
 
@@ -546,16 +546,16 @@ export class Person {
     monthToCalculate = monthToCalculate || this.NOW.month() + 1
     yearToCalculate = yearToCalculate || this.NOW.year()
     const weekOne = monthToCalculate + this.calcPersonalYear(yearToCalculate)
-    console.log(weekOne);
+    // console.log(weekOne);
     if (weekToCalculate === 1) { return this.reduceNumber(weekOne) }
     const weekTwo = this.calcPersonalYear(yearToCalculate) + this.reduceNumber(weekOne)
-    console.log(weekTwo);
+    // console.log(weekTwo);
     if (weekToCalculate === 2) { return this.reduceNumber(weekTwo) }
     const weekThr = this.reduceNumber(this.reduceNumber(weekOne) + this.reduceNumber(weekTwo))
-    console.log(weekThr);
+    // console.log(weekThr);
     if (weekToCalculate === 3) { return this.reduceNumber(weekThr) }
     const weekFou = this.reduceNumber(monthToCalculate + this.reduceNumber(weekOne))
-    console.log(weekFou);
+    // console.log(weekFou);
     if (weekToCalculate === 4) { return this.reduceNumber(weekFou) }
   }
 
@@ -790,7 +790,7 @@ export class Person {
     return this.karmicos.includes(stageFou) ? '*' : '';
   }
 
-   getHISKCheck() {
+  getHISKCheck() {
     const reduceMonth = this.birthDate.month() + 1
     const reduceYear = this.birthDate.year()
     const stageFou = this.reduceNumberISK(reduceMonth + reduceYear)
@@ -999,7 +999,7 @@ export class Person {
     if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd && monthBirthDate > monthToCalculate) {
       return 3;
     }
-      if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd && monthBirthDate <= monthToCalculate) {
+    if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd && monthBirthDate <= monthToCalculate) {
       return 4;
     }
 
@@ -1015,13 +1015,13 @@ export class Person {
     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) && monthBirthDate > monthToCalculate) {
       return 5;
     }
-     if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) && monthBirthDate <= monthToCalculate) {
+    if (stageFouEnd <= yearToCalculate && yearToCalculate <= (stageFouEnd + 9) && monthBirthDate <= monthToCalculate) {
       return 6;
     }
     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) && monthBirthDate > monthToCalculate) {
       return 6;
     }
-     if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) && monthBirthDate <= monthToCalculate) {
+    if ((stageFouEnd + 9) <= yearToCalculate && yearToCalculate <= (stageFouEnd + 18) && monthBirthDate <= monthToCalculate) {
       return 7;
     }
     if ((stageFouEnd + 18) <= yearToCalculate) {
@@ -1883,10 +1883,10 @@ export class Person {
     const birthDateMonth = this.birthDate.format('MMMM')
     const indexE = listOfMonthE.findIndex(i => i === actualMonth.capitalize())
     const index = listOfMonths.findIndex(i => i === allMonths[indexE])
-    console.log(`index => ${index}`);
+    // console.log(`index => ${index}`);
 
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
-    console.log(`index => ${indexEnero}`);
+    // console.log(`index => ${indexEnero}`);
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
         return this.getQuaterThree(yearToCalculate - 1)
@@ -1927,7 +1927,7 @@ export class Person {
     const birthDateMonth = this.birthDate.format('MMMM')
     const indexE = listOfMonthE.findIndex(i => i === actualMonth.capitalize())
     const index = listOfMonths.findIndex(i => i === allMonths[indexE])
-    console.log(index);
+    // console.log(index);
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
@@ -2458,14 +2458,14 @@ export class Person {
   }
 
   getAllDaysInMonth(month, year = null) {
-    console.log(`mes => ${month}`);
+    // console.log(`mes => ${month}`);
     year = year || this.NOW.year()
     return Array.from(Array(moment(`${year}-${month}`).daysInMonth()), (_, i) => i + 1)
   }
 
   getDaysOfWeekCustom(month, year = null) {
-    console.log(`year to calculate =>${year}`)
-    console.log(month);
+    // console.log(`year to calculate =>${year}`)
+    // console.log(month);
     year = year || this.NOW.year()
     String.prototype.capitalize = function () {
       return this.replace(/(^|\s)([a-z])/g, (m, p1, p2) => { return p1 + p2.toUpperCase(); });
@@ -2483,7 +2483,7 @@ export class Person {
       daysCustom.push(dayInWeek[dayIndex])
       dayIndex++
     }
-    console.log(daysCustom);
+    // console.log(daysCustom);
     return daysCustom
   }
 

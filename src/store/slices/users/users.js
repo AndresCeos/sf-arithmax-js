@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import localForage from 'localforage';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
-import { syncUserInfo } from './thunks';
+import { syncGuests, syncUserInfo } from './thunks';
 moment.locale('es-mx')
 
 const serializableDate = JSON.stringify(moment())
@@ -36,7 +36,9 @@ const initialState = {
     type: '',
     show: false
   },
-  eventYear: null
+  eventYear: null,
+  guests: [],
+  guestActive: {}
 }
 
 export const userSlice = createSlice({
@@ -96,6 +98,12 @@ export const userSlice = createSlice({
     },
     setHasGroup: (state, action) => {
       state.hasGroup = action.payload
+    },
+    setGuests: (state, action) => {
+      state.guests = action.payload
+    },
+    setGuestActive: (state, action) => {
+      state.guestActive = action.payload
     }
   }
 })
@@ -118,6 +126,8 @@ export const {
   setToast,
   setEventYear,
   setHasGroup,
+  setGuests,
+  setGuestActive
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -304,5 +314,31 @@ export const updateCreateName = user => async dispatch => {
   localForage.setItem('createName', user).then(val => {
     console.log(val)
     dispatch(setCreateName(user))
+  })
+}
+
+export const getGuestByIndex = (index) => async dispatch => {
+  let guests = await localForage.getItem('guests');
+  if (!guests) guests = []
+  dispatch(setGuestActive({
+    name: guests[index - 1]?.name ?? '',
+    date: guests[index - 1]?.date ?? ''
+  }))
+};
+
+export const updateGuestByIndex = (index, guest) => async dispatch => {
+  console.log({ index, guest })
+  let guests = await localForage.getItem('guests')
+  if (!guests) guests = []
+  guests[index - 1] = guest
+  localForage.setItem('guests', guests).then(() => {
+    dispatch(setGuests(guests))
+    syncGuests(guests)
+  })
+}
+
+export const setGuestsLogin = guests => async dispatch => {
+  localForage.setItem('guests', guests).then(() => {
+    dispatch(setGuests(guests))
   })
 }

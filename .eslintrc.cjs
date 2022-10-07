@@ -19,9 +19,16 @@ module.exports = {
   ],
   "ignorePatterns": [".eslintrc.cjs", "playwright.config.ts"],
   "rules": {
+    "no-param-reassign": ["error", {
+      props: true,
+      ignorePropertyModificationsFor: [
+        "state",
+      ]
+    }],
     "max-len": "off",
     "import/prefer-default-export": "off",
     "no-console": "off",
+    "import/no-cycle": "off",
     "semi": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "react/react-in-jsx-scope": "off",
