@@ -991,7 +991,7 @@ export class Person {
     const stageTwoEnd = stageOneEnd + 9
     if (stageOneEnd <= yearToCalculate && yearToCalculate <= stageTwoEnd) {
       if (yearToCalculate === stageTwoEnd && monthBirthDate <= monthToCalculate) {
-      return 3;
+        return 3;
       }
       return 2;
     }
@@ -1001,8 +1001,8 @@ export class Person {
     const stageThrEnd = stageTwoEnd + 9
     if (stageTwoEnd <= yearToCalculate && yearToCalculate <= stageThrEnd) {
       if (yearToCalculate === stageThrEnd && monthBirthDate <= monthToCalculate) {
-      return 4;
-    }
+        return 4;
+      }
       return 3;
     }
 
@@ -1269,11 +1269,10 @@ export class Person {
     for (const num of appearances) {
       occurrences[num] = occurrences[num] ? occurrences[num] + 1 : 1;
     }
-    Object.entries(occurrences).forEach(occurrence => {
-      if (occurrence[1] === 3) {
-        occurrences[occurrence[1]] += 1;
-      }
-    })
+    const triplicity = Object.entries(occurrences).filter(e => e[1] === 3).map(e => this.reduceNumber(e[0] * 3))
+    if (occurrences[triplicity] !== 3) {
+      occurrences[triplicity] += 1;
+    }
     return Object.entries(occurrences).filter(e => e[1] === 3).map(e => this.reduceNumber(e[0] * 3)).join(', ')
   }
 
@@ -1473,7 +1472,7 @@ export class Person {
   }
 
   reduceNumberOnce(reduceSum) {
-      reduceSum = reduceSum.toString().toLowerCase().split('').reduce((r, c) => r += parseInt(c), 0);
+    reduceSum = reduceSum.toString().toLowerCase().split('').reduce((r, c) => r += parseInt(c), 0);
     return parseInt(reduceSum);
   }
 
