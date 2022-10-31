@@ -1,17 +1,16 @@
 import { useSelector } from 'react-redux';
 
-import { NameBreakdown, StatusBar,
-  UnselectedConsultant, ActiveName } from '../components/';
+import { ActiveName, NameBreakdown, UnselectedConsultant } from '../components';
 import { useConsultant } from '../hooks';
 
-import { TiPlus } from "react-icons/ti";
+import { TiPlus } from 'react-icons/ti';
 
 const NamePage = () => {
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const { consultant } = useConsultant()
 
-  if( isEmpty ){
+  if (isEmpty) {
     return <UnselectedConsultant />
   }
 
@@ -19,49 +18,58 @@ const NamePage = () => {
 
   const names = nameView.toLocaleLowerCase().split(' ')
   console.log(names)
-  const ungroupNames = names.map( el =>  {
+  const ungroupNames = names.map(el => {
     return {
-      name: consultant.getUngroupName( el ),
-      values: consultant.getUngroupNameValues( el ),
-      total: consultant.getUngroupNameTotal( el )
+      name: consultant.getUngroupName(el),
+      values: consultant.getUngroupNameValues(el),
+      total: consultant.getUngroupNameTotal(el)
     }
   })
-  ungroupNames.map( (el) => {
+  ungroupNames.map((el) => {
     for (let index = el.name.length; index < 28; index++) {
-      el.name.push( [] )
+      el.name.push([])
     }
   })
 
 
-  const ungroupLast = consultant.getUngroupName( lastName )
-  const ungroupLastV = consultant.getUngroupNameValues( lastName )
-  const ungroupLastT = consultant.getUngroupNameTotal( lastName )
+  const ungroupLast = consultant.getUngroupName(lastName)
+  const ungroupLastV = consultant.getUngroupNameValues(lastName)
+  const ungroupLastT = consultant.getUngroupNameTotal(lastName)
 
   for (let index = ungroupLast.length; index < 28; index++) {
-    ungroupLast.push( [] )
+    ungroupLast.push([])
   }
 
-  const ungroupSCDLast = consultant.getUngroupName( scdLastName )
-  const ungroupSCDLastV = consultant.getUngroupNameValues( scdLastName )
-  const ungroupSCDLastT = consultant.getUngroupNameTotal( scdLastName )
+  const ungroupSCDLast = consultant.getUngroupName(scdLastName)
+  const ungroupSCDLastV = consultant.getUngroupNameValues(scdLastName)
+  const ungroupSCDLastT = consultant.getUngroupNameTotal(scdLastName)
 
   for (let index = ungroupSCDLast.length; index < 28; index++) {
-    ungroupSCDLast.push( [] )
+    ungroupSCDLast.push([])
   }
 
-  const ungroupName = consultant.getUngroupName( name )
-  const ungroupNameV = consultant.getUngroupNameValues( name )
-  const ungroupNameT = consultant.getUngroupNameTotal( name )
+  const ungroupName = consultant.getUngroupName(name)
+  const ungroupNameV = consultant.getUngroupNameValues(name)
+  const ungroupNameT = consultant.getUngroupNameTotal(name)
 
   for (let index = ungroupName.length; index < 28; index++) {
-    ungroupName.push( [] )
+    ungroupName.push([])
   }
 
   const table = consultant.getNameSetting()
+  console.log(table)
   const table1 = table.slice(0, 31);
   const table2 = table.slice(31, 62);
   const table3 = table.slice(62, 93);
   const table4 = table.slice(93, 124);
+  console.log('table 1 ')
+  console.log(table1);
+  console.log('table 2 ')
+  console.log(table2);
+  console.log('table 3 ')
+  console.log(table3);
+  console.log('table 4 ')
+  console.log(table4);
   const appearances = consultant.getAppearances()
   const balanceExistential = {
     'Plano Físico': {
@@ -92,15 +100,13 @@ const NamePage = () => {
 
   const nameCycles = consultant.calcNameCycles()
 
-  return(
-    <>
-
-      <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pt-10'>
+  return (
+    <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pt-10'>
 
         <div className='col-span-5 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Valores Numéricos del Nombre
           </div>
@@ -131,7 +137,7 @@ const NamePage = () => {
         <div className='col-span-7 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Potencial Frecuencial del Nombre
           </div>
@@ -152,29 +158,29 @@ const NamePage = () => {
             </div>
             <div className='flex justify-between px-9 py-3'>
               <div className='flex items-center justify-center text-gray-500 font-bold'>
-                <label className='text-13 mr-3'>Año<br/>Personal</label>
+                <label className='text-13 mr-3'>Año<br />Personal</label>
                 <div className='w-10 h-10 text-2xl font-black text-black flex justify-center items-center bg-white border border-main rounded-full inner-shadow'>
                   {consultant.calcPersonalYear()}
                 </div>
                 <div className='w-8 flex items-center justify-center'>
                   <svg width="20" height="42" viewBox="0 0 20 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0.54602" y1="41.6486" x2="19.4036" y2="0.790452" stroke="black" strokeOpacity="0.45"/>
+                    <line x1="0.54602" y1="41.6486" x2="19.4036" y2="0.790452" stroke="black" strokeOpacity="0.45" />
                   </svg>
                 </div>
                 <div className='w-10 h-10 text-2xl font-black text-black flex justify-center items-center bg-white border border-main rounded-full inner-shadow'>
                   {consultant.calcOneDigitYearsOld()}
                 </div>
-                <label className='text-13 ml-3'>Dígito<br/>Edad</label>
+                <label className='text-13 ml-3'>Dígito<br />Edad</label>
               </div>
 
               <div className='flex items-center justify-center text-gray-500 font-bold'>
-                <label className='text-13 mr-3'>Número<br/>Personal</label>
+                <label className='text-13 mr-3'>Número<br />Personal</label>
                 <div className='w-10 h-10 text-2xl font-black text-black flex justify-center items-center bg-purple-30 border border-main rounded-full inner-shadow-gold'>
                   {consultant.calcPersonalNumber()}
                 </div>
                 <div className='w-8 flex items-center justify-center'>
                   <svg width="20" height="42" viewBox="0 0 20 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0.54602" y1="41.6486" x2="19.4036" y2="0.790452" stroke="black" strokeOpacity="0.45"/>
+                    <line x1="0.54602" y1="41.6486" x2="19.4036" y2="0.790452" stroke="black" strokeOpacity="0.45" />
                   </svg>
                 </div>
                 <div className='w-10 h-10 text-2xl font-black text-black flex justify-center items-center bg-aguamarina-30 border border-aguamarina rounded-full inner-shadow'>
@@ -189,24 +195,23 @@ const NamePage = () => {
         <div className='col-span-12 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Desglose del Nombre
           </div>
           <div className='pinnacle-wrap px-8 py-8'>
-            { ungroupNames.map( (ungroup, i) =>
-              <NameBreakdown key={i} name={ungroup.name} values={ungroup.values} total={ungroup.total}  description={`N${i+1}`} />
-            )}
+            { ungroupNames.map((ungroup, i) =>
+              <NameBreakdown key={i} name={ungroup.name} values={ungroup.values} total={ungroup.total} description={`N${i + 1}`} />)}
             <NameBreakdown name={ungroupLast} values={ungroupLastV} total={ungroupLastT} description="AP" />
-            <NameBreakdown name={ungroupSCDLast}  values={ungroupSCDLastV} total={ungroupSCDLastT}  description="AM" />
-            <NameBreakdown name={ungroupName}  values={ungroupNameV} total={ungroupNameT}  description="NA" />
+            <NameBreakdown name={ungroupSCDLast} values={ungroupSCDLastV} total={ungroupSCDLastT} description="AM" />
+            <NameBreakdown name={ungroupName} values={ungroupNameV} total={ungroupNameT} description="NA" />
           </div>
         </div>
 
         <div className='col-span-12 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Nombre Activo
           </div>
@@ -215,14 +220,14 @@ const NamePage = () => {
               <div className='col-span-15'>
                 <div className='flex items-center mb-6'>
                   <div className='col-span-2 text-13 font-bold text-gray-500 w-32'>Vocales</div>
-                  { ungroupNames.map( (ungroup, i) =>
+                  { ungroupNames.map((ungroup, i) => (
                     <div className='flex items-center'>
                       <div className='border border-blue w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2'>
                         {ungroup.total[0].v}
                       </div>
                       <div className='col-span-2 text-13 font-bold text-gray-500'>+</div>
                     </div>
-                  )}
+                  ))}
                   <div className='border border-blue w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2'>
                     { ungroupLastT[0].v }
                   </div>
@@ -242,14 +247,14 @@ const NamePage = () => {
                 </div>
                 <div className='flex items-center mb-6'>
                   <div className='col-span-2 text-13 font-bold text-gray-500 w-32'>Consonantes</div>
-                  { ungroupNames.map( (ungroup, i) =>
+                  { ungroupNames.map((ungroup, i) => (
                     <div className='flex items-center'>
                       <div className='border border-blue w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2'>
                         {ungroup.total[0].c}
                       </div>
                       <div className='col-span-2 text-13 font-bold text-gray-500'>+</div>
                     </div>
-                  )}
+                  ))}
                   <div className='border border-blue w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2'>
                     { ungroupLastT[0].c }
                   </div>
@@ -269,14 +274,14 @@ const NamePage = () => {
                 </div>
                 <div className='flex items-center'>
                   <div className='col-span-2 text-13 font-bold text-gray-500 w-32'>Totales</div>
-                  { ungroupNames.map( (ungroup, i) =>
+                  { ungroupNames.map((ungroup, i) => (
                     <div className='flex items-center'>
                       <div className='border border-blue w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2'>
                         { consultant.reduceNumber(ungroup.total[0].v + ungroup.total[0].c) }
                       </div>
                       <div className='col-span-2 text-13 font-bold text-gray-500'>+</div>
                     </div>
-                  )}
+                  ))}
                   <div className='border border-blue w-10 h-10 rounded-sm flex items-center justify-center text-xl font-bold inner-shadow mx-2'>
                     { consultant.reduceNumber(ungroupLastT[0].v + ungroupLastT[0].c) }
                   </div>
@@ -331,7 +336,7 @@ const NamePage = () => {
                   </div>
                   <div className='col-span-2 text-13 font-bold text-gray-500'>=</div>
                   <div className='h-10 w-10 text-2xl font-black text-black flex justify-center items-center bg-blue-30 border border-blue inner-shadow px-4 rounded-full mx-2'>
-                    { ungroupNameT[0].L }{consultant.karmicos.includes( consultant.reduceNumberISK(ungroupNameT[0].c + ungroupNameT[0].v) ) ? '*' : ''}
+                    { ungroupNameT[0].L }{consultant.karmicos.includes(consultant.reduceNumberISK(ungroupNameT[0].c + ungroupNameT[0].v)) ? '*' : ''}
                   </div>
                 </div>
               </div>
@@ -342,7 +347,7 @@ const NamePage = () => {
         <div className='col-span-12 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Ciclo del Nombre
           </div>
@@ -350,8 +355,8 @@ const NamePage = () => {
 
             <ActiveName table={table1} start={0} consultant={consultant} nameCycles={nameCycles} />
             <ActiveName table={table2} start={31} consultant={consultant} nameCycles={nameCycles} />
-            <ActiveName table={table3} start={61} consultant={consultant} nameCycles={nameCycles} />
-            <ActiveName table={table4} start={91} consultant={consultant} nameCycles={nameCycles} />
+            <ActiveName table={table3} start={62} consultant={consultant} nameCycles={nameCycles} />
+            <ActiveName table={table4} start={93} consultant={consultant} nameCycles={nameCycles} />
 
           </div>
         </div>
@@ -359,7 +364,7 @@ const NamePage = () => {
         <div className='col-span-12 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Equilibrio de Planos Existenciales
           </div>
@@ -380,7 +385,7 @@ const NamePage = () => {
               </div>
             </div>
             <div className='flex'>
-              { Object.entries(balanceExistential).map( (el, i, a) =>
+              { Object.entries(balanceExistential).map((el, i, a) => (
                 <div key={i} className='balanceExistential flex justify-center items-center flex-col w-1/4' data-value={el[1].v}>
                   <div className={`h-10 w-10 text-xl font-bold flex justify-center items-center bg-white border border-gray-500 rounded-md inner-shadow my-4 ${el[1].c}`}>
                     {el[1].v}
@@ -388,14 +393,14 @@ const NamePage = () => {
                   <div className={`text-13 font-bold ${el[1].cT}`}>
                     {el[0]}
                   </div>
-                  <div className={`text-13 text-gray-500`}>
+                  <div className="text-13 text-gray-500">
                     {el[1].d}
                   </div>
                   {/* <div className='text-13 text-gray-500 h-5'>{el[1].v} </div>
                   <div className='h-10 w-10 text-xl font-bold flex justify-center items-center bg-purple-30 border border-main rounded-md inner-shadow'>{el[0]} </div>
                   <div className='h-10 w-10 text-xl font-bold flex justify-center items-center bg-gray-300 border border-gray-500 rounded-md inner-shadow'>{el[1].a} </div> */}
                 </div>
-              )}
+              ))}
             </div>
           </div>
           </div>
@@ -404,14 +409,14 @@ const NamePage = () => {
         <div className='col-span-12 mb-5'>
           <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl'/>
+              <TiPlus className='text-2xl' />
             </div>
             Tabla de inclusión
           </div>
           <div className='pinnacle-wrap px-8 py-8'>
             <div className='grid grid-cols-11 gap-3'>
               <div className='col-span-2 gap-4 flex justify-center items-center flex-col'>
-                <div className='h-5'></div>
+                <div className='h-5' />
                 <div className='w-full col-start-1 row-start-2 col-span-2 h-10 text-xl font-black text-black flex justify-center items-center bg-purple-30 border border-main rounded-md inner-shadow'>
                   Casas
                 </div>
@@ -420,19 +425,18 @@ const NamePage = () => {
                 </div>
               </div>
 
-              { Object.entries(appearances).map( (el, i) =>
+              { Object.entries(appearances).map((el, i) => (
                 <div key={i} className='gap-4 flex justify-center items-center flex-col'>
                   <div className='text-13 text-gray-500 h-5'>{el[1].v} </div>
                   <div className='h-10 w-10 text-xl font-bold flex justify-center items-center bg-purple-30 border border-main rounded-md inner-shadow'>{el[0]} </div>
                   <div className='h-10 w-10 text-xl font-bold flex justify-center items-center bg-gray-300 border border-gray-500 rounded-md inner-shadow'>{el[1].a} </div>
                 </div>
-              )}
+              ))}
             </div>
           </div>
         </div>
 
-      </div>
-    </>
+    </div>
   )
 }
 export default NamePage

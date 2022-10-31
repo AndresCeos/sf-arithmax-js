@@ -1570,7 +1570,7 @@ export class Person {
       case 'j': return 1;
       case 's': return 1;
       case 'b': return 2;
-      case 'k': return 2;
+      case 'k': return 11;
       case 't': return 2;
       case 'c': return 3;
       case 'l': return 3;
