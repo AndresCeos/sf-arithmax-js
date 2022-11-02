@@ -1,13 +1,13 @@
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
 import { CircleNumber } from './CircleNumber';
 
-export const Bridge = ({ top, right, bottom, left, center, stageStart, stageEnd, stageDoubleStart, stageDoubleEnd, hasDouble, descrb }) => {
-console.log(hasDouble);
+export const Bridge = ({ top, right, bottom, left, center, stageStart, stageEnd, stageDoubleStart, stageDoubleEnd, hasDouble, descrb, descrt }) => {
+  console.log(hasDouble);
   return (
     <>
       <div className='w-full flex items-center justify-center bg-opacity-100'>
         <div className='grid grid-cols-3 mt-3 gap-2 bridge-wrap relative'>
-          <CircleNumber size="xs" appearance="green" border="green" position="et" descrt="E">
+          <CircleNumber size="xs" appearance="green" border="green" position="et" descrt={descrt}>
             {top}
           </CircleNumber>
           <CircleNumber size="xs" appearance="white" border="purple" position="el" descb="A">
@@ -38,9 +38,9 @@ console.log(hasDouble);
         {stageStart !== stageDoubleStart && (
           <>
             {hasDouble && (
-            <div className='flex gap-1 mt-4'>
-              <FaArrowAltCircleUp color='#51A133' size={14} /> {stageDoubleStart}
-            </div>
+              <div className='flex gap-1 mt-4'>
+                <FaArrowAltCircleUp color='#51A133' size={14} /> {stageDoubleStart}
+              </div>
             )}
             {stageDoubleEnd
               && (

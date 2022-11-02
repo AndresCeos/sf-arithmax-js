@@ -23,6 +23,7 @@ const VibrationTimePage = () => {
   const annualReturnNextYear = consultant.annualReturn(newDate.year() + 1)
 
   const nineYearCycle = consultant.getNineYearCycleStage(newDate.year())
+  const hasDouble = consultant.hasDoubleStage()
   // eslint-disable-next-line react/no-unstable-nested-components
   const StageOne = () => {
     const birthYear = consultant.getYearOfBirth()
@@ -67,6 +68,7 @@ const VibrationTimePage = () => {
           <div className='col-start-1 row-start-2 row-span-2 m-auto'>
             <CircleNumber size="sm" appearance="green-50" border="green">
               {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}
+              {hasDouble && `/${consultant.calcLifeStage(consultant.getDoubleLifeStageNumber(newDate.year()))}`}{consultant.calcLifeStageISK(consultant.getDoubleLifeStageNumber(newDate.year()))}
             </CircleNumber>
           </div>
           <b className='col-start-2 row-start-2 text-sm pl-1'>Año Personal</b>
@@ -131,10 +133,11 @@ const VibrationTimePage = () => {
           Ciclo de 9 años
         </div>
         <div className='pinnacle-wrap grid grid-cols-9 px-4 py-8 w-full'>
-          <div className="col-start-4 col-end-6 flex justify-center items-center mb-6 row-start-1">
+          <div className="col-start-4 col-end-6 flex justify-between items-center mb-6 row-start-1">
             Etapa {consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)}:
             <CircleNumber size="sm" appearance="green-50" border="green">
               {consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}
+              {hasDouble && `/${consultant.calcLifeStage(consultant.getDoubleLifeStageNumber(newDate.year()))}`}{consultant.calcLifeStageISK(consultant.getDoubleLifeStageNumber(newDate.year()))}
 
             </CircleNumber>
           </div>

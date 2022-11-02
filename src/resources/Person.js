@@ -714,6 +714,7 @@ export class Person {
     if (stage === 7) return stageOne
   }
 
+
   /** Life Stage Karmico */
   calcLifeStageISK(stage = 1) {
     const reducedYear = this.reduceNumber(this.birthDate.year())
@@ -798,24 +799,16 @@ export class Person {
   }
 
   hasDoubleStage() {
-    const yearBirthDate = this.birthDate.year()
-    const monthBirthDate = this.birthDate.month() + 1
-    const dayBirthDate = this.birthDate.date()
+    const master = [11, 22]
+    const D = this.getD()
+    const dC = this.getDCheck()
 
-    const reducedYear = this.reduceNumber(yearBirthDate)
-    const reducedMonth = this.reduceNumber(monthBirthDate)
-    const reducedDay = this.reduceNumber(dayBirthDate)
-
-    const etapa_1 = yearBirthDate + monthBirthDate + dayBirthDate
-    const etapa_2 = reducedYear + reducedMonth + reducedDay
-    const reduce_stage_1 = this.reduceNumber(etapa_1)
-    const reduce_stage_2 = this.reduceNumber(etapa_2)
-    // console.log('etapa 1 => '+ this.reduceNumber(etapa_1))
-    // console.log('etapa 2 => '+ this.reduceNumber(etapa_2))
-    if (reduce_stage_1 === reduce_stage_2) {
-      return false;
+    if ((master.includes(D) || master.includes(dC))) {
+      console.log('TIENEN ETAPA DOBLE')
+      return true
     }
-    return true;
+    console.log('NO TIENEN ETAPA DOBLE')
+    return false
   }
 
 
@@ -839,15 +832,18 @@ export class Person {
 
   calcDoubleLifeStageDuration(stage = 1) {
     const year = this.birthDate.year()
-    const month = this.birthDate.month() + 1
-    const day = this.birthDate.date()
-
-    const yearReduce = this.reduceNumber(year)
-    const monthReduce = this.reduceNumber(month)
-    const dayReduce = this.reduceNumber(day)
-
-    const reduced = this.reduceNumber(yearReduce + monthReduce + dayReduce)
-
+    const D = this.getD()
+    const dC = this.getDCheck()
+    let reduced = dC
+    if (D === dC) {
+      if (D === 11) {
+        reduced = 2
+      }
+      if (D === 22) {
+        reduced = 4
+      }
+    }
+    console.log(reduced)
     const stageOneEnd = year + 36 - reduced
     if (stage === 1) return stageOneEnd
 
@@ -1040,17 +1036,19 @@ export class Person {
   getDoubleLifeStageNumber(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     const yearBirthDate = this.birthDate.year()
-    const monthBirthDate = this.birthDate.month() + 1
-    const dayBirthDate = this.birthDate.date()
 
-    const reducedYear = this.reduceNumber(yearBirthDate)
-    const reducedMonth = this.reduceNumber(monthBirthDate)
-    const reducedDay = this.reduceNumber(dayBirthDate)
+    const D = this.getD()
+    const dC = this.getDCheck()
+    let reduceSum = dC
+    if (D === dC) {
+      if (D === 11) {
+        reduceSum = 2
+      }
+      if (D === 22) {
+        reduceSum = 4
+      }
+    }
 
-    // const reduceSum = this.reduceNumber( yearBirthDate + monthBirthDate + dayBirthDate )
-    const reduceSum = this.reduceNumber(reducedYear + reducedMonth + reducedDay)
-    // console.log('double =>'+reduceSum)
-    // const stageOne = this.reduceNumber( reducedMonth + reducedDay )
     const stageOneEnd = yearBirthDate + 36 - reduceSum
     console.log(`final etapa doble => ${stageOneEnd}`);
     if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd) {
@@ -1974,22 +1972,30 @@ export class Person {
     const quaterMonth = this.NOW.month(month - 1).format('MMMM')
     const monthIndex = this.getCustomMonths().findIndex(i => i === quaterMonth.capitalize())
     const indexEnero = this.getCustomMonths().findIndex(i => i === 'Enero')
+    console.log(this.getCustomMonths())
+    console.log(quaterMonth);
+    console.log(monthIndex);
+    console.log(indexEnero)
+
     switch (month) {
       case 1:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterOne(year) }
             return this.getQuaterOne(year - 1)
           }
           return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2004,12 +2010,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2024,12 +2032,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2044,12 +2054,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2064,12 +2076,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2084,12 +2098,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2104,12 +2120,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2124,12 +2142,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2144,12 +2164,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2164,12 +2186,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2184,12 +2208,14 @@ export class Person {
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)
@@ -2198,18 +2224,21 @@ export class Person {
       case 12:
         if (monthIndex < 5) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterOne(year) }
             return this.getQuaterOne(year - 1)
           }
           return this.getQuaterOne(year)
         }
         if (monthIndex > 4 && monthIndex < 9) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterTwo(year) }
             return this.getQuaterTwo(year - 1)
           }
           return this.getQuaterTwo(year)
         }
         if (monthIndex > 8) {
           if (monthIndex >= indexEnero) {
+            if (indexEnero === 0) { return this.getQuaterThree(year) }
             return this.getQuaterThree(year - 1)
           }
           return this.getQuaterThree(year)

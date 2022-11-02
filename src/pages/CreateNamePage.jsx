@@ -90,51 +90,51 @@ const CreateNamePage = () => {
 
   return (
     <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pt-10'>
-        <div className='col-span-12 mb-5'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-              <TiPlus className='text-2xl' />
-            </div>
-            Crear Nombre
-            <MdEdit className='ml-2 text-2xl' />
+      <div className='col-span-12 mb-5'>
+        <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+          <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
+            <TiPlus className='text-2xl' />
           </div>
-          <div className='pinnacle-wrap px-8 py-8'>
-            <div className="form-container block">
-              <div className="flex w-full gap-4">
-                <div className="form-group w-2/3">
-                  <label className='font-bold mb-1 '>
-                    <MdEdit className='text-xl' /> Nombre
-                  </label>
-                  <input
-                    type="text"
-                    name="names"
-                    value={createNameData.name}
-                    onChange={handleChange}
-                    className="rounded"
-                    ref={inputName}
-                  />
-                </div>
-                <div className="form-group w-1/3">
-                  <label className='font-bold mb-1'>
-                    <MdEdit className='text-xl' /> Fecha de Nacimiento
-                  </label>
-                  <input
-                    type="date"
-                    name="date"
-                    value={createNameData.birthDate}
-                    onChange={handleChange}
-                    className="rounded"
-                    ref={inputDate}
-                  />
-                </div>
+          Crear Nombre
+          <MdEdit className='ml-2 text-2xl' />
+        </div>
+        <div className='pinnacle-wrap px-8 py-8'>
+          <div className="form-container block">
+            <div className="flex w-full gap-4">
+              <div className="form-group w-2/3">
+                <label className='font-bold mb-1 '>
+                  <MdEdit className='text-xl' /> Nombre
+                </label>
+                <input
+                  type="text"
+                  name="names"
+                  value={createNameData.name}
+                  onChange={handleChange}
+                  className="rounded"
+                  ref={inputName}
+                />
+              </div>
+              <div className="form-group w-1/3">
+                <label className='font-bold mb-1'>
+                  <MdEdit className='text-xl' /> Fecha de Nacimiento
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  value={createNameData.birthDate}
+                  onChange={handleChange}
+                  className="rounded"
+                  ref={inputDate}
+                />
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {
-          isValid()
-            ? (
+      {
+        isValid()
+          ? (
             <>
               <div className='col-span-8 mb-5'>
                 <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
@@ -170,9 +170,9 @@ const CreateNamePage = () => {
                       </div>
                     </div>
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
-                      <label className='text-13 mb-3'>Dígito Edad</label>
+                      <label className='text-13 mb-3'>Ciclo de letras</label>
                       <div className='w-18 h-18 text-3xl font-black text-black flex justify-center items-center bg-white border border-blue rounded-full inner-shadow'>
-                        {createNameObj.calcOneDigitYearsOld()}
+                        {createNameObj.nameCount()}
                       </div>
                     </div>
                   </div>
@@ -210,7 +210,7 @@ const CreateNamePage = () => {
                       </div>
                     </div>
 
-                    { Object.entries(createNameObj.getAppearances()).map((el, i) => (
+                    {Object.entries(createNameObj.getAppearances()).map((el, i) => (
                       <div key={i} className='gap-4 flex justify-center items-center flex-col'>
                         <div className='text-13 text-gray-500 h-5'>{el[1].v} </div>
                         <div className='h-10 w-10 text-xl font-bold flex justify-center items-center bg-purple-30 border border-main rounded-md inner-shadow'>{el[0]} </div>
@@ -307,9 +307,9 @@ const CreateNamePage = () => {
                 </div>
               </div>
             </>
-)
+          )
           : <div className="col-span-12 text-center font-bold">Ingresa datos validos.</div>
-        }
+      }
 
     </div>
   )

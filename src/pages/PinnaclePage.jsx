@@ -25,6 +25,7 @@ const PinnaclePage = () => {
   const annualReturnNextYear = consultant.annualReturn(newDate.year() + 1)
 
   const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
+  const activeScdStage = consultant.getDoubleLifeStageNumber(newDate.year())
   const secondStage = consultant.hasDoubleStage()
 
   const checkPinacle = () => {
@@ -90,7 +91,7 @@ const PinnaclePage = () => {
       <div className='col-span-6 row-span-2'>
         <WrapTitle title="Puentes por etapa" color='bg-green-s' />
         <div className='pinnacle-wrap grid grid-cols-4'>
-          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 1 || activeStage === 7 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 1 || activeStage === 7) || (activeScdStage == 1 || activeScdStage === 7) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
             <h2 className='text-xs font-bold text-center'>
               Puente 1
             </h2>
@@ -106,9 +107,10 @@ const PinnaclePage = () => {
               stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(7) - consultant.birthDate.year()} años`}
               hasDouble={secondStage}
               descrb='K'
+              descrt='E'
             />
           </div>
-          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 2 || activeStage === 6 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 2 || activeStage === 6) || (activeScdStage === 2 || activeScdStage === 6) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
             <h2 className='text-xs font-bold text-center'>
               Puente 2
             </h2>
@@ -124,9 +126,10 @@ const PinnaclePage = () => {
               stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(6) - consultant.birthDate.year()} años`}
               hasDouble={secondStage}
               descrb='L'
+              descrt='F'
             />
           </div>
-          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 3 || activeStage === 5 ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 3 || activeStage === 5) || (activeScdStage === 3 || activeScdStage === 5) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
             <h2 className='text-xs font-bold text-center'>
               Puente 3
             </h2>
@@ -142,9 +145,10 @@ const PinnaclePage = () => {
               stageDoubleEnd={`${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(5) - consultant.birthDate.year()} años`}
               hasDouble={secondStage}
               descrb='M'
+              descrt='G'
             />
           </div>
-          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 ? 'bg-active-radial' : null}`}>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 || activeScdStage === 4 ? 'bg-active-radial' : null}`}>
             <h2 className='text-xs font-bold text-center'>
               Puente 4
             </h2>
@@ -158,6 +162,7 @@ const PinnaclePage = () => {
               stageDoubleStart={`${consultant.calcDoubleLifeStageDuration(3) - consultant.birthDate.year()} - ${consultant.calcDoubleLifeStageDuration(4) - consultant.birthDate.year()} años`}
               hasDouble={secondStage}
               descrb='N'
+              descrt='H'
             />
           </div>
         </div>
