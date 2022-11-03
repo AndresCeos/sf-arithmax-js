@@ -1,17 +1,17 @@
 import { dateSelect } from '../hooks';
 
-export const QuaterPerYear = ({ consultant, isGroup }) => {
+export const QuaterPerYear = ({ consultant, isGroup, isSynastry }) => {
   const { newDate } = dateSelect()
 
   const nineYearCycle = consultant.getNineYearCycle(newDate.year())
 
   const listOfMonths = consultant.getCustomMonths()
   const indexOfMonth = listOfMonths.findIndex(i => i === 'Enero')
-  const bornFirst = consultant.getDayOfBirth()
+  const bornFirst = (isGroup || isSynastry) ? 2 : consultant.getDayOfBirth()
   console.log(`Index del mes =>${indexOfMonth}`);
   const CurrentQuaterFont = () => {
     if (indexOfMonth === 0) {
-      if (isGroup) {
+      if (isGroup || isSynastry) {
         return (
           <>
             <div className='col-start-7 row-span-4 row-start-8 bg-active-radial' />
@@ -82,8 +82,8 @@ export const QuaterPerYear = ({ consultant, isGroup }) => {
           <div className={`col-start-7 ${bornFirst === 1 ? 'row-start-7' : 'row-start-8'}   row-span-4 bg-active-radial`} />
           {nineYearCycle.map((data, i) => (
             <>
-              <div className={`${consultant.getDayOfBirth() === 1 ? 'row-start-11' : 'row-start-12'} col-start-${i + 3} flex justify-center text-gray-500`}>{data}</div>
-              <div className={`${consultant.getDayOfBirth() === 1 ? 'row-start-14' : 'row-start-15'} col-start-${i + 3} flex justify-center text-gray-500`}>{data + 1}</div>
+              <div className={`${bornFirst === 1 ? 'row-start-11' : 'row-start-12'} col-start-${i + 3} flex justify-center text-gray-500`}>{data}</div>
+              <div className={`${bornFirst === 1 ? 'row-start-14' : 'row-start-15'} col-start-${i + 3} flex justify-center text-gray-500`}>{data + 1}</div>
             </>
           ))}
         </>
@@ -115,7 +115,7 @@ export const QuaterPerYear = ({ consultant, isGroup }) => {
         ${(year === newDate.year()) && indexOfMonth >= 5 && indexOfMonth <= 8 ? 'font-bold ' : ''}
         ${(indexOfMonth === 0 && year === newDate.year()) ? 'font-bold ' : ''}
         ${(indexOfMonth >= 9 && indexOfMonth <= 11 && year === newDate.year()) ? 'font-bold ' : ''}
-        col-start-${i + 3}  row-start-3 ${consultant.getDayOfBirth() === 1 ? 'row-span-4' : 'row-span-5'}  text-5xl flex justify-center items-center border border-gray-500 text-gray-500 `}
+        col-start-${i + 3}  row-start-3 ${bornFirst === 1 ? 'row-span-4' : 'row-span-5'}  text-5xl flex justify-center items-center border border-gray-500 text-gray-500 `}
               >{consultant.getQuaterOne()}{consultant.getQuaterOneISK()}
               </div>
               <div className={`
@@ -126,7 +126,7 @@ export const QuaterPerYear = ({ consultant, isGroup }) => {
         ${(indexOfMonth === 5 && year === newDate.year() - 1) ? 'font-bold ' : ''}
         ${(indexOfMonth >= 9 && indexOfMonth <= 11 && year === newDate.year()) ? 'font-bold ' : ''}
         ${(year !== newDate.year()) ? 'text-gray-500' : ''}
-        col-start-${i + 3} ${consultant.getDayOfBirth() === 1 ? 'row-start-7' : 'row-start-8'}  row-span-4  text-5xl flex justify-center items-center border border-gray-500 text-gray-500`}
+        col-start-${i + 3} ${bornFirst === 1 ? 'row-start-7' : 'row-start-8'}  row-span-4  text-5xl flex justify-center items-center border border-gray-500 text-gray-500`}
               >{consultant.getQuaterTwo(year)}{consultant.getQuaterTwoISK(year)}
               </div>
               <div className={`
@@ -137,7 +137,7 @@ export const QuaterPerYear = ({ consultant, isGroup }) => {
       ${(year === newDate.year() - 1) && indexOfMonth >= 5 && indexOfMonth <= 8 ? ' font-bold ' : ''}
       ${((year === newDate.year() - 1) && indexOfMonth >= 1 && indexOfMonth <= 4) ? ' font-bold ' : ''}
       ${(year !== newDate.year()) ? 'text-gray-500' : ''}
-      col-start-${i + 3} ${consultant.getDayOfBirth() === 1 ? 'row-start-11' : 'row-start-12'}  row-span-4  text-5xl flex justify-center items-center border border-gray-500 text-gray-500 `}
+      col-start-${i + 3} ${bornFirst === 1 ? 'row-start-11' : 'row-start-12'}  row-span-4  text-5xl flex justify-center items-center border border-gray-500 text-gray-500 `}
               >{consultant.getQuaterThree(year)}{consultant.getQuaterThreeISK(year)}
               </div>
             </>
