@@ -1,5 +1,6 @@
+import cx from 'classnames';
 import { saveAs } from 'file-saver';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { dateSelect, useConsultant, useGroup } from '../hooks';
@@ -10,17 +11,21 @@ import addUser from '../assets/icons/add_user.svg';
 import changeDateIcon from '../assets/icons/change_date.svg';
 import groupData from '../assets/icons/group_data.svg';
 import mail from '../assets/icons/mail.svg';
+import notes from '../assets/icons/notes.svg';
 import partnerData from '../assets/icons/partner_data.svg';
 import printReports from '../assets/icons/print_reports.svg';
 import saveReport from '../assets/icons/save_report.svg';
 import updateUser from '../assets/icons/update_user.svg';
 import Logo from '../assets/logo.png';
 
+
 import { pdf, PDFViewer } from '@react-pdf/renderer';
 import moment from 'moment/min/moment-with-locales';
 import { AnnualReturnsPDF, CalendarPDF, CircleTimePDF, CompatibilityTablePDF, CreateNamePDF, DestinityPDF, GroupAnnualReturnsPDF, GroupPinnaclePDF, GroupVibrationTimePDF, LifePathPDF, MonthPDF, NamePDF, PDF, PinnaclePDF, SynastryAnnualReturnsPDF, SynastryDestinityPDF, SynastryPinnaclePDF, SynastryVibrationTimePDF, TimeVibrationPDF } from '../components-pdf/document';
+import { useNotes } from '../hooks/useNotes';
 import { Group, Person, sanitize, Synastry } from '../resources';
 import Modal from './Modal';
+import { ModalNotes } from './ModalNotes';
 import { Notifications } from './Notifications';
 
 
@@ -37,6 +42,12 @@ export const Navbar = () => {
   const [previewDocument, setPreviewDocument] = useState(false)
   const { name: createName, date: createDate } = useSelector(state => state.users.createName)
   const isSelectedPartner = Object.keys(userPartnerActive).length > 0;
+  const [isDownloadPDFEnabled, setIsDownloadPDFEnabled] = useState(false)
+  const dispatch = useDispatch();
+  const location = useLocation()
+  const path = location.pathname.split('/')[1]
+
+  const note = useNotes({ isDownloadPDFEnabled, consultant, dispatch, path })
 
   const { names, lastName, scdLastName, date, email, webSite, phone, logoURL } = useSelector(state => state.auth)
   const sidebar = { email, webSite, phone }
@@ -62,7 +73,6 @@ export const Navbar = () => {
 
   const synastry = new Synastry(consultant, partner)
 
-  const dispatch = useDispatch();
   const changeDate = () => {
     Swal.fire({
       title: 'Seleccione la fecha que quieras consultar',
@@ -93,7 +103,6 @@ export const Navbar = () => {
     dispatch(setIsEditing(true))
   }
 
-  const location = useLocation()
 
   const reportList = [
     'pinaculo',
@@ -116,21 +125,27 @@ export const Navbar = () => {
     'group_retornos'
   ]
 
-  const path = location.pathname.split('/')[1]
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const existDownloadPDF = () => {
     return reportList.includes(path)
   }
-  let isDownloadPDFEnabled = existDownloadPDF() && !isEmpty
 
-  if (location.pathname.includes('group') && !isEmpty) {
-    const isEmptyG = Object.keys(userActive.group).length === 0;
-    const groupCap = groupConsult.group
-    isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyG && groupCap.length >= 3)
-  }
-  if (location.pathname.includes('sinastria') && !isEmpty) {
-    const isEmptyP = Object.keys(userActive.partner).length === 0;
-    isDownloadPDFEnabled = existDownloadPDF() && (!isEmptyP && isSelectedPartner)
-  }
+  useEffect(() => {
+    if (location.pathname.includes('group') && !isEmpty) {
+      const isEmptyG = Object.keys(userActive.group).length === 0;
+      const groupCap = groupConsult.group
+      const isEnabled = existDownloadPDF() && (!isEmptyG && groupCap.length >= 3)
+      setIsDownloadPDFEnabled(isEnabled)
+    } else if (location.pathname.includes('sinastria') && !isEmpty) {
+      const isEmptyP = Object.keys(userActive.partner).length === 0;
+      const isEnabled = existDownloadPDF() && (!isEmptyP && isSelectedPartner)
+      setIsDownloadPDFEnabled(isEnabled)
+    } else {
+      const isEnabled = existDownloadPDF() && !isEmpty
+      setIsDownloadPDFEnabled(isEnabled)
+    }
+  }, [existDownloadPDF, isEmpty, groupConsult, isSelectedPartner, userActive, location])
+
   let profile;
   if (isDownloadPDFEnabled) {
     profile = new Person({ name: names, lastName, scdLastName, birthDate: date })
@@ -159,7 +174,7 @@ export const Navbar = () => {
     }
 
     const config = [Object.entries(reports).filter(i => i[0] === path)[0][1]]
-    console.log({ config })
+    // console.log({ config })
     // eslint-disable-next-line react/no-unstable-nested-components
     const MyPDF = () => (
       <PDF
@@ -290,9 +305,9 @@ export const Navbar = () => {
             id="main-menu"
           >
             <ul className="flex flex-col md:flex-row md:space-x-6 md:mt-0 text-xs font-medium h-full">
-              <li className="flex items-center">
+              <li className="flex-center">
                 <Link
-                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  className="button-nav-bar"
                   to="/consultante"
                 >
                   <img
@@ -303,9 +318,9 @@ export const Navbar = () => {
                   Ingresar<br />Datos
                 </Link>
               </li>
-              <li className="flex items-center">
+              <li className="flex-center">
                 <Link
-                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  className="button-nav-bar"
                   to="consultante"
                   onClick={handlerEdit}
                 >
@@ -317,9 +332,9 @@ export const Navbar = () => {
                   Actualizar<br />Datos
                 </Link>
               </li>
-              <li className="flex items-center">
+              <li className="flex-center">
                 <button
-                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  className="button-nav-bar"
                   onClick={changeDate}
                 >
                   <img
@@ -330,9 +345,9 @@ export const Navbar = () => {
                   Cambiar<br />Fecha
                 </button>
               </li>
-              <li className="flex items-center">
+              <li className="flex-center">
                 <Link
-                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  className="button-nav-bar"
                   to="/sinastria"
                 >
                   <img
@@ -343,9 +358,9 @@ export const Navbar = () => {
                   Datos<br />de Pareja
                 </Link>
               </li>
-              <li className="flex items-center">
+              <li className="flex-center">
                 <Link
-                  className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                  className="button-nav-bar"
                   to="/group_pinnacle"
                 >
                   <img
@@ -356,12 +371,26 @@ export const Navbar = () => {
                   Datos<br />de Grupo
                 </Link>
               </li>
+              <li className='flex-center'>
+                <button
+                  className={cx(
+                    isDownloadPDFEnabled ? 'button-nav-bar' : 'button-nav-bar--disabled'
+                  )}
+                  onClick={note.handleModal}
+                >
+                  <img
+                    src={notes}
+                    alt='notas'
+                  />
+                  Notas de<br />Consulta
+                </button>
+              </li>
 
-              <li className="flex items-center">{isDownloadPDFEnabled
+              <li className="flex-center">{isDownloadPDFEnabled
                 ? (
                   <button
                     onClick={printSingleReport}
-                    className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                    className="button-nav-bar"
                   >
                     <img
                       src={saveReport}
@@ -372,7 +401,7 @@ export const Navbar = () => {
                   </button>
                 )
                 : (
-                  <button className="flex flex-col justify-center text-center items-center text-white h-full px-3 opacity-30 cursor-auto">
+                  <button className="button-nav-bar--disabled">
                     <img
                       src={saveReport}
                       className="mb-1"
@@ -383,12 +412,12 @@ export const Navbar = () => {
                 )
               }
               </li>
-              <li className="flex items-center">
+              <li className="flex-center">
                 {isDownloadPDFEnabled
                   ? (
                     <button
                       onClick={openModal}
-                      className="flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3"
+                      className="button-nav-bar"
                     >
                       <img
                         src={printReports}
@@ -409,7 +438,7 @@ export const Navbar = () => {
                     </button>
                   )}
               </li>
-              <li className="flex items-center ml-20">
+              <li className="flex-center ml-20">
                 <a href="https://app.numerologia-cotidiana.com/formulario-de-soporte-arithmax/" target="_blank" rel="noreferrer">
                   <img
                     src={mail}
@@ -417,18 +446,18 @@ export const Navbar = () => {
                   />
                 </a>
               </li>
-              <li className="flex items-center ml-7">
+              <li className="flex-center ml-7">
                 <Notifications />
               </li>
-              <li className="flex items-center ml-6">
+              <li className="flex-center ml-6">
                 <img
                   src="https://www.worldometers.info/img/flags/small/tn_mx-flag.gif"
                   className="flag"
                   alt="country"
                 />
               </li>
-              <li className="flex items-center mx-4 text-white">|</li>
-              <li className="flex items-center text-sm text-white">
+              <li className="flex-center mx-4 text-white">|</li>
+              <li className="flex-center text-sm text-white">
                 Hola! <strong className="ml-2">{userNames}</strong>
               </li>
             </ul>
@@ -449,7 +478,7 @@ export const Navbar = () => {
             </div>
             {!previewDocument
               && Object.entries(availableReports).map(item => (
-                <div key={`ck_${item[0]}`} className="flex items-center mb-4">
+                <div key={`ck_${item[0]}`} className="flex-center mb-4">
                   <input
                     onChange={handleSelectedReports}
                     id={`ck_${item[0]}`}
@@ -470,6 +499,19 @@ export const Navbar = () => {
             {previewDocument && <div className='absolute left-0 right-0 mx-auto top-20 z-50 w-11/12 h-5/6'>{printReportPreview()}</div>}
           </Modal>
         ) : null
+      }
+
+      {
+        note.showModal
+        && (
+          <Modal handleCloseModal={() => note.setShowModal(false)}>
+            <ModalNotes
+              handleSave={note.handleSave}
+              message={note.message}
+              setMessage={note.setMessage}
+            />
+          </Modal>
+        )
       }
     </>
   );

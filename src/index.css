@@ -3,3 +3,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .flex-center{
+    @apply flex items-center justify-center
+  }
+  .button-nav-bar {
+    @apply flex flex-col justify-center text-center items-center text-white hover:bg-indigo-900 h-full px-3
+  }
+  .button-nav-bar--disabled {
+    @apply flex flex-col justify-center text-center items-center text-white h-full px-3 opacity-30 cursor-auto
+  }
+}

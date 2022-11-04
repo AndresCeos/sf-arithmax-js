@@ -1,7 +1,6 @@
 import cx from 'classnames';
 
 const Modal = ({ class: $classes, handleCloseModal, ...modal }) => {
-  console.log($classes)
   return (
     <div
       className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-60'

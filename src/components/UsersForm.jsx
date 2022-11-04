@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-
 import { Formik } from 'formik';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { addUser, editUser, setIsEditing, showToast } from '../store/slices/users/users';
 
-import add_user_main from '../assets/icons/add_user_main.svg';
+import countries from '../resources/countries.json';
+
+import addUserMain from '../assets/icons/add_user_main.svg';
 
 export const UsersForm = (props) => {
   const dispatch = useDispatch();
@@ -158,25 +158,38 @@ export const UsersForm = (props) => {
             </div>
             <div className="form-group w-1/3">
               <label className='font-bold mb-1'>Nacionalidad</label>
-              <input
+              <select
                 type="text"
                 name="nationality"
-                className="rounded"
+                className="rounded border h-[30px] border-[#C4C4C4] px-2"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.nationality}
-              />
+              >
+                <option value="">-</option>
+                {
+                  countries.countries.sort((a, b) => { return a.name_es.localeCompare(b.name_es) }).map(country => (
+                    <option key={country.code_2} value={country.code_2}>
+                      {country.name_es}
+                    </option>
+                  ))
+                }
+              </select>
             </div>
             <div className="form-group w-1/3">
               <label className='font-bold mb-1'>Sexo</label>
-              <input
+              <select
                 type="text"
                 name="gender"
-                className="rounded"
+                className="rounded border h-[30px] border-[#C4C4C4] px-2"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.gender}
-              />
+              >
+                <option value="">-</option>
+                <option value="F">Femenino</option>
+                <option value="M">Masculino</option>
+              </select>
             </div>
           </div>
           <div className="flex w-full mt-3">
@@ -201,9 +214,9 @@ export const UsersForm = (props) => {
                 <span className='text-red-800'>*</span>
               </label>
               <input
-                type="number"
+                type="tel"
                 name="phone"
-                className="rounded"
+                className="rounded border h-[30px] border-[#C4C4C4]  px-2"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.phone}
@@ -233,18 +246,18 @@ export const UsersForm = (props) => {
               </div> */}
             <div className='w-1/3'>
               {(!isEditing)
-              ? (
-                <div className='text-center flex justify-center items-center flex-col'>
-                  <img src={add_user_main} className="mb-3" alt='add_user_main' />
-                  <button type="submit" className="btn-save w-full" disabled={isSubmitting}>Guardar</button>
-                </div>
-                  )
+                ? (
+                  <div className='text-center flex justify-center items-center flex-col'>
+                    <img src={addUserMain} className="mb-3" alt='addUserMain' />
+                    <button type="submit" className="btn-save w-full" disabled={isSubmitting}>Guardar</button>
+                  </div>
+                )
                 : (
-                <div className='w-full flex flex-wrap'>
-                  <button className='w-full btn-conf mb-3' type="submit" disabled={isSubmitting}>Confirmar</button>
-                  <button className='w-full btn-cancel' type='button' onClick={handleCancel}>Cancelar</button>
-                </div>
-                    )
+                  <div className='w-full flex flex-wrap'>
+                    <button className='w-full btn-conf mb-3' type="submit" disabled={isSubmitting}>Confirmar</button>
+                    <button className='w-full btn-cancel' type='button' onClick={handleCancel}>Cancelar</button>
+                  </div>
+                )
               }
             </div>
           </div>

@@ -3,7 +3,8 @@ import { sanitize } from './Helper'
 moment.locale('es-mx')
 
 export class Person {
-  constructor({ name = '', lastName = '', scdLastName = '', birthDate = null, yearMeet = '' }) {
+  constructor({ id, name = '', lastName = '', scdLastName = '', birthDate = null, yearMeet = '' }) {
+    this.id = id
     this.name = sanitize(name)
     this.lastName = sanitize(lastName)
     this.scdLastName = sanitize(scdLastName)
