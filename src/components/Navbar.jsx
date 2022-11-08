@@ -304,7 +304,7 @@ export const Navbar = () => {
             className="hidden w-full md:block md:w-auto mr-3"
             id="main-menu"
           >
-            <ul className="flex flex-col md:flex-row md:space-x-6 md:mt-0 text-xs font-medium h-full">
+            <ul className="flex flex-col md:flex-row md:space-x-5 md:mt-0 text-xs font-medium h-full">
               <li className="flex-center">
                 <Link
                   className="button-nav-bar"
