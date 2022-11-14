@@ -1,12 +1,11 @@
-import { Text, View, StyleSheet } from "@react-pdf/renderer"
-import moment from 'moment/min/moment-with-locales'
-import { nowWeekNumber, capitalize } from '../../resources';
-moment.locale("es-mx")
+import { StyleSheet, Text, View } from '@react-pdf/renderer';
+import moment from 'moment/min/moment-with-locales';
+import { capitalize } from '../../resources';
+moment.locale('es-mx')
 
-export const LifePathQuarters = ({ consultant }) => {
+export const LifePathQuarters = ({ consultant, now }) => {
   // @TODO: refactor
-  const now = moment()
-  const newDate = moment()
+  const newDate = now
 
   const cicle = [
     {
@@ -51,8 +50,10 @@ export const LifePathQuarters = ({ consultant }) => {
     },
   ]
 
-  let m1, m2, m3, m4, cm1, cm2, cm3, cm4 = ''
-  let start, end = ''
+  let m1; let m2; let m3; let m4; let cm1; let cm2; let cm3; let
+    cm4 = ''
+  let start; let
+    end = ''
   const listOfMonths = consultant.getCustomMonths()
   const index = listOfMonths.findIndex(i => i === 'Enero')
 
@@ -76,26 +77,33 @@ export const LifePathQuarters = ({ consultant }) => {
   const quater1NextYear = consultant.getQuaterOne()
   // const quater2NextYear = consultant.getQuaterTwo(now.add(1, 'year'))
 
-  let ism1 = false, ism2 = false, ism3 = false, ism4 = false
+  let ism1 = false; let ism2 = false; let ism3 = false; let
+    ism4 = false
   const now2 = moment()
 
   const personalYear = consultant.calcPersonalYear()
   // String.prototype.capitalize = function() {
   //   return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
   // }
-  const actualMonth = newDate.format('MMMM');
+  const allMonth = consultant.getAllMonths()
+  const allMonthE = consultant.getAllMonthsEnglish()
 
+  const monthIndex = allMonthE.findIndex(i => i === newDate.format('MMMM'))
+  const actualMonth = allMonth[monthIndex]
+
+  console.log(actualMonth)
   const currentMonth = listOfMonths.findIndex(i => i === capitalize(actualMonth))
   const listOfMonths3 = listOfMonths.map(e => e.substring(0, 3))
   // console.log(actualMonth);
   // console.log(currentMonth);
   const currentMonthName = capitalize(listOfMonths[currentMonth])
+  console.log(index);
 
   switch (index) {
     case 0:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
-      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[4]}`
+      m2 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m3 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
       cm1 = quater1 + quater1Karmico
       cm2 = quater2 + quater2Karmico
       cm3 = quater3 + quater3Karmico
@@ -104,9 +112,9 @@ export const LifePathQuarters = ({ consultant }) => {
       if (currentMonth >= 9 && currentMonth <= 11) { ism3 = true }
       break;
     case 1:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
-      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[4]}`
+      m2 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m3 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
       m4 = listOfMonths3[index - 1]
       cm1 = quater1LastYear + quater1Karmico
       cm2 = quater2LastYear + quater2KarmicoLast
@@ -121,10 +129,10 @@ export const LifePathQuarters = ({ consultant }) => {
       break;
     case 2:
     case 3:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[4]
-      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m4 = listOfMonths3[0] + ' - ' + listOfMonths3[index - 1]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[4]}`
+      m2 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m3 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m4 = `${listOfMonths3[0]} - ${listOfMonths3[index - 1]}`
       cm1 = quater1LastYear + quater1Karmico
       cm2 = quater2LastYear + quater2KarmicoLast
       cm3 = quater3LastYear + quater3KarmicoLast
@@ -136,9 +144,9 @@ export const LifePathQuarters = ({ consultant }) => {
       break;
     case 4:
       m1 = listOfMonths3[index]
-      m2 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m3 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m4 = listOfMonths3[0] + ' - ' + listOfMonths3[index - 1]
+      m2 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m3 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m4 = `${listOfMonths3[0]} - ${listOfMonths3[index - 1]}`
       cm1 = quater1LastYear + quater1Karmico
       cm2 = quater2LastYear + quater2KarmicoLast
       cm3 = quater3LastYear + quater3KarmicoLast
@@ -149,9 +157,9 @@ export const LifePathQuarters = ({ consultant }) => {
       if (currentMonth >= 0 && currentMonth <= 7) { ism4 = true }
       break;
     case 5:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
-      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[8]}`
+      m2 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m3 = `${listOfMonths3[12]} - ${listOfMonths3[4]}`
       cm1 = quater2LastYear + quater2KarmicoLast
       cm2 = quater3LastYear + quater3KarmicoLast
       cm3 = quater1 + quater1Karmico
@@ -161,9 +169,9 @@ export const LifePathQuarters = ({ consultant }) => {
 
       break;
     case 6:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
-      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[8]}`
+      m2 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m3 = `${listOfMonths3[12]} - ${listOfMonths3[4]}`
       m4 = listOfMonths3[index - 1]
       cm1 = quater2LastYear + quater2KarmicoLast
       cm2 = quater3LastYear + quater3KarmicoLast
@@ -175,10 +183,10 @@ export const LifePathQuarters = ({ consultant }) => {
       if (currentMonth === 5) { ism4 = true }
       break;
     case 7:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[8]
-      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
-      m4 = listOfMonths3[5] + ' - ' + listOfMonths3[index - 1]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[8]}`
+      m2 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m3 = `${listOfMonths3[12]} - ${listOfMonths3[4]}`
+      m4 = `${listOfMonths3[5]} - ${listOfMonths3[index - 1]}`
       cm1 = quater2LastYear + quater2KarmicoLast
       cm2 = quater3LastYear + quater3KarmicoLast
       cm3 = quater1 + quater1Karmico
@@ -190,9 +198,9 @@ export const LifePathQuarters = ({ consultant }) => {
       break;
     case 8:
       m1 = listOfMonths3[index]
-      m2 = listOfMonths3[9] + ' - ' + listOfMonths3[11]
-      m3 = listOfMonths3[12] + ' - ' + listOfMonths3[4]
-      m4 = listOfMonths3[5] + ' - ' + listOfMonths3[index - 1]
+      m2 = `${listOfMonths3[9]} - ${listOfMonths3[11]}`
+      m3 = `${listOfMonths3[12]} - ${listOfMonths3[4]}`
+      m4 = `${listOfMonths3[5]} - ${listOfMonths3[index - 1]}`
 
       cm1 = quater2LastYear + quater2KarmicoLast
       cm2 = quater3LastYear + quater3KarmicoLast
@@ -204,9 +212,9 @@ export const LifePathQuarters = ({ consultant }) => {
       if (currentMonth >= 5 && currentMonth <= 7) { ism4 = true }
       break;
     case 9:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[11]
-      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
-      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[11]}`
+      m2 = `${listOfMonths3[0]} - ${listOfMonths3[4]}`
+      m3 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
       cm1 = quater3LastYear + quater3KarmicoLast
       cm2 = quater1 + quater1Karmico
       cm3 = quater2 + quater2Karmico
@@ -216,9 +224,9 @@ export const LifePathQuarters = ({ consultant }) => {
 
       break;
     case 10:
-      m1 = listOfMonths3[index] + ' - ' + listOfMonths3[11]
-      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
-      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
+      m1 = `${listOfMonths3[index]} - ${listOfMonths3[11]}`
+      m2 = `${listOfMonths3[0]} - ${listOfMonths3[4]}`
+      m3 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
       m4 = listOfMonths3[index - 1]
       cm1 = quater3LastYear + quater3KarmicoLast
       cm2 = quater1 + quater1Karmico
@@ -231,9 +239,9 @@ export const LifePathQuarters = ({ consultant }) => {
       break;
     case 11:
       m1 = listOfMonths3[index]
-      m2 = listOfMonths3[0] + ' - ' + listOfMonths3[4]
-      m3 = listOfMonths3[5] + ' - ' + listOfMonths3[8]
-      m4 = listOfMonths3[9] + ' - ' + listOfMonths3[index - 1]
+      m2 = `${listOfMonths3[0]} - ${listOfMonths3[4]}`
+      m3 = `${listOfMonths3[5]} - ${listOfMonths3[8]}`
+      m4 = `${listOfMonths3[9]} - ${listOfMonths3[index - 1]}`
       cm1 = quater3LastYear + quater3KarmicoLast
       cm2 = quater1 + quater1Karmico
       cm3 = quater2 + quater2Karmico
@@ -243,15 +251,15 @@ export const LifePathQuarters = ({ consultant }) => {
       if (currentMonth >= 5 && currentMonth <= 8) { ism3 = true }
       if (currentMonth >= 9 && currentMonth <= index - 1) { ism4 = true }
       break;
-
   }
+  console.log(ism4)
 
   return (
     <View style={lifePath.container}>
       <View style={lifePath.wrap}>
         <View style={lifePath.personalYears}>
           <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
+            <View style={[lifePath.item, { backgroundColor: `${ism1 ? '#66AB8E' : '#BEE1D1'}` }]}>
               <Text> {cm1} </Text>
             </View>
             <View style={lifePath.year}>
@@ -259,7 +267,7 @@ export const LifePathQuarters = ({ consultant }) => {
             </View>
           </View>
           <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
+            <View style={[lifePath.item, { backgroundColor: `${ism2 ? '#66AB8E' : '#BEE1D1'}` }]}>
               <Text> {cm2} </Text>
             </View>
             <View style={lifePath.year}>
@@ -267,21 +275,23 @@ export const LifePathQuarters = ({ consultant }) => {
             </View>
           </View>
           <View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
+            <View style={[lifePath.item, { backgroundColor: `${ism3 ? '#66AB8E' : '#BEE1D1'}` }]}>
               <Text> {cm3} </Text>
             </View>
             <View style={lifePath.year}>
               <Text> {m3.toUpperCase()} </Text>
             </View>
           </View>
-          {(m4 !== undefined) && (<View style={lifePath.itemWrap}>
-            <View style={lifePath.item}>
-              <Text>{cm4}</Text>
+          {(m4 !== undefined) && (
+            <View style={lifePath.itemWrap}>
+              <View style={[lifePath.item, { backgroundColor: `${ism4 ? '#66AB8E' : '#BEE1D1'}` }]}>
+                <Text>{cm4}</Text>
+              </View>
+              <View style={lifePath.year}>
+                <Text>{m4.toUpperCase()}</Text>
+              </View>
             </View>
-            <View style={lifePath.year}>
-              <Text>{m4.toUpperCase()}</Text>
-            </View>
-          </View>)}
+          )}
         </View>
       </View>
     </View>

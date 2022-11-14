@@ -1,8 +1,6 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer';
 
 export const NameCycle = ({ consultant, date }) => {
-
   const table = consultant.getNameSetting()
   const table1 = table.slice(0, 31);
   const table2 = table.slice(31, 62);
@@ -28,10 +26,10 @@ export const ActiveName = ({ table, start, consultant, nameCycles, date, positio
   }
   const bkConfig = (i, bg) => {
     if (i === consultantAge) {
-      return 'bg-gold'
+      return '#e3ac5a'
     }
     if (isCycle(i)) {
-      return 'bg-gold-40'
+      return '#F4DDBA'
     }
     return bg
   }
@@ -49,15 +47,15 @@ export const ActiveName = ({ table, start, consultant, nameCycles, date, positio
             <Text style={{ fontSize: 8, marginLeft: 5, fontWeight: 'bold' }}>Ciclo del </Text>
             <Text style={{ fontSize: 8, marginLeft: 5, fontWeight: 'bold' }}>Nombre </Text>
           </View>
-          {table.map((el, i) =>
-            <View key={i} style={{ position: 'absolute', left: 40 + (i * 20), top: 0 }} >
-              <View style={{ width: 20, height: 20, backgroundColor: '#3200334d', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {table.map((el, i) => (
+            <View key={i} style={{ position: 'absolute', left: 40 + (i * 20), top: 0 }}>
+              <View style={{ width: 20, height: 20, backgroundColor: `${bkConfig(i + start, '#3200334d')}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ fontSize: 7 }}>{consultant.getYearOfBirth() + i + start}</Text>
               </View>
-              <View style={{ width: 20, height: 20, backgroundColor: '#3200332d', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ width: 20, height: 20, backgroundColor: `${bkConfig(i + start, '#3200332d')}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ fontSize: 11 }}>{i + start}</Text>
               </View>
-              <View style={{ width: 20, height: 36, backgroundColor: '#0000002d', display: 'flex', justifyContent: 'center' }}>
+              <View style={{ width: 20, height: 36, backgroundColor: `${bkConfig(i + start, '#0000002d')}`, display: 'flex', justifyContent: 'center' }}>
                 <View style={{ height: 19, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Text style={{ fontSize: 11, textAlign: 'center', fontWeight: 'bold' }}>
                     {el.pmC}
@@ -70,7 +68,7 @@ export const ActiveName = ({ table, start, consultant, nameCycles, date, positio
                 </View>
               </View>
             </View>
-          )}
+          ))}
         </View>
       </View>
       {/* <Text style={{ backgroundColor: 'red' }}>-</Text> */}

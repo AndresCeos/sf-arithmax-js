@@ -1,31 +1,74 @@
-import { Text, View, StyleSheet } from "@react-pdf/renderer"
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
-export const LifePathLearningStage = ({ consultant }) => {
+export const LifePathLearningStage = ({ consultant, now }) => {
+  const activeStage = consultant.getLifeStageNumber(now.year(), now.month())
   return (
     <View style={lifePath.container}>
       <View style={lifePath.wrap}>
         <View style={lifePath.lifeStage}>
-          <View style={lifePath.lifeStageItem}>
-            <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
-          </View>
-          <View style={lifePath.lifeStageItem}>
-            <Text>{consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}</Text>
-          </View>
-          <View style={lifePath.lifeStageItem}>
-            <Text>{consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}</Text>
-          </View>
-          <View style={lifePath.lifeStageItem}>
-            <Text>{consultant.calcLifeStage(4)}{consultant.calcLifeStageISK(4)}</Text>
-          </View>
-          <View style={lifePath.lifeStageItem}>
-            <Text>{consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}</Text>
-          </View>
-          <View style={lifePath.lifeStageItem}>
-            <Text>{consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}</Text>
-          </View>
-          <View style={lifePath.lifeStageItem}>
-            <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
-          </View>
+          {(activeStage === 1) ? (
+            <View style={[lifePath.lifeStageItem, lifePath.active]}>
+              <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
+            </View>
+          ) : (
+            <View style={[lifePath.lifeStageItem]}>
+              <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
+            </View>
+          )}
+          {(activeStage === 2) ? (
+            <View style={[lifePath.lifeStageItem, lifePath.active]}>
+              <Text>{consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}</Text>
+            </View>
+          ) : (
+            <View style={lifePath.lifeStageItem}>
+              <Text>{consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}</Text>
+            </View>
+          )}
+          {(activeStage === 3) ? (
+            <View style={[lifePath.lifeStageItem, lifePath.active]}>
+              <Text>{consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}</Text>
+            </View>
+          ) : (
+            <View style={[lifePath.lifeStageItem]}>
+              <Text>{consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}</Text>
+            </View>
+          )}
+          {(activeStage === 4) ? (
+            <View style={[lifePath.lifeStageItem, lifePath.active]}>
+              <Text>{consultant.calcLifeStage(4)}{consultant.calcLifeStageISK(4)}</Text>
+            </View>
+          ) : (
+            <View style={lifePath.lifeStageItem}>
+              <Text>{consultant.calcLifeStage(4)}{consultant.calcLifeStageISK(4)}</Text>
+            </View>
+          )}
+          {(activeStage === 5) ? (
+            <View style={[lifePath.lifeStageItem, lifePath.active]}>
+              <Text>{consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}</Text>
+            </View>
+          ) : (
+            <View style={[lifePath.lifeStageItem]}>
+              <Text>{consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}</Text>
+            </View>
+          )}
+          {(activeStage === 6) ? (
+            <View style={[lifePath.lifeStageItem, lifePath.active]}>
+              <Text>{consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}</Text>
+            </View>
+          ) : (
+            <View style={[lifePath.lifeStageItem]}>
+              <Text>{consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}</Text>
+            </View>
+          )}
+          {(activeStage === 7) ? (
+            <View style={[lifePath.lifeStageItem, lifePath.active]}>
+              <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
+            </View>
+          ) : (
+            <View style={[lifePath.lifeStageItem]}>
+              <Text>{consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}</Text>
+            </View>
+          )}
         </View>
       </View>
     </View>
@@ -62,5 +105,11 @@ export const lifePath = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '12px'
+  },
+  active: {
+    backgroundColor: '#C2DEB8',
+    width: '30px',
+    height: '30px',
+    borderRadius: 40
   }
 })

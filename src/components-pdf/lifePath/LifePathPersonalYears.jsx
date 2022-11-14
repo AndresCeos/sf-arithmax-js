@@ -1,9 +1,9 @@
-import { Text, View, StyleSheet } from "@react-pdf/renderer"
-import moment from 'moment/min/moment-with-locales'
-moment.locale("es-mx")
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
-export const LifePathPersonalYears = ({ consultant }) => {
-  const newDate = moment()
+
+
+export const LifePathPersonalYears = ({ consultant, now }) => {
+  const newDate = now
   const cicle = [
     {
       vibration: consultant.calcPersonalYear(newDate.year() - 4),
@@ -51,18 +51,16 @@ export const LifePathPersonalYears = ({ consultant }) => {
     <View style={lifePath.container}>
       <View style={lifePath.wrap}>
         <View style={lifePath.personalYears}>
-          {cicle.map((cicle, i) =>
-            <>
-              <View style={lifePath.itemWrap}>
-                <View style={lifePath.item}>
-                  <Text>{cicle.vibration}{consultant.calcPersonalYearISK(cicle.year)}</Text>
-                </View>
-                <View style={lifePath.year}>
-                  <Text>{cicle.year}</Text>
-                </View>
+          {cicle.map((cicle, i) => (
+            <View style={lifePath.itemWrap}>
+              <View style={[lifePath.item, { backgroundColor: `${cicle.year === now.year() ? '#9F5D9B' : '#D7BFD5'}` }]}>
+                <Text>{cicle.vibration}{consultant.calcPersonalYearISK(cicle.year)}</Text>
               </View>
-            </>
-          )}
+              <View style={lifePath.year}>
+                <Text>{cicle.year}</Text>
+              </View>
+            </View>
+          ))}
         </View>
       </View>
     </View>

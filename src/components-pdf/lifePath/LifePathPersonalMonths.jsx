@@ -1,11 +1,10 @@
-import { Text, View, StyleSheet } from "@react-pdf/renderer"
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 import moment from 'moment/min/moment-with-locales'
-import { nowWeekNumber, capitalize } from '../../resources';
-moment.locale("es-mx")
+import { capitalize } from '../../resources'
+moment.locale('es-mx')
 
-export const LifePathPersonalMonths = ({ consultant }) => {
-  const now = moment()
-  const newDate = moment()
+export const LifePathPersonalMonths = ({ consultant, now }) => {
+  const newDate = now
 
   // const {newDate} = dateSelect()
   const listOfMonths = consultant.getCustomMonths()
@@ -16,7 +15,11 @@ export const LifePathPersonalMonths = ({ consultant }) => {
   let quaterThree = []
   let quaterFour = []
 
-  const actualMonth = newDate.format('MMMM');
+  const allMonth = consultant.getAllMonths()
+  const allMonthE = consultant.getAllMonthsEnglish()
+
+  const monthIndex = allMonthE.findIndex(i => i === newDate.format('MMMM'))
+  const actualMonth = allMonth[monthIndex]
   switch (index) {
     case 0:
       quaterOne = [listOfMonths[0], listOfMonths[1], listOfMonths[2], listOfMonths[3], listOfMonths[4]]
@@ -82,16 +85,15 @@ export const LifePathPersonalMonths = ({ consultant }) => {
       quaterThree = [listOfMonths[5], listOfMonths[6], listOfMonths[7], listOfMonths[8]]
       quaterFour = [listOfMonths[9], listOfMonths[10]]
       break;
-
   }
-  let isQuaterOne = quaterOne.find(month => month == capitalize(actualMonth))
-  let isQuaterTwo = quaterTwo.find(month => month == capitalize(actualMonth))
-  let isQuaterThree = quaterThree.find(month => month == capitalize(actualMonth))
-  let isQuaterFour = quaterFour.find(month => month == capitalize(actualMonth))
-  console.log('Cuatri 1 => ' + isQuaterOne);
-  console.log('Cuatri 2 => ' + isQuaterTwo);
-  console.log('Cuatri 3 => ' + isQuaterThree);
-  console.log('Cuatri 4 => ' + isQuaterFour);
+  const isQuaterOne = quaterOne.find(month => month == capitalize(actualMonth))
+  const isQuaterTwo = quaterTwo.find(month => month == capitalize(actualMonth))
+  const isQuaterThree = quaterThree.find(month => month == capitalize(actualMonth))
+  const isQuaterFour = quaterFour.find(month => month == capitalize(actualMonth))
+  console.log(`Cuatri 1 => ${isQuaterOne}`);
+  console.log(`Cuatri 2 => ${isQuaterTwo}`);
+  console.log(`Cuatri 3 => ${isQuaterThree}`);
+  console.log(`Cuatri 4 => ${isQuaterFour}`);
   if (isQuaterOne !== undefined) {
     return (
       <View style={lifePath.container}>
@@ -99,13 +101,13 @@ export const LifePathPersonalMonths = ({ consultant }) => {
           <View style={lifePath.personalYears}>
             {quaterOne.map((mes, i) => {
               console.log(allMonths, mes, i)
-              let index = allMonths.findIndex(i => i === mes)
+              const index = allMonths.findIndex(i => i === mes)
               return (
                 <View style={lifePath.itemWrap}>
-                  <View style={lifePath.item}>
+                  <View style={[lifePath.item, { backgroundColor: `${capitalize(mes) === actualMonth ? '#E7B62C' : '#F5E2A7'}` }]}>
                     <Text>{consultant.calcPersonalMonth(index + 1, newDate.year())}{consultant.calcPersonalMonthISK(index + 1, newDate.year())}</Text>
                   </View>
-                  <View style={lifePath.year}>
+                  <View style={lifePath.year}>{console.log(capitalize(mes))}
                     <Text>{mes.toUpperCase()}</Text>
                   </View>
                 </View>
@@ -118,7 +120,7 @@ export const LifePathPersonalMonths = ({ consultant }) => {
     return (
       <div className="flex justify-between mt-5">
         {quaterOne.map((mes, i) => {
-          let index = allMonths.findIndex(i => i === mes)
+          const index = allMonths.findIndex(i => i === mes)
           return (
             <div
               className={`
@@ -129,7 +131,8 @@ export const LifePathPersonalMonths = ({ consultant }) => {
               {consultant.calcPersonalMonth(index + 1, newDate.year())}{consultant.calcPersonalMonthISK(index + 1, newDate.year())}
               <div
                 className={`path-month-des ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'path-month-active' : ''}`}
-              >{mes.toUpperCase()}</div>
+              >{mes.toUpperCase()}
+              </div>
             </div>
           )
         })}
@@ -143,10 +146,10 @@ export const LifePathPersonalMonths = ({ consultant }) => {
           <View style={lifePath.personalYears}>
             {quaterTwo.map((mes, i) => {
               console.log(allMonths, mes, i)
-              let index = allMonths.findIndex(i => i === mes)
+              const index = allMonths.findIndex(i => i === mes)
               return (
                 <View style={lifePath.itemWrap}>
-                  <View style={lifePath.item}>
+                  <View style={[lifePath.item, { backgroundColor: `${capitalize(mes) === actualMonth ? '#E7B62C' : '#F5E2A7'}` }]}>
                     <Text>{consultant.calcPersonalMonth(index + 1, newDate.year())}{consultant.calcPersonalMonthISK(index + 1, newDate.year())}</Text>
                   </View>
                   <View style={lifePath.year}>
@@ -162,8 +165,8 @@ export const LifePathPersonalMonths = ({ consultant }) => {
     return (
       <div className="flex justify-between mt-5">
         {quaterTwo.map((mes, i) => {
-          let index = allMonths.findIndex(i => i === mes)
-          {/* console.log(mes); */ }
+          const index = allMonths.findIndex(i => i === mes)
+          { /* console.log(mes); */ }
           return (
             <div
               className={`
@@ -174,7 +177,8 @@ export const LifePathPersonalMonths = ({ consultant }) => {
               {consultant.calcPersonalMonth(index + 1, newDate.year())}{consultant.calcPersonalMonthISK(index + 1, newDate.year())}
               <div
                 className={`path-month-des ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'path-month-active' : ''}`}
-              >{mes.toUpperCase()}</div>
+              >{mes.toUpperCase()}
+              </div>
             </div>
           )
         })}
@@ -188,10 +192,10 @@ export const LifePathPersonalMonths = ({ consultant }) => {
           <View style={lifePath.personalYears}>
             {quaterThree.map((mes, i) => {
               console.log(allMonths, mes, i)
-              let index = allMonths.findIndex(i => i === mes)
+              const index = allMonths.findIndex(i => i === mes)
               return (
                 <View style={lifePath.itemWrap}>
-                  <View style={lifePath.item}>
+                  <View style={[lifePath.item, { backgroundColor: `${capitalize(mes) === actualMonth ? '#E7B62C' : '#F5E2A7'}` }]}>
                     <Text>{consultant.calcPersonalMonth(index + 1, newDate.year())}{consultant.calcPersonalMonthISK(index + 1, newDate.year())}</Text>
                   </View>
                   <View style={lifePath.year}>
@@ -207,7 +211,7 @@ export const LifePathPersonalMonths = ({ consultant }) => {
     return (
       <div className="flex justify-between mt-5">
         {quaterThree.map((mes, i) => {
-          let index = allMonths.findIndex(i => i === mes)
+          const index = allMonths.findIndex(i => i === mes)
           return (
             <div
               className={`
@@ -218,7 +222,8 @@ export const LifePathPersonalMonths = ({ consultant }) => {
               {consultant.calcPersonalMonth(index + 1, newDate.year())}{consultant.calcPersonalMonthISK(index + 1, newDate.year())}
               <div
                 className={`path-month-des ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'path-month-active' : ''}`}
-              >{mes.toUpperCase()}</div>
+              >{mes.toUpperCase()}
+              </div>
             </div>
           )
         })}
@@ -232,10 +237,10 @@ export const LifePathPersonalMonths = ({ consultant }) => {
           <View style={lifePath.personalYears}>
             {quaterFour.map((mes, i) => {
               console.log(allMonths, mes, i)
-              let index = allMonths.findIndex(i => i === mes)
+              const index = allMonths.findIndex(i => i === mes)
               return (
                 <View style={lifePath.itemWrap}>
-                  <View style={lifePath.item}>
+                  <View style={[lifePath.item, { backgroundColor: `${capitalize(mes) === actualMonth ? '#E7B62C' : '#F5E2A7'}` }]}>
                     <Text>{consultant.calcPersonalMonth(index + 1, newDate.year())}{consultant.calcPersonalMonthISK(index + 1, newDate.year())}</Text>
                   </View>
                   <View style={lifePath.year}>
@@ -251,7 +256,7 @@ export const LifePathPersonalMonths = ({ consultant }) => {
     return (
       <div className="flex justify-between mt-5">
         {quaterFour.map((mes, i) => {
-          let index = allMonths.findIndex(i => i === mes)
+          const index = allMonths.findIndex(i => i === mes)
           return (
             <div
               className={`
@@ -262,7 +267,8 @@ export const LifePathPersonalMonths = ({ consultant }) => {
               {consultant.calcPersonalMonth(index + 1, newDate.year())}{consultant.calcPersonalMonthISK(index + 1, newDate.year())}
               <div
                 className={`path-month-des ${mes.toUpperCase() === actualMonth.toUpperCase() ? 'path-month-active' : ''}`}
-              >{mes.toUpperCase()}</div>
+              >{mes.toUpperCase()}
+              </div>
             </div>
           )
         })}
@@ -392,7 +398,7 @@ export const lifePath = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '12px',
-    backgroundColor: '#F5E2A7',
+
   },
   year: {
     position: 'absolute',

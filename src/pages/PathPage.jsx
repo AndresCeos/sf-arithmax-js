@@ -67,9 +67,9 @@ const PathPage = () => {
   const cycle = consultant.getNineYearCycleStage(newDate.year())
 
   let m1; let m2; let m3; let m4; let cm1; let cm2; let cm3; let
-cm4 = ''
+    cm4 = ''
   let start; let
-end = ''
+    end = ''
   const listOfMonths = consultant.getCustomMonths()
   const index = listOfMonths.findIndex(i => i === 'Enero')
 
@@ -94,7 +94,7 @@ end = ''
   // const quater2NextYear = consultant.getQuaterTwo(now.add(1, 'year'))
 
   let ism1 = false; let ism2 = false; let ism3 = false; let
-ism4 = false
+    ism4 = false
   const now2 = moment()
 
   const personalYear = consultant.calcPersonalYear()
@@ -113,7 +113,7 @@ ism4 = false
   // console.log(actualMonth);
   // console.log(currentMonth);
   const currentMonthName = capitalize(listOfMonths[currentMonth])
-
+  console.log(index)
   switch (index) {
     case 0:
       m1 = `${listOfMonths3[index]} - ${listOfMonths3[4]}`
@@ -278,34 +278,34 @@ ism4 = false
   return (
     <div className='grid grid-cols-24 mt-8 mx-14 gap-6 pt-10'>
 
-        <div className='col-span-24 mb-5'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-              <TiPlus className='text-2xl' />
-            </div>
-            Ciclo de 9 años
+      <div className='col-span-24 mb-5'>
+        <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+          <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
+            <TiPlus className='text-2xl' />
           </div>
-          <div className='pinnacle-wrap px-8 py-8'>
-            <div className='grid grid-cols-16 text-center text-gray-500'>
-              <div className='col-start-3 col-span-full row-start-2 row-end-6 relative'>
-                <div className='absolute z-10 centered-axis-x w-full'>
-                  <img src={arrow_bk} alt='arrow_bk' />
-                </div>
+          Ciclo de 9 años
+        </div>
+        <div className='pinnacle-wrap px-8 py-8'>
+          <div className='grid grid-cols-16 text-center text-gray-500'>
+            <div className='col-start-3 col-span-full row-start-2 row-end-6 relative'>
+              <div className='absolute z-10 centered-axis-x w-full'>
+                <img src={arrow_bk} alt='arrow_bk' />
               </div>
-              <div className='col-start-1 col-span-2 row-start-2'>{newDate.year()}</div>
-              <div className='col-start-1 col-span-2 row-start-3 h-10 bg-red flex justify-center items-center text-black text-xl font-bold rounded-md border-4 border-red'>
-                Año {consultant.calcPersonalYear(newDate.year())}
-              </div>
-              <div className='col-start-1 col-span-2 row-start-5 h-9 arrow-down-cicle' />
-              <div className='col-start-1 col-span-2 row-start-6 text-13 font-bold'>
-                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][0]} <br />
-                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][1]} <br />
-                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][2]}
-              </div>
+            </div>
+            <div className='col-start-1 col-span-2 row-start-2'>{newDate.year()}</div>
+            <div className='col-start-1 col-span-2 row-start-3 h-10 bg-red flex justify-center items-center text-black text-xl font-bold rounded-md border-4 border-red'>
+              Año {consultant.calcPersonalYear(newDate.year())}
+            </div>
+            <div className='col-start-1 col-span-2 row-start-5 h-9 arrow-down-cicle' />
+            <div className='col-start-1 col-span-2 row-start-6 text-13 font-bold'>
+              {ciclePhrases[consultant.calcPersonalYear(newDate.year())][0]} <br />
+              {ciclePhrases[consultant.calcPersonalYear(newDate.year())][1]} <br />
+              {ciclePhrases[consultant.calcPersonalYear(newDate.year())][2]}
+            </div>
 
-              {(newDate.year() - 27 > consultant.getYearOfBirth())
-                && (
-<>
+            {(newDate.year() - 27 > consultant.getYearOfBirth())
+              && (
+                <>
                   <div className='col-start-4 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 27}</div>
                   <div className='col-start-4 col-span-2 row-start-3 relative'>
                     <div className='absolute z-10 centered-axis-x'>
@@ -327,14 +327,14 @@ ism4 = false
                   <div className='col-start-6 row-start-2 flex items-center justify-center'>
                     <img src={green_arrow} alt="green arrow" />
                   </div>
-</>
-)
-              }
+                </>
+              )
+            }
 
 
-              {(newDate.year() - 18 > consultant.getYearOfBirth())
-                && (
-<>
+            {(newDate.year() - 18 > consultant.getYearOfBirth())
+              && (
+                <>
                   <div className='col-start-7 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 18}</div>
                   <div className='col-start-7 col-span-2 row-start-3 relative'>
                     <div className='absolute z-10 centered-axis-x'>
@@ -353,13 +353,13 @@ ism4 = false
                   <div className='col-start-9 row-start-2 flex items-center justify-center'>
                     <img src={green_arrow} alt="green arrow" />
                   </div>
-</>
-)
-              }
+                </>
+              )
+            }
 
-              {(newDate.year() - 9 > consultant.getYearOfBirth())
-                && (
-<>
+            {(newDate.year() - 9 > consultant.getYearOfBirth())
+              && (
+                <>
                   <div className='col-start-10 col-span-2 row-start-2 text-13 font-bold'>{newDate.year() - 9}</div>
                   <div className='col-start-10 col-span-2 row-start-3 relative'>
                     <div className='absolute z-10 centered-axis-x'>
@@ -379,278 +379,278 @@ ism4 = false
                   <div className='col-start-12 row-start-2 flex items-center justify-center'>
                     <img src={green_arrow} alt="green arrow" />
                   </div>
-</>
-)
-              }
+                </>
+              )
+            }
 
 
-              <div className='col-start-13 col-span-2 row-start-2 text-13 font-bold z-10'>{newDate.year()}</div>
-              <div className='col-start-13 col-span-2 row-start-3 relative'>
-                <div className='absolute z-10 centered-axis-x'>
-                  <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
-                    {consultant.calcPersonalYear(newDate.year())}
-                  </div>
+            <div className='col-start-13 col-span-2 row-start-2 text-13 font-bold z-10'>{newDate.year()}</div>
+            <div className='col-start-13 col-span-2 row-start-3 relative'>
+              <div className='absolute z-10 centered-axis-x'>
+                <div className="w-10 h-10 text-xl font-black text-black flex justify-center items-center bg-red border border-red rounded-full inner-shadow">
+                  {consultant.calcPersonalYear(newDate.year())}
                 </div>
               </div>
-              <div className='col-start-13 col-span-2 row-start-5 h-9 arrow-down-cicle' />
-              <div className='col-start-13 col-span-2 row-start-6 text-13 font-bold'>
-                {ciclePhrases[consultant.calcPersonalYear(newDate.year())][6]}
-              </div>
-
             </div>
+            <div className='col-start-13 col-span-2 row-start-5 h-9 arrow-down-cicle' />
+            <div className='col-start-13 col-span-2 row-start-6 text-13 font-bold'>
+              {ciclePhrases[consultant.calcPersonalYear(newDate.year())][6]}
+            </div>
+
           </div>
         </div>
+      </div>
 
-        <div className='col-span-24 mb-10'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
-              <TiPlus className='text-2xl' />
-            </div>
-            Etapa de Aprendizaje
+      <div className='col-span-24 mb-10'>
+        <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+          <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
+            <TiPlus className='text-2xl' />
           </div>
-          <div className='pinnacle-wrap px-8 py-8'>
-            <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pb-2'>
-              <div className='col-span-3 text-13 font-black pt-3'>
-                1. Etapa de Vida
-              </div>
-              <div className='col-span-7 flex justify-between'>
-                <div
-                  className={`
+          Etapa de Aprendizaje
+        </div>
+        <div className='pinnacle-wrap px-8 py-8'>
+          <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pb-2'>
+            <div className='col-span-3 text-13 font-black pt-3'>
+              1. Etapa de Vida
+            </div>
+            <div className='col-span-7 flex justify-between'>
+              <div
+                className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
                     ${activeStage === 1 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
-                >
-                  {consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}
-                </div>
-                <div
-                  className={`
+              >
+                {consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}
+              </div>
+              <div
+                className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
                     ${activeStage === 2 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
-                >
-                  {consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}
-                </div>
-                <div
-                  className={`
+              >
+                {consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}
+              </div>
+              <div
+                className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
                     ${activeStage === 3 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
-                >
-                  {consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}
-                </div>
-                <div
-                  className={`
+              >
+                {consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}
+              </div>
+              <div
+                className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
                     ${activeStage === 4 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
-                >
-                  {consultant.calcLifeStage(4)}{consultant.calcLifeStageISK(4)}
-                </div>
-                <div
-                  className={`
+              >
+                {consultant.calcLifeStage(4)}{consultant.calcLifeStageISK(4)}
+              </div>
+              <div
+                className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
                     ${activeStage === 5 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
-                >
-                  {consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}
-                </div>
-                <div
-                  className={`
+              >
+                {consultant.calcLifeStage(3)}{consultant.calcLifeStageISK(3)}
+              </div>
+              <div
+                className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
                     ${activeStage === 6 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
-                >
-                  {consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}
-                </div>
-                <div
-                  className={`
+              >
+                {consultant.calcLifeStage(2)}{consultant.calcLifeStageISK(2)}
+              </div>
+              <div
+                className={`
                     relative w-12 h-12 text-xl font-black text-black flex justify-center items-center border border-green rounded-full inner-shadow
                     ${activeStage === 7 ? 'bg-green path-stage-active' : 'bg-white'}
                   `}
-                >
-                  {consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}
-                </div>
+              >
+                {consultant.calcLifeStage(1)}{consultant.calcLifeStageISK(1)}
               </div>
             </div>
-            <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pt-4 pb-2'>
-              <div className='col-span-3 text-13 font-black pt-3'>
-                2. Año Personal
+          </div>
+          <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pt-4 pb-2'>
+            <div className='col-span-3 text-13 font-black pt-3'>
+              2. Año Personal
+            </div>
+            <div className='col-span-7 grid grid-cols-10 gap-x-6 border-4 border-b-0 border-secondary'>
+              <div className='bg-purple-30 text-13 font-bold flex items-center justify-center col-span-10 h-7'>
+                CICLO DE 9 AÑOS
               </div>
-              <div className='col-span-7 grid grid-cols-10 gap-x-6 border-4 border-b-0 border-secondary'>
-                <div className='bg-purple-30 text-13 font-bold flex items-center justify-center col-span-10 h-7'>
-                  CICLO DE 9 AÑOS
-                </div>
 
-                {cycle.map((cicle, i) => (
-                  <>
-                    <div
-                      className={`
+              {cycle.map((cicle, i) => (
+                <>
+                  <div
+                    className={`
                         row-start-2 text-xl font-bold flex items-center justify-center rounded-md h-10 relative mt-6
                         ${newDate.year() === cicle ? 'bg-secondary path-personal-vibration-active' : 'bg-purple-30'}
                       `}
-                    >
-                      {consultant.calcPersonalYear(cicle)}{consultant.calcPersonalYearISK(cicle)}
-                    </div>
-                    <div
-                      className={`
+                  >
+                    {consultant.calcPersonalYear(cicle)}{consultant.calcPersonalYearISK(cicle)}
+                  </div>
+                  <div
+                    className={`
                         row-start-3 text-13 font-bold text-center my-1 relative
                         ${now.year() === cicle ? 'text-secondary path-personal-year-active' : 'text-gray-400'}
                       `}
-                    >
-                      {cicle}
-                    </div>
-                  </>
-                ))}
-              </div>
+                  >
+                    {cicle}
+                  </div>
+                </>
+              ))}
             </div>
-            <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pt-3 pb-12'>
-              <div className='col-span-3 text-13 font-black pt-3'>
-                3. Cuatrimestres
+          </div>
+          <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pt-3 pb-12'>
+            <div className='col-span-3 text-13 font-black pt-3'>
+              3. Cuatrimestres
+            </div>
+            <div className='col-span-7 border-4 border-b-0 border-green'>
+              <div className='bg-green-30 text-13 font-bold flex items-center justify-center h-7'>
+                CUATRIMESTRES
               </div>
-              <div className='col-span-7 border-4 border-b-0 border-green'>
-                <div className='bg-green-30 text-13 font-bold flex items-center justify-center h-7'>
-                  CUATRIMESTRES
-                </div>
 
-                <div className="flex justify-between mt-5">
-                  <div
-                    className={
-                      `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
+              <div className="flex justify-between mt-5">
+                <div
+                  className={
+                    `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
                       ${ism1 ? 'quater-active' : ''}`
-                    }
-                  >
-                    {cm1}
-                    <div
-                      className={`path-quarter-des ${ism1 ? 'path-quater-active' : ''}`}
-                    >{m1.toUpperCase()}
-                    </div>
-                  </div>
+                  }
+                >
+                  {cm1}
                   <div
-                    className={
-                      `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
+                    className={`path-quarter-des ${ism1 ? 'path-quater-active' : ''}`}
+                  >{m1.toUpperCase()}
+                  </div>
+                </div>
+                <div
+                  className={
+                    `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
                       ${ism2 ? 'quater-active' : ''}`
-                    }
-                  >
-                    {cm2}
-                    <div
-                      className={`path-quarter-des ${ism2 ? 'path-quater-active' : ''}`}
-                    >{m2.toUpperCase()}
-                    </div>
-                  </div>
+                  }
+                >
+                  {cm2}
                   <div
-                    className={
-                      `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
-                      ${ism3 ? 'quater-active' : ''}`
-                    }
-                  >
-                    {cm3}
-                    <div
-                      className={`path-quarter-des ${ism3 ? 'path-quater-active' : ''}`}
-                    >{m3.toUpperCase()}
-                    </div>
+                    className={`path-quarter-des ${ism2 ? 'path-quater-active' : ''}`}
+                  >{m2.toUpperCase()}
                   </div>
-                  {(m4 !== undefined) ? (
-<div
+                </div>
+                <div
+                  className={
+                    `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
+                      ${ism3 ? 'quater-active' : ''}`
+                  }
+                >
+                  {cm3}
+                  <div
+                    className={`path-quarter-des ${ism3 ? 'path-quater-active' : ''}`}
+                  >{m3.toUpperCase()}
+                  </div>
+                </div>
+                {(m4 !== undefined) ? (
+                  <div
                     className={
                       `cicle-year bg-green-30 text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
                       ${ism4 ? 'quater-active' : ''}`
                     }
->
+                  >
                     {cm4}
                     <div
                       className={`path-quarter-des ${ism4 ? 'path-quater-active' : ''}`}
                     >{m4.toUpperCase()}
                     </div>
-</div>
-) : ''}
-                </div>
+                  </div>
+                ) : ''}
               </div>
             </div>
-            <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pt-4 pb-12'>
-              <div className='col-span-3 text-13 font-black pt-3 h-7'>
-                4. Meses Personales
-              </div>
-              <div className='col-span-7 border-4 border-b-0 border-gold'>
-                <div className='bg-gold-30 text-13 font-bold flex items-center justify-center h-7'>
-                  MESES PERSONALES
-                </div>
-                <PathMonth consultant={consultant} />
-              </div>
+          </div>
+          <div className='grid grid-cols-10 border-b-2 border-gray-400 border-dashed mb-3 pt-4 pb-12'>
+            <div className='col-span-3 text-13 font-black pt-3 h-7'>
+              4. Meses Personales
             </div>
-            <div className='grid grid-cols-10 mb-3 pt-3 pb-12'>
-              <div className='col-span-3 text-13 font-black pt-3 h-7'>
-                5. Semanas Personales
+            <div className='col-span-7 border-4 border-b-0 border-gold'>
+              <div className='bg-gold-30 text-13 font-bold flex items-center justify-center h-7'>
+                MESES PERSONALES
               </div>
-              <div className='col-span-7 border-4 border-b-0 border-blue-week'>
-                <div className='bg-blue-week text-13 font-bold flex items-center justify-center h-7'>
-                  SEMANAS PERSONALES {currentWeek}
-                </div>
+              <PathMonth consultant={consultant} />
+            </div>
+          </div>
+          <div className='grid grid-cols-10 mb-3 pt-3 pb-12'>
+            <div className='col-span-3 text-13 font-black pt-3 h-7'>
+              5. Semanas Personales
+            </div>
+            <div className='col-span-7 border-4 border-b-0 border-blue-week'>
+              <div className='bg-blue-week text-13 font-bold flex items-center justify-center h-7'>
+                SEMANAS PERSONALES {currentWeek}
+              </div>
 
-                <div className="flex justify-between mt-5">
-                  <div
-                    className={`
+              <div className="flex justify-between mt-5">
+                <div
+                  className={`
                       cicle-year bg-blue-week text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
                       ${currentWeek === 1 ? 'week-active' : ''}
                     `}
-                  >
-                    {consultant.calcSelectPersonalWeek(newDate.month() + 1, 1, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 1, newDate.year())}
-                    <div
-                      className={`path-week-des ${currentWeek === 1 ? 'path-week-active' : ''}`}
-                    >1-7 {currentMonthName}
-                    </div>
-                  </div>
+                >
+                  {consultant.calcSelectPersonalWeek(newDate.month() + 1, 1, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 1, newDate.year())}
                   <div
-                    className={`
+                    className={`path-week-des ${currentWeek === 1 ? 'path-week-active' : ''}`}
+                  >1-7 {currentMonthName}
+                  </div>
+                </div>
+                <div
+                  className={`
                       cicle-year bg-blue-week text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
                       ${currentWeek === 2 ? 'week-active' : ''}
                     `}
-                  >
-                    {consultant.calcSelectPersonalWeek(newDate.month() + 1, 2, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 2, newDate.year())}
-                    <div
-                      className={`path-week-des ${currentWeek === 2 ? 'path-week-active' : ''}`}
-                    >8-14 {currentMonthName}
-                    </div>
-                  </div>
+                >
+                  {consultant.calcSelectPersonalWeek(newDate.month() + 1, 2, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 2, newDate.year())}
                   <div
-                    className={`
+                    className={`path-week-des ${currentWeek === 2 ? 'path-week-active' : ''}`}
+                  >8-14 {currentMonthName}
+                  </div>
+                </div>
+                <div
+                  className={`
                       cicle-year bg-blue-week text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
                       ${currentWeek === 3 ? 'week-active' : ''}
                     `}
-                  >
-                    {consultant.calcSelectPersonalWeek(newDate.month() + 1, 3, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 3, newDate.year())}
-                    <div
-                      className={`path-week-des ${currentWeek === 3 ? 'path-week-active' : ''}`}
-                    >15-21 {currentMonthName}
-                    </div>
-                  </div>
+                >
+                  {consultant.calcSelectPersonalWeek(newDate.month() + 1, 3, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 3, newDate.year())}
                   <div
-                    className={`
+                    className={`path-week-des ${currentWeek === 3 ? 'path-week-active' : ''}`}
+                  >15-21 {currentMonthName}
+                  </div>
+                </div>
+                <div
+                  className={`
                       cicle-year bg-blue-week text-xl font-bold flex items-center justify-center rounded-md w-10 h-10
                       ${currentWeek === 4 ? 'week-active' : ''}
                     `}
-                  >
-                    {consultant.calcSelectPersonalWeek(newDate.month() + 1, 4, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 4, newDate.year())}
-                    <div
-                      className={`path-week-des ${currentWeek === 4 ? 'path-week-active' : ''}`}
-                    >22-{moment(now2).endOf('month').format('DD')} {currentMonthName}
-                    </div>
+                >
+                  {consultant.calcSelectPersonalWeek(newDate.month() + 1, 4, newDate.year())}{consultant.calcSelectPersonalWeekISK(newDate.month() + 1, 4, newDate.year())}
+                  <div
+                    className={`path-week-des ${currentWeek === 4 ? 'path-week-active' : ''}`}
+                  >22-{moment(now2).endOf('month').format('DD')} {currentMonthName}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className='col-span-24 mb-10'>
-          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-            <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-              <TiPlus className='text-2xl' />
-            </div>
-            Línea de Jerarquía del Diálogo Energético
+      </div>
+      <div className='col-span-24 mb-10'>
+        <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+          <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
+            <TiPlus className='text-2xl' />
           </div>
-          <div className='pinnacle-wrap px-8'>
-            <HierarchyLine consultant={consultant} />
-          </div>
+          Línea de Jerarquía del Diálogo Energético
         </div>
+        <div className='pinnacle-wrap px-8'>
+          <HierarchyLine consultant={consultant} />
+        </div>
+      </div>
     </div>
   )
 }

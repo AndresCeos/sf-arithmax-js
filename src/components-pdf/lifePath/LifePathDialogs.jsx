@@ -1,11 +1,9 @@
-import { Text, View, StyleSheet } from "@react-pdf/renderer"
-import moment from 'moment/min/moment-with-locales'
-import { nowWeekNumber, capitalize } from '../../resources';
-moment.locale("es-mx")
+import { StyleSheet, Text, View } from '@react-pdf/renderer';
+import moment from 'moment/min/moment-with-locales';
+moment.locale('es-mx')
 
-export const LifePathDialogs = ({ consultant }) => {
-  const now = moment()
-  const newDate = moment()
+export const LifePathDialogs = ({ consultant, now }) => {
+  const newDate = now
   const now2 = moment()
 
   return (

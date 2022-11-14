@@ -112,7 +112,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
         <img src={add_user_main} className="mb-3 opacity-0" alt='add_user_main' />
 
         <label className='font-bold mb-1 mr-2 text-13 flex'>
-          <MdEdit className='text-xl text-gray-400' /> Se conocieron en el año:
+          <button onClick={editPartner}><MdEdit className='text-xl text-gray-400' /></button> Se conocieron en el año:
         </label>
         <input
           value={partner.yearMeet !== undefined ? partner.yearMeet : ''}
