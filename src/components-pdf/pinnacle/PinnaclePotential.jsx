@@ -1,12 +1,11 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 export const PinnaclePotential = ({ consultant }) => {
   return (
     <View style={pinnaclePotential.container}>
       <View style={pinnaclePotential.wrap}>
         <View style={[pinnaclePotential.circle, pinnaclePotential.reaction]}>
-          <Text>{consultant.calcName()}{consultant.calcNameISK()}*</Text>
+          <Text>{consultant.calcReaction()}{consultant.calcReactionISK()}*</Text>
         </View>
         <View style={[pinnaclePotential.circle, pinnaclePotential.synthesis]}>
           <Text>{consultant.calcSynthesis()}{consultant.calcSynthesisISK()}</Text>
