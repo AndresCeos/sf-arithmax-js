@@ -108,6 +108,8 @@ const PinnaclePage = () => {
               hasDouble={secondStage}
               descrb='K'
               descrt='E'
+              descrr='B'
+              descrl='A'
             />
           </div>
           <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 2 || activeStage === 6) || (activeScdStage === 2 || activeScdStage === 6) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
@@ -127,6 +129,8 @@ const PinnaclePage = () => {
               hasDouble={secondStage}
               descrb='L'
               descrt='F'
+              descrr='C'
+              descrl='B'
             />
           </div>
           <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 3 || activeStage === 5) || (activeScdStage === 3 || activeScdStage === 5) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
@@ -146,6 +150,8 @@ const PinnaclePage = () => {
               hasDouble={secondStage}
               descrb='M'
               descrt='G'
+              descrr='F'
+              descrl='E'
             />
           </div>
           <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 || activeScdStage === 4 ? 'bg-active-radial' : null}`}>
@@ -163,6 +169,8 @@ const PinnaclePage = () => {
               hasDouble={secondStage}
               descrb='N'
               descrt='H'
+              descrr='C'
+              descrl='A'
             />
           </div>
         </div>

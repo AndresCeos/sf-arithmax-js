@@ -1895,10 +1895,10 @@ export class Person {
     const birthDateMonth = this.birthDate.format('MMMM')
     const indexE = listOfMonthE.findIndex(i => i === actualMonth.capitalize())
     const index = listOfMonths.findIndex(i => i === allMonths[indexE])
-    // console.log(`index => ${index}`);
+    console.log(`index => ${index}`);
 
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
-    // console.log(`index => ${indexEnero}`);
+    console.log(`index enero => ${indexEnero}`);
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
         return this.getQuaterThree(yearToCalculate - 1)
@@ -1909,7 +1909,7 @@ export class Person {
       if (indexEnero === 0) {
         return this.getQuaterTwo(yearToCalculate)
       }
-      if (index > indexEnero) {
+      if (index >= indexEnero) {
         return this.getQuaterTwo(yearToCalculate - 1)
       }
       return this.getQuaterTwo(yearToCalculate)
@@ -1918,7 +1918,7 @@ export class Person {
       if (indexEnero === 0) {
         return this.getQuaterThree(yearToCalculate)
       }
-      if (index > indexEnero) {
+      if (index >= indexEnero) {
         return this.getQuaterThree(yearToCalculate - 1)
       }
       return this.getQuaterThree(yearToCalculate)

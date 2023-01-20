@@ -114,7 +114,7 @@ export const DestinityTable = ({ consultant, newDate, nameCycles, nameSubCycles,
               </View>
               <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: bkConfig(i + start, '#edd7eb') }]}>
                 <Text>
-                  {consultant.reduceNumber(el.pmD + el.pMD + (single ? el.pfN : 0))}
+                  {consultant.reduceNumber(el.pmD + el.pMD + (single ? el.pfD : 0))}
                 </Text>
               </View>
               <View style={[pinnacleName.item, { width: 19, height: 25, backgroundColor: bkConfig(i + start, '#ededed'), marginTop: 10 }]}>

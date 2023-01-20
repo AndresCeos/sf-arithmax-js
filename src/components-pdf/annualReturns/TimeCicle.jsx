@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer';
 
 export const TimeCicle = ({ consultant, newDate }) => {
   const nineYearCycle = consultant.getNineYearCycleStage(newDate.year())
@@ -14,7 +14,7 @@ export const TimeCicle = ({ consultant, newDate }) => {
       <View style={cycle.wrap}>
         <View style={cycle.item_1}>
           <Text style={[cycle.title, { position: 'absolute', left: 200, width: 40, top: 40, fontWeight: 'bold' }]}>Etapa {consultant.getLifeStageNumber(newDate.year())}</Text>
-          <Text style={cycle.circle}>{consultant.getLifeStage(newDate.year())}{consultant.getLifeStageISK(newDate.year())}</Text>
+          <Text style={cycle.circle}>{consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}</Text>
         </View>
         <View style={cycle.item}>
           {nineYearCycle.map(year =>

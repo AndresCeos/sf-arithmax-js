@@ -2293,6 +2293,28 @@ svg {
     position: absolute;
 }
 
+[descrr]:after {
+    width: 16px;
+    text-align: center;
+    content: attr(descrr);
+    font-size: 13px;
+    color: #7E7E7E;
+    right: 8px;
+    top: 30px;
+    position: absolute;
+}
+
+[descrl]:after {
+    width: 16px;
+    text-align: center;
+    content: attr(descrl);
+    font-size: 13px;
+    color: #7E7E7E;
+    right: 8px;
+    top: 30px;
+    position: absolute;
+}
+
 .top-red {
     top: 2px;
 }
@@ -2926,6 +2948,7 @@ top: 134px;
     #screen::before {
         content: 'Resolución miníma de 1260px';
     }
+
     #screen {
         display: flex;
         justify-content: center;

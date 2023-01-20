@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 export const LifePathPersonalYears = ({ consultant, now }) => {
   const newDate = now
+  const newCycle = consultant.getNineYearCycleStage(newDate.year())
   const cicle = [
     {
       vibration: consultant.calcPersonalYear(newDate.year() - 4),
@@ -51,13 +52,13 @@ export const LifePathPersonalYears = ({ consultant, now }) => {
     <View style={lifePath.container}>
       <View style={lifePath.wrap}>
         <View style={lifePath.personalYears}>
-          {cicle.map((cicle, i) => (
+          {newCycle.map((cicle, i) => (
             <View style={lifePath.itemWrap}>
-              <View style={[lifePath.item, { backgroundColor: `${cicle.year === now.year() ? '#9F5D9B' : '#D7BFD5'}` }]}>
-                <Text>{cicle.vibration}{consultant.calcPersonalYearISK(cicle.year)}</Text>
+              <View style={[lifePath.item, { backgroundColor: `${cicle === now.year() ? '#9F5D9B' : '#D7BFD5'}` }]}>
+                <Text>{consultant.calcPersonalYear(cicle)}{consultant.calcPersonalYearISK(cicle)}</Text>
               </View>
               <View style={lifePath.year}>
-                <Text>{cicle.year}</Text>
+                <Text>{cicle}</Text>
               </View>
             </View>
           ))}
