@@ -85,6 +85,28 @@ export class Person {
     })
     return this.reduceNumber(nameValues + namev)
   }
+  getNameCheckISK() {
+    const names = this.fullName.toString().toLowerCase().split(' ')
+    let nameValues = 0
+    let namev = 0
+    names.map(el => {
+      const vowels = el.split('')
+      let val = 0
+      let val2 = 0
+      vowels.map(element => {
+        val += this.consonantValues(element)
+      })
+      vowels.map(element => {
+        val2 += this.vowelsValues(element)
+      })
+      nameValues += val
+      namev += val2
+    })
+    let name = this.reduceNumberISK(nameValues + namev)
+    console.log('KARMICO => ' + name)
+    console.log(this.getNameCheck())
+    return this.karmicos.includes(name) ? '*' : '';
+  }
 
   getSoulCheck() {
     const names = this.nameView.toLowerCase().split(' ')
@@ -209,7 +231,13 @@ export class Person {
     const lastnameValue = this.reduceNumber(lastnameVowelsValues + lastnameConsonantsValue)
 
     const name = this.reduceNumberISK(nameValue + lastnameValue)
-    return this.karmicos.includes(name) ? '*' : '';
+    console.log(' check this=>' + this.calcName())
+    if (this.calcName() === 22 || this.calcName() === 11) {
+      return '';
+    } else {
+      return this.karmicos.includes(name) ? '*' : '';
+    }
+
   }
 
   calcInitials() {
@@ -278,22 +306,40 @@ export class Person {
   }
 
   calcSoulExpresionFull() {
-    let nameValues = 0
+
+    let fullName = this.fullName.toString().toLowerCase().toLowerCase().split(' ')
+    //console.log(fullName)
+    let values2 = 0
+    fullName.map(letter => {
+      let val = 0
+      const consonantes = letter.split('')
+      consonantes.map(el => {
+        val += this.consonantValues(el)
+      })
+      values2 += this.reduceNumber(val)
+
+    })
+    //console.log(values2)
+
+
+    /*let nameValues = 0
     const names = this.name.toString().toLowerCase().toLowerCase().split(' ')
+    let val = 0
     names.map(el => {
       const vowels = el.split('')
-      let val = 0
       vowels.map(element => {
         val += this.consonantValues(element)
       })
-      nameValues += this.reduceNumber(val)
     })
-
+    nameValues += this.reduceNumber(val)
     const lastnameConst = this.lastName.toString().toLowerCase().toLowerCase().split('')
     let lastnameVowelsValues = 0
     lastnameConst.forEach(element => {
       lastnameVowelsValues += this.consonantValues(element)
+      //console.log(this.consonantValues(element))
+
     })
+    //console.log('Valor del apellido ' + lastnameVowelsValues)
     nameValues += this.reduceNumber(lastnameVowelsValues)
 
     const scdLastnameConst = this.scdLastName.toString().toLowerCase().toLowerCase().split('')
@@ -301,9 +347,11 @@ export class Person {
     scdLastnameConst.forEach(element => {
       scdLastnameVowelsValues += this.consonantValues(element)
     })
+    //console.log('Valor del segundo apellido ' + scdLastnameVowelsValues)
     nameValues += this.reduceNumber(scdLastnameVowelsValues)
-
-    return nameValues
+    //console.log('Ultimo valor' + nameValues)
+    */
+    return values2
   }
 
   calcSoulExpresionISK() {

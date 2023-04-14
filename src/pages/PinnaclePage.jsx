@@ -27,6 +27,9 @@ const PinnaclePage = () => {
   const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
   const activeScdStage = consultant.getDoubleLifeStageNumber(newDate.year())
   const secondStage = consultant.hasDoubleStage()
+  console.log('etapa activa => ' + activeStage)
+  console.log('segunda etapa activa => ' + activeScdStage)
+
 
   const checkPinacle = () => {
     (checkP) ? setcheckP(false) : setcheckP(true)
@@ -64,7 +67,7 @@ const PinnaclePage = () => {
           <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
             <label className='text-10'>Nombre</label>
             <CircleNumber size="sm" appearance="blue-30" border="blue">
-              {(!checkN) ? `${consultant.calcName()}${consultant.calcNameISK()}` : `${consultant.getNameCheck()}${consultant.calcNameISK()}`}
+              {(!checkN) ? `${consultant.calcName()}${consultant.calcNameISK()}` : `${consultant.getNameCheck()}${consultant.getNameCheckISK()}`}
             </CircleNumber>
           </div>
           <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
@@ -91,7 +94,7 @@ const PinnaclePage = () => {
       <div className='col-span-6 row-span-2'>
         <WrapTitle title="Puentes por etapa" color='bg-green-s' />
         <div className='pinnacle-wrap grid grid-cols-4'>
-          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 1 || activeStage === 7) || (activeScdStage == 1 || activeScdStage === 7) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 1 || activeStage === 7) || ((secondStage && activeScdStage == 1 || activeScdStage === 7)) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
             <h2 className='text-xs font-bold text-center'>
               Puente 1
             </h2>
@@ -112,7 +115,7 @@ const PinnaclePage = () => {
               descrl='A'
             />
           </div>
-          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 2 || activeStage === 6) || (activeScdStage === 2 || activeScdStage === 6) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 2 || activeStage === 6) || ((secondStage && activeScdStage === 2 || activeScdStage === 6)) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
             <h2 className='text-xs font-bold text-center'>
               Puente 2
             </h2>
@@ -133,7 +136,7 @@ const PinnaclePage = () => {
               descrl='B'
             />
           </div>
-          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 3 || activeStage === 5) || (activeScdStage === 3 || activeScdStage === 5) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${(activeStage === 3 || activeStage === 5) || (secondStage && (activeScdStage === 3 || activeScdStage === 5)) ? 'bg-active-radial' : 'border-r border-gray-200'}`}>
             <h2 className='text-xs font-bold text-center'>
               Puente 3
             </h2>
@@ -154,7 +157,7 @@ const PinnaclePage = () => {
               descrl='E'
             />
           </div>
-          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 || activeScdStage === 4 ? 'bg-active-radial' : null}`}>
+          <div className={`py-3 px-2 border-b border-solid border-gray-300 ${activeStage === 4 || (secondStage && activeScdStage === 4) ? 'bg-active-radial' : null}`}>
             <h2 className='text-xs font-bold text-center'>
               Puente 4
             </h2>

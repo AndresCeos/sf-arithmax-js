@@ -4,9 +4,9 @@ import check from '../assets/icons/check.svg';
 
 export const WrapTitle = ({ title, color, button }) => {
   return (
-    <div className='bg-black text-white text-xs font-bold h-5 flex justify-between items-center rounded-t-lg'>
+    <div className='bg-black text-white text-xs font-bold h-8 flex justify-between items-center rounded-t-lg'>
       <div className='flex items-center'>
-        <div className={`w-5 h-5 flex justify-center items-center rounded-full -ml-2 p-1 ${color || 'bg-main'}`}>
+        <div className={`w-9 h-9 flex justify-center items-center rounded-full -ml-2 p-1 ${color || 'bg-main'}`}>
           <TiPlus />
         </div>
         {title}

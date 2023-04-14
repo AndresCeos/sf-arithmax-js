@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
+  ActiveName,
   AnnualReturn, NameBreakdown, Pinnacle, UnselectedConsultant
 } from '../components';
 import { Person } from '../resources';
@@ -12,11 +13,14 @@ import { MdEdit } from 'react-icons/md';
 import { TiPlus } from 'react-icons/ti';
 
 import moment from 'moment';
+import { WrapTitle } from '../components/WrapTitle';
 
 const CreateNamePage = () => {
   const { userActive } = useSelector(state => state.users);
   const isEmpty = Object.keys(userActive).length === 0;
   const [isEdditing, setIsEdditing] = useState(false)
+  const [checkN, setcheckN] = useState(false)
+  const [checkP, setcheckP] = useState(false)
 
   const { names: name, lastName, scdLastName, date: birthDate } = userActive
   const { name: createName, date: createDate } = useSelector(state => state.users.createName)
@@ -74,6 +78,15 @@ const CreateNamePage = () => {
   const nextYear = moment().add(1, 'year')
   const annualReturnNextYear = createNameObj.annualReturn(nextYear.year())
 
+
+
+  const checkName = () => {
+    (checkN) ? setcheckN(false) : setcheckN(true)
+  }
+  const checkPinacle = () => {
+    (checkP) ? setcheckP(false) : setcheckP(true)
+  }
+
   const isValid = () => {
     if (createNameData.name === '') return false
     if (createNameData.birthDate === '') return false
@@ -87,6 +100,39 @@ const CreateNamePage = () => {
     const birthDate = inputDate.current.value
     dispatch(setCreateName({ name, date: birthDate }))
   }
+  let table
+  //console.log('this is table => ' + table)
+  //console.log(table)
+  let table1
+  let table2
+  let table3
+  let table4
+  let nameCycles
+  let nameSubCycles
+  if (isValid()) {
+    table = createNameObj.getNameSetting()
+    //console.log('this is table => ' + table)
+    //console.log(table)
+    table1 = table.slice(0, 31);
+    table2 = table.slice(31, 62);
+    table3 = table.slice(62, 93);
+    table4 = table.slice(93, 124);
+    nameCycles = createNameObj.calcNameCycles()
+    nameSubCycles = createNameObj.calcNameSubCycles()
+  } else {
+    table = []
+    //console.log('this is table => ' + table)
+    //console.log(table)
+    table1 = []
+    table2 = []
+    table3 = []
+    table4 = []
+    nameCycles = ''
+    nameSubCycles = ''
+  }
+
+
+
 
   return (
     <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pt-10'>
@@ -137,24 +183,27 @@ const CreateNamePage = () => {
           ? (
             <>
               <div className='col-span-8 mb-5'>
-                <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-                  <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
-                    <TiPlus className='text-2xl' />
-                  </div>
-                  Valores Numéricos del Nombre
-                </div>
+                <WrapTitle
+                  title="Valores Numéricos del Nombre"
+                  color={'bg-blue'}
+                  button={{
+                    handle: checkName,
+                    state: checkN,
+                    text: 'Comprobación',
+                  }}
+                />
                 <div className='pinnacle-wrap px-8 py-8'>
                   <div className='flex justify-between'>
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
                       <label className='text-13 mb-3'>Nombre</label>
                       <div className='w-18 h-18 text-3xl font-black text-black flex justify-center items-center bg-blue-30 border border-blue rounded-full inner-shadow'>
-                        {createNameObj.calcName()}{createNameObj.calcNameISK()}
+                        {(!checkN) ? `${createNameObj.calcName()}${createNameObj.calcNameISK()}` : `${createNameObj.getNameCheck()}${createNameObj.getNameCheckISK()}`}
                       </div>
                     </div>
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
                       <label className='text-13 mb-3'>Alma</label>
                       <div className='w-18 h-18 text-3xl font-black text-black flex justify-center items-center bg-blue-30 border border-blue rounded-full inner-shadow-gold'>
-                        {createNameObj.calcSoulNumber()}{createNameObj.calcSoulNumberISK()}
+                        {(!checkN) ? `${createNameObj.calcSoulNumber()}${createNameObj.calcSoulNumberISK()}` : `${createNameObj.getSoulCheck()}${createNameObj.calcSoulNumberISK()}`}
                       </div>
                     </div>
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
@@ -166,7 +215,7 @@ const CreateNamePage = () => {
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
                       <label className='text-13 mb-3'>Madurez</label>
                       <div className='w-18 h-18 text-3xl font-black text-black flex justify-center items-center bg-aguamarina-30 border border-aguamarina rounded-full inner-shadow'>
-                        {createNameObj.calcMaturity()}{createNameObj.calcMaturityISK()}
+                        {(!checkN) ? `${createNameObj.calcSoulExpresion()}${createNameObj.calcSoulExpresionISK()}` : `${createNameObj.getExpressionSoulCheck()}${createNameObj.calcSoulExpresionISK()}`}
                       </div>
                     </div>
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
@@ -180,14 +229,16 @@ const CreateNamePage = () => {
               </div>
 
               <div className='col-span-4 row-span-2 mb-5'>
-                <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-                  <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-main p-2'>
-                    <TiPlus className='text-2xl' />
-                  </div>
-                  Pináculo
-                </div>
+                <WrapTitle
+                  title="Pináculo"
+                  button={{
+                    text: 'Comprobación',
+                    handle: checkPinacle,
+                    state: checkP
+                  }}
+                />
                 <div className='pinnacle-wrap px-8 py-3'>
-                  <Pinnacle consultant={createNameObj} size="small" />
+                  <Pinnacle consultant={createNameObj} checkP={checkP} size="small" />
                 </div>
               </div>
 
@@ -217,6 +268,27 @@ const CreateNamePage = () => {
                         <div className='h-10 w-10 text-xl font-bold flex justify-center items-center bg-gray-300 border border-gray-500 rounded-md inner-shadow'>{el[1].a} </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className='col-span-12 mb-5'>
+                <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+                  <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
+                    <TiPlus className='text-2xl' />
+                  </div>
+                  Retornos Anuales
+                  <MdEdit className='ml-2 text-2xl' />
+                </div>
+                <div className='pinnacle-wrap overflow-hidden grid grid-cols-3'>
+                  <div className='px-5 py-8'>
+                    <AnnualReturn annualReturn={annualReturnPastYear} />
+                  </div>
+                  <div className='px-5 py-8 border-b border-solid border-gray-300 bg-active-radial bg-opacity-15'>
+                    <AnnualReturn annualReturn={annualReturnCurrent} current months />
+                  </div>
+                  <div className='px-5 py-8 border-r border-gray-400'>
+                    <AnnualReturn annualReturn={annualReturnNextYear} />
                   </div>
                 </div>
               </div>
@@ -288,24 +360,25 @@ const CreateNamePage = () => {
 
               <div className='col-span-12 mb-5'>
                 <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
-                  <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-s p-2'>
+                  <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-blue p-2'>
                     <TiPlus className='text-2xl' />
                   </div>
-                  Retornos Anuales
-                  <MdEdit className='ml-2 text-2xl' />
+                  Ciclo del Nombre
                 </div>
-                <div className='pinnacle-wrap overflow-hidden grid grid-cols-3'>
-                  <div className='px-5 py-8'>
-                    <AnnualReturn annualReturn={annualReturnPastYear} />
-                  </div>
-                  <div className='px-5 py-8 border-b border-solid border-gray-300 bg-active-radial bg-opacity-15'>
-                    <AnnualReturn annualReturn={annualReturnCurrent} current months />
-                  </div>
-                  <div className='px-5 py-8 border-r border-gray-400'>
-                    <AnnualReturn annualReturn={annualReturnNextYear} />
-                  </div>
+                <div className='pinnacle-wrap px-8 py-8'>
+                  {isValid()
+                    ?
+                    <div>
+                      <ActiveName table={table1} start={0} consultant={createNameObj} nameCycles={nameCycles} nameSubCycles={nameSubCycles} />
+                      <ActiveName table={table2} start={31} consultant={createNameObj} nameCycles={nameCycles} nameSubCycles={nameSubCycles} />
+                      <ActiveName table={table3} start={62} consultant={createNameObj} nameCycles={nameCycles} nameSubCycles={nameSubCycles} />
+                      <ActiveName table={table4} start={93} consultant={createNameObj} nameCycles={nameCycles} nameSubCycles={nameSubCycles} />
+                    </div>
+                    : null}
                 </div>
               </div>
+
+
             </>
           )
           : <div className="col-span-12 text-center font-bold">Ingresa datos validos.</div>

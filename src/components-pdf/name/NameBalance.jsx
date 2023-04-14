@@ -8,7 +8,7 @@ export const NameBalance = ({ consultant }) => {
       v: appearances[4].a + appearances[5].a,
       c: '#de6363',
       cT: 'text-red',
-      d: '(Valores 4/22 y 5)'
+      d: '(Valores 4/22 y 5)',
     },
     'Plano Mental': {
       v: appearances[1].a + appearances[8].a,
@@ -36,13 +36,31 @@ export const NameBalance = ({ consultant }) => {
         <View style={[pinnacleName.table, { top: 478, left: 262, display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }]}>
           {Object.entries(balanceExistential).map((el, i, a) => (
             <View key={i} style={{ textAlign: 'center' }}>
-              <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ textAlign: 'center', fontSize: 12, marginRight: 10, marginBottom: 5 }}>
+              <View style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '15px' }}>
+                <Text style={[
+                  (el[1].cT === 'text-red') && valuesPlanes.bf,
+                  (el[1].cT === 'text-green') && valuesPlanes.bm,
+                  (el[1].cT === 'text-blue') && valuesPlanes.bem,
+                  (el[1].cT === 'text-main') && valuesPlanes.bms,
+                  {
+                    textAlign: 'center',
+                    fontSize: 12,
+                    marginRight: 10,
+                    marginBottom: 5,
+                    paddingTop: 10,
+                    width: 30,
+                    height: 30,
+                    borderRadius: '5px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }]}>
                   {el[1].v}
                 </Text>
+
               </View>
-              <Text style={{ textAlign: 'center', fontSize: 6, marginTop: 10 }} />
-              <Text style={{ textAlign: 'center', fontSize: 6 }} />
+              <Text style={{ textAlign: 'center', fontSize: 10, marginTop: 10, paddingLeft: '10px' }} >{Object.keys(balanceExistential)[i]}</Text>
+              <Text style={{ textAlign: 'center', fontSize: 6, paddingLeft: '10px' }} >{el[1].d}</Text>
             </View>
           ))}
         </View>
@@ -69,3 +87,25 @@ export const pinnacleName = StyleSheet.create({
     transform: 'rotate(-90deg)',
   }
 });
+export const valuesPlanes = StyleSheet.create({
+  bf: {
+    backgroundColor: '#F3BDBE',
+    borderColor: '#DE6364',
+    borderWidth: 1
+  },
+  bm: {
+    backgroundColor: '#B6D1AD',
+    borderColor: '#51A233',
+    borderWidth: 1
+  },
+  bem: {
+    backgroundColor: '#B3CDF2',
+    borderColor: '#0D6BE2',
+    borderWidth: 1
+  },
+  bms: {
+    backgroundColor: '#BCA9BD',
+    borderColor: '#6A3061',
+    borderWidth: 1
+  }
+})

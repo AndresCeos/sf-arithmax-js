@@ -379,6 +379,17 @@ export class Synastry {
   }
 
   calcNameISK() { // todo
+    const name = this.reduceNumberISK(
+      this.consultant.calcName()
+      + this.partner.calcName()
+    )
+    return this.karmicos.includes(name) ? '*' : '';
+  }
+  getNameCheck() {
+    return this.reduceNumber(
+      this.consultant.getNameCheck() +
+      this.partner.getNameCheck()
+    )
   }
 
   calcSoulNumber() {
@@ -392,6 +403,12 @@ export class Synastry {
     const soul = this.reduceNumberISK(this.consultant.calcSoulNumber() + this.partner.calcSoulNumber())
     return this.karmicos.includes(soul) ? '*' : '';
   }
+  getSoulCheck() {
+    return this.reduceNumber(
+      this.consultant.getSoulCheck() +
+      this.partner.getSoulCheck()
+    )
+  }
 
   calcSoulExpresion() {
     return this.reduceNumber(
@@ -403,6 +420,13 @@ export class Synastry {
   calcSoulExpresionISK() {
     const soul = this.reduceNumberISK(this.consultant.calcSoulExpresion() + this.partner.calcSoulExpresion())
     return this.karmicos.includes(soul) ? '*' : '';
+  }
+
+  getExpressionSoulCheck() {
+    return this.reduceNumber(
+      this.consultant.getExpressionSoulCheck() +
+      this.partner.getExpressionSoulCheck()
+    )
   }
 
   calcMaturity() {

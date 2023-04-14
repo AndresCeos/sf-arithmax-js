@@ -4,7 +4,7 @@ import {
 } from '..';
 
 import nameImage from '../assets/name.jpg';
-import nameImage2 from '../assets/name2.jpeg';
+import nameImage2 from '../assets/name2.jpg';
 
 export const NamePDF = ({ consultant, newDate }) => {
   return [

@@ -27,7 +27,7 @@ export const DestinityPDF = ({ consultant, newDate }) => {
       bg: nameImage2,
       children: (
         <>
-          <DestinityTable consultant={consultant} newDate={newDate} nameCycles={nameCycles} nameSubCycles={nameSubCycles} table={table1} slice={0} start={60} />
+          <DestinityTable consultant={consultant} newDate={newDate} nameCycles={nameCycles} nameSubCycles={nameSubCycles} table={table3} slice={0} start={60} />
           <DestinityNumericalValues consultant={consultant} newDate={newDate} />
         </>
       )
