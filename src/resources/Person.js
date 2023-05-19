@@ -1406,12 +1406,16 @@ export class Person {
   }
 
   calcGift() {
+    console.log(this.birthDate.year().toString()[0])
     let gift = this.reduceNumber(
       parseInt(this.birthDate.year().toString()[2])
       + parseInt(this.birthDate.year().toString()[3])
     )
     if (gift === 0) {
-      gift = this.birthDate.year().toString()[1]
+      gift = parseInt(this.birthDate.year().toString()[1])
+    }
+    if (gift === 0) {
+      gift = parseInt(this.birthDate.year().toString()[0])
     }
     if (gift === 0) {
       gift = this.birthDate.year().toString()[0]
