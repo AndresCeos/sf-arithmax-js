@@ -215,7 +215,7 @@ const CreateNamePage = () => {
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
                       <label className='text-13 mb-3'>Madurez</label>
                       <div className='w-18 h-18 text-3xl font-black text-black flex justify-center items-center bg-aguamarina-30 border border-aguamarina rounded-full inner-shadow'>
-                        {(!checkN) ? `${createNameObj.calcSoulExpresion()}${createNameObj.calcSoulExpresionISK()}` : `${createNameObj.getExpressionSoulCheck()}${createNameObj.calcSoulExpresionISK()}`}
+                        {(!checkN) ? `${createNameObj.calcMaturity()}${createNameObj.calcMaturityISK()}` : `${createNameObj.calcMaturity()}${createNameObj.calcMaturityISK()}`}
                       </div>
                     </div>
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
