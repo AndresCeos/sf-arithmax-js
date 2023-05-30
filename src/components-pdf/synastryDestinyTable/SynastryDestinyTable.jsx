@@ -40,6 +40,10 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
       pfDPC: consultant.reduceNumber((singleC ? table[i].pfD : 0) + (singleP ? tableP[i].pfD : 0))
     })
   }
+  let birthdayC = consultant.getBirthDate()
+  let birthdayP = partner.getBirthDate()
+  const getA = (birthdayC.month() + 1) + (birthdayP.month() + 1)
+  const getB = (birthdayC.date()) + (birthdayP.date())
 
   const bkConfig = (i, bg) => {
     console.log(i + consultant.getYearOfBirth(), newDate.year())
@@ -231,10 +235,10 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
                   <Text>{consultant.reduceNumber(el.pmNPC + el.pMNPC + el.pfNPC)}/{consultant.reduceNumber(el.pmDPC + el.pMDPC + el.pfDPC)}</Text>
                 </View>
                 <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfigFull(i + start, '#ededed'), marginTop: 10 }]}>
-                  <Text>{consultant.reduceNumber(consultant.calcPersonalYear(consultant.getYearOfBirth() + i) + partner.calcPersonalYear(partner.getYearOfBirth() + i))}</Text>
+                  <Text>{consultant.reduceNumber(getA + getB + (consultant.getYearOfBirth() + start + i))}</Text>
                 </View>
                 <View style={[pinnacleName.item, { width: 19, borderRight: borderRightConfig(i, item), height: 25, backgroundColor: bkConfigFull(i + start, '#ffffff') }]}>
-                  <Text>{consultant.reduceNumber(consultant.reduceNumber(el.pmDPC + el.pMDPC + el.pfDPC) + consultant.reduceNumber(consultant.calcPersonalYear(consultant.getYearOfBirth() + i) + partner.calcPersonalYear(partner.getYearOfBirth() + i)))}</Text>
+                  <Text>{consultant.reduceNumber(el.pmDPC + el.pMDPC + el.pfDPC + consultant.reduceNumber(getA + getB + (consultant.getYearOfBirth() + start + i)))}</Text>
                 </View>
               </View>
             </>

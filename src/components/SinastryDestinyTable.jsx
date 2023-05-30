@@ -278,13 +278,7 @@ export const SinastryDestinyTable = ({ table, start, consultant, startP, partner
               ${newDate.year() === consultant.getYearOfBirth() + i + start ? 'bg-red-80' : 'bg-gold-15'}`
             }
             >
-              {consultant.reduceNumber(
-                consultant.reduceNumber(el.pmDPC + el.pMDPC + el.pfDPC)
-                + synastry.calcPersonalYear(consultant.getYearOfBirth() + i + start) /* consultant.reduceNumber(
-                  consultant.calcPersonalYear(consultant.getYearOfBirth() + i)
-                  + partner.calcPersonalYear(partner.getYearOfBirth() + i)
-                ) */
-              )}
+              {consultant.reduceNumber(el.pmDPC + el.pMDPC + el.pfDPC + synastry.calcPersonalYear(consultant.getYearOfBirth() + i + start))}
             </div>
           </div>
         </>
