@@ -68,7 +68,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
 
   if (isEmpty || isAddFormActive) {
     return (
-      <PartnerForm dataPartner={userActive} userIndex={users.findIndex(getIndex)} setIsAddFormActive={setIsAddFormActive} removeUser={removeUser} />
+      <PartnerForm dataPartner={userActive} userIndex={users.findIndex(getIndex)} setIsAddFormActive={setIsAddFormActive} removeUser={removeUser} indexP={indexP} />
     )
   }
   return (

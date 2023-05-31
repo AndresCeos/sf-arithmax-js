@@ -84,6 +84,7 @@ export const PartnerForm = ({ dataPartner, userIndex, setIsAddFormActive, }) => 
 
         if (isPartnerEditing) {
           const partness = dataPartner.partner
+          console.log(JSON.stringify(partness))
           const partnerIndex = partness.findIndex(i => i.id === userPartnerActive.id)
           const arrayPartners = { ...dataPartner.partner, }
 
