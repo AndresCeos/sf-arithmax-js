@@ -5,7 +5,7 @@ import { editUser, generateUserId, setAddPartner, setIsPartnerEditing } from '..
 
 import add_user_main from '../assets/icons/add_user_main.svg';
 
-export const PartnerForm = ({ dataPartner, userIndex, setIsAddFormActive, }) => {
+export const PartnerForm = ({ dataPartner, userIndex, setIsAddFormActive, indexP }) => {
   const dispatch = useDispatch();
   const { isPartnerEditing, userPartnerActive, userActive } = useSelector(state => state.users);
 
