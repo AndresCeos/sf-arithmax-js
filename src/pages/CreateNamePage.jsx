@@ -88,7 +88,8 @@ const CreateNamePage = () => {
   }
 
   const isValid = () => {
-    if (createNameData.name === '') return false
+    const valid = new RegExp("^[a-zA-Z ]+$")
+    if (createNameData.name === '' || !valid.test(createNameData.name)) return false
     if (createNameData.birthDate === '') return false
     if (createNameData.name === '' && createNameData.birthDate === '') return false
     return true
@@ -130,6 +131,7 @@ const CreateNamePage = () => {
     nameCycles = ''
     nameSubCycles = ''
   }
+
 
 
 

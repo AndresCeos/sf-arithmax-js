@@ -295,6 +295,8 @@ export const editUser = userUpdated => async dispatch => {
     //   dispatch( setIsSelectPartner(true) )
     //   dispatch( setPartnerIndex(user.partner.length - 1 ) )
     // }
+  }).catch((err) => {
+    console.log('ERROR =>>' + err)
   })
 }
 

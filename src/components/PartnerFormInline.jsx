@@ -21,6 +21,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
   const [partner, setPartner] = useState(isSelectPartner ? userPartnerActive : {})
   const [indexP, setIndexP] = useState(null)
 
+
   const selectPartner = e => {
     const index = e.target.value
     dispatch(selectUserPartnerActive(userActive.id, index))
@@ -28,7 +29,7 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
     dispatch(setPartnerIndex(index))
     // let names = partners[index].names
     // let lastname = partners[index].lastName+' '+partners[index].scdLastName
-    // console.log( partners[index] )
+    // //console.log( partners[index] )
     setPartner(partners[index])
     setIndexP(index)
   }
@@ -39,24 +40,31 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
     }
   }
   const removeUser = () => {
-    console.log(indexP)
+    //console.log(indexP)
     dispatch(removePartnerUser(userActive, indexP))
   }
-  console.log(partner)
-  console.log(partners)
-  console.log(isSelectPartner)
-  console.log(userPartnerActive);
+  //console.log(partner)
+  //console.log(partners)
+  //console.log(isSelectPartner)
+  //console.log("Pareja activa =>>>>" + JSON.stringify(userPartnerActive));
   useEffect(() => {
-    // console.log( {userPartnerActive} )
-    // console.log( partner )
+    // //console.log( {userPartnerActive} )
+    // //console.log( partner )
     if (isEmptyP) {
       dispatch(setIsSelectPartner(false))
     }
     setPartner(userPartnerActive)
   }, [userPartnerActive])
 
-  // console.log( partners )
-  // console.log( partner )
+  /*const setHandlerBully = (data) => {
+    setBully(!bully)
+    //console.log("Fecha de coincidencia >>>>>>" + data)
+    setYearToMeet(data)
+  }*/
+  //console.log(bully)
+
+  // //console.log( partners )
+  // //console.log( partner )
 
   if (isEmpty || isAddFormActive) {
     return (
