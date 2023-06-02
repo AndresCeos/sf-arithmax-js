@@ -16,7 +16,7 @@ export const startLogin = (userData) => {
   return async (dispatch) => {
     dispatch(checkingCredentials())
 
-    const restApiUrl = `${clientConfig.siteUrl}/wp-json/jwt-auth/v1/token`;
+    const restApiUrl = `${clientConfig.siteUrl}/wp-json/app/v1/authenticate`;
     axios.post(restApiUrl, userData)
       .then(res => {
         if (res.data.token) {
