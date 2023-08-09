@@ -62,8 +62,15 @@ export class Person {
   getYearsOld(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     let age = yearToCalculate - this.birthDate.year()
+    if (this.birthDate.month() > this.NOW.month()) {
+      age--
+    } else if (this.birthDate.month() === this.NOW.month()) {
+      if (this.birthDate.date() > this.NOW.date()) {
+        age--
+      }
+    }
     if (age < 1) { age = 0 }
-    return age
+    return age;
   }
 
   getNameCheck() {
@@ -85,6 +92,7 @@ export class Person {
     })
     return this.reduceNumber(nameValues + namev)
   }
+
   getNameCheckISK() {
     const names = this.fullName.toString().toLowerCase().split(' ')
     let nameValues = 0
@@ -102,8 +110,8 @@ export class Person {
       nameValues += val
       namev += val2
     })
-    let name = this.reduceNumberISK(nameValues + namev)
-    console.log('KARMICO => ' + name)
+    const name = this.reduceNumberISK(nameValues + namev)
+    console.log(`KARMICO => ${name}`)
     console.log(this.getNameCheck())
     return this.karmicos.includes(name) ? '*' : '';
   }
@@ -231,13 +239,11 @@ export class Person {
     const lastnameValue = this.reduceNumber(lastnameVowelsValues + lastnameConsonantsValue)
 
     const name = this.reduceNumberISK(nameValue + lastnameValue)
-    console.log(' check this=>' + this.calcName())
+    console.log(` check this=>${this.calcName()}`)
     if (this.calcName() === 22 || this.calcName() === 11) {
       return '';
-    } else {
-      return this.karmicos.includes(name) ? '*' : '';
     }
-
+    return this.karmicos.includes(name) ? '*' : '';
   }
 
   calcInitials() {
@@ -306,9 +312,8 @@ export class Person {
   }
 
   calcSoulExpresionFull() {
-
-    let fullName = this.fullName.toString().toLowerCase().toLowerCase().split(' ')
-    //console.log(fullName)
+    const fullName = this.fullName.toString().toLowerCase().toLowerCase().split(' ')
+    // console.log(fullName)
     let values2 = 0
     fullName.map(letter => {
       let val = 0
@@ -317,12 +322,11 @@ export class Person {
         val += this.consonantValues(el)
       })
       values2 += this.reduceNumber(val)
-
     })
-    //console.log(values2)
+    // console.log(values2)
 
 
-    /*let nameValues = 0
+    /* let nameValues = 0
     const names = this.name.toString().toLowerCase().toLowerCase().split(' ')
     let val = 0
     names.map(el => {
@@ -1493,6 +1497,12 @@ export class Person {
 
   calcOneDigitYearsOld() {
     return this.reduceNumber(this.getYearsOld())
+  }
+
+  calcAgeDigit() {
+    const age = this.getYearsOld()
+    const nextAge = age + 1
+    return this.reduceNumber(age + nextAge)
   }
 
 

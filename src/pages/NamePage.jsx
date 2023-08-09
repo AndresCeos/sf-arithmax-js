@@ -59,7 +59,7 @@ const NamePage = () => {
   }
 
   const table = consultant.getNameSetting()
-  //console.log(table)
+  // console.log(table)
   const table1 = table.slice(0, 31);
   const table2 = table.slice(31, 62);
   const table3 = table.slice(62, 93);
@@ -107,7 +107,7 @@ const NamePage = () => {
       <div className='col-span-5 mb-5'>
         <WrapTitle
           title="Valores Numéricos del Nombre"
-          color={'bg-blue'}
+          color="bg-blue"
           button={{
             handle: checkName,
             state: checkN,
@@ -173,7 +173,7 @@ const NamePage = () => {
                 </svg>
               </div>
               <div className='w-10 h-10 text-2xl font-black text-black flex justify-center items-center bg-white border border-main rounded-full inner-shadow'>
-                {consultant.calcOneDigitYearsOld()}
+                {consultant.calcAgeDigit()}
               </div>
               <label className='text-13 ml-3'>Dígito<br />Edad</label>
             </div>
