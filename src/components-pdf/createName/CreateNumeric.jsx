@@ -1,8 +1,6 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
 
 export const CreateNumeric = ({ consultant }) => {
-
   const { name, lastName, scdLastName } = consultant
 
 
@@ -19,10 +17,10 @@ export const CreateNumeric = ({ consultant }) => {
           <Text>{consultant.calcSoulExpresion()}{consultant.calcSoulExpresionISK()}</Text>
         </View>
         <View style={[pinnacleName.circle, { left: 220 }]}>
-          <Text>{consultant.calcSoulExpresion()}{consultant.calcSoulExpresionISK()}</Text>
+          <Text>{consultant.calcMaturity()}{consultant.calcMaturityISK()}</Text>
         </View>
         <View style={[pinnacleName.circle, { left: 313 }]}>
-          <Text>{consultant.calcOneDigitYearsOld()}</Text>
+          <Text>{consultant.nameCount()}</Text>
         </View>
       </View>
       <View>-</View>
