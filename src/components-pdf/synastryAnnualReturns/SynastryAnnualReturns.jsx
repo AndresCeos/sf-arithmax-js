@@ -1,5 +1,4 @@
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
-import { capitalize } from '../../resources';
+import { StyleSheet, View } from '@react-pdf/renderer';
 import { SynastryAnnualReturn } from './SynastryAnnualReturn';
 
 export const SynastryAnnualReturns = ({ synastry, newDate }) => {
@@ -57,84 +56,93 @@ export const SynastryAnnualReturns = ({ synastry, newDate }) => {
       <View style={[data.wrap]}>
         <View style={[data.return, data.return_1]}>
           <SynastryAnnualReturn
-            annualReturn={annualReturnCurrent}
+            annualReturn={annualReturnY1}
             personalYear={personalYearY1}
             yearsOld={yearsOldY1}
             year={y1}
             top={0}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[data.return, data.return_2]}>
           <SynastryAnnualReturn
-            annualReturn={annualReturnCurrent}
+            annualReturn={annualReturnY2}
             personalYear={personalYearY2}
             yearsOld={yearsOldY2}
             year={y2}
             top={0}
-            left={177} />
+            left={177}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <SynastryAnnualReturn
-            annualReturn={annualReturnCurrent}
-            personalYear={personalYearY1}
-            yearsOld={yearsOldY1}
-            year={y1}
+            annualReturn={annualReturnY3}
+            personalYear={personalYearY3}
+            yearsOld={yearsOldY3}
+            year={y3}
             top={0}
-            left={353} />
+            left={353}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <SynastryAnnualReturn
-            annualReturn={annualReturnCurrent}
-            personalYear={personalYearY1}
-            yearsOld={yearsOldY1}
-            year={y1}
+            annualReturn={annualReturnY4}
+            personalYear={personalYearY4}
+            yearsOld={yearsOldY4}
+            year={y4}
             top={138}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <SynastryAnnualReturn
             annualReturn={annualReturnCurrent}
-            personalYear={personalYearY1}
-            yearsOld={yearsOldY1}
-            year={y1}
+            personalYear={personalYear}
+            yearsOld={yearsOld}
+            year={now}
             top={138}
-            left={177} />
+            left={177}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <SynastryAnnualReturn
-            annualReturn={annualReturnCurrent}
-            personalYear={personalYearY1}
-            yearsOld={yearsOldY1}
-            year={y1}
+            annualReturn={annualReturnY6}
+            personalYear={personalYearY6}
+            yearsOld={yearsOldY6}
+            year={y6}
             top={138}
-            left={353} />
+            left={353}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <SynastryAnnualReturn
-            annualReturn={annualReturnCurrent}
-            personalYear={personalYearY1}
-            yearsOld={yearsOldY1}
-            year={y1}
+            annualReturn={annualReturnY7}
+            personalYear={personalYearY7}
+            yearsOld={yearsOldY7}
+            year={y7}
             top={275}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <SynastryAnnualReturn
-            annualReturn={annualReturnCurrent}
-            personalYear={personalYearY1}
-            yearsOld={yearsOldY1}
-            year={y1}
+            annualReturn={annualReturnY8}
+            personalYear={personalYearY8}
+            yearsOld={yearsOldY8}
+            year={y8}
             top={275}
-            left={177} />
+            left={177}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <SynastryAnnualReturn
-            annualReturn={annualReturnCurrent}
-            personalYear={personalYearY1}
-            yearsOld={yearsOldY1}
-            year={y1}
+            annualReturn={annualReturnY9}
+            personalYear={personalYearY9}
+            yearsOld={yearsOldY9}
+            year={y9}
             top={275}
-            left={353} />
+            left={353}
+          />
         </View>
       </View>
     </View>
