@@ -195,7 +195,7 @@ export const Navbar = () => {
     const blob = await pdf((
       <MyPDF />
     )).toBlob();
-    saveAs(blob, sanitize(`${path} ${consultant.fullName}`));
+    saveAs(blob, sanitize(`${path} ${(location.pathname.includes('crear_nombre')) ? createNameObj.fullName : consultant.fullName}`));
   }
 
   const openModal = () => {
@@ -206,7 +206,7 @@ export const Navbar = () => {
         pinaculo: { name: 'Pináculo', fn: PinnaclePDF },
         camino: { name: 'Camino de Vida', fn: LifePathPDF },
         nombre: { name: 'Nombre', fn: NamePDF },
-        // crear_nombre: { name: 'Crear Nombre', fn: CreateNamePDF },
+        crear_nombre: { name: 'Crear Nombre', fn: CreateNamePDF },
         destino: { name: 'Tabla del Destino', fn: DestinityPDF },
         tiempo: { name: 'Vibración de Tiempo', fn: TimeVibrationPDF },
         retornos: { name: 'Retornos Anuales', fn: AnnualReturnsPDF },
