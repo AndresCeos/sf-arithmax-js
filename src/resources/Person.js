@@ -111,8 +111,9 @@ export class Person {
       namev += val2
     })
     const name = this.reduceNumberISK(nameValues + namev)
-    console.log(`KARMICO => ${name}`)
-    console.log(this.getNameCheck())
+    // // console.log('KARMICO => ' + name)
+    // // console.log(this.getNameCheck())
+
     return this.karmicos.includes(name) ? '*' : '';
   }
 
@@ -239,7 +240,8 @@ export class Person {
     const lastnameValue = this.reduceNumber(lastnameVowelsValues + lastnameConsonantsValue)
 
     const name = this.reduceNumberISK(nameValue + lastnameValue)
-    console.log(` check this=>${this.calcName()}`)
+    // // console.log(' check this=>' + this.calcName())
+
     if (this.calcName() === 22 || this.calcName() === 11) {
       return '';
     }
@@ -340,10 +342,10 @@ export class Person {
     let lastnameVowelsValues = 0
     lastnameConst.forEach(element => {
       lastnameVowelsValues += this.consonantValues(element)
-      //console.log(this.consonantValues(element))
+      // console.log(this.consonantValues(element))
 
     })
-    //console.log('Valor del apellido ' + lastnameVowelsValues)
+    // console.log('Valor del apellido ' + lastnameVowelsValues)
     nameValues += this.reduceNumber(lastnameVowelsValues)
 
     const scdLastnameConst = this.scdLastName.toString().toLowerCase().toLowerCase().split('')
@@ -351,9 +353,9 @@ export class Person {
     scdLastnameConst.forEach(element => {
       scdLastnameVowelsValues += this.consonantValues(element)
     })
-    //console.log('Valor del segundo apellido ' + scdLastnameVowelsValues)
+    // console.log('Valor del segundo apellido ' + scdLastnameVowelsValues)
     nameValues += this.reduceNumber(scdLastnameVowelsValues)
-    //console.log('Ultimo valor' + nameValues)
+    // console.log('Ultimo valor' + nameValues)
     */
     return values2
   }
@@ -857,10 +859,10 @@ export class Person {
     const dC = this.getDCheck()
 
     if ((master.includes(D) || master.includes(dC))) {
-      console.log('TIENEN ETAPA DOBLE')
+      // // console.log('TIENEN ETAPA DOBLE')
       return true
     }
-    console.log('NO TIENEN ETAPA DOBLE')
+    // // console.log('NO TIENEN ETAPA DOBLE')
     return false
   }
 
@@ -896,7 +898,7 @@ export class Person {
         reduced = 4
       }
     }
-    console.log(reduced)
+    // // console.log(reduced)
     const stageOneEnd = year + 36 - reduced
     if (stage === 1) return stageOneEnd
 
@@ -1024,11 +1026,11 @@ export class Person {
     const reducedDay = this.reduceNumber(dayBirthDate)
 
     const reduceSum = this.reduceNumber(dayBirthDate + monthBirthDate + yearBirthDate)
-    // console.log('unic =>'+reduceSum)
+    // console.log(`unic =>${reduceSum}`)
     // const stageOne = this.reduceNumber( reducedMonth + reducedDay )
 
     const stageOneEnd = yearBirthDate + 36 - reduceSum;
-    console.log(`final etapa unica => ${stageOneEnd}`);
+    // // console.log(`final etapa unica => ${stageOneEnd}`);
     if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd) {
       if (yearToCalculate === stageOneEnd && monthBirthDate <= monthToCalculate) {
         return 2;
@@ -1103,7 +1105,7 @@ export class Person {
     }
 
     const stageOneEnd = yearBirthDate + 36 - reduceSum
-    console.log(`final etapa doble => ${stageOneEnd}`);
+    // // console.log(`final etapa doble => ${stageOneEnd}`);
     if (yearBirthDate <= yearToCalculate && yearToCalculate <= stageOneEnd) {
       return 1;
     }
@@ -1410,7 +1412,7 @@ export class Person {
   }
 
   calcGift() {
-    console.log(this.birthDate.year().toString()[0])
+    // // console.log(this.birthDate.year().toString()[0])
     let gift = this.reduceNumber(
       parseInt(this.birthDate.year().toString()[2])
       + parseInt(this.birthDate.year().toString()[3])
@@ -1957,10 +1959,10 @@ export class Person {
     const birthDateMonth = this.birthDate.format('MMMM')
     const indexE = listOfMonthE.findIndex(i => i === actualMonth.capitalize())
     const index = listOfMonths.findIndex(i => i === allMonths[indexE])
-    console.log(`index => ${index}`);
+    // // console.log(`index => ${index}`);
 
     const indexEnero = listOfMonths.findIndex(i => i === 'Enero')
-    console.log(`index enero => ${indexEnero}`);
+    // // console.log(`index enero => ${indexEnero}`);
     if (index < 5) {
       if (birthDateMonth === actualMonth && this.birthDate.date() > 20) {
         return this.getQuaterThree(yearToCalculate - 1)
@@ -2035,10 +2037,10 @@ export class Person {
     const quaterMonth = this.NOW.month(month - 1).format('MMMM')
     const monthIndex = this.getCustomMonths().findIndex(i => i === quaterMonth.capitalize())
     const indexEnero = this.getCustomMonths().findIndex(i => i === 'Enero')
-    console.log(this.getCustomMonths())
-    console.log(quaterMonth);
-    console.log(monthIndex);
-    console.log(indexEnero)
+    // // console.log(this.getCustomMonths())
+    // // console.log(quaterMonth);
+    // // console.log(monthIndex);
+    // // console.log(indexEnero)
 
     switch (month) {
       case 1:

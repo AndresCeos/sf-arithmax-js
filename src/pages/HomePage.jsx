@@ -11,7 +11,7 @@ import { CircleTime } from '../components';
 import { GuestForm } from '../components/GuestForm';
 import Modal from '../components/Modal';
 import { dateSelect } from '../hooks';
-import { currentDateShort, Person, Universal } from '../resources';
+import { Person, Universal, currentDateShort } from '../resources';
 import { getGuestByIndex } from '../store/slices/users/users';
 
 const HomePage = () => {
@@ -56,7 +56,7 @@ const HomePage = () => {
   }
 
   const fetchGuests = async () => {
-    const guests = await localforage.getItem('guests')
+    const guests = await localforage.getItem('guests-v2')
     handleGuests(guests)
   }
 

@@ -17,7 +17,7 @@ export const startLogin = (userData) => {
     dispatch(checkingCredentials())
 
     const restApiUrl = `${clientConfig.siteUrl}/wp-json/app/v1/authenticate`;
-    axios.post(restApiUrl, userData)
+    await axios.post(restApiUrl, userData)
       .then(res => {
         if (res.data.token) {
           const user = {
@@ -42,12 +42,12 @@ export const startLogin = (userData) => {
             dispatch(setUsers(res.data.user_consultants))
             dispatch(setGuestsLogin(res.data.user_guests))
           }
-          localForage.setItem('session', { status: 'authenticated', ...user })
+          localForage.setItem('session-v2', { status: 'authenticated', ...user })
         }
       }).catch(err => {
         const message = getErrorMessage(err.response.data.data.status)
 
-        localForage.removeItem('session', () => {
+        localForage.removeItem('session-v2', () => {
           dispatch(logout({ errorMessage: message }))
         })
       })
@@ -63,7 +63,7 @@ const getErrorMessage = code => {
 
 export const fetchStatus = () => async dispatch => {
   await checkAvailabilityDevices(dispatch);
-  await localForage.getItem('session', (e, session) => {
+  await localForage.getItem('session-v2', (e, session) => {
     if (session !== null) {
       dispatch(login(session))
     } else {
@@ -74,14 +74,14 @@ export const fetchStatus = () => async dispatch => {
 
 export const updateUserProfile = (user) => async dispatch => {
   try {
-    const session = await localForage.getItem('session');
+    const session = await localForage.getItem('session-v2');
     const config = {
       headers: { Authorization: `Bearer ${session.token}` }
     }
     const restApiUrl = `${clientConfig.siteUrl}/wp-json/app/v1/p`;
     axios.post(restApiUrl, user, config)
       .then(res => {
-        localForage.setItem('session', { ...session, ...res.data }).then((r) => {
+        localForage.setItem('session-v2', { ...session, ...res.data }).then((r) => {
           dispatch(updateUserInfo(res.data))
         })
       })
@@ -92,8 +92,8 @@ export const updateUserProfile = (user) => async dispatch => {
 
 export const startLogout = (msg = '') => {
   return async dispatch => {
-    localForage.removeItem('session', () => {
-      localForage.removeItem('users')
+    localForage.removeItem('session-v2', () => {
+      localForage.removeItem('users-v2')
       dispatch(logout({ errorMessage: msg }))
       window.location.reload(false);
     })

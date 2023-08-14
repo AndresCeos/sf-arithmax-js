@@ -9,7 +9,7 @@ export const checkAvailabilityDevices = async (dispatch) => {
   console.log(localStorage.getItem('app_version'))
   if (localStorage.getItem('app_version') !== '2.0.9' || localStorage.getItem('loading') === 'false') {
     try {
-      const { token } = await localForage.getItem('session');
+      const { token } = await localForage.getItem('session-v2');
       const m = localStorage.getItem('m');
       localStorage.setItem('loading', true);
       const config = {
@@ -20,12 +20,12 @@ export const checkAvailabilityDevices = async (dispatch) => {
         .then(res => {
           console.log({ app_version: res.data.app_version })
           localStorage.setItem('loading', false);
-          localForage.getItem('users', (err, users) => {
+          localForage.getItem('users-v2', (err, users) => {
             console.log({ users })
             console.log({ res: res.data.user_consultants })
             if (JSON.stringify(users) !== JSON.stringify(res.data.user_consultants)) {
               dispatch(setUserList(res.data.user_consultants))
-              localForage.setItem('users', res.data.user_consultants)
+              localForage.setItem('users-v2', res.data.user_consultants)
             }
             // if (Object.keys(users).length !== Object.keys(res.data.user_consultants).length) {
             // }
@@ -57,7 +57,7 @@ export const checkAvailabilityDevices = async (dispatch) => {
 }
 
 export const syncUserInfo = async userData => {
-  const { token } = await localForage.getItem('session');
+  const { token } = await localForage.getItem('session-v2');
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   }
@@ -69,7 +69,7 @@ export const syncUserInfo = async userData => {
 }
 
 export const syncGuests = async guests => {
-  const { token } = await localForage.getItem('session');
+  const { token } = await localForage.getItem('session-v2');
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   }

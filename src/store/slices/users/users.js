@@ -134,7 +134,7 @@ export const {
 export default userSlice.reducer;
 
 export const fetchAllUsers = () => async dispatch => {
-  const value = await localForage.getItem('users');
+  const value = await localForage.getItem('users-v2');
   return value != null
     ? dispatch(setUserList(_.sortBy(value, 'names')))
     : dispatch(setUserList([]));
@@ -146,12 +146,12 @@ export const setDate = (date) => async dispatch => {
 
 export const addUser = user => async dispatch => {
   user.id = generateUserId()
-  localForage.getItem('users', (err, users) => {
+  localForage.getItem('users-v2', (err, users) => {
     if (users == null) {
       users = []
     }
     users = [...users, user]
-    localForage.setItem('users', users).then(() => {
+    localForage.setItem('users-v2', users).then(() => {
       dispatch(setUserList(_.sortBy(users, 'names')))
       syncUserInfo(users)
       dispatch(selectUserActive(user.id))
@@ -160,7 +160,7 @@ export const addUser = user => async dispatch => {
 }
 
 export const setUsers = users => async dispatch => {
-  localForage.setItem('users', users).then(() => {
+  localForage.setItem('users-v2', users).then(() => {
     dispatch(setUserList(_.sortBy(users, 'names')))
   })
 }
@@ -172,7 +172,7 @@ export const showToast = toast => async dispatch => {
 export const generateUserId = () => Math.random().toString(36).substring(2, 9);
 
 export const removeUser = id => async dispatch => {
-  const users = await localForage.getItem('users')
+  const users = await localForage.getItem('users-v2')
   Swal.fire({
     title: '¿Estas seguro?',
     text: 'La persona se borrara permanentemente',
@@ -185,7 +185,7 @@ export const removeUser = id => async dispatch => {
   }).then(result => {
     if (result.isConfirmed) {
       const listUsers = users.filter(e => e.id !== id)
-      localForage.setItem('users', listUsers).then(val => { console.log(val) })
+      localForage.setItem('users-v2', listUsers).then(val => { console.log(val) })
       syncUserInfo(listUsers)
       dispatch(setUserList(_.sortBy(listUsers, 'names')))
       dispatch(showToast({
@@ -197,7 +197,7 @@ export const removeUser = id => async dispatch => {
   })
 }
 export const removeGroupUser = (data, i) => async dispatch => {
-  const users = await localForage.getItem('users')
+  const users = await localForage.getItem('users-v2')
   Swal.fire({
     title: '¿Estas seguro?',
     text: 'La persona se borrara permanentemente',
@@ -224,7 +224,7 @@ export const removeGroupUser = (data, i) => async dispatch => {
 }
 
 export const removePartnerUser = (data, i) => async dispatch => {
-  const users = await localForage.getItem('users')
+  const users = await localForage.getItem('users-v2')
   Swal.fire({
     title: '¿Estas seguro?',
     text: 'La persona se borrara permanentemente',
@@ -251,25 +251,25 @@ export const removePartnerUser = (data, i) => async dispatch => {
 }
 
 export const getUser = (userId) => async dispatch => {
-  const users = await localForage.getItem('users');
+  const users = await localForage.getItem('users-v2');
   return users.find(e => e.id === userId);
 }
 
 export const updateNotes = (user) => async dispatch => {
-  const users = await localForage.getItem('users')
+  const users = await localForage.getItem('users-v2')
   const listUsers = users.filter(e => e.id !== user.id)
   const updatedUsers = [
     ...listUsers,
     user
   ]
-  localForage.setItem('users', updatedUsers).then(() => {
+  localForage.setItem('users-v2', updatedUsers).then(() => {
     syncUserInfo(updatedUsers)
     dispatch(selectUserActive(user.id))
   });
 }
 
 export const editUser = userUpdated => async dispatch => {
-  const users = await localForage.getItem('users')
+  const users = await localForage.getItem('users-v2')
   const listUsers = users.filter(e => e.id !== userUpdated.id)
   const user = users.find(e => e.id === userUpdated.id)
   const newUser = { ...user, ...userUpdated }
@@ -278,7 +278,7 @@ export const editUser = userUpdated => async dispatch => {
     ...listUsers,
     newUser
   ]
-  localForage.setItem('users', updatedUsers).then(() => {
+  localForage.setItem('users-v2', updatedUsers).then(() => {
     dispatch(setUserList(_.sortBy(updatedUsers, 'names')))
     syncUserInfo(updatedUsers)
     dispatch(setIsEditing(false))
@@ -307,26 +307,26 @@ export const selectUserActive = userId => async dispatch => {
     dispatch(setUserActive([]))
     return;
   }
-  const users = await localForage.getItem('users')
+  const users = await localForage.getItem('users-v2')
   const user = users.find(({ id }) => id === userId)
   dispatch(setUserActive(user))
   dispatch(setEventYear(null))
 }
 export const selectUserPartnerActive = (userId, parnetIndex) => async dispatch => {
-  const users = await localForage.getItem('users')
+  const users = await localForage.getItem('users-v2')
   const user = users.find(({ id }) => id === userId)
   const partnerActive = user.partner[parnetIndex]
   dispatch(setUserPartnerActive(partnerActive))
 }
 
 export const updateUser = user => async dispatch => {
-  localForage.setItem('userInfo', user).then(val => {
+  localForage.setItem('userInfo-v2', user).then(val => {
     dispatch(setUserInfo(user))
   })
 }
 
 // export const fetchUserInfo = () => async dispatch  => {
-//   localForage.getItem('userInfo', (err, user) => {
+//   localForage.getItem('userInfo-v2', (err, user) => {
 //     if( user != null ){
 //       dispatch( setUserInfo(user) )
 //     }
@@ -334,13 +334,13 @@ export const updateUser = user => async dispatch => {
 // }
 
 export const updateCreateName = user => async dispatch => {
-  localForage.setItem('createName', user).then(val => {
+  localForage.setItem('createName-v2', user).then(val => {
     dispatch(setCreateName(user))
   })
 }
 
 export const getGuestByIndex = (index) => async dispatch => {
-  let guests = await localForage.getItem('guests');
+  let guests = await localForage.getItem('guests-v2');
   if (!guests) guests = []
   dispatch(setGuestActive({
     name: guests[index - 1]?.name ?? '',
@@ -349,17 +349,17 @@ export const getGuestByIndex = (index) => async dispatch => {
 };
 
 export const updateGuestByIndex = (index, guest) => async dispatch => {
-  let guests = await localForage.getItem('guests')
+  let guests = await localForage.getItem('guests-v2')
   if (!guests) guests = []
   guests[index - 1] = guest
-  localForage.setItem('guests', guests).then(() => {
+  localForage.setItem('guests-v2', guests).then(() => {
     dispatch(setGuests(guests))
     syncGuests(guests)
   })
 }
 
 export const setGuestsLogin = guests => async dispatch => {
-  localForage.setItem('guests', guests).then(() => {
+  localForage.setItem('guests-v2', guests).then(() => {
     dispatch(setGuests(guests))
   })
 }
