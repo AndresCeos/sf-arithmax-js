@@ -7,7 +7,7 @@ import { setUserList } from './users';
 export const checkAvailabilityDevices = async (dispatch) => {
   console.log('this is working');
   console.log(localStorage.getItem('app_version'))
-  if (localStorage.getItem('app_version') !== '2.0.8' || localStorage.getItem('loading') === 'false') {
+  if (localStorage.getItem('app_version') !== '2.0.9' || localStorage.getItem('loading') === 'false') {
     try {
       const { token } = await localForage.getItem('session');
       const m = localStorage.getItem('m');
