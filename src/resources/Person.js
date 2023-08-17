@@ -59,7 +59,7 @@ export class Person {
     return `${this.birthDate.date()} de ${this.birthDate.format('MMMM')} ${this.birthDate.year()}`
   }
 
-  getYearsOld(yearToCalculate = null) {
+  getYearsOldDigit(yearToCalculate = null) {
     yearToCalculate = yearToCalculate || this.NOW.year()
     let age = yearToCalculate - this.birthDate.year()
     if (this.birthDate.month() > this.NOW.month()) {
@@ -69,6 +69,13 @@ export class Person {
         age--
       }
     }
+    if (age < 1) { age = 0 }
+    return age;
+  }
+
+  getYearsOld(yearToCalculate = null) {
+    yearToCalculate = yearToCalculate || this.NOW.year()
+    let age = yearToCalculate - this.birthDate.year()
     if (age < 1) { age = 0 }
     return age;
   }
@@ -1502,7 +1509,7 @@ export class Person {
   }
 
   calcAgeDigit() {
-    const age = this.getYearsOld()
+    const age = this.getYearsOldDigit()
     const nextAge = age + 1
     return this.reduceNumber(age + nextAge)
   }
