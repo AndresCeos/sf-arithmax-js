@@ -10,6 +10,7 @@ import { showToast } from '../store/slices/users/users';
 
 const ConfigPage = () => {
   const { names, lastName, scdLastName, date, company, address, email, tel, phone, logoURL, webSite, appVersion, licence } = useSelector(state => state.auth)
+  const version = localStorage.getItem('app_version')
   const [base, setBase] = useState(logoURL !== null ? logoURL : '')
   const [isSelect, setIsSelect] = useState(false)
   const [maxBytes, setMaxBytes] = useState(false)
@@ -217,104 +218,104 @@ const ConfigPage = () => {
                         <a href="https://app.numerologia-cotidiana.com/mi-cuenta/lost-password/" className='text-blue-600 underline' target="_blank" rel="noreferrer">Cambiar mi Contraseña</a>
                       </div>
                     </div>
-                       <div className='w-2/5 border-l-2 border-gray-600 px-6'>
-                    <h2 className='text-sm font-extrabold text-gray-400 mb-5'>Datos Profesionales</h2>
-                    <div className="flex w-full">
-                      <div className="form-group w-full">
-                        <label className='font-bold mb-1 text-13'>
-                          Empresa*
-                        </label>
-                        <input
-                          type="text"
-                          name="company"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.company}
-                          className="rounded-md"
-                        />
-                        {errors.company && touched.company ? <span className="form-error">{errors.company}</span> : null}
-                      </div>
-                    </div>
-                    <div className='flex w-full mt-6'>
-                      <div className="form-group w-1/2">
-                        <label className='font-bold mb-1 text-13'>
-                          Dirección*
-                        </label>
-                        <input
-                          type="text"
-                          name="address"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.address}
-                          className="rounded-md"
-                        />
-                        {errors.address && touched.address ? <span className="form-error">{errors.address}</span> : null}
-                      </div>
-                      <div className="form-group w-1/2">
-                        <label className='font-bold mb-1 text-13'>
-                          Teléfono*
-                        </label>
-                        <input
-                          type="number"
-                          name="phone"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.phone}
-                          className="rounded-md"
-                        />
-                        {errors.phone && touched.phone ? <span className="form-error">{errors.phone}</span> : null}
-                      </div>
-                    </div>
-                    <div className="flex w-full mt-6">
-                      <div className="form-group w-1/2">
-                        <label className='font-bold mb-1 text-13'>
-                          Página Web*
-                        </label>
-                        <input
-                          type="text"
-                          name="webSite"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          value={values.webSite}
-                          className="rounded-md"
-                        />
-                        {errors.webSite && touched.webSite ? <span className="form-error">{errors.webSite}</span> : null}
-                      </div>
-                      {(!isSelect) ? (
-                        <div className="form-group w-1/2">
-                          <label className='font-bold mb-1 text-13'>Adjuntar Logo</label>
-                          <input
-                            type="file"
-                            name="logoURL"
-                            onChange={(e) => { uploadImage(e) }}
-                            onBlur={handleBlur}
-                            className="rounded-md"
-                            accept="image/*"
-                          />
-                          {(maxBytes) ? <p className='text-13 text-red-600'>Archivo demasiado pesado</p> : null}
-                          <p className='text-13 mt-2'>Tamaño del archivo max. 1MB</p>
-                          <p className='text-13'>Tipo de archivo .jpeg .png</p>
-                          <p className='text-13'>Dimensiones recomendadas 309 x174 pixeles</p>
-                        </div>
-                      ) : null}
-                    </div>
-                    <div className='flex w-full mt-6'>
-                      {(isSelect) ? (
+                    <div className='w-2/5 border-l-2 border-gray-600 px-6'>
+                      <h2 className='text-sm font-extrabold text-gray-400 mb-5'>Datos Profesionales</h2>
+                      <div className="flex w-full">
                         <div className="form-group w-full">
                           <label className='font-bold mb-1 text-13'>
-                            Preview
+                            Empresa*
                           </label>
-                          <div className='flex w-full'>
-                            <img className=' w-2/3 h-28 object-contain shadow-2xl' src={base} alt="logoURL" />
-                            <button className="ml-6 w-1/3" onClick={clear}>
-                              <img src={c_delete} alt="delete" />
-                            </button>
-                          </div>
+                          <input
+                            type="text"
+                            name="company"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.company}
+                            className="rounded-md"
+                          />
+                          {errors.company && touched.company ? <span className="form-error">{errors.company}</span> : null}
                         </div>
-                      ) : null}
-                    </div>
+                      </div>
+                      <div className='flex w-full mt-6'>
+                        <div className="form-group w-1/2">
+                          <label className='font-bold mb-1 text-13'>
+                            Dirección*
+                          </label>
+                          <input
+                            type="text"
+                            name="address"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.address}
+                            className="rounded-md"
+                          />
+                          {errors.address && touched.address ? <span className="form-error">{errors.address}</span> : null}
+                        </div>
+                        <div className="form-group w-1/2">
+                          <label className='font-bold mb-1 text-13'>
+                            Teléfono*
+                          </label>
+                          <input
+                            type="number"
+                            name="phone"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.phone}
+                            className="rounded-md"
+                          />
+                          {errors.phone && touched.phone ? <span className="form-error">{errors.phone}</span> : null}
+                        </div>
+                      </div>
+                      <div className="flex w-full mt-6">
+                        <div className="form-group w-1/2">
+                          <label className='font-bold mb-1 text-13'>
+                            Página Web*
+                          </label>
+                          <input
+                            type="text"
+                            name="webSite"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.webSite}
+                            className="rounded-md"
+                          />
+                          {errors.webSite && touched.webSite ? <span className="form-error">{errors.webSite}</span> : null}
+                        </div>
+                        {(!isSelect) ? (
+                          <div className="form-group w-1/2">
+                            <label className='font-bold mb-1 text-13'>Adjuntar Logo</label>
+                            <input
+                              type="file"
+                              name="logoURL"
+                              onChange={(e) => { uploadImage(e) }}
+                              onBlur={handleBlur}
+                              className="rounded-md"
+                              accept="image/*"
+                            />
+                            {(maxBytes) ? <p className='text-13 text-red-600'>Archivo demasiado pesado</p> : null}
+                            <p className='text-13 mt-2'>Tamaño del archivo max. 1MB</p>
+                            <p className='text-13'>Tipo de archivo .jpeg .png</p>
+                            <p className='text-13'>Dimensiones recomendadas 309 x174 pixeles</p>
+                          </div>
+                        ) : null}
+                      </div>
+                      <div className='flex w-full mt-6'>
+                        {(isSelect) ? (
+                          <div className="form-group w-full">
+                            <label className='font-bold mb-1 text-13'>
+                              Preview
+                            </label>
+                            <div className='flex w-full'>
+                              <img className=' w-2/3 h-28 object-contain shadow-2xl' src={base} alt="logoURL" />
+                              <button className="ml-6 w-1/3" onClick={clear}>
+                                <img src={c_delete} alt="delete" />
+                              </button>
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
 
-                       </div>
+                    </div>
                   </div>
 
                   <div className="flex w-full gap-4 mt-6 items-center">
@@ -336,7 +337,7 @@ const ConfigPage = () => {
             Mi cuenta
           </div>
           <div className='pinnacle-wrap px-5 py-4 bg-gray-300'>
-            <div className='text-13 text-gray-500 pt-2'><strong>Versión de Software:</strong> {appVersion}</div>
+            <div className='text-13 text-gray-500 pt-2'><strong>Versión de Software:</strong> {version}</div>
             <div className='text-13 text-gray-500 pt-2'><strong>Número de Licencia:</strong> {licence}</div>
           </div>
 
