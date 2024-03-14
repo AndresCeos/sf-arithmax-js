@@ -13,8 +13,8 @@ export const NameCycle = ({ consultant, date }) => {
     <View>
       <ActiveName table={table1} start={0} consultant={consultant} nameCycles={nameCycles} date={date} position={0} />
       <ActiveName table={table2} start={31} consultant={consultant} nameCycles={nameCycles} date={date} position={1} />
-      <ActiveName table={table3} start={61} consultant={consultant} nameCycles={nameCycles} date={date} position={2} />
-      <ActiveName table={table4} start={91} consultant={consultant} nameCycles={nameCycles} date={date} position={3} />
+      <ActiveName table={table3} start={62} consultant={consultant} nameCycles={nameCycles} date={date} position={2} />
+      <ActiveName table={table4} start={93} consultant={consultant} nameCycles={nameCycles} date={date} position={3} />
     </View>
   )
 }
@@ -38,7 +38,7 @@ export const ActiveName = ({ table, start, consultant, nameCycles, date, positio
       <View style={pinnacleName.wrap}>
         <View style={[pinnacleName.table, { top: 355, left: -230 + (position * 88) }]}>
           <View style={{ width: 40, height: 20, backgroundColor: '#3200334d', display: 'flex', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 8, marginLeft: 5, fontWeight: 'bold' }}>Año</Text>
+            <Text style={{ fontSize: 8, marginLeft: 5, fontWeight: 'bold' }}>Añooo</Text>
           </View>
           <View style={{ width: 40, height: 20, backgroundColor: '#3200332d', display: 'flex', justifyContent: 'center' }}>
             <Text style={{ fontSize: 8, marginLeft: 5, fontWeight: 'bold' }}>Edad </Text>

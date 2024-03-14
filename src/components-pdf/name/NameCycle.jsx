@@ -13,8 +13,8 @@ export const NameCycle = ({ consultant, date }) => {
     <View>
       <ActiveName table={table1} start={0} consultant={consultant} nameCycles={nameCycles} date={date} position={0} />
       <ActiveName table={table2} start={31} consultant={consultant} nameCycles={nameCycles} date={date} position={1} />
-      <ActiveName table={table3} start={61} consultant={consultant} nameCycles={nameCycles} date={date} position={2} />
-      <ActiveName table={table4} start={91} consultant={consultant} nameCycles={nameCycles} date={date} position={3} />
+      <ActiveName table={table3} start={62} consultant={consultant} nameCycles={nameCycles} date={date} position={2} />
+      <ActiveName table={table4} start={93} consultant={consultant} nameCycles={nameCycles} date={date} position={3} />
     </View>
   )
 }

@@ -88,7 +88,7 @@ const CreateNamePage = () => {
   }
 
   const isValid = () => {
-    const valid = new RegExp("^[a-zA-Z ]+$")
+    const valid = new RegExp('^[a-zA-Z ]+$')
     if (createNameData.name === '' || !valid.test(createNameData.name)) return false
     if (createNameData.birthDate === '') return false
     if (createNameData.name === '' && createNameData.birthDate === '') return false
@@ -102,8 +102,8 @@ const CreateNamePage = () => {
     dispatch(setCreateName({ name, date: birthDate }))
   }
   let table
-  //console.log('this is table => ' + table)
-  //console.log(table)
+  // console.log('this is table => ' + table)
+  // console.log(table)
   let table1
   let table2
   let table3
@@ -112,8 +112,8 @@ const CreateNamePage = () => {
   let nameSubCycles
   if (isValid()) {
     table = createNameObj.getNameSetting()
-    //console.log('this is table => ' + table)
-    //console.log(table)
+    // console.log('this is table => ' + table)
+    // console.log(table)
     table1 = table.slice(0, 31);
     table2 = table.slice(31, 62);
     table3 = table.slice(62, 93);
@@ -122,8 +122,8 @@ const CreateNamePage = () => {
     nameSubCycles = createNameObj.calcNameSubCycles()
   } else {
     table = []
-    //console.log('this is table => ' + table)
-    //console.log(table)
+    // console.log('this is table => ' + table)
+    // console.log(table)
     table1 = []
     table2 = []
     table3 = []
@@ -187,7 +187,7 @@ const CreateNamePage = () => {
               <div className='col-span-8 mb-5'>
                 <WrapTitle
                   title="Valores Numéricos del Nombre"
-                  color={'bg-blue'}
+                  color="bg-blue"
                   button={{
                     handle: checkName,
                     state: checkN,
@@ -211,7 +211,7 @@ const CreateNamePage = () => {
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
                       <label className='text-13 mb-3'>Expresión</label>
                       <div className='w-18 h-18 text-3xl font-black text-black flex justify-center items-center bg-blue-30 border border-blue rounded-full inner-shadow'>
-                        {createNameObj.calcSoulExpresion()}{createNameObj.calcSoulExpresionISK()}
+                        {(!checkN) ? `${createNameObj.calcSoulExpresion()}${createNameObj.calcSoulExpresionISK()}` : `${createNameObj.getExpressionSoulCheck()}${createNameObj.calcSoulExpresionISK()}`}
                       </div>
                     </div>
                     <div className='flex flex-col items-center justify-center text-gray-500 font-bold'>
@@ -369,13 +369,14 @@ const CreateNamePage = () => {
                 </div>
                 <div className='pinnacle-wrap px-8 py-8'>
                   {isValid()
-                    ?
-                    <div>
+                    ? (
+<div>
                       <ActiveName table={table1} start={0} consultant={createNameObj} nameCycles={nameCycles} nameSubCycles={nameSubCycles} />
                       <ActiveName table={table2} start={31} consultant={createNameObj} nameCycles={nameCycles} nameSubCycles={nameSubCycles} />
                       <ActiveName table={table3} start={62} consultant={createNameObj} nameCycles={nameCycles} nameSubCycles={nameSubCycles} />
                       <ActiveName table={table4} start={93} consultant={createNameObj} nameCycles={nameCycles} nameSubCycles={nameSubCycles} />
-                    </div>
+</div>
+)
                     : null}
                 </div>
               </div>
