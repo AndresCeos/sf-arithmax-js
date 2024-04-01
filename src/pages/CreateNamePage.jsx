@@ -88,7 +88,7 @@ const CreateNamePage = () => {
   }
 
   const isValid = () => {
-    const valid = new RegExp('^[a-zA-Z ]+$')
+    const valid = new RegExp('^[a-zA-Z ñÑ]+$')
     if (createNameData.name === '' || !valid.test(createNameData.name)) return false
     if (createNameData.birthDate === '') return false
     if (createNameData.name === '' && createNameData.birthDate === '') return false
