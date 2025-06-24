@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet } from "@react-pdf/renderer"
+import { View, Text, StyleSheet } from '@react-pdf/renderer'
 
-export const GroupTimeCurve = ({groupConsult, newDate})=>{
+export const GroupTimeCurve = ({ groupConsult, newDate }) => {
   return (
     <View style={timeCurve.container}>
       <View style={timeCurve.wrap}>
@@ -203,41 +203,41 @@ export const timeCurve = StyleSheet.create({
   s1_begining: {
     top: '142px',
     left: '10px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s2_begining: {
     top: '142px',
     left: '165px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s3_begining: {
     top: '142px',
     left: '222px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s4_begining: {
     top: '142px',
     left: '277px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s5_begining: {
     top: '142px',
     left: '331px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s6_begining: {
     top: '142px',
     left: '387px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   s7_begining: {
     top: '142px',
     left: '450px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
   ending: {
     top: '142px',
     left: '480px',
-    fontSize:'8px'
+    fontSize: '8px'
   },
 })

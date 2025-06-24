@@ -1,4 +1,4 @@
-import { TiPlus } from "react-icons/ti";
+import { TiPlus } from 'react-icons/ti';
 import bg from '../assets/keys.png'
 
 const ManualPage = () => {
@@ -35,7 +35,8 @@ const ManualPage = () => {
         <p>-Ingrese su nombre de usuario o correo electrónico y contraseña. Si no recuerda su contraseña puede restablecerla, solo de clic en la opción “¿Olvidaste la contraseña?"  </p>
         <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/COMPRA3.png" />
         <p>-Su información de contacto se actualizará.
-          *Sugerimos verificar que todos los datos sean correctos y en caso de faltar algún apartado es necesario completarlo.   </p>
+          *Sugerimos verificar que todos los datos sean correctos y en caso de faltar algún apartado es necesario completarlo.
+        </p>
 
         <p>-Si aún no es cliente, complete la Información de contacto e Información adicional. </p>
         <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/COMPRA4.png" />
@@ -71,7 +72,8 @@ const ManualPage = () => {
 
         <p>8. Correo confirmación de pedido. </p>
         <p>Ingrese al email que proporcionó en su información de compra, verifique que haya recibido el correo de confirmación de su compra.
-          Podrás identificarlo con el asunto “¡Hemos recibido tu pedido en Numerología Cotidiana de Laura Rodriguez!". </p>
+          Podrás identificarlo con el asunto “¡Hemos recibido tu pedido en Numerología Cotidiana de Laura Rodriguez!".
+        </p>
 
 
 
@@ -112,7 +114,8 @@ const ManualPage = () => {
         <p>Ubicada en el menú izquierdo, la opción “Configuración" le permite: </p>
         <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CONFIGURACION" />
         <p>-Modificar sus datos personales y datos profesionales.
-          Al terminar de actualizar todos lo datos de clic en el botón “Guardar" </p>
+          Al terminar de actualizar todos lo datos de clic en el botón “Guardar"
+        </p>
         <p>-Conocer la información y vigencia de su licencia. </p>
 
 
@@ -124,7 +127,8 @@ const ManualPage = () => {
 
         <h2>ACTUALIZAR DATOS</h2>
         <p>Le redirige al menú “Consultante". Aquí puede actualizar los datos del consultante seleccionado de una manera rápida.
-          También puede buscar, agregar, editar o eliminar datos de los consultantes.  </p>
+          También puede buscar, agregar, editar o eliminar datos de los consultantes.
+        </p>
         <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/ACTUALIZAR.png" />
 
         <h2>CAMBIAR FECHA</h2>
@@ -145,7 +149,8 @@ const ManualPage = () => {
         <p>*El botón guardar reporte no se habilitará hasta que:
           -Seleccione un consultante
           -Seleccione un consultante y su pareja
-          -Seleccione un consultante y su grupo </p>
+          -Seleccione un consultante y su grupo
+        </p>
 
         <h2>IMPRIMIR REPORTES</h2>
         <p>Puede seleccionar los reportes que desee descargar un solo archivo PDF. Esta opción es útil si le interesa guardar más de un reporte. </p>
@@ -170,7 +175,8 @@ const ManualPage = () => {
         <p>-Menú izquierdo: En el ícono Consultante.  </p>
         <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CONSULTANTE1.jpg" />
         <p>Ingrese la información solicitada y haga clic en el botón “Guardar".
-          Nombre(s), apellido paterno, apellido materno, fecha de nacimiento, empresa, teléfono y correo electrónico son datos obligatorios. Mientras que, nacionalidad y sexo son datos opcionales. </p>
+          Nombre(s), apellido paterno, apellido materno, fecha de nacimiento, empresa, teléfono y correo electrónico son datos obligatorios. Mientras que, nacionalidad y sexo son datos opcionales.
+        </p>
 
         <p>Una vez haya guardado la información, en la parte derecha de la pantalla le aparecerá la información del “Perfil del consultante" que recién se añadió. </p>
         <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CONSULTANTE3.jpg" />
@@ -179,7 +185,8 @@ const ManualPage = () => {
         <p>En el apartado de “Historial" puede realizar las siguientes acciones:
           Ícono lupa: buscar por nombre
           ícono lápiz: editar datos de cada consultante
-          ícono basurero: eliminar consultantes   </p>
+          ícono basurero: eliminar consultantes
+        </p>
         <img src="https://app.numerologia-cotidiana.com/wp-content/uploads/2022/09/CONSULTANTE4.jpg" />
 
 

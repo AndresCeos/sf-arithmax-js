@@ -13,6 +13,6 @@ export const TimeVibrationPDF = ({ consultant, newDate }) => {
       <VibrationTimeQuarterY consultant={consultant} newDate={newDate} />
       <AnnualReturnsVibration consultant={consultant} newDate={newDate} />
       {/* @TODO: create copy of annual returns (name) for time vibration */}
-    </>
+              </>
   }
 }

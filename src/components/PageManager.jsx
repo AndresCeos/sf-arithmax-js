@@ -1,37 +1,37 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route } from 'react-router-dom'
 
-import { StatusBar } from "./StatusBar"
+import { StatusBar } from './StatusBar'
 import { useConsultant } from '../hooks';
 
 import bk from '../assets/bk.jpg'
 
-import HomePage from "../pages/HomePage"
-import ConsultantPage from "../pages/ConsultantPage"
-import PinnaclePage from "../pages/PinnaclePage"
-import PathPage from "../pages/PathPage";
-import NamePage from "../pages/NamePage";
-import CreateNamePage from "../pages/CreateNamePage";
-import DestinityTablePage from "../pages/DestinityTablePage";
-import VibrationTimePage from "../pages/VibrationTimePage";
-import AnnualReturnsPage from "../pages/AnnualReturnsPage";
-import TimeCirclePage from "../pages/TimeCirclePage";
-import CalendarPage from "../pages/CalendarPage";
-import CalendarMonthPage from "../pages/CalendarMonthPage";
-import SinastryPage from "../pages/SinastryPage";
-import SinastryVibrationTimePage from "../pages/SinastryVibrationTimePage";
-import SinastryAnnualReturnsPage from "../pages/SinastryAnnualReturnsPage";
-import SinastryDestinityTablePage from "../pages/SinastryDestinityTablePage";
-import CompatibilityTablePage from "../pages/CompatibilityTablePage";
-import GroupAnnualReturnsPage from "../pages/GroupsAnnualReturnsPage";
-import GroupPinnaclePage from "../pages/GroupPinnaclePage";
-import GroupVibrationTimePage from "../pages/GroupVibrationTimePage";
-import ConfigPage from "../pages/ConfigPage";
+import HomePage from '../pages/HomePage'
+import ConsultantPage from '../pages/ConsultantPage'
+import PinnaclePage from '../pages/PinnaclePage'
+import PathPage from '../pages/PathPage';
+import NamePage from '../pages/NamePage';
+import CreateNamePage from '../pages/CreateNamePage';
+import DestinityTablePage from '../pages/DestinityTablePage';
+import VibrationTimePage from '../pages/VibrationTimePage';
+import AnnualReturnsPage from '../pages/AnnualReturnsPage';
+import TimeCirclePage from '../pages/TimeCirclePage';
+import CalendarPage from '../pages/CalendarPage';
+import CalendarMonthPage from '../pages/CalendarMonthPage';
+import SinastryPage from '../pages/SinastryPage';
+import SinastryVibrationTimePage from '../pages/SinastryVibrationTimePage';
+import SinastryAnnualReturnsPage from '../pages/SinastryAnnualReturnsPage';
+import SinastryDestinityTablePage from '../pages/SinastryDestinityTablePage';
+import CompatibilityTablePage from '../pages/CompatibilityTablePage';
+import GroupAnnualReturnsPage from '../pages/GroupsAnnualReturnsPage';
+import GroupPinnaclePage from '../pages/GroupPinnaclePage';
+import GroupVibrationTimePage from '../pages/GroupVibrationTimePage';
+import ConfigPage from '../pages/ConfigPage';
 import { PreviewPDF } from '../components-pdf/PreviewPDF'
-import { fetchStatus } from '../store/slices/auth/thunks'; import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import SupportPage from "../pages/SupportPage";
-import ManualPage from "../pages/ManualPage";
-import PoliticasPage from "./PoliticasPage";
+import { fetchStatus } from '../store/slices/auth/thunks'; import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import SupportPage from '../pages/SupportPage';
+import ManualPage from '../pages/ManualPage';
+import PoliticasPage from './PoliticasPage';
 
 
 export const PageManager = () => {

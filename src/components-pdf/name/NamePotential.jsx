@@ -1,5 +1,5 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+
 
 export const NamePotential = ({ consultant }) => {
   const nameCycles = consultant.calcNameCycles()

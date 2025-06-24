@@ -1,37 +1,40 @@
-import { View, Text, StyleSheet } from "@react-pdf/renderer";
-import { AnnualReturn } from "./AnnualReturn";
-export const GroupRetornos1 = ({groupConsult, newDate}) =>{
-
+import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { AnnualReturn } from './AnnualReturn';
+export const GroupRetornos1 = ({ groupConsult, newDate }) => {
   const cap = groupConsult.group
   console.log(cap[1])
-  console.log( cap);
-  let annualReturnCurrent = groupConsult.annualReturn(newDate.year())
+  console.log(cap);
+  const annualReturnCurrent = groupConsult.annualReturn(newDate.year())
   let p1;
   let p2;
   let annualReturnLastYear;
   let annualReturnNextYear;
-  if(cap[0] !== undefined){
+  if (cap[0] !== undefined) {
     p1 = cap[0]
-    annualReturnLastYear = p1.annualReturn(newDate.year() )
+    annualReturnLastYear = p1.annualReturn(newDate.year())
   }
-  if(cap[1] !== undefined){
+  if (cap[1] !== undefined) {
     p2 = cap[1]
-    annualReturnNextYear = p2.annualReturn(newDate.year() )
+    annualReturnNextYear = p2.annualReturn(newDate.year())
   }
   return (
     <View style={annualReturn.container}>
       <View style={annualReturn.wrap}>
-        {(cap[0])?<View style={annualReturn.return_2}>
+        {(cap[0]) ? (
+<View style={annualReturn.return_2}>
         <View style={annualReturn.name}><Text>{p1.nameView}</Text></View>
           <AnnualReturn annualReturn={annualReturnLastYear} />
-        </View>:null}
+</View>
+) : null}
         <View style={annualReturn.return_1}>
           <AnnualReturn annualReturn={annualReturnCurrent} />
         </View>
-        {(cap[1])?<View style={annualReturn.return_3}>
+        {(cap[1]) ? (
+<View style={annualReturn.return_3}>
         <View style={annualReturn.name}><Text>{p2.nameView}</Text></View>
           <AnnualReturn annualReturn={annualReturnNextYear} />
-        </View>:null}
+</View>
+) : null}
       </View>
     </View>
   )
@@ -73,12 +76,12 @@ export const annualReturn = StyleSheet.create({
     width: '174px',
     // backgroundColor: '#0000ff',
   },
-  name:{
-    idth:'60px',
-    top:-18,
-    left:70,
-    fontSize:'8px',
-    color:'#ffffff',
-    position:'absolute'
+  name: {
+    idth: '60px',
+    top: -18,
+    left: 70,
+    fontSize: '8px',
+    color: '#ffffff',
+    position: 'absolute'
   }
 })

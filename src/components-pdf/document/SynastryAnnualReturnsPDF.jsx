@@ -11,6 +11,6 @@ export const SynastryAnnualReturnsPDF = ({ synastry, newDate }) => {
       <SynastryData synastry={synastry} newDate={newDate} />
       <SynastryAnnualReturns synastry={synastry} newDate={newDate} />
       <SynastryTimeCicle synastry={synastry} newDate={newDate} />
-    </>
+              </>
   }
 }

@@ -17,15 +17,15 @@ export const TimeCicle = ({ consultant, newDate }) => {
           <Text style={cycle.circle}>{consultant.calcLifeStage(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}{consultant.calcLifeStageISK(consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1))}</Text>
         </View>
         <View style={cycle.item}>
-          {nineYearCycle.map(year =>
+          {nineYearCycle.map(year => (
             <View style={cycle.itemMap}>
-              {year === newDate.year() ? <Text style={[cycle.title_circle]} >{consultant.calcPersonalYear(year)}{(consultant.calcPersonalYear(year) === 2) ? '/11' : ''}{(consultant.calcPersonalYear(year) === 4) ? '/22' : ''}{consultant.calcPersonalYearISK(year)}</Text> :
-                <Text style={[cycle.title_circle]} >{consultant.calcPersonalYear(year)}{(consultant.calcPersonalYear(year) === 2) ? '/11' : ''}{(consultant.calcPersonalYear(year) === 4) ? '/22' : ''}{consultant.calcPersonalYearISK(year)}</Text>}
+              {year === newDate.year() ? <Text style={[cycle.title_circle]}>{consultant.calcPersonalYear(year)}{(consultant.calcPersonalYear(year) === 2) ? '/11' : ''}{(consultant.calcPersonalYear(year) === 4) ? '/22' : ''}{consultant.calcPersonalYearISK(year)}</Text>
+                : <Text style={[cycle.title_circle]}>{consultant.calcPersonalYear(year)}{(consultant.calcPersonalYear(year) === 2) ? '/11' : ''}{(consultant.calcPersonalYear(year) === 4) ? '/22' : ''}{consultant.calcPersonalYearISK(year)}</Text>}
               {(year == newDate.year()) ? <Text style={[cycle.title, { fontWeight: 'bold' }]}>{year}</Text> : <Text style={[cycle.title, { color: '#7E7E7E' }]}>{year}</Text>}
               {(consultant.getLifeStageNumber(newDate.year()) === 1) ? <Text style={[cycle.title, { color: '#7E7E7E' }]}>{year + 9}</Text> : ''}
               {(consultant.getLifeStageNumber(newDate.year()) === 1) ? <Text style={[cycle.title, { color: '#7E7E7E' }]}>{year + 18}</Text> : ''}
             </View>
-          )}
+          ))}
         </View>
 
       </View>

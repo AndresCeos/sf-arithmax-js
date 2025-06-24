@@ -1,8 +1,8 @@
-import { Text, View } from '@react-pdf/renderer';
-import { StyleSheet } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
 
-export const CalendarHead = ({consultant, newDate})=>{
-  return(
+
+export const CalendarHead = ({ consultant, newDate }) => {
+  return (
     <View style={calendar.container}>
 
         <View style={calendar.head}><Text style={calendar.year}>{newDate.year()}</Text></View>
@@ -14,29 +14,29 @@ export const CalendarHead = ({consultant, newDate})=>{
 }
 
 export const calendar = StyleSheet.create({
-  container:{
-    position:'absolute',
+  container: {
+    position: 'absolute',
   },
-  head:{
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    position:'absolute'
+  head: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute'
   },
-  year:{
-    top:'45px',
-    left:'100px'
+  year: {
+    top: '45px',
+    left: '100px'
   },
-  persYear:{
-    width:'30px',
-    top:'45px',
-    left:'240px',
-    fontSize:'12px'
+  persYear: {
+    width: '30px',
+    top: '45px',
+    left: '240px',
+    fontSize: '12px'
   },
-  univYear:{
-    width:'30px',
-    top:'45px',
-    left:'300px',
-    fontSize:'12px'
+  univYear: {
+    width: '30px',
+    top: '45px',
+    left: '300px',
+    fontSize: '12px'
   }
 })

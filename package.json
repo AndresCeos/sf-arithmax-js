@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint --max-warnings=0 \"src/**/**.js\" \"src/**/**.jsx\""
+    "lint": "eslint --max-warnings=0 \"src/**/**.js\" \"src/**/**.jsx\"",
+    "lint:fix": "eslint --max-warnings=0 \"src/**/**.js\" \"src/**/**.jsx\" --fix"
   },
   "dependencies": {
     "@react-pdf/renderer": "^2.3.0",

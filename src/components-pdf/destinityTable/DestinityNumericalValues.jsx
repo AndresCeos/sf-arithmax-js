@@ -1,5 +1,5 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+
 
 export const DestinityNumericalValues = ({ consultant }) => {
   return (
@@ -15,7 +15,7 @@ export const DestinityNumericalValues = ({ consultant }) => {
             {consultant.calcNameCycles().toString()}
           </Text>
         </View>
-        <View style={[pinnacleName.circle, { left: 286, top: 57, width: 148, overflow: "hidden" }]}>
+        <View style={[pinnacleName.circle, { left: 286, top: 57, width: 148, overflow: 'hidden' }]}>
           <Text>
             {consultant.calcNameSubCycles().slice(0, 9).toString()}
           </Text>

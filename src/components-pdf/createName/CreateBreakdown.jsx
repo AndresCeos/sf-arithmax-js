@@ -1,5 +1,5 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+
 import { Person } from '../../resources/Person'
 
 export const CreateBreakdown = ({ consultant }) => {
@@ -14,7 +14,7 @@ export const CreateBreakdown = ({ consultant }) => {
   const ungroupNameT = createNameObj.getUngroupNameTotal(createNameData.name)
 
   let ungroup = []
-  let split = 32
+  const split = 32
   let tables = 0;
   let count = 0;
   do {
@@ -36,7 +36,7 @@ export const CreateBreakdown = ({ consultant }) => {
   console.log(ungroup)
 
   const table = (name, top = 0) => {
-    return name.map((el, i) =>
+    return name.map((el, i) => (
       <>
         <View style={[pinnacleName.circle, { top: 12 + top, left: 34 + (i * 13), backgroundColor: '#e5e5e5' }]}>
           <Text>
@@ -54,7 +54,7 @@ export const CreateBreakdown = ({ consultant }) => {
           </Text>
         </View>
       </>
-    )
+    ))
   }
 
   return (

@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { dateSelect } from '../hooks';
-import {currentDate } from '../resources';
-import { ConsultantPicker } from './';
+import { currentDate } from '../resources';
+import { ConsultantPicker } from '.';
 
-export const StatusBar = ({consultant}) => {
-  const {newDate} = dateSelect()
+export const StatusBar = ({ consultant }) => {
+  const { newDate } = dateSelect()
   // console.log( consultant )
-  if( consultant === null || consultant.name === '' ){
-    return(
+  if (consultant === null || consultant.name === '') {
+    return (
       <div id="App-statusBar" className="flex items-center justify-between text-13 fixed w-full z-50">
         <div>
           <ConsultantPicker />
@@ -16,7 +16,7 @@ export const StatusBar = ({consultant}) => {
     )
   }
 
-  return(
+  return (
     <div id="App-statusBar" className="flex items-center justify-between text-13 fixed w-full z-50">
       <div>
         <ConsultantPicker />

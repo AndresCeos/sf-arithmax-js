@@ -385,10 +385,11 @@ export class Synastry {
     )
     return this.karmicos.includes(name) ? '*' : '';
   }
+
   getNameCheck() {
     return this.reduceNumber(
-      this.consultant.getNameCheck() +
-      this.partner.getNameCheck()
+      this.consultant.getNameCheck()
+      + this.partner.getNameCheck()
     )
   }
 
@@ -403,10 +404,11 @@ export class Synastry {
     const soul = this.reduceNumberISK(this.consultant.calcSoulNumber() + this.partner.calcSoulNumber())
     return this.karmicos.includes(soul) ? '*' : '';
   }
+
   getSoulCheck() {
     return this.reduceNumber(
-      this.consultant.getSoulCheck() +
-      this.partner.getSoulCheck()
+      this.consultant.getSoulCheck()
+      + this.partner.getSoulCheck()
     )
   }
 
@@ -424,8 +426,8 @@ export class Synastry {
 
   getExpressionSoulCheck() {
     return this.reduceNumber(
-      this.consultant.getExpressionSoulCheck() +
-      this.partner.getExpressionSoulCheck()
+      this.consultant.getExpressionSoulCheck()
+      + this.partner.getExpressionSoulCheck()
     )
   }
 

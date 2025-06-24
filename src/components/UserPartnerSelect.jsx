@@ -13,7 +13,7 @@ import {
   setIsSelectPartner,
   setPartnerIndex
 } from '../store/slices/users/users';
-import { GroupFormInline, PartnerFormInline, UserFormInline } from './';
+import { GroupFormInline, PartnerFormInline, UserFormInline } from '.';
 
 import { MdEdit } from 'react-icons/md';
 import { TiPlus } from 'react-icons/ti';
@@ -69,13 +69,13 @@ export const UserPartnerSelect = ({ isGroup }) => {
   }, [users])
 
   const selectPartner = (e) => {
-    let index = e.target.value
+    const index = e.target.value
     dispatch(selectUserPartnerActive(userActive.id, index))
     dispatch(setIsSelectPartner(true))
     dispatch(setPartnerIndex(index))
-    let names = listPartners[index].names
-    let lastname = listPartners[index].lastName + ' ' + listPartners[index].scdLastName
-    setFullName(names + ' ' + lastname)
+    const names = listPartners[index].names
+    const lastname = `${listPartners[index].lastName} ${listPartners[index].scdLastName}`
+    setFullName(`${names} ${lastname}`)
   }
   const editUserPartner = () => {
     dispatch(setIsPartnerEditing(true))
@@ -84,7 +84,7 @@ export const UserPartnerSelect = ({ isGroup }) => {
   const editUserGroup = () => {
     dispatch(setIsGroupEditing(true))
   }
-  //console.log(userActive.group);
+  // console.log(userActive.group);
 
 
 
@@ -99,37 +99,46 @@ export const UserPartnerSelect = ({ isGroup }) => {
             Datos de {(isGroup) ? 'Grupo' : 'Pareja'} <MdEdit className='text-xl text-white' />
           </div>
           {
-            (listPartners.length > 0 || listGroup.length > 0) ?
-              <button
+            (listPartners.length > 0 || listGroup.length > 0)
+              ? (
+<button
                 onClick={() => setIsAddFormActive(!isAddFormActive)}
                 className={`float-right ${isAddFormActive ? 'bg-red-500' : 'bg-gold'} px-4 font-bold h-11 mb-3 rounded-t-3xl rounded-bl-3xl ${(isGroupEditing || isPartnerEditing) ? 'hidden' : ''}`}
-                disabled={(isGroup && listGroup.length === 8)}>
+                disabled={(isGroup && listGroup.length === 8)}
+>
                 {isAddFormActive ? 'Cancelar' : (isGroup) ? 'Agregar al Grupo' : 'Agregar Pareja'}
-              </button>
+</button>
+)
               : null
           }
         </div>
         <div className='pinnacle-wrap px-8 py-8'>
-          {(isGroup) ?
-            <GroupFormInline
+          {(isGroup)
+            ? (
+<GroupFormInline
               hasPartner={hasGroup}
               group={listGroup}
               isAddFormActive={isAddFormActive}
               setIsAddFormActive={setIsAddFormActive}
-              editUserGroup={editUserGroup} />
-            :
+              editUserGroup={editUserGroup}
+/>
+)
+            : (
             <><UserFormInline
               name={consultant.fullName}
               birthDate={consultant.getFormBirthDate()}
-              age={consultant.getYearsOld()} />
+              age={consultant.getYearsOld()}
+            />
               <PartnerFormInline
                 hasPartner={hasPartner}
                 partners={listPartners}
                 currentPartner={userPartnerActive}
                 isAddFormActive={isAddFormActive}
                 setIsAddFormActive={setIsAddFormActive}
-                editUserPartner={editUserPartner} />
-            </>}
+                editUserPartner={editUserPartner}
+              />
+            </>
+          )}
         </div>
       </div>
       {/* TODO: Edit partner

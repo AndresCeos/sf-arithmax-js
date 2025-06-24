@@ -54,13 +54,14 @@ export const NameBalance = ({ consultant }) => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
-                  }]}>
+                  }]}
+                >
                   {el[1].v}
                 </Text>
 
               </View>
-              <Text style={{ textAlign: 'center', fontSize: 10, marginTop: 10, paddingLeft: '10px' }} >{Object.keys(balanceExistential)[i]}</Text>
-              <Text style={{ textAlign: 'center', fontSize: 6, paddingLeft: '10px' }} >{el[1].d}</Text>
+              <Text style={{ textAlign: 'center', fontSize: 10, marginTop: 10, paddingLeft: '10px' }}>{Object.keys(balanceExistential)[i]}</Text>
+              <Text style={{ textAlign: 'center', fontSize: 6, paddingLeft: '10px' }}>{el[1].d}</Text>
             </View>
           ))}
         </View>

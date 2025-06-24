@@ -89,11 +89,10 @@ export const PartnerForm = ({ dataPartner, userIndex, setIsAddFormActive, indexP
           const arrayPartners = { ...dataPartner.partner, }
 
           arrayPartners[partnerIndex] = user
-          //console.log('Arrays Partners ====>' + JSON.stringify(arrayPartners))
+          // console.log('Arrays Partners ====>' + JSON.stringify(arrayPartners))
           const userPartners = { ...dataPartner, partner: Object.keys(arrayPartners).map(key => arrayPartners[key]) }
-          //console.log('pareja ==>' + JSON.stringify(userPartners.partner[0].yearMeet))
+          // console.log('pareja ==>' + JSON.stringify(userPartners.partner[0].yearMeet))
           dispatch(editUser(userPartners, userIndex))
-
         }
         setIsAddFormActive(false)
         setSubmitting(false);

@@ -203,7 +203,7 @@ const SinastryPage = () => {
 
             <div className='col-span-4 mb-1'>
               <WrapTitle
-                title={`Pináculo de Pareja`}   //'Pináculo: {partner.nameView}'
+                title="Pináculo de Pareja" // 'Pináculo: {partner.nameView}'
                 button={{
                   text: 'Comprobación',
                   handle: checkPinacle1,
@@ -217,7 +217,7 @@ const SinastryPage = () => {
 
             <div className='col-span-4 mb-1'>
               <WrapTitle
-                title={`Pináculo: ${consultant.nameView}`}   //'Pináculo: {partner.nameView}'
+                title={`Pináculo: ${consultant.nameView}`} // 'Pináculo: {partner.nameView}'
                 button={{
                   text: 'Comprobación',
                   handle: checkPinacle2,
@@ -231,7 +231,7 @@ const SinastryPage = () => {
 
             <div className='col-span-4 mb-1'>
               <WrapTitle
-                title={`Pináculo: ${partner.nameView}`}   //'Pináculo: {partner.nameView}'
+                title={`Pináculo: ${partner.nameView}`} // 'Pináculo: {partner.nameView}'
                 button={{
                   text: 'Comprobación',
                   handle: checkPinacle,

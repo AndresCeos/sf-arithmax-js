@@ -1,30 +1,30 @@
-import {StyleSheet} from '@react-pdf/renderer';
+import { StyleSheet } from '@react-pdf/renderer';
 
 export const reportConfig = StyleSheet.create({
-    page:{
+    page: {
         flexDirection: 'row',
         backgroundColor: '#E4E4E4'
     },
-    section:{
+    section: {
         margin: 10,
         padding: 10,
         flexGrow: 1,
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
-    pageBackground:{
+    pageBackground: {
         position: 'absolute',
         minWidth: '100%',
         minHeight: '100%',
         display: 'block',
         height: '100%',
         width: '100%',
-        zIndex:2,
+        zIndex: 2,
     },
 })
 
 export const pinaculoStyle = StyleSheet.create({
-    pinaculo:{
+    pinaculo: {
         position: 'relative',
         width: '330px',
         height: '480px',
@@ -32,7 +32,7 @@ export const pinaculoStyle = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'red'
     },
-    letter:{
+    letter: {
         width: '30px',
         height: '30px',
         paddingTop: '5px',
@@ -44,7 +44,7 @@ export const pinaculoStyle = StyleSheet.create({
         // borderRadius: '50%',
         position: 'absolute',
     },
-    A:{
+    A: {
         top: '163px',
         left: '21px',
     },
@@ -52,75 +52,75 @@ export const pinaculoStyle = StyleSheet.create({
         top: '163px',
         left: '112px',
     },
-    C:{
+    C: {
         top: '163px',
         left: '202px',
     },
-    D:{
+    D: {
         top: '163px',
         left: '292px',
     },
-    E:{
+    E: {
         top: '112px',
         left: '67px',
     },
-    I:{
+    I: {
         top: '109px',
         left: '111px',
     },
-    F:{
+    F: {
         top: '112px',
         left: '156px',
     },
-    G:{
+    G: {
         top: '57px',
         left: '111px',
     },
-    H:{
+    H: {
         top: '4px',
         left: '111px',
     },
-    J:{
+    J: {
         top: '89px',
         left: '229px',
     },
-    O:{
+    O: {
         top: '225px',
         left: '111px',
     },
-    K:{
+    K: {
         top: '225px',
         left: '66px',
     },
-    L:{
+    L: {
         top: '225px',
         left: '158px',
     },
-    M:{
+    M: {
         top: '271px',
         left: '111px',
     },
-    N:{
+    N: {
         top: '320px',
         left: '111px',
     },
-    R:{
+    R: {
         top: '370px',
         left: '111px',
     },
-    Q:{
+    Q: {
         top: '370px',
         left: '65px',
     },
-    S:{
+    S: {
         top: '370px',
         left: '158px',
     },
-    P:{
+    P: {
         top: '320px',
         left: '35px',
     },
-    W:{
+    W: {
       top: '271px',
       left: '4px',
     },
@@ -136,7 +136,7 @@ export const pinaculoStyle = StyleSheet.create({
     sintesis: {
         top: '69px',
         left: '292px',
-        
+
     },
     regalo: {
         top: '109px',
@@ -144,7 +144,7 @@ export const pinaculoStyle = StyleSheet.create({
     },
 });
 export const bridgeStyle = StyleSheet.create({
-    puente:{
+    puente: {
         position: 'relative',
         width: '130px',
         height: '120px',
@@ -152,9 +152,9 @@ export const bridgeStyle = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'red',
         display: 'grid',
-        gridTemplateRows: '50px 50px 50px 50px 50px' 
+        gridTemplateRows: '50px 50px 50px 50px 50px'
     },
-    letter:{
+    letter: {
         width: '30px',
         height: '30px',
         paddingTop: '5px',
@@ -166,31 +166,31 @@ export const bridgeStyle = StyleSheet.create({
         // borderRadius: '50%',
         position: 'absolute',
     },
-    et:{
+    et: {
         top: '4px',
         left: '50px'
     },
-    el:{
+    el: {
         top: '44px',
         left: '10px'
     },
-    ec:{
+    ec: {
         top: '44px',
         left: '50px'
     },
-    er:{
+    er: {
         top: '44px',
         left: '90px'
     },
-    eb:{
+    eb: {
         top: '84px',
         left: '50px'
     },
-    ed:{
+    ed: {
         top: '4px',
         left: '90px'
     },
-    ey:{
+    ey: {
         top: '84px',
         left: '10px',
         borderWidth: 0

@@ -21,6 +21,6 @@ export const LifePathPDF = ({ consultant, newDate }) => {
       <LifePathPersonalMonths consultant={consultant} now={newDate} />
       <LifePathPersonalWeeks consultant={consultant} now={newDate} />
       <LifePathDialogs consultant={consultant} now={newDate} />
-    </>
+              </>
   }
 }

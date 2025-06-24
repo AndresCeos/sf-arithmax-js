@@ -40,8 +40,8 @@ export const SynastryDestinityTable = ({ table, start, consultant, startP, partn
       pfDPC: consultant.reduceNumber((singleC ? table[i].pfD : 0) + (singleP ? tableP[i].pfD : 0))
     })
   }
-  let birthdayC = consultant.getBirthDate()
-  let birthdayP = partner.getBirthDate()
+  const birthdayC = consultant.getBirthDate()
+  const birthdayP = partner.getBirthDate()
   const getA = (birthdayC.month() + 1) + (birthdayP.month() + 1)
   const getB = (birthdayC.date()) + (birthdayP.date())
 

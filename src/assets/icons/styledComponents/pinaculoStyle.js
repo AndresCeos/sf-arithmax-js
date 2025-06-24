@@ -1,10 +1,10 @@
-import {StyleSheet} from '@react-pdf/renderer';
+import { StyleSheet } from '@react-pdf/renderer';
 
 export const pinaculoStyle = StyleSheet.create({
-    pinaculo:{
+    pinaculo: {
         position: 'absolute',
-        top:'300px',
-        left:'90px',
+        top: '300px',
+        left: '90px',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr'
     }

@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet } from "@react-pdf/renderer"
+import { View, Text, StyleSheet } from '@react-pdf/renderer'
 
 export const SynastryLine = ({ synastry, newDate }) => {
-
   return (
     <View style={lifePathDialogs.container}>
       <View style={[lifePathDialogs.wrap]}>

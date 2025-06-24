@@ -1,5 +1,5 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+
 
 export const AnnualReturn = ({ annualReturn, top, left, personalYear, yearsOld, year }) => {
   console.log({ annualReturn })
@@ -9,8 +9,8 @@ export const AnnualReturn = ({ annualReturn, top, left, personalYear, yearsOld, 
     const Age = age
     const Year = year
 
-    let yearsOld = [age];
-    let years = [year];
+    const yearsOld = [age];
+    const years = [year];
 
     while (age - 9 > 0 && yearsOld.length < 9) {
       age -= 9
@@ -76,12 +76,12 @@ export const AnnualReturn = ({ annualReturn, top, left, personalYear, yearsOld, 
         <Text style={[aReturn.tableTitle, { top: 43 + top, left: 22 + left + 22 }]}>Edad</Text>
       </View>
       {
-        caclAge(yearsOld, year).map((e, i) =>
+        caclAge(yearsOld, year).map((e, i) => (
           <View style={[aReturn.table]}>
             <Text style={[aReturn.tableItem, { top: 53 + top + (i * 11.5), left: 22 + left }]}>{e[1][1]}</Text>
             <Text style={[aReturn.tableItem, { top: 53 + top + (i * 11.5), left: 30 + left + 20 }]}>{e[1][0]}</Text>
           </View>
-        )
+        ))
       }
     </>
   )

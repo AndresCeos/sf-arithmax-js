@@ -62,7 +62,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOldY1}
             year={y1}
             top={0}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[data.return, data.return_2]}>
           <GroupAnnualReturn
@@ -71,7 +72,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOldY2}
             year={y2}
             top={0}
-            left={177} />
+            left={177}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <GroupAnnualReturn
@@ -80,7 +82,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOldY3}
             year={y3}
             top={0}
-            left={353} />
+            left={353}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <GroupAnnualReturn
@@ -89,7 +92,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOldY4}
             year={y4}
             top={138}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <GroupAnnualReturn
@@ -98,7 +102,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOld}
             year={now}
             top={138}
-            left={177} />
+            left={177}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <GroupAnnualReturn
@@ -107,7 +112,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOldY6}
             year={y6}
             top={138}
-            left={353} />
+            left={353}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <GroupAnnualReturn
@@ -116,7 +122,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOldY7}
             year={y7}
             top={275}
-            left={0} />
+            left={0}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <GroupAnnualReturn
@@ -125,7 +132,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOldY8}
             year={y8}
             top={275}
-            left={177} />
+            left={177}
+          />
         </View>
         <View style={[data.return, data.return_1]}>
           <GroupAnnualReturn
@@ -134,7 +142,8 @@ export const GroupAnnualReturns = ({ groupConsult, newDate }) => {
             yearsOld={yearsOldY9}
             year={y9}
             top={275}
-            left={353} />
+            left={353}
+          />
         </View>
       </View>
     </View>

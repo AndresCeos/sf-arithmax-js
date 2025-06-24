@@ -10,6 +10,6 @@ export const GroupAnnualReturnsPDF = ({ groupConsult, newDate }) => {
     children: <>
       <GroupAnnualReturns groupConsult={groupConsult} newDate={newDate} />
       <GroupData groupConsult={groupConsult} newDate={newDate} />
-    </>
+              </>
   }
 }

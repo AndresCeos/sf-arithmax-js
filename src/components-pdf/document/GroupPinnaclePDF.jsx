@@ -22,7 +22,7 @@ export const GroupPinnaclePDF = ({ groupConsult, newDate }) => {
       <GroupName1 groupConsult={groupConsult} newDate={newDate} />
       <GroupPinacle1 groupConsult={groupConsult} newDate={newDate} />
       <GroupRetornos1 groupConsult={groupConsult} newDate={newDate} />
-    </>
+              </>
   };
   if (cap.length > 2) {
     config = [config, {
@@ -32,7 +32,7 @@ export const GroupPinnaclePDF = ({ groupConsult, newDate }) => {
         <GroupName2 groupConsult={groupConsult} newDate={newDate} />
         <GroupPinacle2 groupConsult={groupConsult} newDate={newDate} />
         <GroupRetornos2 groupConsult={groupConsult} newDate={newDate} />
-      </>
+                </>
     }]
   }
   if (cap.length > 5) {
@@ -43,7 +43,7 @@ export const GroupPinnaclePDF = ({ groupConsult, newDate }) => {
         <GroupName3 groupConsult={groupConsult} newDate={newDate} />
         <GroupPinacle3 groupConsult={groupConsult} newDate={newDate} />
         <GroupRetornos3 groupConsult={groupConsult} newDate={newDate} />
-      </>
+                </>
     }]
   }
   return config;

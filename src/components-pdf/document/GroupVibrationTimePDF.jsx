@@ -20,13 +20,13 @@ export const GroupVibrationTimePDF = ({ groupConsult, newDate }) => {
       <GroupCycle groupConsult={groupConsult} newDate={newDate} />
       <GroupQuaterM groupConsult={groupConsult} newDate={newDate} />
       <GroupLine groupConsult={groupConsult} newDate={newDate} />
-    </>
+              </>
   }, {
     bg: gVibration2,
     children: <>
       <GroupData groupConsult={groupConsult} newDate={newDate} />
       <GroupQuaterY groupConsult={groupConsult} newDate={newDate} />
       <GroupTimeCurve groupConsult={groupConsult} newDate={newDate} />
-    </>
+              </>
   }]
 }

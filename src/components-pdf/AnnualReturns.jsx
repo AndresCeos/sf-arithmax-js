@@ -1,7 +1,7 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
-import moment from "moment";
-import { AnnualReturn } from "./AnnualReturn";
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+
+import moment from 'moment';
+import { AnnualReturn } from './AnnualReturn';
 
 export const AnnualReturns = ({ consultant }) => {
   const newDate = moment()

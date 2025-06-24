@@ -9,6 +9,6 @@ export const MonthPDF = ({ consultant, newDate, month }) => {
     children: <>
       <CalendarHeadMonth consultant={consultant} newDate={newDate} />
       <CalendarMonth consultant={consultant} newDate={newDate} month={month} />
-    </>
+              </>
   }
 }

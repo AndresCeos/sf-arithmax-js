@@ -1,29 +1,28 @@
 import { useSelector } from 'react-redux';
 
-import { SingleMonth, UnselectedConsultant, CircleNumber } from '../components/';
+import { SingleMonth, UnselectedConsultant, CircleNumber } from '../components';
 
-import { TiPlus } from "react-icons/ti";
+import { TiPlus } from 'react-icons/ti';
 import { useConsultant, dateSelect } from '../hooks';
 
 
-const CalendarMonthPage = () =>{
+const CalendarMonthPage = () => {
   const { userActive } = useSelector(state => state.users);
   const { consultant } = useConsultant()
-  const {newDate} = dateSelect()
+  const { newDate } = dateSelect()
 
   const isEmpty = Object.keys(userActive).length === 0;
 
-  if( isEmpty ){
+  if (isEmpty) {
     return <UnselectedConsultant />
   }
 
-  return(
-    <>
-      <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pb-9 pt-10'>
+  return (
+    <div className='grid grid-cols-12 mt-8 mx-14 gap-6 pb-9 pt-10'>
         <div className="col-span-12">
-          <div  className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
+          <div className='bg-black text-white text-base font-bold h-8 flex justify-start items-center rounded-tl-2xl rounded-tr-2xl'>
             <div className='w-9 h-9 flex justify-center items-center rounded-full -ml-3 mr-2 bg-green-600 p-2'>
-                <TiPlus className='text-2xl'/>
+                <TiPlus className='text-2xl' />
             </div>
             Calendario Anual: {newDate.year()}
           </div>
@@ -43,7 +42,7 @@ const CalendarMonthPage = () =>{
               </div>
               <div className="text-black font-bold text-xl px-2"> / </div>
               <div className=" px-2">
-                <CircleNumber  size="sm" appearance="main" border="main">
+                <CircleNumber size="sm" appearance="main" border="main">
                   {consultant.calcUniversalYear(newDate.year())}
                   {consultant.calcUniversalYearISK(newDate.year())}
                 </CircleNumber>
@@ -53,13 +52,11 @@ const CalendarMonthPage = () =>{
               </div>
             </div>
             <div className="row-start-2 col-start-1 col-end-3">
-              <SingleMonth consultant={consultant} month={newDate.month()+1} single={true}/>
+              <SingleMonth consultant={consultant} month={newDate.month() + 1} single />
             </div>
           </div>
         </div>
-      </div>
-    </>
+    </div>
   )
-
 }
 export default CalendarMonthPage;

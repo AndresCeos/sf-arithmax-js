@@ -9,6 +9,6 @@ export const CircleTimePDF = ({ consultant, newDate }) => {
     children: <>
       <Circle consultant={consultant} newDate={newDate} />
       <MonthCircle consultant={consultant} newDate={newDate} />
-    </>
+              </>
   }
 }

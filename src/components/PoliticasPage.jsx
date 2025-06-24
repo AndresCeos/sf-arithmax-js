@@ -1,4 +1,4 @@
-import { TiPlus } from "react-icons/ti";
+import { TiPlus } from 'react-icons/ti';
 import bg from '../assets/keys.png'
 
 const PoliticasPage = () => {
@@ -72,7 +72,7 @@ const PoliticasPage = () => {
 
 
 
-          <p><strong>III. </strong><strong></strong><strong>DECLARAN EN CONJUNTO “LAS PARTES”.</strong></p>
+          <p><strong>III. </strong><strong /><strong>DECLARAN EN CONJUNTO “LAS PARTES”.</strong></p>
 
 
 
@@ -499,8 +499,7 @@ const PoliticasPage = () => {
 
 
           <p>El USUARIO a la aceptación de los presentes TERMINOS Y CONDICIONES mediante el uso digital de un “Checkbox” y/o “Casillero de Aceptación” que se facilita para su uso en app.numerologia-cotidiana.com. Reconoce que queda obligado para con él mismo, NUMEROLOGIA COTIDIANA y terceros de ser el caso, al cumplimiento especifico de todas las obligaciones aquí contenidos como también aquella de carácter especifico y/o señaladas en el contrato de Licencia de Uso y/o Aviso de Privacidad.</p>
-          <div class="post-tags">
-          </div>
+          <div class="post-tags" />
           <div class="page-content">
 
             <p><strong>AVISO DE PRIVACIDAD&nbsp;</strong></p>
@@ -632,8 +631,7 @@ const PoliticasPage = () => {
 
 
             <p>Francisco G. Sada, 2925, interior d, Colonia Chepevera, Monterrey, Nuevo León</p>
-            <div class="post-tags">
-            </div>
+            <div class="post-tags" />
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 export const NameBreakdown = ({ name, values, total, description }) => {
-
   const hasValues = () => {
     return values !== undefined
   }
@@ -16,34 +15,37 @@ export const NameBreakdown = ({ name, values, total, description }) => {
         <div className="text-13 w-30 h-30 font-bold">C </div>
       </div>
 
-      { name.map( (el, i, row) =>
+      { name.map((el, i, row) => (
         <div key={i} className='destinityValue border-l border-gray-500'>
-          <div className={`text-13 w-30 h-30 bg-black bg-opacity-10 border-t border-gray-500 ${ i + 1 === row.length ? 'border-r' : ''}`}>
+          <div className={`text-13 w-30 h-30 bg-black bg-opacity-10 border-t border-gray-500 ${i + 1 === row.length ? 'border-r' : ''}`}>
             {el.v !== 0 ? el.v : ''}
           </div>
-          <div className={`text-13 w-30 h-30 font-bold bg-main-40 border-t border-b border-gray-500 ${ i + 1 === row.length ? 'border-r' : ''}`}>
+          <div className={`text-13 w-30 h-30 font-bold bg-main-40 border-t border-b border-gray-500 ${i + 1 === row.length ? 'border-r' : ''}`}>
             {el.L}
           </div>
-          <div className={`text-13 w-30 h-30 bg-black bg-opacity-10 border-b border-gray-500 ${ i + 1 === row.length ? 'border-r' : ''}`}>
+          <div className={`text-13 w-30 h-30 bg-black bg-opacity-10 border-b border-gray-500 ${i + 1 === row.length ? 'border-r' : ''}`}>
             {el.c !== 0 ? el.c : ''}
           </div>
         </div>
-      )}
+      ))}
 
-      { hasValues() ?
-        <div className=''>
+      { hasValues()
+        ? (
+<div className=''>
           <div className="text-13 w-30 h-30 bg-black bg-opacity-10 ml-5 rounded-md inner-shadow">
             {values[0].v !== 0 ? values[0].v : ''}
           </div>
-          <div className="w-30 h-30"></div>
+          <div className="w-30 h-30" />
           <div className="text-13 w-30 h-30 bg-black bg-opacity-10 ml-5 rounded-md inner-shadow">
             {values[0].c !== 0 ? values[0].c : ''}
           </div>
-        </div> : ''
+</div>
+) : ''
       }
 
-      { hasTotals() ?
-        <>
+      { hasTotals()
+        ? (
+<>
           <div className='ml-5'>
             <div className="text-13 w-30 h-30 bg-gold bg-opacity-10 rounded-md inner-shadow">
               {total[0].v !== 0 ? total[0].v : ''}
@@ -60,7 +62,8 @@ export const NameBreakdown = ({ name, values, total, description }) => {
             <div className="text-13 h-30 font-bold">{description} </div>
             <div className="text-13 w-30 h-30 font-bold">C </div>
           </div>
-        </>
+</>
+)
           : ''
       }
     </div>

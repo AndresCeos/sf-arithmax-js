@@ -1,10 +1,9 @@
-import { Text, View, StyleSheet } from "@react-pdf/renderer"
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
 import moment from 'moment/min/moment-with-locales'
-import { ciclePhrases } from "../../resources"
-moment.locale("es-mx")
+import { ciclePhrases } from '../../resources'
+moment.locale('es-mx')
 
 export const LifePath9Years = ({ consultant, now }) => {
-
   const personalYear = consultant.calcPersonalYear(now.year())
   const yearOfBirth = consultant.getYearOfBirth();
 
@@ -22,8 +21,9 @@ export const LifePath9Years = ({ consultant, now }) => {
           <Text>{ciclePhrases[personalYear][1]}</Text>
           <Text>{ciclePhrases[personalYear][2]}</Text>
         </View>
-        {(now.year() - 27 > yearOfBirth) &&
-          <>
+        {(now.year() - 27 > yearOfBirth)
+          && (
+<>
             <View style={[lifePath.year, lifePath.currentYear_1]}>
               <Text>{now.year() - 27}</Text>
             </View>
@@ -33,10 +33,12 @@ export const LifePath9Years = ({ consultant, now }) => {
             <View style={[lifePath.phrase, lifePath.currentYearPhrase_1]}>
               <Text>{ciclePhrases[personalYear][3]}</Text>
             </View>
-          </>
+</>
+)
         }
-        {(now.year() - 18 > yearOfBirth) &&
-          <>
+        {(now.year() - 18 > yearOfBirth)
+          && (
+<>
             <View style={[lifePath.year, lifePath.currentYear_2]}>
               <Text>{now.year() - 18}</Text>
             </View>
@@ -46,10 +48,12 @@ export const LifePath9Years = ({ consultant, now }) => {
             <View style={[lifePath.phrase, lifePath.currentYearPhrase_2]}>
               <Text>{ciclePhrases[personalYear][4]}</Text>
             </View>
-          </>
+</>
+)
         }
-        {(now.year() - 9 > yearOfBirth) &&
-          <>
+        {(now.year() - 9 > yearOfBirth)
+          && (
+<>
             <View style={[lifePath.year, lifePath.currentYear_3]}>
               <Text>{now.year() - 9}</Text>
             </View>
@@ -59,7 +63,8 @@ export const LifePath9Years = ({ consultant, now }) => {
             <View style={[lifePath.phrase, lifePath.currentYearPhrase_3]}>
               <Text>{ciclePhrases[personalYear][5]}</Text>
             </View>
-          </>
+</>
+)
         }
         <View style={[lifePath.year, lifePath.currentYear_4]}>
           <Text>{now.year()}</Text>

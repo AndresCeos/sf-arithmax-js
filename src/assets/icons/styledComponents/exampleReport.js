@@ -1,37 +1,37 @@
-import {StyleSheet} from '@react-pdf/renderer';
+import { StyleSheet } from '@react-pdf/renderer';
 
 export const exampleRreport = StyleSheet.create({
-    page:{
+    page: {
         flexDirection: 'row',
         backgroundColor: '#E4E4E4'
     },
-    section:{
+    section: {
         margin: 10,
         padding: 10,
         flexGrow: 1
     },
-    pageBackground:{
+    pageBackground: {
         position: 'absolute',
         minWidth: '100%',
         minHeight: '100%',
         display: 'block',
         height: '100%',
         width: '100%',
-        zIndex:2,
+        zIndex: 2,
     },
-    text:{
+    text: {
         position: 'absolute',
-        top:'300px',
-        left:'90px',
-        display:'block',
-        color:'white',
-        fontSize:30,
-        zIndex:1,
+        top: '300px',
+        left: '90px',
+        display: 'block',
+        color: 'white',
+        fontSize: 30,
+        zIndex: 1,
     },
-    pinaculo:{
+    pinaculo: {
         position: 'absolute',
-        top:'300px',
-        left:'90px',
+        top: '300px',
+        left: '90px',
         gridTemplateColumns: 'repeat(8, minmax(0, 1fr))'
     }
 });

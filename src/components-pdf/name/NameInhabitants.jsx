@@ -1,18 +1,17 @@
-import { Text, View } from "@react-pdf/renderer"
-import { StyleSheet } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+
 
 export const NameInhabitants = ({ consultant }) => {
-
   const appearances = consultant.getAppearances()
 
   return (
     <View style={pinnacleName.container}>
       <View style={pinnacleName.wrap}>
-        {Object.entries(appearances).map((el, i) =>
+        {Object.entries(appearances).map((el, i) => (
           <View style={[pinnacleName.circle, pinnacleName[`hab${i}`]]}>
             <Text>{el[1].a} </Text>
           </View>
-        )}
+        ))}
       </View>
     </View>
   )

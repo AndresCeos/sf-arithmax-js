@@ -40,13 +40,13 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
     }
   }
   const removeUser = () => {
-    //console.log(indexP)
+    // console.log(indexP)
     dispatch(removePartnerUser(userActive, indexP))
   }
-  //console.log(partner)
-  //console.log(partners)
-  //console.log(isSelectPartner)
-  //console.log("Pareja activa =>>>>" + JSON.stringify(userPartnerActive));
+  // console.log(partner)
+  // console.log(partners)
+  // console.log(isSelectPartner)
+  // console.log("Pareja activa =>>>>" + JSON.stringify(userPartnerActive));
   useEffect(() => {
     // //console.log( {userPartnerActive} )
     // //console.log( partner )
@@ -56,12 +56,12 @@ export const PartnerFormInline = ({ hasPartner = false, partners, isAddFormActiv
     setPartner(userPartnerActive)
   }, [userPartnerActive])
 
-  /*const setHandlerBully = (data) => {
+  /* const setHandlerBully = (data) => {
     setBully(!bully)
     //console.log("Fecha de coincidencia >>>>>>" + data)
     setYearToMeet(data)
-  }*/
-  //console.log(bully)
+  } */
+  // console.log(bully)
 
   // //console.log( partners )
   // //console.log( partner )

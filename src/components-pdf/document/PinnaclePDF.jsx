@@ -19,6 +19,6 @@ export const PinnaclePDF = ({ consultant, newDate }) => {
       <BridgeStage consultant={consultant} newDate={newDate} />
       <AnnualReturns consultant={consultant} />
       <PinnacleTimeCurve consultant={consultant} newDate={newDate} />
-    </>
+              </>
   }
 }

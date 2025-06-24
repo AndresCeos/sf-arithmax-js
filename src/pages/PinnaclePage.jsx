@@ -27,8 +27,8 @@ const PinnaclePage = () => {
   const activeStage = consultant.getLifeStageNumber(newDate.year(), newDate.month() + 1)
   const activeScdStage = consultant.getDoubleLifeStageNumber(newDate.year())
   const secondStage = consultant.hasDoubleStage()
-  console.log('etapa activa => ' + activeStage)
-  console.log('segunda etapa activa => ' + activeScdStage)
+  console.log(`etapa activa => ${activeStage}`)
+  console.log(`segunda etapa activa => ${activeScdStage}`)
 
 
   const checkPinacle = () => {

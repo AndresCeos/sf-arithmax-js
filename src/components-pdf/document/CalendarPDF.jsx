@@ -14,13 +14,13 @@ export const CalendarPDF = ({ consultant, newDate }) => {
       <CalendarHead consultant={consultant} newDate={newDate} />
       <CalendarMonths consultant={consultant} newDate={newDate} />
       {/* <CalendarMonths2 consultant={consultant} newDate={newDate} /> */}
-    </>
+              </>
   }, {
     bg: calendar2,
     children: <>
       <CalendarHead consultant={consultant} newDate={newDate} />
       <CalendarMonths2 consultant={consultant} newDate={newDate} />
-    </>
+              </>
 
   }]
 }

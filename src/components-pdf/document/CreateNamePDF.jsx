@@ -15,7 +15,7 @@ export const CreateNamePDF = ({ createNameObj, newDate }) => {
       <CreatePinnacle consultant={createNameObj} />
       <CreateBreakdown consultant={createNameObj} />
       <AnnualReturns consultant={createNameObj} />
-    </>
+              </>
   },
   {
     bg: createName2,
